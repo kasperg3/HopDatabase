@@ -1,4 +1,4 @@
-request 
-beautifulsoup4 
-json 
+requests==2.25.1
+beautifulsoup4==4.10.0
+json
 os
