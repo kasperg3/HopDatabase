@@ -1,0 +1,31 @@
+name: Python Scripts CI
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        # This is the version of the action for setting up Python, not the Python version.
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      # You can test your matrix by printing the current Python version
+      - name: Run Scrapers
+        run: python scraper.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scraper-data
+          path: |
+            YakimaChiefHops/ych_hop_data.json
+            BarthHaas/ba_hop_data.json
