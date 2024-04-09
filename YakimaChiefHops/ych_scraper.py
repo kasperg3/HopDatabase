@@ -30,7 +30,7 @@ def scrape():
         product_details = hop.find("div", {"class": "product-item-details-wrapper"})
         hop_aromas_notes = product_details.find("p", {"class": "product-sight"})
         if hop_aromas_notes is not None:
-            hop_aromas_notes = hop_aromas_notes.contents[0].strip().split(",")
+            hop_aromas_notes = hop_aromas_notes.contents[0].strip().split(", ")
 
         # Name
         name = product_details.find("a").contents[0].strip()
@@ -77,12 +77,14 @@ def scrape():
                 "source": "Yakima Chief Hops"
             }
             data_collection.append(data_dict)
-            print(data_dict)
 
-        # Export data collection to JSON file
-        with open("data/yakimachiefhops.json", "w") as file:
-            json.dump(data_collection, file, indent=4)
-
+    # Export data collection to JSON file
+    output_file = "data/yakimachiefhops.json"
+    with open(output_file, "w") as file:
+        json.dump(data_collection, file, indent=4)
+    print(f"Data dumped to {output_file}, with {len(data_collection)} entries")
+    
+    return data_collection
 
 def main():
     scrape()

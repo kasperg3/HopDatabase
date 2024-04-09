@@ -116,15 +116,14 @@ def scrape():
         
         
         # Print the mapped entry
-        print(mapped_entry)
         hop_data.append(mapped_entry)
     # Dump the hop_data list as JSON to a file
     output_file = "data/hopsteiner.json"
     with open(output_file, "w") as file:
         json.dump(hop_data, file, indent=4)
-    print(f"Data dumped to {output_file}")
+    print(f"Data dumped to {output_file}, with {len(hop_data)} entries")
     
-    
+    return hop_data
 def main():
     scrape()
     

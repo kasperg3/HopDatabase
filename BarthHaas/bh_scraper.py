@@ -46,9 +46,12 @@ def scrape():
     
         
     # Export data collection to JSON file
-    with open("data/baathhaas.json", "w") as file:
+    output_file = "data/baathhaas.json"
+    with open(output_file, "w") as file:
         json.dump(hop_list, file, indent=4)
+    print(f"Data dumped to {output_file}, with {len(hop_list)} entries")
 
+    return hop_list
 
 def main():
     # Call the scrape function

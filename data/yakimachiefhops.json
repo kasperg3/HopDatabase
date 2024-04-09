@@ -13,9 +13,9 @@
         "oil_to": "0.5 mL/100g",
         "notes": [
             "Dried Fruit",
-            " Hay",
-            " Herbal",
-            " Woody"
+            "Hay",
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -34,10 +34,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Cedar",
-            " Citrus",
-            " Floral",
-            " Grassy",
-            " Herbal"
+            "Citrus",
+            "Floral",
+            "Grassy",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -56,10 +56,10 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy",
-            " Stone Fruit",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -78,10 +78,10 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy",
-            " Stone Fruit",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -100,8 +100,8 @@
         "oil_to": "1.6 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy"
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -120,9 +120,9 @@
         "oil_to": "1.6 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Spicy"
+            "Floral",
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -141,10 +141,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Pine",
-            " Stone Fruit",
-            " Tropical"
+            "Citrus",
+            "Pine",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -163,9 +163,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Stone Fruit",
-            " Tropical"
+            "Grassy",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -184,8 +184,8 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Pine"
+            "Floral",
+            "Pine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -204,10 +204,10 @@
         "oil_to": "3.5 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Sweet Aromatic",
-            " Tropical",
-            " Woody"
+            "Floral",
+            "Sweet Aromatic",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -226,8 +226,8 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Black Currant",
-            " Fruity",
-            " Spicy"
+            "Fruity",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -246,10 +246,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Floral",
-            " Grapefruit",
-            " Grassy",
-            " Herbal",
-            " Pine"
+            "Grapefruit",
+            "Grassy",
+            "Herbal",
+            "Pine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -268,10 +268,10 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Berry",
-            " Grapefruit",
-            " Grassy",
-            " Herbal",
-            " Stone Fruit"
+            "Grapefruit",
+            "Grassy",
+            "Herbal",
+            "Stone Fruit"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -290,10 +290,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Earthy",
-            " Herbal",
-            " Lemon",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Lemon",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -312,10 +312,10 @@
         "oil_to": "3.5 mL/100g",
         "notes": [
             "Floral",
-            " Lemon",
-            " Orange",
-            " Tropical",
-            " Woody"
+            "Lemon",
+            "Orange",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -334,8 +334,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Cedar",
-            " Green Tea",
-            " Spicy"
+            "Green Tea",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -354,7 +354,7 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral"
+            "Floral"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -373,10 +373,10 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Berry",
-            " Grapefruit",
-            " Pine",
-            " Stone Fruit",
-            " Tropical"
+            "Grapefruit",
+            "Pine",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -395,9 +395,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -416,9 +416,9 @@
         "oil_to": "0.6 mL/100g",
         "notes": [
             "Fruity",
-            " Hay",
-            " Herbal",
-            " Woody"
+            "Hay",
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -437,9 +437,9 @@
         "oil_to": "0.9 mL/100g",
         "notes": [
             "Earthy",
-            " Grassy",
-            " Spicy",
-            " Woody"
+            "Grassy",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -458,7 +458,7 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Earthy",
-            " Fruity"
+            "Fruity"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -477,9 +477,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Stone Fruit",
-            " Tropical"
+            "Grassy",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -498,8 +498,8 @@
         "oil_to": "4 mL/100g",
         "notes": [
             "Citrus",
-            " Sweet Aromatic",
-            " Tropical"
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -518,9 +518,9 @@
         "oil_to": "1.8 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Stone Fruit",
-            " Woody"
+            "Herbal",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -539,9 +539,9 @@
         "oil_to": "4 mL/100g",
         "notes": [
             "Citrus",
-            " Dank",
-            " Earthy",
-            " Woody"
+            "Dank",
+            "Earthy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -560,9 +560,9 @@
         "oil_to": "0.8 mL/100g",
         "notes": [
             "Earthy",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -581,10 +581,10 @@
         "oil_to": "4.5 mL/100g",
         "notes": [
             "Bubblegum",
-            " Citrus",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Citrus",
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -603,9 +603,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -624,9 +624,9 @@
         "oil_to": "1.7 mL/100g",
         "notes": [
             "Black Currant",
-            " Citrus",
-            " Earthy",
-            " Spicy"
+            "Citrus",
+            "Earthy",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -645,9 +645,9 @@
         "oil_to": "1.1 mL/100g",
         "notes": [
             "Grassy",
-            " Herbal",
-            " Spicy",
-            " Stone Fruit"
+            "Herbal",
+            "Spicy",
+            "Stone Fruit"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -666,9 +666,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Stone Fruit",
-            " Tropical"
+            "Grassy",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -687,8 +687,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Grapefruit",
-            " Lemon",
-            " Sweet Aromatic"
+            "Lemon",
+            "Sweet Aromatic"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -707,8 +707,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Orange"
+            "Floral",
+            "Orange"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -727,9 +727,9 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Earthy",
-            " Grassy",
-            " Herbal",
-            " Woody"
+            "Grassy",
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -748,8 +748,8 @@
         "oil_to": "2.9 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical"
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -768,10 +768,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy",
-            " Tropical",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -790,9 +790,9 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Berry",
-            " Fruity",
-            " Grassy",
-            " Woody"
+            "Fruity",
+            "Grassy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -811,8 +811,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Tropical",
-            " White Wine"
+            "Tropical",
+            "White Wine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -831,9 +831,9 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -852,8 +852,8 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Floral",
-            " Grassy",
-            " Herbal"
+            "Grassy",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -872,9 +872,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Coconut",
-            " Herbal",
-            " Woody"
+            "Coconut",
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -893,9 +893,9 @@
         "oil_to": "5 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -914,10 +914,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Stone Fruit",
-            " Sweet Aromatic",
-            " Tropical"
+            "Citrus",
+            "Stone Fruit",
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -936,10 +936,10 @@
         "oil_to": "4 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Stone Fruit",
-            " Sweet Aromatic",
-            " Tropical"
+            "Herbal",
+            "Stone Fruit",
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -958,10 +958,10 @@
         "oil_to": "4 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Herbal",
-            " Stone Fruit",
-            " Woody"
+            "Earthy",
+            "Herbal",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -980,7 +980,7 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Floral",
-            " Spicy"
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -999,8 +999,8 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Pine",
-            " Spicy"
+            "Pine",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1019,9 +1019,9 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Hay",
-            " Orange",
-            " Spicy",
-            " Woody"
+            "Orange",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1040,8 +1040,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Spicy"
+            "Floral",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1060,8 +1060,8 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Citrus",
-            " Melon",
-            " Tropical"
+            "Melon",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1080,10 +1080,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Berry",
-            " Bubblegum",
-            " Citrus",
-            " Stone Fruit",
-            " Tropical"
+            "Bubblegum",
+            "Citrus",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1102,10 +1102,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Berry",
-            " Bubblegum",
-            " Citrus",
-            " Floral",
-            " Mint"
+            "Bubblegum",
+            "Citrus",
+            "Floral",
+            "Mint"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1124,10 +1124,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Fruity",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Fruity",
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1146,8 +1146,8 @@
         "oil_to": "1.8 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Spicy"
+            "Earthy",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1166,10 +1166,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Floral",
-            " Passion Fruit",
-            " Tropical"
+            "Citrus",
+            "Floral",
+            "Passion Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1188,9 +1188,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Floral",
-            " Spicy",
-            " Tea",
-            " Woody"
+            "Spicy",
+            "Tea",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1209,10 +1209,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Lemon",
-            " Tropical"
+            "Floral",
+            "Herbal",
+            "Lemon",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1231,9 +1231,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Herbal",
-            " Pineapple"
+            "Grassy",
+            "Herbal",
+            "Pineapple"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1252,8 +1252,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Orange",
-            " Sweet Aromatic"
+            "Orange",
+            "Sweet Aromatic"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1272,10 +1272,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Floral",
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1294,9 +1294,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Stone Fruit",
-            " Tropical"
+            "Citrus",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1315,9 +1315,9 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Fruity",
-            " Lemon",
-            " Lime",
-            " Tropical"
+            "Lemon",
+            "Lime",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1336,9 +1336,9 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Fruity",
-            " Lemon",
-            " Lime",
-            " Tropical"
+            "Lemon",
+            "Lime",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1357,8 +1357,8 @@
         "oil_to": "1.1 mL/100g",
         "notes": [
             "Grapefruit",
-            " Passion Fruit",
-            " Tropical"
+            "Passion Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1377,9 +1377,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Hay",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1398,9 +1398,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Fruity",
-            " Herbal"
+            "Earthy",
+            "Fruity",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1419,8 +1419,8 @@
         "oil_to": "6 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical"
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1439,8 +1439,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Tropical",
-            " White Wine"
+            "Tropical",
+            "White Wine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1459,8 +1459,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Tropical",
-            " White Wine"
+            "Tropical",
+            "White Wine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1497,8 +1497,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Floral",
-            " Spicy",
-            " Woody"
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1517,9 +1517,9 @@
         "oil_to": "1.6 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Resinous",
-            " Spicy"
+            "Herbal",
+            "Resinous",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1538,9 +1538,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1559,8 +1559,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Black Pepper",
-            " Citrus",
-            " Spicy"
+            "Citrus",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1579,8 +1579,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Lemon",
-            " Pine",
-            " Spicy"
+            "Pine",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1599,7 +1599,7 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Spicy"
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1618,8 +1618,8 @@
         "oil_to": "1.3 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Spicy"
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1638,10 +1638,10 @@
         "oil_to": "0.5 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Grassy",
-            " Herbal",
-            " Spicy"
+            "Earthy",
+            "Grassy",
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1660,8 +1660,8 @@
         "oil_to": "1.6 mL/100g",
         "notes": [
             "Berry",
-            " Spicy",
-            " Woody"
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1680,8 +1680,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Orange"
+            "Floral",
+            "Orange"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1700,8 +1700,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Orange"
+            "Floral",
+            "Orange"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1720,10 +1720,10 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Stone Fruit",
-            " Woody"
+            "Floral",
+            "Herbal",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1742,8 +1742,8 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal"
+            "Floral",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1762,10 +1762,10 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Earthy",
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1784,8 +1784,8 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Floral",
-            " Spicy",
-            " Sweet Aromatic"
+            "Spicy",
+            "Sweet Aromatic"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1804,8 +1804,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Pear",
-            " Spicy"
+            "Pear",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1824,8 +1824,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Lemon",
-            " Orange",
-            " Spicy"
+            "Orange",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1844,9 +1844,9 @@
         "oil_to": "1.4 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Stone Fruit",
-            " Tropical"
+            "Citrus",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1865,8 +1865,8 @@
         "oil_to": "4.5 mL/100g",
         "notes": [
             "Herbal",
-            " Mint",
-            " Tropical"
+            "Mint",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1885,8 +1885,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Earthy",
-            " Floral",
-            " Herbal"
+            "Floral",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1905,8 +1905,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Woody"
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1925,9 +1925,9 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Grassy",
-            " Herbal",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1946,9 +1946,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Apricot",
-            " Citrus",
-            " Resinous",
-            " Stone Fruit"
+            "Citrus",
+            "Resinous",
+            "Stone Fruit"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1967,9 +1967,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Apricot",
-            " Citrus",
-            " Resinous",
-            " Stone Fruit"
+            "Citrus",
+            "Resinous",
+            "Stone Fruit"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -1988,8 +1988,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Grapefruit",
-            " Passion Fruit",
-            " Tropical"
+            "Passion Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2008,10 +2008,10 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Earthy",
-            " Floral",
-            " Grassy",
-            " Spicy",
-            " Woody"
+            "Floral",
+            "Grassy",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2030,10 +2030,10 @@
         "oil_to": "4 mL/100g",
         "notes": [
             "Citrus",
-            " Coconut",
-            " Herbal",
-            " Stone Fruit",
-            " Tropical"
+            "Coconut",
+            "Herbal",
+            "Stone Fruit",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2052,8 +2052,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Floral",
-            " Herbal",
-            " Spicy"
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2072,8 +2072,8 @@
         "oil_to": "1.4 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Spicy"
+            "Floral",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2092,9 +2092,9 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Earthy",
-            " Floral",
-            " Spicy"
+            "Earthy",
+            "Floral",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2113,10 +2113,10 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Grapefruit",
-            " Stone Fruit",
-            " Tropical",
-            " Woody"
+            "Grapefruit",
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2135,8 +2135,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Floral",
-            " Fruity",
-            " Spicy"
+            "Fruity",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2155,9 +2155,9 @@
         "oil_to": "5 mL/100g",
         "notes": [
             "Herbal",
-            " Lemon",
-            " Spicy",
-            " Woody"
+            "Lemon",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2176,9 +2176,9 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Earthy",
-            " Floral",
-            " Grassy",
-            " Herbal"
+            "Floral",
+            "Grassy",
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2215,8 +2215,8 @@
         "oil_to": "0.9 mL/100g",
         "notes": [
             "Herbal",
-            " Spicy",
-            " Woody"
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2235,9 +2235,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Grassy",
-            " Spicy"
+            "Floral",
+            "Grassy",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2256,7 +2256,7 @@
         "oil_to": "",
         "notes": [
             "Citrus",
-            " Pine"
+            "Pine"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2275,9 +2275,9 @@
         "oil_to": "0.8 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Spicy"
+            "Floral",
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2296,7 +2296,7 @@
         "oil_to": "1.3 mL/100g",
         "notes": [
             "Apricot",
-            " Melon"
+            "Melon"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2315,9 +2315,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Stone Fruit",
-            " Woody"
+            "Herbal",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2336,7 +2336,7 @@
         "oil_to": "2.7 mL/100g",
         "notes": [
             "Fruity",
-            " Resinous"
+            "Resinous"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2355,9 +2355,9 @@
         "oil_to": "2.2 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Sweet Aromatic",
-            " Tropical"
+            "Citrus",
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2376,7 +2376,7 @@
         "oil_to": "0.6 mL/100g",
         "notes": [
             "Earthy",
-            " Herbal"
+            "Herbal"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2395,8 +2395,8 @@
         "oil_to": "1.1 mL/100g",
         "notes": [
             "Floral",
-            " Herbal",
-            " Spicy"
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2415,8 +2415,8 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Spicy",
-            " Woody"
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2435,10 +2435,10 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Grapefruit",
-            " Herbal",
-            " Pine",
-            " Rose",
-            " Tropical"
+            "Herbal",
+            "Pine",
+            "Rose",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2457,10 +2457,10 @@
         "oil_to": "1.8 mL/100g",
         "notes": [
             "Earthy",
-            " Herbal",
-            " Orange",
-            " Spicy",
-            " Woody"
+            "Herbal",
+            "Orange",
+            "Spicy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2479,9 +2479,9 @@
         "oil_to": "0.9 mL/100g",
         "notes": [
             "Floral",
-            " Spicy",
-            " Tea",
-            " Woody"
+            "Spicy",
+            "Tea",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2500,8 +2500,8 @@
         "oil_to": "1.8 mL/100g",
         "notes": [
             "Grassy",
-            " Resinous",
-            " Tropical"
+            "Resinous",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2520,9 +2520,9 @@
         "oil_to": "2 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Spicy"
+            "Floral",
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2541,9 +2541,9 @@
         "oil_to": "3 mL/100g",
         "notes": [
             "Bubblegum",
-            " Citrus",
-            " Herbal",
-            " Tropical"
+            "Citrus",
+            "Herbal",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2562,8 +2562,8 @@
         "oil_to": "1 mL/100g",
         "notes": [
             "Earthy",
-            " Herbal",
-            " Spicy"
+            "Herbal",
+            "Spicy"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2582,8 +2582,8 @@
         "oil_to": "2.8 mL/100g",
         "notes": [
             "Citrus",
-            " Sweet Aromatic",
-            " Tropical"
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2602,9 +2602,9 @@
         "oil_to": "1.8 mL/100g",
         "notes": [
             "Citrus",
-            " Floral",
-            " Herbal",
-            " Sweet Aromatic"
+            "Floral",
+            "Herbal",
+            "Sweet Aromatic"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2623,10 +2623,10 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Berry",
-            " Citrus",
-            " Floral",
-            " Herbal",
-            " Peach"
+            "Citrus",
+            "Floral",
+            "Herbal",
+            "Peach"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2645,9 +2645,9 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Stone Fruit",
-            " Sweet Aromatic",
-            " Tropical"
+            "Stone Fruit",
+            "Sweet Aromatic",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2666,8 +2666,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Woody"
+            "Grassy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2686,8 +2686,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Woody"
+            "Grassy",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2706,10 +2706,10 @@
         "oil_to": "2.5 mL/100g",
         "notes": [
             "Citrus",
-            " Grassy",
-            " Herbal",
-            " Stone Fruit",
-            " Woody"
+            "Grassy",
+            "Herbal",
+            "Stone Fruit",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2728,9 +2728,9 @@
         "oil_to": "1.6 mL/100g",
         "notes": [
             "Citrus",
-            " Hay",
-            " Tea",
-            " Woody"
+            "Hay",
+            "Tea",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2749,8 +2749,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Woody"
+            "Herbal",
+            "Woody"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
@@ -2769,8 +2769,8 @@
         "oil_to": "1.5 mL/100g",
         "notes": [
             "Citrus",
-            " Herbal",
-            " Tropical"
+            "Herbal",
+            "Tropical"
         ],
         "aromas": "",
         "source": "Yakima Chief Hops"
