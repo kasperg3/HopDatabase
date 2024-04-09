@@ -30,5 +30,6 @@ jobs:
         with:
           name: scraper-data
           path: |
-            YakimaChiefHops/ych_hop_data.json
-            BarthHaas/ba_hop_data.json
+            data/yakimachiefhops.json
+            data/baathhaas.json
+            data/hopsteiner.json
