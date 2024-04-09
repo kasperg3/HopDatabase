@@ -1,5 +1,6 @@
-# Hop Database
+[![Python Scripts CI](https://github.com/kasperg3/HopDatabase/actions/workflows/ci.yaml/badge.svg)](https://github.com/kasperg3/HopDatabase/actions/workflows/ci.yaml)
 
+# Hop Database
 Welcome to the Hop Database project! This database is created by using web scraping techniques and contains information from various hops producers' websites.
 Current sources:
 
