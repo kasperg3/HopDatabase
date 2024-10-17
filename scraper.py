@@ -14,3 +14,5 @@ len(combined_json)
 # Dump combined_json to a JSON file
 with open('data/combined.json', 'w') as file:
     json.dump(combined_json, file, indent=4)
+    
+print(f"Data dumped to data/combined.json, with {len(combined_json)} entries")

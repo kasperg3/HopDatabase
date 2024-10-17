@@ -2,7 +2,7 @@
     {
         "name": "Aged Hops Blend",
         "country": "",
-        "href": "https://www.yakimachief.com/aged-hops-blend.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/aged-hops-blend.html",
         "alpha-from": "1",
         "alpha_to": "3",
         "beta_from": "1",
@@ -23,7 +23,7 @@
     {
         "name": "Ahtanum",
         "country": "",
-        "href": "https://www.yakimachief.com/ahtanum.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/ahtanum.html",
         "alpha-from": "4",
         "alpha_to": "6",
         "beta_from": "5",
@@ -43,9 +43,30 @@
         "source": "Yakima Chief Hops"
     },
     {
+        "name": "Ales for ALS\u2122 Blend",
+        "country": "",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/ales-for-als-trade-blend.html",
+        "alpha-from": "11",
+        "alpha_to": "14",
+        "beta_from": "4.5",
+        "beta_to": "6",
+        "co_h_from": "20",
+        "co_h_to": "26",
+        "oil_from": "1",
+        "oil_to": "2 mL/100g",
+        "notes": [
+            "Berry",
+            "Citrus",
+            "Tropical",
+            "Woody"
+        ],
+        "aromas": "",
+        "source": "Yakima Chief Hops"
+    },
+    {
         "name": "Amarillo",
         "country": "",
-        "href": "https://www.yakimachief.com/amarillo.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/amarillo.html",
         "alpha-from": "6.5",
         "alpha_to": "11",
         "beta_from": "5.5",
@@ -67,7 +88,7 @@
     {
         "name": "Amarillo",
         "country": "",
-        "href": "https://www.yakimachief.com/amarillo-brand-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/amarillo-brand-gr.html",
         "alpha-from": "7",
         "alpha_to": "11",
         "beta_from": "5.5",
@@ -89,7 +110,7 @@
     {
         "name": "Aramis - FR",
         "country": "",
-        "href": "https://www.yakimachief.com/aramis-fr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/aramis-fr.html",
         "alpha-from": "6.5",
         "alpha_to": "8.5",
         "beta_from": "3.5",
@@ -109,7 +130,7 @@
     {
         "name": "Aurora - SI",
         "country": "",
-        "href": "https://www.yakimachief.com/aurora-si.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/aurora-si.html",
         "alpha-from": "6.5",
         "alpha_to": "9.5",
         "beta_from": "3.2",
@@ -130,7 +151,7 @@
     {
         "name": "Azacca",
         "country": "",
-        "href": "https://www.yakimachief.com/azacca.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/azacca.html",
         "alpha-from": "10",
         "alpha_to": "14",
         "beta_from": "4",
@@ -152,7 +173,7 @@
     {
         "name": "Bitter Gold",
         "country": "",
-        "href": "https://www.yakimachief.com/bitter-gold.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/bitter-gold.html",
         "alpha-from": "12",
         "alpha_to": "14.5",
         "beta_from": "4.5",
@@ -173,7 +194,7 @@
     {
         "name": "Bobek - SI",
         "country": "",
-        "href": "https://www.yakimachief.com/bobek-si.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/bobek-si.html",
         "alpha-from": "3",
         "alpha_to": "7",
         "beta_from": "4",
@@ -193,7 +214,7 @@
     {
         "name": "Bravo\u2122",
         "country": "",
-        "href": "https://www.yakimachief.com/bravo.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/bravo.html",
         "alpha-from": "15",
         "alpha_to": "18",
         "beta_from": "3.5",
@@ -215,7 +236,7 @@
     {
         "name": "Brewer's Gold",
         "country": "",
-        "href": "https://www.yakimachief.com/brewers-gold.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/brewers-gold.html",
         "alpha-from": "8",
         "alpha_to": "11",
         "beta_from": "4",
@@ -235,7 +256,7 @@
     {
         "name": "Cascade",
         "country": "",
-        "href": "https://www.yakimachief.com/cascade.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/cascade.html",
         "alpha-from": "4",
         "alpha_to": "9",
         "beta_from": "5.5",
@@ -257,7 +278,7 @@
     {
         "name": "Cashmere",
         "country": "",
-        "href": "https://www.yakimachief.com/cashmere.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/cashmere.html",
         "alpha-from": "7",
         "alpha_to": "10",
         "beta_from": "5",
@@ -279,7 +300,7 @@
     {
         "name": "Celeia - SI",
         "country": "",
-        "href": "https://www.yakimachief.com/celeia-si.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/celeia-si.html",
         "alpha-from": "3",
         "alpha_to": "6",
         "beta_from": "2.5",
@@ -301,7 +322,7 @@
     {
         "name": "Centennial",
         "country": "",
-        "href": "https://www.yakimachief.com/centennial.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/centennial.html",
         "alpha-from": "8.5",
         "alpha_to": "12",
         "beta_from": "3.5",
@@ -323,7 +344,7 @@
     {
         "name": "Challenger - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/challenger-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/challenger-uk.html",
         "alpha-from": "6.5",
         "alpha_to": "8.5",
         "beta_from": "3.5",
@@ -343,7 +364,7 @@
     {
         "name": "Chelan",
         "country": "",
-        "href": "https://www.yakimachief.com/chelan.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/chelan.html",
         "alpha-from": "13.5",
         "alpha_to": "15.5",
         "beta_from": "9",
@@ -362,7 +383,7 @@
     {
         "name": "Chinook",
         "country": "",
-        "href": "https://www.yakimachief.com/chinook.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/chinook.html",
         "alpha-from": "11",
         "alpha_to": "15",
         "beta_from": "3",
@@ -384,7 +405,7 @@
     {
         "name": "Citra",
         "country": "",
-        "href": "https://www.yakimachief.com/citra.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/citra.html",
         "alpha-from": "10",
         "alpha_to": "16",
         "beta_from": "3",
@@ -405,7 +426,7 @@
     {
         "name": "Cluster",
         "country": "",
-        "href": "https://www.yakimachief.com/cluster.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/cluster.html",
         "alpha-from": "6",
         "alpha_to": "9",
         "beta_from": "4",
@@ -426,7 +447,7 @@
     {
         "name": "Cluster Fugget\u2122",
         "country": "",
-        "href": "https://www.yakimachief.com/cluster-fugget.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/cluster-fugget.html",
         "alpha-from": "8.1",
         "alpha_to": "8.1",
         "beta_from": "4.1",
@@ -447,7 +468,7 @@
     {
         "name": "Columbia",
         "country": "",
-        "href": "https://www.yakimachief.com/columbia.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/columbia.html",
         "alpha-from": "5",
         "alpha_to": "6",
         "beta_from": "3",
@@ -466,7 +487,7 @@
     {
         "name": "Comet",
         "country": "",
-        "href": "https://www.yakimachief.com/comet.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/comet.html",
         "alpha-from": "8",
         "alpha_to": "10.5",
         "beta_from": "4",
@@ -487,7 +508,7 @@
     {
         "name": "Cryo Pop",
         "country": "",
-        "href": "https://www.yakimachief.com/cryo-pop-original-blend.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/cryo-pop-original-blend.html",
         "alpha-from": "18",
         "alpha_to": "22",
         "beta_from": "7",
@@ -507,7 +528,7 @@
     {
         "name": "Crystal",
         "country": "",
-        "href": "https://www.yakimachief.com/crystal.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/crystal.html",
         "alpha-from": "3.5",
         "alpha_to": "6",
         "beta_from": "6.5",
@@ -528,7 +549,7 @@
     {
         "name": "CTZ",
         "country": "",
-        "href": "https://www.yakimachief.com/ctz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/ctz.html",
         "alpha-from": "15",
         "alpha_to": "18",
         "beta_from": "4.5",
@@ -549,7 +570,7 @@
     {
         "name": "East Kent Golding - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/east-kent-golding-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/east-kent-golding-uk.html",
         "alpha-from": "4.5",
         "alpha_to": "6.5",
         "beta_from": "1.9",
@@ -570,7 +591,7 @@
     {
         "name": "Ekuanot",
         "country": "",
-        "href": "https://www.yakimachief.com/ekuanot.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/ekuanot.html",
         "alpha-from": "14",
         "alpha_to": "16",
         "beta_from": "4",
@@ -592,7 +613,7 @@
     {
         "name": "El Dorado",
         "country": "",
-        "href": "https://www.yakimachief.com/el-dorado.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/el-dorado.html",
         "alpha-from": "13",
         "alpha_to": "16",
         "beta_from": "5.5",
@@ -613,7 +634,7 @@
     {
         "name": "Endeavour - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/endeavour-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/endeavour-uk.html",
         "alpha-from": "8",
         "alpha_to": "10.5",
         "beta_from": "3.8",
@@ -634,7 +655,7 @@
     {
         "name": "Ernest - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/ernest-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/ernest-uk.html",
         "alpha-from": "5.3",
         "alpha_to": "6.3",
         "beta_from": "4.5",
@@ -655,7 +676,7 @@
     {
         "name": "Falconer's Flight 7Cs",
         "country": "",
-        "href": "https://www.yakimachief.com/falconer-s-flight-7cs.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/falconer-s-flight-7cs.html",
         "alpha-from": "9.5",
         "alpha_to": "11.5",
         "beta_from": "4.5",
@@ -676,7 +697,7 @@
     {
         "name": "Falconer's Flight",
         "country": "",
-        "href": "https://www.yakimachief.com/falconers-flight.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/falconers-flight.html",
         "alpha-from": "9.5",
         "alpha_to": "11.5",
         "beta_from": "4",
@@ -696,7 +717,7 @@
     {
         "name": "First Gold - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/first-gold-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/first-gold-uk.html",
         "alpha-from": "7",
         "alpha_to": "10",
         "beta_from": "3",
@@ -716,7 +737,7 @@
     {
         "name": "Fuggle - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/fuggle.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/fuggle.html",
         "alpha-from": "3",
         "alpha_to": "6",
         "beta_from": "2",
@@ -737,7 +758,7 @@
     {
         "name": "Galaxy\u2122 - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/galaxy-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/galaxy-au.html",
         "alpha-from": "13",
         "alpha_to": "18.5",
         "beta_from": "6.1",
@@ -757,7 +778,7 @@
     {
         "name": "Galena",
         "country": "",
-        "href": "https://www.yakimachief.com/galena.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/galena.html",
         "alpha-from": "13",
         "alpha_to": "15",
         "beta_from": "7.5",
@@ -779,7 +800,7 @@
     {
         "name": "Glacier",
         "country": "",
-        "href": "https://www.yakimachief.com/glacier.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/glacier.html",
         "alpha-from": "4",
         "alpha_to": "7.5",
         "beta_from": "7",
@@ -800,7 +821,7 @@
     {
         "name": "Hallertau Blanc - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/hallertau-blanc-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hallertau-blanc-gr.html",
         "alpha-from": "9",
         "alpha_to": "12",
         "beta_from": "4.5",
@@ -820,7 +841,7 @@
     {
         "name": "Hallertauer Mittelfr\u00fcher - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/hallertauer-mittelfruher-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hallertauer-mittelfruher-gr.html",
         "alpha-from": "3",
         "alpha_to": "5.5",
         "beta_from": "3",
@@ -841,7 +862,7 @@
     {
         "name": "Hallertauer Tradition - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/hallertauer-tradition-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hallertauer-tradition-gr.html",
         "alpha-from": "4",
         "alpha_to": "7",
         "beta_from": "3",
@@ -861,7 +882,7 @@
     {
         "name": "HBC 472",
         "country": "",
-        "href": "https://www.yakimachief.com/hbc472.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hbc472.html",
         "alpha-from": "9",
         "alpha_to": "12",
         "beta_from": "7",
@@ -880,30 +901,9 @@
         "source": "Yakima Chief Hops"
     },
     {
-        "name": "HBC 586",
-        "country": "",
-        "href": "https://www.yakimachief.com/hbc-586.html",
-        "alpha-from": "18",
-        "alpha_to": "22",
-        "beta_from": "10",
-        "beta_to": "14",
-        "co_h_from": "35",
-        "co_h_to": "40",
-        "oil_from": "1",
-        "oil_to": "5 mL/100g",
-        "notes": [
-            "Citrus",
-            "Stone Fruit",
-            "Tropical",
-            "Woody"
-        ],
-        "aromas": "",
-        "source": "Yakima Chief Hops"
-    },
-    {
         "name": "HBC 630",
         "country": "",
-        "href": "https://www.yakimachief.com/hbc-630.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hbc-630.html",
         "alpha-from": "13",
         "alpha_to": "15",
         "beta_from": "5",
@@ -925,7 +925,7 @@
     {
         "name": "HBC 638",
         "country": "",
-        "href": "https://www.yakimachief.com/hbc-638.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hbc-638.html",
         "alpha-from": "13",
         "alpha_to": "16",
         "beta_from": "4",
@@ -947,7 +947,7 @@
     {
         "name": "HBC 682",
         "country": "",
-        "href": "https://www.yakimachief.com/hbc682.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hbc682.html",
         "alpha-from": "16",
         "alpha_to": "21",
         "beta_from": "5",
@@ -969,7 +969,7 @@
     {
         "name": "Helga - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/helga-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/helga-au.html",
         "alpha-from": "5.4",
         "alpha_to": "7.3",
         "beta_from": "5",
@@ -988,7 +988,7 @@
     {
         "name": "Herkules - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/herkules-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/herkules-gr.html",
         "alpha-from": "13",
         "alpha_to": "17",
         "beta_from": "4",
@@ -1008,7 +1008,7 @@
     {
         "name": "Hersbrucker Sp\u00e4t - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/hersbrucker-spat-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hersbrucker-spat-gr.html",
         "alpha-from": "1.5",
         "alpha_to": "4",
         "beta_from": "2.5",
@@ -1029,7 +1029,7 @@
     {
         "name": "Horizon",
         "country": "",
-        "href": "https://www.yakimachief.com/horizon.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/horizon.html",
         "alpha-from": "8.8",
         "alpha_to": "12",
         "beta_from": "5.5",
@@ -1049,7 +1049,7 @@
     {
         "name": "Huell Melon - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/huell-melon-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/huell-melon-gr.html",
         "alpha-from": "6",
         "alpha_to": "8",
         "beta_from": "6",
@@ -1069,7 +1069,7 @@
     {
         "name": "Idaho 7",
         "country": "",
-        "href": "https://www.yakimachief.com/idaho-7.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/idaho-7.html",
         "alpha-from": "12",
         "alpha_to": "15",
         "beta_from": "3.5",
@@ -1091,7 +1091,7 @@
     {
         "name": "Idaho Gem\u2122 Brand",
         "country": "",
-        "href": "https://www.yakimachief.com/idaho-gem.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/idaho-gem.html",
         "alpha-from": "12",
         "alpha_to": "15",
         "beta_from": "4.5",
@@ -1113,7 +1113,7 @@
     {
         "name": "Jarrylo",
         "country": "",
-        "href": "https://www.yakimachief.com/jarrylo.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/jarrylo.html",
         "alpha-from": "12",
         "alpha_to": "14",
         "beta_from": "6.5",
@@ -1135,7 +1135,7 @@
     {
         "name": "Kazbek - CZ",
         "country": "",
-        "href": "https://www.yakimachief.com/kazbek-cz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/kazbek-cz.html",
         "alpha-from": "4",
         "alpha_to": "7",
         "beta_from": "4",
@@ -1155,7 +1155,7 @@
     {
         "name": "Kohatu",
         "country": "",
-        "href": "https://www.yakimachief.com/kohatu-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/kohatu-brand-nz.html",
         "alpha-from": "6",
         "alpha_to": "7",
         "beta_from": "4",
@@ -1175,9 +1175,31 @@
         "source": "Yakima Chief Hops"
     },
     {
+        "name": "Krush\u2122 Brand",
+        "country": "",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/hbc-586.html",
+        "alpha-from": "10",
+        "alpha_to": "14",
+        "beta_from": "7",
+        "beta_to": "9",
+        "co_h_from": "34",
+        "co_h_to": "40",
+        "oil_from": "0.5",
+        "oil_to": "3 mL/100g",
+        "notes": [
+            "Berry",
+            "Citrus",
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
+        ],
+        "aromas": "",
+        "source": "Yakima Chief Hops"
+    },
+    {
         "name": "Liberty",
         "country": "",
-        "href": "https://www.yakimachief.com/liberty.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/liberty.html",
         "alpha-from": "4",
         "alpha_to": "6",
         "beta_from": "3",
@@ -1198,7 +1220,7 @@
     {
         "name": "Loral",
         "country": "",
-        "href": "https://www.yakimachief.com/loral.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/loral.html",
         "alpha-from": "10",
         "alpha_to": "13",
         "beta_from": "4.5",
@@ -1220,7 +1242,7 @@
     {
         "name": "Magnum",
         "country": "",
-        "href": "https://www.yakimachief.com/magnum.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/magnum.html",
         "alpha-from": "12",
         "alpha_to": "15",
         "beta_from": "6",
@@ -1241,7 +1263,7 @@
     {
         "name": "Mandarina Bavaria - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/mandarina-bavaria-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mandarina-bavaria-gr.html",
         "alpha-from": "7",
         "alpha_to": "10",
         "beta_from": "4",
@@ -1261,7 +1283,7 @@
     {
         "name": "Millennium",
         "country": "",
-        "href": "https://www.yakimachief.com/millennium.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/millennium.html",
         "alpha-from": "16",
         "alpha_to": "18.5",
         "beta_from": "5.5",
@@ -1283,7 +1305,7 @@
     {
         "name": "Mosaic",
         "country": "",
-        "href": "https://www.yakimachief.com/mosaic.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mosaic.html",
         "alpha-from": "10",
         "alpha_to": "15",
         "beta_from": "3",
@@ -1304,7 +1326,7 @@
     {
         "name": "Motueka\u2122 Brand - MacHops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/motueka-trade-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/motueka-trade-brand-nz.html",
         "alpha-from": "4",
         "alpha_to": "9",
         "beta_from": "4",
@@ -1325,7 +1347,7 @@
     {
         "name": "Motueka\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/motueka-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/motueka-brand-nz.html",
         "alpha-from": "6.5",
         "alpha_to": "7.5",
         "beta_from": "5",
@@ -1346,7 +1368,7 @@
     {
         "name": "Moutere\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/mouteretm-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mouteretm-brand-nz.html",
         "alpha-from": "12.6",
         "alpha_to": "12.6",
         "beta_from": "7.3",
@@ -1366,7 +1388,7 @@
     {
         "name": "Mt. Hood",
         "country": "",
-        "href": "https://www.yakimachief.com/mt-hood.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mt-hood.html",
         "alpha-from": "4",
         "alpha_to": "6",
         "beta_from": "5",
@@ -1387,7 +1409,7 @@
     {
         "name": "Mt. Rainier",
         "country": "",
-        "href": "https://www.yakimachief.com/mt-rainier.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mt-rainier.html",
         "alpha-from": "5",
         "alpha_to": "7",
         "beta_from": "7",
@@ -1408,7 +1430,7 @@
     {
         "name": "Nectaron",
         "country": "",
-        "href": "https://www.yakimachief.com/nectaron-reg-brand-nz-hops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nectaron-reg-brand-nz-hops-nz.html",
         "alpha-from": "21",
         "alpha_to": "27",
         "beta_from": "10",
@@ -1428,7 +1450,7 @@
     {
         "name": "Nelson Sauvin\u2122 Brand - MacHops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/nelson-sauvin-trade-brand-machops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nelson-sauvin-trade-brand-machops-nz.html",
         "alpha-from": "9",
         "alpha_to": "13",
         "beta_from": "5",
@@ -1448,7 +1470,7 @@
     {
         "name": "Nelson Sauvin\u2122  Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/nelson-sauvin-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nelson-sauvin-brand-nz.html",
         "alpha-from": "10",
         "alpha_to": "13",
         "beta_from": "5",
@@ -1468,7 +1490,7 @@
     {
         "name": "Newport",
         "country": "",
-        "href": "https://www.yakimachief.com/newport.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/newport.html",
         "alpha-from": "10.5",
         "alpha_to": "12.5",
         "beta_from": "5.5",
@@ -1486,7 +1508,7 @@
     {
         "name": "Northdown - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/northdown-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/northdown-uk.html",
         "alpha-from": "7",
         "alpha_to": "10",
         "beta_from": "4",
@@ -1506,7 +1528,7 @@
     {
         "name": "Northern Brewer - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/northern-brewer.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/northern-brewer.html",
         "alpha-from": "6",
         "alpha_to": "10",
         "beta_from": "3",
@@ -1527,7 +1549,7 @@
     {
         "name": "Nugget",
         "country": "",
-        "href": "https://www.yakimachief.com/nugget.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nugget.html",
         "alpha-from": "13",
         "alpha_to": "16",
         "beta_from": "4",
@@ -1548,7 +1570,7 @@
     {
         "name": "NZ Pacific Jade\u2122 Brand - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/nz-pacific-jade-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-pacific-jade-brand-nz.html",
         "alpha-from": "12",
         "alpha_to": "15",
         "beta_from": "7",
@@ -1568,7 +1590,7 @@
     {
         "name": "NZ Southern Cross\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/nz-southern-cross-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-southern-cross-brand-nz.html",
         "alpha-from": "11",
         "alpha_to": "14",
         "beta_from": "5",
@@ -1588,7 +1610,7 @@
     {
         "name": "Olympic",
         "country": "",
-        "href": "https://www.yakimachief.com/olympic.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/olympic.html",
         "alpha-from": "11.5",
         "alpha_to": "13.5",
         "beta_from": "5",
@@ -1607,7 +1629,7 @@
     {
         "name": "Opal - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/opal-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/opal-gr.html",
         "alpha-from": "5",
         "alpha_to": "8",
         "beta_from": "3.5",
@@ -1627,7 +1649,7 @@
     {
         "name": "Pacific Crest",
         "country": "",
-        "href": "https://www.yakimachief.com/pacific-crest.html",
+        "href": "https://www.yakimachief.com/catalog/product/view/id/72159/s/pacific-crest/category/98/",
         "alpha-from": "3.9",
         "alpha_to": "3.9",
         "beta_from": "3",
@@ -1649,7 +1671,7 @@
     {
         "name": "Pacific Gem - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/pacific-gem-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacific-gem-nz.html",
         "alpha-from": "13",
         "alpha_to": "15",
         "beta_from": "7",
@@ -1669,7 +1691,7 @@
     {
         "name": "Pacifica\u2122 Brand - MacHops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/pacifica-trade-brand-machops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-trade-brand-machops-nz.html",
         "alpha-from": "3",
         "alpha_to": "6",
         "beta_from": "5",
@@ -1689,7 +1711,7 @@
     {
         "name": "Pacifica\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/pacifica-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-brand-nz.html",
         "alpha-from": "3",
         "alpha_to": "6",
         "beta_from": "5",
@@ -1709,7 +1731,7 @@
     {
         "name": "Palisade",
         "country": "",
-        "href": "https://www.yakimachief.com/palisade.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/palisade.html",
         "alpha-from": "6.5",
         "alpha_to": "9.5",
         "beta_from": "6",
@@ -1731,7 +1753,7 @@
     {
         "name": "Pekko",
         "country": "",
-        "href": "https://www.yakimachief.com/pekko.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pekko.html",
         "alpha-from": "13",
         "alpha_to": "16",
         "beta_from": "3.5",
@@ -1751,7 +1773,7 @@
     {
         "name": "Perle - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/perle-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/perle-gr.html",
         "alpha-from": "4",
         "alpha_to": "9",
         "beta_from": "3",
@@ -1773,7 +1795,7 @@
     {
         "name": "Phoenix - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/phoenix-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/phoenix-uk.html",
         "alpha-from": "8",
         "alpha_to": "12",
         "beta_from": "3.8",
@@ -1793,7 +1815,7 @@
     {
         "name": "Pilgrim - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/pilgrim-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pilgrim-uk.html",
         "alpha-from": "9",
         "alpha_to": "13",
         "beta_from": "4",
@@ -1813,7 +1835,7 @@
     {
         "name": "Pilot - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/pilot-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pilot-uk.html",
         "alpha-from": "8",
         "alpha_to": "11",
         "beta_from": "3.3",
@@ -1833,7 +1855,7 @@
     {
         "name": "Pink Boots Blend",
         "country": "",
-        "href": "https://www.yakimachief.com/pink-boots-blend.html",
+        "href": "https://www.yakimachief.com/catalog/product/view/id/72112/s/pink-boots-blend/category/98/",
         "alpha-from": "12.5",
         "alpha_to": "12.5",
         "beta_from": "6.1",
@@ -1854,7 +1876,7 @@
     {
         "name": "Polaris - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/polaris-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/polaris-gr.html",
         "alpha-from": "18",
         "alpha_to": "23",
         "beta_from": "4",
@@ -1874,7 +1896,7 @@
     {
         "name": "Premiant - CZ",
         "country": "",
-        "href": "https://www.yakimachief.com/premiant-cz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/premiant-cz.html",
         "alpha-from": "7",
         "alpha_to": "9",
         "beta_from": "3.5",
@@ -1894,7 +1916,7 @@
     {
         "name": "Pride of Ringwood - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/pride-of-ringwood-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pride-of-ringwood-au.html",
         "alpha-from": "8.5",
         "alpha_to": "10.5",
         "beta_from": "5",
@@ -1914,7 +1936,7 @@
     {
         "name": "Progress - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/progress-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/progress-uk.html",
         "alpha-from": "6",
         "alpha_to": "7.5",
         "beta_from": "2",
@@ -1935,7 +1957,7 @@
     {
         "name": "Rakau\u2122 Brand - MacHops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/rakau-trade-brand-machops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/rakau-trade-brand-machops-nz.html",
         "alpha-from": "9",
         "alpha_to": "13",
         "beta_from": "4",
@@ -1956,7 +1978,7 @@
     {
         "name": "Rakau\u2122 Brand - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/rakau-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/rakau-brand-nz.html",
         "alpha-from": "10",
         "alpha_to": "13",
         "beta_from": "5",
@@ -1977,7 +1999,7 @@
     {
         "name": "Riwaka\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/riwaka-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/riwaka-brand-nz.html",
         "alpha-from": "4.5",
         "alpha_to": "6.5",
         "beta_from": "4",
@@ -1997,7 +2019,7 @@
     {
         "name": "Saaz - CZ",
         "country": "",
-        "href": "https://www.yakimachief.com/saaz-cz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/saaz-cz.html",
         "alpha-from": "2.5",
         "alpha_to": "4",
         "beta_from": "4",
@@ -2019,7 +2041,7 @@
     {
         "name": "Sabro",
         "country": "",
-        "href": "https://www.yakimachief.com/sabro.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sabro.html",
         "alpha-from": "12",
         "alpha_to": "17",
         "beta_from": "5.5",
@@ -2041,7 +2063,7 @@
     {
         "name": "Santiam",
         "country": "",
-        "href": "https://www.yakimachief.com/santiam.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/santiam.html",
         "alpha-from": "6",
         "alpha_to": "9",
         "beta_from": "7",
@@ -2061,7 +2083,7 @@
     {
         "name": "Saphir - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/saphir-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/saphir-gr.html",
         "alpha-from": "2",
         "alpha_to": "4.5",
         "beta_from": "4",
@@ -2081,7 +2103,7 @@
     {
         "name": "Savinjski Golding - SI",
         "country": "",
-        "href": "https://www.yakimachief.com/savinjski-golding-si.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/savinjski-golding-si.html",
         "alpha-from": "2.5",
         "alpha_to": "4",
         "beta_from": "1.5",
@@ -2102,7 +2124,7 @@
     {
         "name": "Simcoe",
         "country": "",
-        "href": "https://www.yakimachief.com/simcoe-brand.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/simcoe-brand.html",
         "alpha-from": "10",
         "alpha_to": "16",
         "beta_from": "3.5",
@@ -2124,7 +2146,7 @@
     {
         "name": "Sladek - CZ",
         "country": "",
-        "href": "https://www.yakimachief.com/sladek-cz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sladek-cz.html",
         "alpha-from": "4.5",
         "alpha_to": "7",
         "beta_from": "4",
@@ -2144,7 +2166,7 @@
     {
         "name": "Sorachi Ace",
         "country": "",
-        "href": "https://www.yakimachief.com/sorachi-ace.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sorachi-ace.html",
         "alpha-from": "12",
         "alpha_to": "15",
         "beta_from": "8",
@@ -2165,7 +2187,7 @@
     {
         "name": "Sovereign - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/sovereign-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sovereign-uk.html",
         "alpha-from": "4.5",
         "alpha_to": "6.5",
         "beta_from": "2.1",
@@ -2186,7 +2208,7 @@
     {
         "name": "Spalter - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/spalter-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/spalter-gr.html",
         "alpha-from": "2.5",
         "alpha_to": "5.5",
         "beta_from": "3",
@@ -2204,7 +2226,7 @@
     {
         "name": "Spalter Select - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/spalter-select-gr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/spalter-select-gr.html",
         "alpha-from": "3",
         "alpha_to": "6.5",
         "beta_from": "2.5",
@@ -2224,7 +2246,7 @@
     {
         "name": "Sterling",
         "country": "",
-        "href": "https://www.yakimachief.com/sterling.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sterling.html",
         "alpha-from": "5.5",
         "alpha_to": "8.5",
         "beta_from": "4.5",
@@ -2245,7 +2267,7 @@
     {
         "name": "Sticklebract - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/sticklebract-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sticklebract-nz.html",
         "alpha-from": "",
         "alpha_to": "",
         "beta_from": "",
@@ -2264,7 +2286,7 @@
     {
         "name": "Strisselspalter - FR",
         "country": "",
-        "href": "https://www.yakimachief.com/strisselspalter-fr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/strisselspalter-fr.html",
         "alpha-from": "1.8",
         "alpha_to": "2.5",
         "beta_from": "4",
@@ -2285,7 +2307,7 @@
     {
         "name": "Summer - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/summer-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/summer-au.html",
         "alpha-from": "4",
         "alpha_to": "7",
         "beta_from": "4.8",
@@ -2304,7 +2326,7 @@
     {
         "name": "Summit\u2122",
         "country": "",
-        "href": "https://www.yakimachief.com/summit.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/summit.html",
         "alpha-from": "15",
         "alpha_to": "17",
         "beta_from": "5",
@@ -2325,7 +2347,7 @@
     {
         "name": "Super Pride - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/super-pride-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/super-pride-au.html",
         "alpha-from": "12.3",
         "alpha_to": "16.9",
         "beta_from": "5.2",
@@ -2344,7 +2366,7 @@
     {
         "name": "Superdelic\u2122 Brand, NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/superdelic-trade-brand-nz-hops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/superdelic-trade-brand-nz-hops-nz.html",
         "alpha-from": "9",
         "alpha_to": "12",
         "beta_from": "3",
@@ -2365,7 +2387,7 @@
     {
         "name": "Sussex Hop - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/sussex-hop-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sussex-hop-uk.html",
         "alpha-from": "4.3",
         "alpha_to": "5.8",
         "beta_from": "2.4",
@@ -2384,7 +2406,7 @@
     {
         "name": "Sylva\u2122 - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/sylva-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/sylva-au.html",
         "alpha-from": "4.6",
         "alpha_to": "7",
         "beta_from": "3",
@@ -2404,7 +2426,7 @@
     {
         "name": "Tahoma",
         "country": "",
-        "href": "https://www.yakimachief.com/tahoma.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/tahoma.html",
         "alpha-from": "6",
         "alpha_to": "7.5",
         "beta_from": "7",
@@ -2424,7 +2446,7 @@
     {
         "name": "Talus",
         "country": "",
-        "href": "https://www.yakimachief.com/talusr-brand.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/talusr-brand.html",
         "alpha-from": "7",
         "alpha_to": "10",
         "beta_from": "8",
@@ -2446,7 +2468,7 @@
     {
         "name": "Target - UK",
         "country": "",
-        "href": "https://www.yakimachief.com/target-uk.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/target-uk.html",
         "alpha-from": "8.5",
         "alpha_to": "13.5",
         "beta_from": "4",
@@ -2468,7 +2490,7 @@
     {
         "name": "Tettnanger - GR",
         "country": "",
-        "href": "https://www.yakimachief.com/tettnang.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/tettnang.html",
         "alpha-from": "2.5",
         "alpha_to": "5.5",
         "beta_from": "3",
@@ -2489,7 +2511,7 @@
     {
         "name": "Topaz\u2122 - AU",
         "country": "",
-        "href": "https://www.yakimachief.com/topaz-au.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/topaz-au.html",
         "alpha-from": "16.2",
         "alpha_to": "20.1",
         "beta_from": "4.9",
@@ -2509,7 +2531,7 @@
     {
         "name": "Triskel - FR",
         "country": "",
-        "href": "https://www.yakimachief.com/triskel-fr.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/triskel-fr.html",
         "alpha-from": "2.8",
         "alpha_to": "4.6",
         "beta_from": "4",
@@ -2530,7 +2552,7 @@
     {
         "name": "Triumph",
         "country": "",
-        "href": "https://www.yakimachief.com/triumph.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/triumph.html",
         "alpha-from": "11",
         "alpha_to": "14",
         "beta_from": "3",
@@ -2551,7 +2573,7 @@
     {
         "name": "Vanguard",
         "country": "",
-        "href": "https://www.yakimachief.com/vanguard.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/vanguard.html",
         "alpha-from": "4.5",
         "alpha_to": "6.5",
         "beta_from": "5.5",
@@ -2571,7 +2593,7 @@
     {
         "name": "Veterans Blend",
         "country": "",
-        "href": "https://www.yakimachief.com/veterans-blend.html",
+        "href": "https://www.yakimachief.com/catalog/product/view/id/72151/s/veterans-blend/category/98/",
         "alpha-from": "14",
         "alpha_to": "14",
         "beta_from": "5.7",
@@ -2581,8 +2603,10 @@
         "oil_from": "2.8",
         "oil_to": "2.8 mL/100g",
         "notes": [
+            "Berry",
             "Citrus",
-            "Sweet Aromatic",
+            "Floral",
+            "Melon",
             "Tropical"
         ],
         "aromas": "",
@@ -2591,7 +2615,7 @@
     {
         "name": "Vista",
         "country": "",
-        "href": "https://www.yakimachief.com/vista.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/vista.html",
         "alpha-from": "9",
         "alpha_to": "12",
         "beta_from": "3.5",
@@ -2612,7 +2636,7 @@
     {
         "name": "Wai-iti\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/wai-iti-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/wai-iti-brand-nz.html",
         "alpha-from": "1.5",
         "alpha_to": "3.5",
         "beta_from": "5",
@@ -2634,7 +2658,7 @@
     {
         "name": "Waimea\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/waimea-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/waimea-brand-nz.html",
         "alpha-from": "14",
         "alpha_to": "17",
         "beta_from": "7",
@@ -2655,7 +2679,7 @@
     {
         "name": "Wakatu\u2122 Brand - MacHops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/wakatu-trade-brand-machops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/wakatu-trade-brand-machops-nz.html",
         "alpha-from": "4.5",
         "alpha_to": "8.5",
         "beta_from": "7.5",
@@ -2675,7 +2699,7 @@
     {
         "name": "Wakatu\u2122 Brand - NZ Hops - NZ",
         "country": "",
-        "href": "https://www.yakimachief.com/wakatu-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/wakatu-brand-nz.html",
         "alpha-from": "5",
         "alpha_to": "8.5",
         "beta_from": "7.5",
@@ -2695,7 +2719,7 @@
     {
         "name": "Warrior",
         "country": "",
-        "href": "https://www.yakimachief.com/warrior.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/warrior.html",
         "alpha-from": "13",
         "alpha_to": "18",
         "beta_from": "4",
@@ -2717,7 +2741,7 @@
     {
         "name": "Willamette",
         "country": "",
-        "href": "https://www.yakimachief.com/willamette.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/willamette.html",
         "alpha-from": "4.5",
         "alpha_to": "6.5",
         "beta_from": "3.5",
@@ -2738,7 +2762,7 @@
     {
         "name": "Yakima Gold",
         "country": "",
-        "href": "https://www.yakimachief.com/yakima-gold.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/yakima-gold.html",
         "alpha-from": "7",
         "alpha_to": "8",
         "beta_from": "3.5",
@@ -2758,7 +2782,7 @@
     {
         "name": "Zythos",
         "country": "",
-        "href": "https://www.yakimachief.com/zythos.html",
+        "href": "https://www.yakimachief.com/catalog/product/view/id/72162/s/zythos/category/98/",
         "alpha-from": "8",
         "alpha_to": "12",
         "beta_from": "5",

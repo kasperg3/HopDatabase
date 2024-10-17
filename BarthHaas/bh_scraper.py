@@ -6,15 +6,11 @@ from bs4 import BeautifulSoup
 
 def scrape():
     url = "https://www.barthhaas.com/hops-and-products/hop-varieties-overview"
-    if not os.path.exists("BarthHaas/bh.html"):
-        r = req.get(url)
-        html = r.text
-        # Perform the request and export the file
-        with open("BarthHaas/bh.html", "w") as file:
-            file.write(html)
-    else:
-        with open("BarthHaas/bh.html", "r") as file:
-            html = file.read()
+    r = req.get(url)
+    html = r.text
+    # Perform the request and export the file
+    with open("BarthHaas/bh.html", "w") as file:
+        file.write(html)
 
     soup = BeautifulSoup(html, "html.parser")
     hop_info = soup.find_all("div", class_="col-12 col-lg-4 section-card-item")

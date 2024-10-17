@@ -949,7 +949,7 @@
             "Black Currant",
             "Green Pepper"
         ],
-        "href": "https://www.barthhaas.com//hops-and-products/hops/ellatm",
+        "href": "https://www.barthhaas.com//hops-and-products/hops/ella",
         "source": "BarthHaas"
     },
     {
@@ -1014,7 +1014,7 @@
             "Pineapple",
             "Red Currant"
         ],
-        "href": "https://www.barthhaas.com//hops-and-products/hops/enigmar",
+        "href": "https://www.barthhaas.com//hops-and-products/hops/enigma",
         "source": "BarthHaas"
     },
     {
@@ -1146,7 +1146,7 @@
             "Gooseberry",
             "Black Currant"
         ],
-        "href": "https://www.barthhaas.com//hops-and-products/hops/galaxyr",
+        "href": "https://www.barthhaas.com//hops-and-products/hops/galaxy",
         "source": "BarthHaas"
     },
     {
@@ -1249,39 +1249,6 @@
         "source": "BarthHaas"
     },
     {
-        "alpha-from": "3.6",
-        "alpha-to": "9.1",
-        "beta-from": "2.9",
-        "beta-to": "6",
-        "total-oil-from": "0.4",
-        "total-oil-to": "1.3",
-        "country": "Germany",
-        "name": "hallertau tradition",
-        "aromas": {
-            "Citrus": 3.85,
-            "Sweetfruits": 3.64,
-            "Greenfruits": 2.77,
-            "Redberries": 2.67,
-            "Creamcaramel": 3.32,
-            "Woody": 3.84,
-            "Menthol": 2.04,
-            "Herbaceous": 3.59,
-            "Spicy": 3.21,
-            "Green": 3.19,
-            "Vegetal": 2.03,
-            "Flowery": 3.99
-        },
-        "notes": [
-            "Lemon",
-            "Oregano",
-            "Apricot",
-            "Lily of the Valley",
-            "Cognac"
-        ],
-        "href": "https://www.barthhaas.com//hops-and-products/hops/hallertau-tradition",
-        "source": "BarthHaas"
-    },
-    {
         "alpha-from": "9",
         "alpha-to": "18.2",
         "beta-from": "4.1",
@@ -1378,6 +1345,39 @@
             "Lemon"
         ],
         "href": "https://www.barthhaas.com//hops-and-products/hops/hallertauer-taurus",
+        "source": "BarthHaas"
+    },
+    {
+        "alpha-from": "3.6",
+        "alpha-to": "9.1",
+        "beta-from": "2.9",
+        "beta-to": "6",
+        "total-oil-from": "0.4",
+        "total-oil-to": "1.3",
+        "country": "Germany",
+        "name": "hallertauer tradition",
+        "aromas": {
+            "Citrus": 3.85,
+            "Sweetfruits": 3.64,
+            "Greenfruits": 2.77,
+            "Redberries": 2.67,
+            "Creamcaramel": 3.32,
+            "Woody": 3.84,
+            "Menthol": 2.04,
+            "Herbaceous": 3.59,
+            "Spicy": 3.21,
+            "Green": 3.19,
+            "Vegetal": 2.03,
+            "Flowery": 3.99
+        },
+        "notes": [
+            "Lemon",
+            "Oregano",
+            "Apricot",
+            "Lily of the Valley",
+            "Cognac"
+        ],
+        "href": "https://www.barthhaas.com//hops-and-products/hops/hallertau-tradition",
         "source": "BarthHaas"
     },
     {
@@ -1574,6 +1574,39 @@
             "Lemon"
         ],
         "href": "https://www.barthhaas.com//hops-and-products/hops/kazbek",
+        "source": "BarthHaas"
+    },
+    {
+        "alpha-from": "10.1",
+        "alpha-to": "14.1",
+        "beta-from": "6.3",
+        "beta-to": "9.4",
+        "total-oil-from": "1.5",
+        "total-oil-to": "3",
+        "country": "United States",
+        "name": "krush\u2122",
+        "aromas": {
+            "Citrus": 4.1,
+            "Sweetfruits": 6,
+            "Greenfruits": 4.1,
+            "Redberries": 2.6,
+            "Creamcaramel": 2.9,
+            "Woody": 2.4,
+            "Menthol": 1.9,
+            "Herbaceous": 2,
+            "Spicy": 1.9,
+            "Green": 2.6,
+            "Vegetal": 1.4,
+            "Flowery": 3
+        },
+        "notes": [
+            "Mango",
+            "Orange",
+            "Peach",
+            "Guava",
+            "Passion Fruit"
+        ],
+        "href": "https://www.barthhaas.com//hops-and-products/hops/krush",
         "source": "BarthHaas"
     },
     {
@@ -2891,7 +2924,7 @@
             "Tobacco",
             "Peach"
         ],
-        "href": "https://www.barthhaas.com//hops-and-products/hops/topaztm",
+        "href": "https://www.barthhaas.com//hops-and-products/hops/topaz",
         "source": "BarthHaas"
     },
     {

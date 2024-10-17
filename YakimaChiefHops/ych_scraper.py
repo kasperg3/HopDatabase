@@ -5,17 +5,14 @@ import os
 
 
 def scrape():
-    if not os.path.exists("YakimaChiefHops/yvh_html.html"):
-        r = req.get(
-            "https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all"
-        )
-        html = r.text
-        # Perform the request and export the file
-        with open("YakimaChiefHops/yvh_html.html", "w") as file:
-            file.write(html)
-    else:
-        with open("YakimaChiefHops/yvh_html.html", "r") as file:
-            html = file.read()
+    r = req.get(
+        "https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all"
+    )
+    html = r.text
+    # Perform the request and export the file
+    with open("YakimaChiefHops/yvh_html.html", "w") as file:
+        file.write(html)
+
 
     soup = BeautifulSoup(html, "html.parser")
 
