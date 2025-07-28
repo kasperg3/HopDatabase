@@ -1,4 +1,7 @@
 import json
+import sys
+sys.path.append('..')
+from hop_model import HopEntry, save_hop_entries
 
 def scrape():
     # Specify the path to the JSON file
@@ -110,15 +113,16 @@ def scrape():
         # "linalool_acid": "0.25 - 0.33",
 
         hop_aromas_notes = entry["aroma_spec"].split(", ")
+        # Map numeric IDs directly to standard aroma categories
         aroma_mapping = {
-            "1": "Fruity",  # Fruity
-            "2": "Floral",  # Floral
-            "3": "citrusy",  # citrusy
-            "4": "Spicy",  # Spicy
-            "5": "Resinous",  # Resinous
-            "6": "Herbal",  # Herbal
-            "7": "sugar like",  # sugar like
-            "8": "Other",  # Other
+            "1": "Stone Fruit",  # Fruity → Stone Fruit
+            "2": "Floral",       # Floral → Floral
+            "3": "Citrus",       # citrusy → Citrus
+            "4": "Spice",        # Spicy → Spice
+            "5": "Resin/Pine",   # Resinous → Resin/Pine
+            "6": "Herbal",       # Herbal → Herbal
+            "7": "Floral",       # sugar like → closest match is Floral (sweet aromatics)
+            "8": "Herbal",       # Other → default to Herbal
         }
 
         if "aromas" in entry:
@@ -127,49 +131,50 @@ def scrape():
             }
         else:
             hop_aromas = []
-        # Create a new dictionary with the mapped data
-        mapped_entry = {
-            "name": name,
-            "country": entry["main_country"],
-            "href": "https://www.hopsteiner.com/variety-data-sheets/" + href,
-            "alpha-from": alpha_low,
-            "alpha_to": alpha_high,
-            "beta_from": beta_low,
-            "beta_to": beta_high,
-            "co_h_from": co_h_low,
-            "co_h_to": co_h_high,
-            "oil_from": oil_low,
-            "oil_to": oil_high,
-            "notes": hop_aromas_notes,
-            "aromas": hop_aromas,
-            "source": "Hopsteiner",
+            
+        # Create additional properties dictionary for extended data
+        additional_properties = {
+            "acid_hardresins_from": acid_hardresins_low,
+            "acid_hardresins_to": acid_hardresins_high,
+            "polyphenoles_from": polyphenoles_low,
+            "polyphenoles_to": polyphenoles_high,
+            "xantholhumol_from": xantholhumol_low,
+            "xantholhumol_to": xantholhumol_high,
+            "oils_from": oils_low,
+            "oils_to": oils_high,
+            "humulen_from": humulen_low,
+            "humulen_to": humulen_high,
+            "farnesen_from": farnesen_low,
+            "farnesen_to": farnesen_high,
+            "linalool_oil_from": linalool_oil_low,
+            "linalool_oil_to": linalool_oil_high,
+            "linalool_acid_from": linalool_acid_low,
+            "linalool_acid_to": linalool_acid_high
         }
-
-        # Add the hop oil properties to the mapped entry
-        mapped_entry["acid_hardresins_from"] = acid_hardresins_low
-        mapped_entry["acid_hardresins_to"] = acid_hardresins_high
-        mapped_entry["polyphenoles_from"] = polyphenoles_low
-        mapped_entry["polyphenoles_to"] = polyphenoles_high
-        mapped_entry["xantholhumol_from"] = xantholhumol_low
-        mapped_entry["xantholhumol_to"] = xantholhumol_high
-        mapped_entry["oils_from"] = oils_low
-        mapped_entry["oils_to"] = oils_high
-        mapped_entry["humulen_from"] = humulen_low
-        mapped_entry["humulen_to"] = humulen_high
-        mapped_entry["farnesen_from"] = farnesen_low
-        mapped_entry["farnesen_to"] = farnesen_high
-        mapped_entry["linalool_oil_from"] = linalool_oil_low
-        mapped_entry["linalool_oil_to"] = linalool_oil_high
-        mapped_entry["linalool_acid_from"] = linalool_acid_low
-        mapped_entry["linalool_acid_to"] = linalool_acid_high
-
-        # Print the mapped entry
-        hop_data.append(mapped_entry)
-    # Dump the hop_data list as JSON to a file
-    output_file = "data/hopsteiner.json"
-    with open(output_file, "w") as file:
-        json.dump(hop_data, file, indent=4)
-    print(f"Data dumped to {output_file}, with {len(hop_data)} entries")
+        
+        # Create HopEntry directly
+        hop_entry = HopEntry(
+            name=name,
+            country=entry["main_country"],
+            source="Hopsteiner",
+            href="https://www.hopsteiner.com/variety-data-sheets/" + href,
+            alpha_from=alpha_low,
+            alpha_to=alpha_high,
+            beta_from=beta_low,
+            beta_to=beta_high,
+            oil_from=oil_low,
+            oil_to=oil_high,
+            co_h_from=co_h_low,
+            co_h_to=co_h_high,
+            notes=hop_aromas_notes,
+            additional_properties=additional_properties,
+            standardized_aromas=hop_aromas
+        )        
+        hop_data.append(hop_entry)
+    
+    # Save using the new model's save function
+    save_hop_entries(hop_data, "data/hopsteiner.json")
+    print(f"Data dumped to data/hopsteiner.json, with {len(hop_data)} entries")
 
     return hop_data
 

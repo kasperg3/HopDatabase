@@ -2,6 +2,9 @@ import json
 import os
 import requests as req
 from bs4 import BeautifulSoup
+import sys
+sys.path.append('..')
+from hop_model import HopEntry, save_hop_entries
 
 
 def scrape():
@@ -14,7 +17,7 @@ def scrape():
 
     soup = BeautifulSoup(html, "html.parser")
     hop_info = soup.find_all("div", class_="col-12 col-lg-4 section-card-item")
-    hop_list = []
+    hop_entries = []
     # aromas
     for hop in hop_info:
         # hop_cards = hop.find_all('div', class_='section-card card-content-height')
@@ -24,30 +27,36 @@ def scrape():
         href = hop.find('a', {'class': 'section-card-link'})
         href = href['href'] if href is not None else ""
         
-        hop_data = {
-            "alpha-from": hop.attrs["data-alpha-from"],
-            "alpha-to": hop.attrs["data-alpha-to"],
-            "beta-from": hop.attrs["data-beta-from"],
-            "beta-to": hop.attrs["data-beta-to"],
-            "total-oil-from": hop.attrs["data-oil-from"],
-            "total-oil-to": hop.attrs["data-oil-to"],
-            "country": hop.attrs["data-country"],
-            "name": hop.attrs["data-name"],
-            "aromas": {key.strip("raw"): value for key, value in json.loads(hop.attrs["data-filter-values"]).items()},
-            "notes": hop_flavour_notes,
-            "href": "https://www.barthhaas.com/" + href,
-            "source": "BarthHaas"
-        }
-        hop_list.append(hop_data)
+        # Extract aroma data
+        aroma_data = {key.strip("raw"): value for key, value in json.loads(hop.attrs["data-filter-values"]).items()}
+        
+        # Create HopEntry directly
+        hop_entry = HopEntry(
+            name=hop.attrs["data-name"],
+            country=hop.attrs["data-country"],
+            source="Barth Haas",
+            href="https://www.barthhaas.com/" + href,
+            alpha_from=hop.attrs["data-alpha-from"],
+            alpha_to=hop.attrs["data-alpha-to"],
+            beta_from=hop.attrs["data-beta-from"],
+            beta_to=hop.attrs["data-beta-to"],
+            oil_from=hop.attrs["data-oil-from"],
+            oil_to=hop.attrs["data-oil-to"],
+            co_h_from="",  # Not available in Barth Haas data
+            co_h_to="",
+            notes=hop_flavour_notes
+        )
+        
+        # Set standardized aromas from structured aroma data
+        hop_entry.set_standardized_aromas("barth", aroma_data)
+        hop_entries.append(hop_entry)
     
         
-    # Export data collection to JSON file
-    output_file = "data/baathhaas.json"
-    with open(output_file, "w") as file:
-        json.dump(hop_list, file, indent=4)
-    print(f"Data dumped to {output_file}, with {len(hop_list)} entries")
+    # Save using the new model's save function  
+    save_hop_entries(hop_entries, "data/baathhaas.json")
+    print(f"Data dumped to data/baathhaas.json, with {len(hop_entries)} entries")
 
-    return hop_list
+    return hop_entries
 
 def main():
     # Call the scrape function

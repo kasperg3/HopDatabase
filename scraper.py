@@ -1,18 +1,17 @@
 from YakimaChiefHops import ych_scraper
 from BarthHaas import bh_scraper
 from hopsteiner import hs_scraper
-import json
+from hop_model import save_hop_entries
 
 ych = ych_scraper.scrape()
 bh = bh_scraper.scrape()
 hs = hs_scraper.scrape()
 
-combined_json = ych + bh + hs
+combined_hop_entries = ych + bh + hs
 
-len(combined_json)
+len(combined_hop_entries)
 
-# Dump combined_json to a JSON file
-with open('data/combined.json', 'w') as file:
-    json.dump(combined_json, file, indent=4)
+# Save using the new model's save function
+save_hop_entries(combined_hop_entries, 'data/hops.json')
     
-print(f"Data dumped to data/combined.json, with {len(combined_json)} entries")
+print(f"Data dumped to data/hops.json, with {len(combined_hop_entries)} entries")

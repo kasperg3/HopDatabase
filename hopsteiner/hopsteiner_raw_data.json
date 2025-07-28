@@ -68,7 +68,7 @@
                 "4": 3,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Delta-462x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Delta-462x1024.png",
             "permalink": "Akoya",
             "key": 13,
             "color_aroma": 4
@@ -122,14 +122,16 @@
             "dry_hopping_var_3": 0,
             "dry_hopping_var_4": 0,
             "dry_hopping_var_5": 0,
-            "last_changed": 1701265129,
+            "last_changed": 1713496519,
             "old_name": "HS17701",
             "yieldLb": "2550 - 2800",
             "description": "Unique chemistry - Over 50% of total oils are Selinene with high bound 3MH thiols (5X the amount of Cascade).",
             "technical_url": "",
             "artwork_file": "0",
             "langs": [
-                "en"
+                "en",
+                "de",
+                "uk"
             ],
             "cone_text": false,
             "aromas": {
@@ -140,7 +142,7 @@
                 "7": 2,
                 "8": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2023\/01\/IMG_2820-copy-768x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2023\/01\/IMG_2820-copy-768x1024.png",
             "permalink": "Alora",
             "key": 14,
             "color_aroma": 1
@@ -215,90 +217,14 @@
                 "6": 3,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Bravo-536x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Bravo-536x1024.png",
             "permalink": "Bravo",
             "key": 16,
             "color_aroma": 3
         },
         {
-            "id": 125,
-            "name": "Helios",
-            "sort": 2,
-            "flag_tm": true,
-            "cone_img": 10600,
-            "leaf_img": 0,
-            "field1_img": 0,
-            "field2_img": 0,
-            "color": "bfbdb4",
-            "new": true,
-            "exp": false,
-            "hidden": false,
-            "region_id": 1,
-            "genetic_origin": "",
-            "yield": "3600 - 3900",
-            "maturity": 1,
-            "main_country": "USA",
-            "acerage": 0,
-            "wilt_diseases": 0,
-            "mildew_downy": 1,
-            "mildew_powdery": 1,
-            "aphid": 0,
-            "acid_alpha_low": 18,
-            "acid_alpha_high": 21,
-            "acid_alpha": "18.0 - 21.0",
-            "acid_beta": "3.5 - 4.5",
-            "cohumulone": "26 - 29",
-            "acid_hardresins": "0.00",
-            "polyphenoles": "0.0",
-            "xantholhumol": "0.0",
-            "oils": "1.5 - 2.0",
-            "humulen": "0.04 - 0.55",
-            "farnesen": "0.00",
-            "linalool_oil": "0.6 - 0.7",
-            "linalool_acid": "0.03 - 0.04",
-            "aroma_spec": "Clean bitterness with muted aroma.",
-            "brewhouse": "",
-            "brewhouse_var_1": 0,
-            "brewhouse_var_2": 0,
-            "brewhouse_var_3": 0,
-            "brewhouse_var_4": 0,
-            "brewhouse_var_5": 0,
-            "dry_hopping": "",
-            "dry_hopping_var_1": 0,
-            "dry_hopping_var_2": 0,
-            "dry_hopping_var_3": 0,
-            "dry_hopping_var_4": 0,
-            "dry_hopping_var_5": 0,
-            "last_changed": 1707986014,
-            "old_name": "HS15619",
-            "yieldLb": "3300 - 3600",
-            "description": "Variety specs may change over different crop years",
-            "technical_url": "",
-            "artwork_file": "0",
-            "langs": [
-                "en",
-                "de",
-                "uk"
-            ],
-            "cone_text": true,
-            "aromas": {
-                "1": 1,
-                "2": 1,
-                "3": 2,
-                "4": 2,
-                "5": 4,
-                "6": 2,
-                "7": 0,
-                "8": 2
-            },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2020\/11\/X15619-574x1024.png",
-            "permalink": "Helios",
-            "key": 17,
-            "color_aroma": 8
-        },
-        {
             "id": 143,
-            "name": "HS16660",
+            "name": "Erebus\u2122",
             "sort": 2,
             "flag_tm": false,
             "cone_img": 14234,
@@ -327,12 +253,12 @@
             "acid_hardresins": "0.00",
             "polyphenoles": "0.0",
             "xantholhumol": "0.0",
-            "oils": "2.5 - 3.5",
+            "oils": "2.3 - 2.8",
             "humulen": "0.00",
             "farnesen": "0.00",
             "linalool_oil": "0.0",
             "linalool_acid": "0.00",
-            "aroma_spec": "Tropical fruit, berry, fruit candies, citrus",
+            "aroma_spec": "Blueberry, citrus, candied fruit, and floral rose",
             "brewhouse": "",
             "brewhouse_var_1": 0,
             "brewhouse_var_2": 0,
@@ -345,10 +271,10 @@
             "dry_hopping_var_3": 0,
             "dry_hopping_var_4": 0,
             "dry_hopping_var_5": 0,
-            "last_changed": 1707834351,
-            "old_name": "",
+            "last_changed": 1730806641,
+            "old_name": "HS16660",
             "yieldLb": "0",
-            "description": "High intensity aroma variety with high 4MMP free thiol and geraniol composition.",
+            "description": "High intensity aroma variety with above average geraniol.",
             "technical_url": "",
             "artwork_file": "0",
             "langs": [
@@ -365,10 +291,86 @@
                 "7": 3,
                 "8": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2023\/10\/HS16660-683x1024.png",
-            "permalink": "HS16660",
-            "key": 18,
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2023\/10\/HS16660-683x1024.png",
+            "permalink": "Erebus",
+            "key": 17,
             "color_aroma": 1
+        },
+        {
+            "id": 125,
+            "name": "Helios",
+            "sort": 2,
+            "flag_tm": true,
+            "cone_img": 10600,
+            "leaf_img": 0,
+            "field1_img": 0,
+            "field2_img": 0,
+            "color": "bfbdb4",
+            "new": true,
+            "exp": false,
+            "hidden": false,
+            "region_id": 1,
+            "genetic_origin": "",
+            "yield": "3600 - 3900",
+            "maturity": 1,
+            "main_country": "USA",
+            "acerage": 0,
+            "wilt_diseases": 0,
+            "mildew_downy": 1,
+            "mildew_powdery": 1,
+            "aphid": 0,
+            "acid_alpha_low": 15.5,
+            "acid_alpha_high": 18.5,
+            "acid_alpha": "15.5 - 18.5",
+            "acid_beta": "3.5 - 4.5",
+            "cohumulone": "26 - 29",
+            "acid_hardresins": "0.00",
+            "polyphenoles": "0.0",
+            "xantholhumol": "0.0",
+            "oils": "1.5 - 2.0",
+            "humulen": "0.04 - 0.55",
+            "farnesen": "0.00",
+            "linalool_oil": "0.6 - 0.7",
+            "linalool_acid": "0.03 - 0.04",
+            "aroma_spec": "Super Alpha with clean bitterness",
+            "brewhouse": "",
+            "brewhouse_var_1": 0,
+            "brewhouse_var_2": 0,
+            "brewhouse_var_3": 0,
+            "brewhouse_var_4": 0,
+            "brewhouse_var_5": 0,
+            "dry_hopping": "",
+            "dry_hopping_var_1": 0,
+            "dry_hopping_var_2": 0,
+            "dry_hopping_var_3": 0,
+            "dry_hopping_var_4": 0,
+            "dry_hopping_var_5": 0,
+            "last_changed": 1726487776,
+            "old_name": "HS15619",
+            "yieldLb": "3300 - 3600",
+            "description": "Variety specs may change over different crop years",
+            "technical_url": "",
+            "artwork_file": "0",
+            "langs": [
+                "en",
+                "de",
+                "uk"
+            ],
+            "cone_text": true,
+            "aromas": {
+                "1": 0,
+                "2": 1,
+                "3": 1,
+                "4": 1,
+                "5": 1,
+                "6": 1,
+                "7": 0,
+                "8": 1
+            },
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2020\/11\/X15619-574x1024.png",
+            "permalink": "Helios",
+            "key": 18,
+            "color_aroma": 8
         },
         {
             "id": 102,
@@ -438,7 +440,7 @@
                 "6": 1,
                 "8": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2020\/11\/AltusCone-623x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2020\/11\/AltusCone-623x1024.png",
             "permalink": "Altus",
             "key": 19,
             "color_aroma": 4
@@ -511,7 +513,7 @@
                 "6": 2,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Calypso-579x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Calypso-579x1024.png",
             "permalink": "Calypso",
             "key": 20,
             "color_aroma": 1
@@ -584,7 +586,7 @@
                 "6": 4,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2018\/04\/Hopsteiner_Apollo_Hops_Cone.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2018\/04\/Hopsteiner_Apollo_Hops_Cone.png",
             "permalink": "Apollo",
             "key": 21,
             "color_aroma": 6
@@ -658,7 +660,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/04190-638x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/04190-638x1024.png",
             "permalink": "Contessa",
             "key": 22,
             "color_aroma": 6
@@ -732,7 +734,7 @@
                 "5": 2,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Delta-462x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Delta-462x1024.png",
             "permalink": "Delta",
             "key": 23,
             "color_aroma": 6
@@ -805,7 +807,7 @@
                 "5": 3,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Eureka-659x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Eureka-659x1024.png",
             "permalink": "Eureka",
             "key": 24,
             "color_aroma": 5
@@ -880,7 +882,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Lemondrop-510x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Lemondrop-510x1024.png",
             "permalink": "Lemondrop",
             "key": 25,
             "color_aroma": 3
@@ -955,7 +957,7 @@
                 "6": 2,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2017\/02\/06297-630x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2017\/02\/06297-630x1024.png",
             "permalink": "Lotus",
             "key": 26,
             "color_aroma": 1
@@ -1028,7 +1030,7 @@
                 "6": 2,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/09326-560x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/09326-560x1024.png",
             "permalink": "Solero",
             "key": 27,
             "color_aroma": 1
@@ -1101,7 +1103,7 @@
                 "5": 1,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Super-Galena-645x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Super-Galena-645x1024.png",
             "permalink": "Super-Galena",
             "key": 28,
             "color_aroma": 4
@@ -1175,7 +1177,7 @@
                 "5": 3,
                 "6": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/06277-564x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/06277-564x1024.png",
             "permalink": "Sultana",
             "key": 29,
             "color_aroma": 3
@@ -1251,7 +1253,7 @@
                 "7": 2,
                 "8": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2020\/01\/trident_pellets-1024x538.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2020\/01\/trident_pellets-1024x538.png",
             "permalink": "Trident",
             "key": 30,
             "color_aroma": 1
@@ -1323,7 +1325,7 @@
                 "6": 3,
                 "8": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Zeus-601x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Zeus-601x1024.png",
             "permalink": "Zeus",
             "key": 31,
             "color_aroma": 4
@@ -1397,7 +1399,7 @@
                 "7": 2,
                 "8": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/09326-560x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/09326-560x1024.png",
             "permalink": "HS09326",
             "key": 32,
             "color_aroma": 3
@@ -1471,7 +1473,7 @@
                 "7": 1,
                 "8": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2020\/08\/Amarillo.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2020\/08\/Amarillo.png",
             "permalink": "Amarillo",
             "key": 35,
             "color_aroma": 3
@@ -1543,7 +1545,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
             "permalink": "Aramis",
             "key": 36,
             "color_aroma": 4
@@ -1617,7 +1619,7 @@
                 "6": 2,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Taurus.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Taurus.png",
             "permalink": "Ariana",
             "key": 37,
             "color_aroma": 1
@@ -1691,7 +1693,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
             "permalink": "Bitter-Gold",
             "key": 38,
             "color_aroma": 1
@@ -1766,7 +1768,7 @@
                 "6": 1,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Brewers-Gold-659x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Brewers-Gold-659x1024.png",
             "permalink": "Brewers-Gold",
             "key": 39,
             "color_aroma": 4
@@ -1840,7 +1842,7 @@
                 "4": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Cascade-618x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Cascade-618x1024.png",
             "permalink": "Cascade",
             "key": 40,
             "color_aroma": 3
@@ -1916,7 +1918,7 @@
                 "7": 2,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Northern-Brewer.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Northern-Brewer.png",
             "permalink": "Cashmere",
             "key": 41,
             "color_aroma": 3
@@ -1988,7 +1990,7 @@
                 "5": 3,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Centennial-524x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Centennial-524x1024.png",
             "permalink": "Centennial",
             "key": 42,
             "color_aroma": 3
@@ -2061,7 +2063,7 @@
                 "6": 2,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertau-Blanc.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertau-Blanc.png",
             "permalink": "Callista",
             "key": 43,
             "color_aroma": 1
@@ -2134,7 +2136,7 @@
                 "5": 4,
                 "6": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Chinook-580x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Chinook-580x1024.png",
             "permalink": "Chinook",
             "key": 44,
             "color_aroma": 5
@@ -2205,7 +2207,7 @@
                 "4": 2,
                 "5": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Cluster-639x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Cluster-639x1024.png",
             "permalink": "Cluster",
             "key": 45,
             "color_aroma": 5
@@ -2276,7 +2278,7 @@
                 "4": 4,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Columbus.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Columbus.png",
             "permalink": "Columbus---Tomahawk",
             "key": 46,
             "color_aroma": 4
@@ -2352,7 +2354,7 @@
                 "7": 0,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Marynka.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Marynka.png",
             "permalink": "Comet",
             "key": 47,
             "color_aroma": 3
@@ -2424,7 +2426,7 @@
                 "5": 3,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Crystal.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Crystal.png",
             "permalink": "Crystal",
             "key": 48,
             "color_aroma": 6
@@ -2497,7 +2499,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Spalter.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Spalter.png",
             "permalink": "Diamant",
             "key": 49,
             "color_aroma": 4
@@ -2573,7 +2575,7 @@
                 "7": 1,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
             "permalink": "El-Dorado",
             "key": 50,
             "color_aroma": 1
@@ -2645,7 +2647,7 @@
                 "5": 4,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Fuggle.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Fuggle.png",
             "permalink": "Fuggle",
             "key": 51,
             "color_aroma": 5
@@ -2716,7 +2718,7 @@
                 "4": 2,
                 "5": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Galena-581x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Galena-581x1024.png",
             "permalink": "Galena",
             "key": 52,
             "color_aroma": 5
@@ -2792,7 +2794,7 @@
                 "7": 0,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Glacier.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Glacier.png",
             "permalink": "Glacier",
             "key": 53,
             "color_aroma": 6
@@ -2866,7 +2868,7 @@
                 "6": 2,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Golding-UK.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Golding-UK.png",
             "permalink": "Golding--UK",
             "key": 54,
             "color_aroma": 4
@@ -2939,7 +2941,7 @@
                 "6": 2,
                 "8": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2021\/07\/Nelson-Sauvin-613x1024-1.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2021\/07\/Nelson-Sauvin-613x1024-1.png",
             "permalink": "Riwaka",
             "key": 55,
             "color_aroma": 1
@@ -3014,7 +3016,7 @@
                 "7": 1,
                 "8": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertau-Blanc.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertau-Blanc.png",
             "permalink": "Hallertau-Blanc",
             "key": 56,
             "color_aroma": 1
@@ -3088,7 +3090,7 @@
                 "5": 1,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Magnum.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Magnum.png",
             "permalink": "Hallertauer-Magnum",
             "key": 57,
             "color_aroma": 4
@@ -3162,7 +3164,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Merkur.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Merkur.png",
             "permalink": "Hallertauer-Merkur",
             "key": 59,
             "color_aroma": 4
@@ -3236,7 +3238,7 @@
                 "5": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Mittelfru\u2560\u00eah.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Mittelfru\u2560\u00eah.png",
             "permalink": "Hallertauer-Mittelfrueh",
             "key": 60,
             "color_aroma": 4
@@ -3310,7 +3312,7 @@
                 "5": 1,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Taurus.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Taurus.png",
             "permalink": "Hallertauer-Taurus",
             "key": 61,
             "color_aroma": 4
@@ -3384,7 +3386,7 @@
                 "5": 1,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
             "permalink": "Hallertauer-Tradition",
             "key": 62,
             "color_aroma": 6
@@ -3459,7 +3461,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Herkules.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Herkules.png",
             "permalink": "Herkules",
             "key": 63,
             "color_aroma": 4
@@ -3532,7 +3534,7 @@
                 "5": 1,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Herbsbrucker-Spa\u2560\u00eat.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Herbsbrucker-Spa\u2560\u00eat.png",
             "permalink": "Hersbrucker",
             "key": 64,
             "color_aroma": 6
@@ -3606,7 +3608,7 @@
                 "5": 1,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hu\u2560\u00eall-Melon.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hu\u2560\u00eall-Melon.png",
             "permalink": "Huell-Melon",
             "key": 65,
             "color_aroma": 1
@@ -3682,7 +3684,7 @@
                 "7": 0,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Horizon-556x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Horizon-556x1024.png",
             "permalink": "Horizon",
             "key": 66,
             "color_aroma": 2
@@ -3758,7 +3760,7 @@
                 "7": 0,
                 "8": 0
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Liberty-679x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Liberty-679x1024.png",
             "permalink": "Liberty",
             "key": 67,
             "color_aroma": 6
@@ -3833,7 +3835,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Mandarina-Bavaria.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Mandarina-Bavaria.png",
             "permalink": "Mandarina-Bavaria",
             "key": 68,
             "color_aroma": 3
@@ -3904,7 +3906,7 @@
                 "3": 3,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Summit-539x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Summit-539x1024.png",
             "permalink": "Melba",
             "key": 69,
             "color_aroma": 1
@@ -3977,7 +3979,7 @@
                 "6": 4,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Mount-Hood-592x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Mount-Hood-592x1024.png",
             "permalink": "Mount-Hood",
             "key": 70,
             "color_aroma": 6
@@ -4052,7 +4054,7 @@
                 "6": 3,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Northern-Brewer.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Northern-Brewer.png",
             "permalink": "Northern-Brewer",
             "key": 71,
             "color_aroma": 6
@@ -4125,7 +4127,7 @@
                 "4": 3,
                 "5": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Nugget.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Nugget.png",
             "permalink": "Nugget",
             "key": 72,
             "color_aroma": 4
@@ -4199,7 +4201,7 @@
                 "6": 2,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Opal.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Opal.png",
             "permalink": "Opal",
             "key": 73,
             "color_aroma": 4
@@ -4274,7 +4276,7 @@
                 "6": 2,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Perle.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Perle.png",
             "permalink": "Perle",
             "key": 75,
             "color_aroma": 4
@@ -4350,7 +4352,7 @@
                 "7": 1,
                 "8": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Polaris.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Polaris.png",
             "permalink": "Polaris",
             "key": 76,
             "color_aroma": 1
@@ -4425,7 +4427,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Saazer.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Saazer.png",
             "permalink": "Saazer",
             "key": 77,
             "color_aroma": 4
@@ -4499,7 +4501,7 @@
                 "5": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Saphir.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Saphir.png",
             "permalink": "Saphir",
             "key": 78,
             "color_aroma": 2
@@ -4574,7 +4576,7 @@
                 "6": 5,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Spalter.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Spalter.png",
             "permalink": "Spalter",
             "key": 79,
             "color_aroma": 6
@@ -4649,7 +4651,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Spalter-Select.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Spalter-Select.png",
             "permalink": "Spalter-Select",
             "key": 80,
             "color_aroma": 4
@@ -4723,7 +4725,7 @@
                 "6": 3,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Strissel-Spalter.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Strissel-Spalter.png",
             "permalink": "Strisselspalter",
             "key": 81,
             "color_aroma": 3
@@ -4795,7 +4797,7 @@
                 "4": 2,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Styrian-Golding.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Styrian-Golding.png",
             "permalink": "Styrian-Golding--Celeia",
             "key": 82,
             "color_aroma": 3
@@ -4871,7 +4873,7 @@
                 "7": 2,
                 "8": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Sorachi-Ace-528x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Sorachi-Ace-528x1024.png",
             "permalink": "Sorachi-Ace",
             "key": 83,
             "color_aroma": 3
@@ -4942,7 +4944,7 @@
                 "4": 3,
                 "6": 5
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Sterling-585x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Sterling-585x1024.png",
             "permalink": "Sterling",
             "key": 84,
             "color_aroma": 4
@@ -5014,7 +5016,7 @@
                 "4": 4,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Summit-539x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Summit-539x1024.png",
             "permalink": "Summit",
             "key": 85,
             "color_aroma": 4
@@ -5084,7 +5086,7 @@
                 "4": 3,
                 "5": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Glacier.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Glacier.png",
             "permalink": "Tahoma",
             "key": 86,
             "color_aroma": 3
@@ -5099,7 +5101,7 @@
             "field1_img": 0,
             "field2_img": 0,
             "color": "94c11e",
-            "new": true,
+            "new": false,
             "exp": false,
             "hidden": false,
             "region_id": 2,
@@ -5138,7 +5140,7 @@
             "dry_hopping_var_3": 0,
             "dry_hopping_var_4": 0,
             "dry_hopping_var_5": 0,
-            "last_changed": 1687847518,
+            "last_changed": 1719844652,
             "old_name": "",
             "yieldLb": "0",
             "description": "",
@@ -5159,7 +5161,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2023\/06\/33_Titan_dolde_quer-1536x1024-1-1024x683.jpg",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2023\/06\/33_Titan_dolde_quer-1536x1024-1-1024x683.jpg",
             "permalink": "Titan",
             "key": 87,
             "color_aroma": 4
@@ -5231,7 +5233,7 @@
                 "3": 3,
                 "4": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Hallertauer-Tradition.png",
             "permalink": "Triskel",
             "key": 88,
             "color_aroma": 1
@@ -5305,7 +5307,7 @@
                 "5": 3,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Tettnanger.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Tettnanger.png",
             "permalink": "Tettnanger",
             "key": 90,
             "color_aroma": 4
@@ -5376,7 +5378,7 @@
                 "3": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Vanguard-629x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Vanguard-629x1024.png",
             "permalink": "Vanguard",
             "key": 91,
             "color_aroma": 4
@@ -5450,7 +5452,7 @@
                 "5": 1,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Willamette-714x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Willamette-714x1024.png",
             "permalink": "Willamette",
             "key": 92,
             "color_aroma": 4
@@ -5522,7 +5524,7 @@
                 "5": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Northdown-551x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Northdown-551x1024.png",
             "permalink": "Northdown",
             "key": 93,
             "color_aroma": 1
@@ -5596,7 +5598,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Aurora.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Aurora.png",
             "permalink": "Aurora",
             "key": 94,
             "color_aroma": 4
@@ -5668,7 +5670,7 @@
                 "4": 4,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Boadicea-517x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Boadicea-517x1024.png",
             "permalink": "Boadicea",
             "key": 95,
             "color_aroma": 1
@@ -5740,7 +5742,7 @@
                 "5": 4,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Progress-506x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Progress-506x1024.png",
             "permalink": "Progress",
             "key": 96,
             "color_aroma": 2
@@ -5811,7 +5813,7 @@
                 "5": 1,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Bor-1.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Bor-1.png",
             "permalink": "Bor",
             "key": 97,
             "color_aroma": 3
@@ -5884,75 +5886,10 @@
                 "6": 3,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Whitbread-Golding.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Whitbread-Golding.png",
             "permalink": "Whitbread-Golding",
             "key": 98,
             "color_aroma": 5
-        },
-        {
-            "id": 58,
-            "name": "Santiam",
-            "sort": 66,
-            "flag_tm": false,
-            "cone_img": 2061,
-            "leaf_img": 0,
-            "field1_img": 0,
-            "field2_img": 0,
-            "color": "8eafc2",
-            "new": false,
-            "exp": false,
-            "hidden": false,
-            "region_id": 1,
-            "genetic_origin": "A triploid hop resulting from a cross between 1\/3 German Tettnanger, 1\/3 Hallertauer Mittelfrueh and a selected tetraploid USDA male.",
-            "yield": "1600 - 2000",
-            "maturity": 2,
-            "main_country": "USA",
-            "acerage": 0,
-            "wilt_diseases": 0,
-            "mildew_downy": 3,
-            "mildew_powdery": 2,
-            "aphid": 0,
-            "acid_alpha_low": 5.5,
-            "acid_alpha_high": 7,
-            "acid_alpha": "5.5 - 7.0",
-            "acid_beta": "7.0 - 8.5",
-            "cohumulone": "20 - 22",
-            "acid_hardresins": "0.00",
-            "polyphenoles": "0.0",
-            "xantholhumol": "0.0",
-            "oils": "1.3 - 1.7",
-            "humulen": "0.29",
-            "farnesen": "13.00 - 16.00",
-            "linalool_oil": "0.0",
-            "linalool_acid": "0.00",
-            "aroma_spec": "Spicy, herbal, floral",
-            "brewhouse": "",
-            "brewhouse_var_1": 0,
-            "brewhouse_var_2": 0,
-            "brewhouse_var_3": 0,
-            "brewhouse_var_4": 0,
-            "brewhouse_var_5": 0,
-            "dry_hopping": "",
-            "dry_hopping_var_1": 0,
-            "dry_hopping_var_2": 0,
-            "dry_hopping_var_3": 0,
-            "dry_hopping_var_4": 0,
-            "dry_hopping_var_5": 0,
-            "last_changed": 1578569448,
-            "old_name": "",
-            "yieldLb": "",
-            "description": "",
-            "technical_url": "",
-            "artwork_file": "0",
-            "langs": [
-                "en",
-                "de"
-            ],
-            "cone_text": true,
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Santiam-572x1024.png",
-            "permalink": "Santiam",
-            "key": 99,
-            "color_aroma": 6
         },
         {
             "id": 47,
@@ -6023,7 +5960,7 @@
                 "6": 2,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Marynka.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Marynka.png",
             "permalink": "Marynka",
             "key": 100,
             "color_aroma": 4
@@ -6088,7 +6025,7 @@
                 "de"
             ],
             "cone_text": true,
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Phoenix-389x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Phoenix-389x1024.png",
             "permalink": "Phoenix",
             "key": 101,
             "color_aroma": 3
@@ -6160,7 +6097,7 @@
                 "5": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Challenger-516x1024.png",
             "permalink": "Challenger",
             "key": 102,
             "color_aroma": 6
@@ -6234,7 +6171,7 @@
                 "6": 2,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Sovereign.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Sovereign.png",
             "permalink": "Sovereign",
             "key": 103,
             "color_aroma": 1
@@ -6309,7 +6246,7 @@
                 "6": 3,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/First-Gold.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/First-Gold.png",
             "permalink": "First-Gold",
             "key": 104,
             "color_aroma": 6
@@ -6384,7 +6321,7 @@
                 "6": 1,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Premiant-631x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Premiant-631x1024.png",
             "permalink": "Premiant",
             "key": 105,
             "color_aroma": 1
@@ -6457,7 +6394,7 @@
                 "5": 3,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Lublin.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Lublin.png",
             "permalink": "Lubelski--Lublin",
             "key": 106,
             "color_aroma": 4
@@ -6531,7 +6468,7 @@
                 "6": 3,
                 "7": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Target.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Target.png",
             "permalink": "Target",
             "key": 107,
             "color_aroma": 5
@@ -6602,7 +6539,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Mt.-Rainier-699x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Mt.-Rainier-699x1024.png",
             "permalink": "Mt--Rainier",
             "key": 108,
             "color_aroma": 6
@@ -6677,7 +6614,7 @@
                 "7": 0,
                 "8": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2020\/07\/Motueka-1.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2020\/07\/Motueka-1.png",
             "permalink": "Motueka",
             "key": 109,
             "color_aroma": 3
@@ -6751,7 +6688,7 @@
                 "7": 1,
                 "8": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Nelson-Sauvin-613x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Nelson-Sauvin-613x1024.png",
             "permalink": "Nelson-Sauvin",
             "key": 110,
             "color_aroma": 1
@@ -6824,7 +6761,7 @@
                 "5": 3,
                 "6": 4
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Smaragd.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Smaragd.png",
             "permalink": "Smaragd",
             "key": 111,
             "color_aroma": 6
@@ -6899,7 +6836,7 @@
                 "6": 3,
                 "7": 1
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Admiral-484x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Admiral-484x1024.png",
             "permalink": "Admiral",
             "key": 112,
             "color_aroma": 1
@@ -6972,7 +6909,7 @@
                 "5": 2,
                 "6": 3
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Bobek.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Bobek.png",
             "permalink": "Bobek",
             "key": 113,
             "color_aroma": 2
@@ -7045,7 +6982,7 @@
                 "4": 3,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Pilgrim-647x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Pilgrim-647x1024.png",
             "permalink": "Pilgrim",
             "key": 114,
             "color_aroma": 5
@@ -7119,7 +7056,7 @@
                 "6": 3,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Pride-of-Ringwood-574x1024.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Pride-of-Ringwood-574x1024.png",
             "permalink": "Pride-of-Ringwood",
             "key": 115,
             "color_aroma": 6
@@ -7193,7 +7130,7 @@
                 "6": 1,
                 "7": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Sladek.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Sladek.png",
             "permalink": "Sl-dek",
             "key": 116,
             "color_aroma": 1
@@ -7266,7 +7203,7 @@
                 "4": 2,
                 "6": 2
             },
-            "cone_url": "https:\/\/www.hopsteiner.com\/wp-content\/uploads\/2016\/04\/Bramling-Cross.png",
+            "cone_url": "https:\/\/hopsteiner.us\/wp-content\/uploads\/2016\/04\/Bramling-Cross.png",
             "permalink": "Bramling-Cross",
             "key": 117,
             "color_aroma": 6
