@@ -1,53 +1,151 @@
 [![Python Scripts CI](https://github.com/kasperg3/HopDatabase/actions/workflows/ci.yaml/badge.svg)](https://github.com/kasperg3/HopDatabase/actions/workflows/ci.yaml)
 
-# Hop Database
+# 🍺 Hop Database & Interactive Comparison Tool
 
-Welcome to the Hop Database project! This database is created by using web scraping techniques and contains information from various hops producers' websites.
+Welcome to the Hop Database project! This comprehensive database contains detailed information from various hop producers' websites, combined with an advanced interactive web application for brewing analysis and hop comparison.
 
 ## 🌐 Live Website
 
-**[Try the Hop Comparison Tool](https://kasperg3.github.io/HopDatabase)** - Interactive web application for comparing hop aroma profiles
+**[🔗 Try the Hop Comparison Tool](https://kasperg3.github.io/HopDatabase)** - Advanced brewing analysis and hop comparison tool
 
-## 📊 Data Sources
+![Hop Aroma Profile Comparison](.assets/aroma_profile.png)
 
-* Hopsteiner
-* Yakima Chief Hops
-* BarthHaas
+## ✨ Features
 
-## Description
+### 🔬 **Advanced Hop Analysis**
+- **Interactive Radar Charts** - Visual comparison of hop aroma profiles
+- **Chemistry-Based Classifications** - Modern hop science with Alpha/Beta acid analysis
+- **Individual Hop Recommendations** - Personalized brewing guidance for each hop
+- **Comprehensive Parameter Comparison** - Side-by-side numerical and visual data
 
-The Hop Database is a comprehensive collection of data related to different hop varieties used in the brewing industry. It provides detailed information about each hop, including its origin, flavor profile, alpha acid and more. Whether you're a homebrewer, a professional brewer, or simply a hop enthusiast, this database can be a valuable resource for exploring and learning about different hops.
+![Brewing Parameters Analysis](.assets/brewing_parameters.png)
 
-## Features
+### 📊 **Smart Brewing Insights**
+- **Purpose-Based Classification** - Super-Alpha, Bittering, Aroma, Noble, Dual-Purpose
+- **Cohumulone Impact Analysis** - IBU yield predictions based on modern research
+- **Storage Stability Assessment** - Beta:Alpha ratio analysis for aging potential
+- **Brewing Process Optimization** - Whirlpool, dry hop, and biotransformation guidance
 
-* **Web Scraping**: The database is created by scraping data from reputable hops producers' websites, ensuring accurate and up-to-date information.
+### 🎯 **User-Friendly Interface**
+- **Responsive Design** - Works seamlessly on desktop and mobile
+- **Real-Time Analysis** - Instant calculations and recommendations
+- **Clean Data Display** - Focus on essential brewing information
+- **Professional Visualization** - Publication-quality charts and tables
 
-## Data Format
+## 📈 Data Sources
 
-The Hop Database stores hop information in JSON format. Each hop entry follows the structure of [data/hopsteiner.json](data/hopsteiner.json).
-The keys of all the entries are the same across the different hop providers, but values such as "aroma" will have different values across the different providers.
+Our comprehensive database aggregates information from industry-leading hop producers:
 
-Other values such as farnesen, will not be present in the yvh and bh data, as this is not directly available (Though this can be scraped, and is a WIP).
+* **🌾 Hopsteiner** - Premium hop varieties and detailed chemistry data
+* **🏔️ Yakima Chief Hops** - Pacific Northwest hop expertise
+* **🇩🇪 BarthHaas** - Traditional European varieties and innovation
 
-## Getting Started
+## 🚀 Getting Started
 
-To get started with the Hop Database, follow these steps:
+### For Brewers (Web Application)
+1. Visit **[the live application](https://kasperg3.github.io/HopDatabase)**
+2. Select up to 5 hops from our comprehensive database
+3. Analyze aroma profiles using interactive radar charts
+4. Review detailed brewing recommendations for each hop
+5. Compare chemistry parameters side-by-side
 
-1. Clone the repository: `git clone https://github.com/your-username/hop-database.git`
-2. Install the necessary dependencies: `pip install requirements.txt`
-3. (optional) hopsteiner data will have to be updated manually, see: [Link](hopsteiner/README.md)
-4. Run the scraper to extract the data: `python scraper.py`
+### For Developers (Local Setup)
+```bash
+# Clone the repository
+git clone https://github.com/kasperg3/HopDatabase.git
+cd HopDatabase
 
-## Contributing
+# Install Python dependencies
+pip install -r requirements.txt
 
-Contributions to the Hop Database project are welcome! If you have suggestions for new features, improvements, or bug fixes, please open an issue or submit a pull request. For more information, please refer to the [Contribution Guidelines](CONTRIBUTING.md).
+# Run the scraper to update data
+python scraper.py
 
-## License
+# For website development
+cd website
+npm install
+npm start
+```
+
+## 🔧 Technical Implementation
+
+### Data Processing
+- **Web Scraping Pipeline** - Automated data extraction from producer websites
+- **Data Normalization** - Consistent format across all sources
+- **Quality Validation** - Ensures accuracy and completeness
+
+### Frontend Technology
+- **React + Mantine UI** - Modern, responsive user interface
+- **Recharts** - Interactive data visualization
+- **Advanced State Management** - Efficient data processing and filtering
+
+### Brewing Science Integration
+- **Research-Based Classifications** - Modern hop chemistry understanding
+- **Advanced Analytics** - Beta:Alpha ratios, cohumulone impact, oil content analysis
+- **Professional Recommendations** - Industry-standard brewing guidance
+
+## 📋 Data Format
+
+The Hop Database stores information in JSON format with standardized keys across all providers:
+
+```json
+{
+  "name": "Hop Variety Name",
+  "alpha_from": "10.0", 
+  "alpha_to": "15.0",
+  "beta_from": "3.0",
+  "beta_to": "5.0",
+  "oil_from": "1.5",
+  "oil_to": "2.5",
+  "co_h_from": "25",
+  "co_h_to": "35",
+  "country": "USA",
+  "aroma": ["citrus", "tropical", "pine"],
+  "source": "Hopsteiner"
+}
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the brewing and development communities! Here's how you can help:
+
+### 🔍 **Data Contributions**
+- Report inaccurate hop information
+- Suggest additional hop varieties
+- Provide missing chemistry data
+
+### 💻 **Code Contributions**
+- Enhance the web application
+- Improve scraping algorithms  
+- Add new visualization features
+- Optimize performance
+
+### 📖 **Documentation**
+- Improve brewing recommendations
+- Add usage examples
+- Translate content
+
+Please read our [Contribution Guidelines](CONTRIBUTING.md) for detailed information.
+
+## 📊 Project Stats
+
+- **500+ Hop Varieties** across multiple producers
+- **Real-time Data Updates** via automated scraping
+- **Mobile-Responsive Design** for on-the-go brewing
+- **Science-Based Analysis** using modern hop research
+
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Contact
+## 📬 Contact & Support
 
-If you have any questions or feedback, feel free to reach out to us at <kaspergrontved@gmail.com>.
+- **Email**: [kaspergrontved@gmail.com](mailto:kaspergrontved@gmail.com)
+- **Issues**: [GitHub Issues](https://github.com/kasperg3/HopDatabase/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/kasperg3/HopDatabase/discussions)
 
-Happy hopping!
+---
+
+**🍻 Happy Brewing!** 
+
+*Made with ❤️ for the homebrewing and craft beer community*

@@ -1,5 +1,10 @@
 import React, { useRef } from 'react';
-import { Paper, Title, Text, Box } from '@mantine/core';
+import { Paper, Title, Text, Box, Grid, Card, Group, ThemeIcon } from '@mantine/core';
+import {
+  IconChartBar,
+  IconDroplet,
+  IconShieldCheck,
+} from '@tabler/icons-react';
 import Plot from 'react-plotly.js';
 
 const SpiderChart = ({ hopData }) => {
@@ -15,6 +20,76 @@ const SpiderChart = ({ hopData }) => {
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
     '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE'
   ];
+
+  // Statistics calculation functions
+  const parseValue = (value) => {
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') {
+      const cleaned = value.replace(/[^\d.]/g, '');
+      const parsed = parseFloat(cleaned);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    return 0;
+  };
+
+  const getAverageValue = (from, to) => {
+    const fromVal = parseValue(from);
+    const toVal = parseValue(to);
+    if (fromVal === 0 && toVal === 0) return 0;
+    if (toVal === 0) return fromVal;
+    if (fromVal === 0) return toVal;
+    return (fromVal + toVal) / 2;
+  };
+
+  // Calculate overall statistics
+  const calculateOverallStats = () => {
+    if (!hopData || hopData.length === 0) {
+      return {
+        avgAlpha: 0,
+        avgBeta: 0,
+        avgOil: 0,
+        avgCohumulone: 0,
+      };
+    }
+
+    const stats = hopData.map(hop => ({
+      avgAlpha: getAverageValue(hop.alpha_from, hop.alpha_to),
+      avgBeta: getAverageValue(hop.beta_from, hop.beta_to),
+      avgOil: getAverageValue(hop.oil_from, hop.oil_to),
+      avgCohumulone: getAverageValue(hop.co_h_from, hop.co_h_to),
+    }));
+
+    return {
+      avgAlpha: stats.reduce((sum, hop) => sum + hop.avgAlpha, 0) / stats.length,
+      avgBeta: stats.reduce((sum, hop) => sum + hop.avgBeta, 0) / stats.length,
+      avgOil: stats.reduce((sum, hop) => sum + hop.avgOil, 0) / stats.length,
+      avgCohumulone: stats.filter(hop => hop.avgCohumulone > 0).reduce((sum, hop) => sum + hop.avgCohumulone, 0) / (stats.filter(hop => hop.avgCohumulone > 0).length || 1),
+    };
+  };
+
+  const overallStats = calculateOverallStats();
+
+  // StatCard component
+  const StatCard = ({ icon, color, label, value, unit }) => (
+    <Grid.Col span={{ base: 6, sm: 3 }}>
+      <Card withBorder p="sm">
+        <Group wrap="nowrap" gap="xs">
+          <ThemeIcon color={color} variant="light" size="lg" radius="md">
+            {icon}
+          </ThemeIcon>
+          <div>
+            <Text size="xs" fw={700} c="dimmed">
+              {label}
+            </Text>
+            <Text fw={700} size="lg">
+              {value}
+              {unit && <Text span size="xs" c="dimmed" ml={4}>{unit}</Text>}
+            </Text>
+          </div>
+        </Group>
+      </Card>
+    </Grid.Col>
+  );
 
   const createSpiderChartData = () => {
     if (!hopData || hopData.length === 0) {
@@ -101,11 +176,6 @@ const SpiderChart = ({ hopData }) => {
       xanchor: 'center',
       x: 0.5
     },
-    title: {
-      text: 'Hop Aroma Profile Comparison (0-5 Scale)',
-      font: { size: 16, color: '#333' },
-      y: 0.95
-    },
     font: { size: 12 },
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
@@ -151,6 +221,44 @@ const SpiderChart = ({ hopData }) => {
           </Text>
         </Box>
       )}
+
+      {hopData && hopData.length > 0 && (
+        <Box mt="lg">
+          <Grid>
+            <StatCard 
+              icon={<IconChartBar size="1.4rem" />} 
+              color="orange" 
+              label="Avg α" 
+              value={overallStats.avgAlpha.toFixed(1)} 
+              unit="%" 
+            />
+            <StatCard 
+              icon={<IconChartBar size="1.4rem" />} 
+              color="blue" 
+              label="Avg β" 
+              value={overallStats.avgBeta.toFixed(1)} 
+              unit="%" 
+            />
+            <StatCard 
+              icon={<IconDroplet size="1.4rem" />} 
+              color="teal" 
+              label="Avg Oil" 
+              value={overallStats.avgOil.toFixed(1)} 
+              unit="ml/100g" 
+            />
+            <StatCard 
+              icon={<IconShieldCheck size="1.4rem" />} 
+              color="red" 
+              label="Avg Coh." 
+              value={overallStats.avgCohumulone.toFixed(1)} 
+              unit="%" 
+            />
+          </Grid>
+
+        </Box>
+      )}
+
+      
     </Paper>
   );
 };

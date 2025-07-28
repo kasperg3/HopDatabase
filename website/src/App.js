@@ -10,10 +10,12 @@ import {
   Grid,
   Loader,
   Center,
+  Tabs,
 } from '@mantine/core';
 import HopSelector from './components/HopSelector';
 import SpiderChart from './components/SpiderChart';
-import DetailedComparison from './components/DetailedComparison';
+import BrewingParametersComparison from './components/BrewingParametersComparison';
+import BrewingSummary from './components/BrewingSummary';
 import { loadHopData, processHopData } from './utils/dataLoader';
 
 function App() {
@@ -65,7 +67,7 @@ return (
     <AppShell header={{ height: 60 }} padding="md">
         <AppShell.Header>
             <Box style={{ display: 'flex', alignItems: 'center', height: '100%', paddingLeft: 16 }}>
-                <Title order={3} c="white">
+                <Title order={3} c="Black">
                     🍺 Hop Comparison Tool
                 </Title>
             </Box>
@@ -79,26 +81,8 @@ return (
                     </Alert>
                 )}
 
-                <Paper shadow="md" p="lg" mb="lg">
-                    <Title order={1} ta="center" mb="md">
-                        Compare Hop Aroma Profiles
-                    </Title>
-                    <Text size="md" c="dimmed" ta="center">
-                        Select up to 5 hops to compare their aroma characteristics using an interactive spider chart.
-                        Data sourced from Hopsteiner, BarthHaas, and Yakima Chief Hops.
-                    </Text>
-                    <Text size="sm" c="dimmed" ta="center" mt="sm">
-                        Source links:&nbsp;
-                        <a href="https://www.hopsteiner.com/variety-data-sheets/" target="_blank" rel="noopener noreferrer">Hopsteiner</a>
-                        {' | '}
-                        <a href="https://www.barthhaas.com/hops-and-products/hop-varieties-overview" target="_blank" rel="noopener noreferrer">BarthHaas</a>
-                        {' | '}
-                        <a href="https://www.yakimachief.com/commercial/hop-varieties.html" target="_blank" rel="noopener noreferrer">Yakima Chief Hops</a>
-                    </Text>
-                </Paper>
-
                 <Grid>
-                    <Grid.Col span={{ base: 12, md: 6 }}>
+                    <Grid.Col span={{ base: 12, md: 5 }}>
                         <HopSelector
                             hopData={hopData}
                             selectedHops={selectedHops}
@@ -106,18 +90,44 @@ return (
                         />
                     </Grid.Col>
                     
-                    <Grid.Col span={{ base: 12, md: 6 }}>
+                    <Grid.Col span={{ base: 12, md: 7 }}>
                         <SpiderChart hopData={getSelectedHopData()} />
                     </Grid.Col>
                 </Grid>
 
                 {getSelectedHopData().length > 0 && (
                     <Box mt="lg">
-                        <DetailedComparison hopData={getSelectedHopData()} />
+                        <Tabs defaultValue="brewing-parameters" variant="outline">
+                            <Tabs.List>
+                                <Tabs.Tab value="brewing-parameters">
+                                    Brewing Parameters
+                                </Tabs.Tab>
+                                <Tabs.Tab value="brewing-summary">
+                                    Brewing Summary
+                                </Tabs.Tab>
+                            </Tabs.List>
+                            <Tabs.Panel value="brewing-parameters" pt="lg">
+                                <BrewingParametersComparison hopData={getSelectedHopData()} />
+                            </Tabs.Panel>
+
+                            <Tabs.Panel value="brewing-summary" pt="lg">
+                                <BrewingSummary hopData={getSelectedHopData()} />
+                            </Tabs.Panel>
+
+                        </Tabs>
                     </Box>
                 )}
 
                 <Paper shadow="sm" p="md" mt="xl" style={{ backgroundColor: '#f8f9fa', borderTop: '2px solid #e9ecef' }}>
+                    <Text size="sm" c="dimmed" ta="center" mt="sm">
+                         Data sourced from Hopsteiner, BarthHaas, and Yakima Chief Hops. Source links:&nbsp;
+                        <a href="https://www.hopsteiner.com/variety-data-sheets/" target="_blank" rel="noopener noreferrer">Hopsteiner</a>
+                        {' | '}
+                        <a href="https://www.barthhaas.com/hops-and-products/hop-varieties-overview" target="_blank" rel="noopener noreferrer">BarthHaas</a>
+                        {' | '}
+                        <a href="https://www.yakimachief.com/commercial/hop-varieties.html" target="_blank" rel="noopener noreferrer">Yakima Chief Hops</a>
+                    </Text>
+
                     <Text size="sm" ta="center" c="dimmed">
                         This project is open source and contributions are always welcome! 
                         <br />
