@@ -9,6 +9,7 @@ import {
   Group,
   Grid,
   ThemeIcon,
+  useMantineColorScheme,
 } from '@mantine/core';
 import {
   IconFlask,
@@ -47,6 +48,8 @@ const BETA_ALPHA_THRESHOLDS = {
 };
 
 const BrewingParametersComparison = ({ hopData }) => {
+  const { colorScheme } = useMantineColorScheme();
+  
   if (!hopData || hopData.length === 0) {
     return null;
   }
@@ -200,7 +203,7 @@ const BrewingParametersComparison = ({ hopData }) => {
     <Paper withBorder>
       <Table>
         <Table.Thead>
-          <Table.Tr style={{ backgroundColor: '#f8f9fa' }}>
+          <Table.Tr bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}>
             <Table.Th><Text fw={700}>Parameter</Text></Table.Th>
             {processedHops.map((hop) => (
               <Table.Th key={`${hop.name}-${hop.source}-header`} ta="center">

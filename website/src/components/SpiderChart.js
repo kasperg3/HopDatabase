@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Paper, Title, Text, Box, Grid, Card, Group, ThemeIcon } from '@mantine/core';
+import { Paper, Title, Text, Box, Grid, Card, Group, ThemeIcon, useMantineColorScheme } from '@mantine/core';
 import {
   IconChartBar,
   IconDroplet,
@@ -9,6 +9,7 @@ import Plot from 'react-plotly.js';
 
 const SpiderChart = ({ hopData }) => {
   const chartRef = useRef();
+  const { colorScheme } = useMantineColorScheme();
 
   // Define consistent aroma categories mapping
   const aromaCategories = [
@@ -150,20 +151,23 @@ const SpiderChart = ({ hopData }) => {
 
   const layout = {
     polar: {
+      bgcolor: 'rgba(0,0,0,0)', // Make polar plot background transparent
       radialaxis: {
         visible: true,
         range: [-1, 5],
         showline: false,
         showgrid: true,
-        gridcolor: 'rgba(128, 128, 128, 0.3)',
+        gridcolor: colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(128, 128, 128, 0.3)',
         showticklabels: false,
         ticks: ''
-
       },
       angularaxis: {
         showline: false,
-        gridcolor: 'rgba(128, 128, 128, 0.3)',
-        tickfont: { size: 12, color: '#666' },
+        gridcolor: colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(128, 128, 128, 0.3)',
+        tickfont: { 
+          size: 12, 
+          color: colorScheme === 'dark' ? '#C1C2C5' : '#666' 
+        },
         rotation: 90,
         direction: 'clockwise'
       }
@@ -174,9 +178,15 @@ const SpiderChart = ({ hopData }) => {
       yanchor: 'bottom',
       y: -0.15,
       xanchor: 'center',
-      x: 0.5
+      x: 0.5,
+      font: {
+        color: colorScheme === 'dark' ? '#C1C2C5' : '#333'
+      }
     },
-    font: { size: 12 },
+    font: { 
+      size: 12,
+      color: colorScheme === 'dark' ? '#C1C2C5' : '#333'
+    },
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
     margin: { t: 100, b: 100, l: 80, r: 80 },
@@ -212,9 +222,9 @@ const SpiderChart = ({ hopData }) => {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center',
-            backgroundColor: '#f8f9fa',
             borderRadius: 8
           }}
+          bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
         >
           <Text c="dimmed">
             Select hops to see their aroma profile comparison

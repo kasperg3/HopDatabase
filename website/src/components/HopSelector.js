@@ -13,6 +13,7 @@ import {
   Grid,
   Tooltip,
   Divider,
+  useMantineColorScheme,
 } from '@mantine/core';
 import {
   IconFlask,
@@ -55,6 +56,8 @@ const HopSelector = ({
   selectedHops, 
   onHopSelection
 }) => {
+  const { colorScheme } = useMantineColorScheme();
+  
   // Helper functions
   const parseValue = (value) => {
     if (typeof value === 'number') return value;
@@ -332,7 +335,7 @@ const HopSelector = ({
                 )}
 
                 {/* Brewing Recommendations */}
-                <Box mt="md" p="sm" style={{ backgroundColor: '#f8f9fa', borderRadius: 6 }}>
+                <Box mt="md" p="sm" style={{ borderRadius: 6 }} bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}>
                   <Text size="xs" fw={500} mb="xs">Quick Brewing Tips:</Text>
                   <Text size="xs" c="dimmed">
                     {getBrewingTip(hopInfo)}
