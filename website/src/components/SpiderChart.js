@@ -32,7 +32,6 @@ const SpiderChart = ({ hopData }) => {
     }
     return 0;
   };
-
   const getAverageValue = (from, to) => {
     const fromVal = parseValue(from);
     const toVal = parseValue(to);

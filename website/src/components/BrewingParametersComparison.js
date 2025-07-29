@@ -2,7 +2,6 @@ import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from 'recharts';
 import {
   Paper,
-  Title,
   Text,
   Box,
   Table,
@@ -116,8 +115,6 @@ const BrewingParametersComparison = ({ hopData }) => {
   };
 
   const getHopPurpose = (avgAlpha, avgOil, avgBeta) => {
-    const betaAlphaRatio = avgAlpha > 0 ? avgBeta / avgAlpha : 0;
-    
     if (avgAlpha >= ALPHA_THRESHOLDS.SUPER_ALPHA) {
       return { label: 'Super-Alpha', color: 'red', icon: IconFlask, description: 'Maximum bittering efficiency' };
     }
@@ -187,6 +184,9 @@ const BrewingParametersComparison = ({ hopData }) => {
           break;
         case 'β/α Ratio':
           normalizedValue = normalizeBetaAlpha(hop.betaAlphaRatio);
+          break;
+        default:
+          normalizedValue = 0;
           break;
       }
       

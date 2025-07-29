@@ -3,24 +3,18 @@ import {
   Paper,
   Title,
   Text,
-  Box,
   Grid,
   Card,
   Badge,
   Group,
   ThemeIcon,
   Stack,
-  Divider,
   Tooltip,
 } from '@mantine/core';
 import {
   IconFlask,
   IconDroplet,
-  IconChartBar,
   IconTarget,
-  IconInfoCircle,
-  IconShieldCheck,
-  IconClock,
 } from '@tabler/icons-react';
 
 // ===== BREWING PARAMETER CONSTANTS (ADVANCED CHEMISTRY-BASED) =====
@@ -98,70 +92,6 @@ const HOP_PURPOSE_RULES = {
   }
 };
 
-// Advanced brewing recommendations based on modern hop science
-const BREWING_RECOMMENDATIONS = {
-  ADJUSTED_IBU_HIGH_COHUMULONE: {
-    type: 'IBU Calculation',
-    text: `High cohumulone hops (>34%) yield ~15-25% more IBUs than standard formulas predict. Consider reducing quantities.`,
-    color: 'yellow'
-  },
-  ADJUSTED_IBU_LOW_COHUMULONE: {
-    type: 'IBU Calculation', 
-    text: `Low cohumulone hops (<25%) may yield fewer IBUs than predicted. Monitor bitterness levels.`,
-    color: 'blue'
-  },
-  BOIL_SCHEDULE_SUPER_ALPHA: {
-    type: 'Boil Schedule',
-    text: 'Super-alpha hops: Use minimal quantities early (60+ min) for clean, efficient bittering.',
-    color: 'red'
-  },
-  BOIL_SCHEDULE_BITTERING: {
-    type: 'Boil Schedule',
-    text: 'High-alpha hops: Add early in boil (60+ min) for efficient bittering with smooth character.',
-    color: 'orange'
-  },
-  BOIL_SCHEDULE_AROMA: {
-    type: 'Boil Schedule',
-    text: 'Aroma hops: Use late additions (0-15 min), whirlpool (160-175°F), or dry hop to preserve volatile oils.',
-    color: 'teal'
-  },
-  WHIRLPOOL_OPTIMIZATION: {
-    type: 'Process Optimization',
-    text: 'For maximum aroma without bitterness: Whirlpool at 160-170°F for 20-30 minutes.',
-    color: 'cyan'
-  },
-  DRY_HOP_TIMING: {
-    type: 'Dry Hopping',
-    text: 'Optimal contact time: 24-48 hours. Extended contact (>4 days) may extract vegetal flavors and cause hop creep.',
-    color: 'green'
-  },
-  BIOTRANSFORMATION_POTENTIAL: {
-    type: 'Biotransformation',
-    text: 'High thiol precursor hops with β-lyase active yeast can create intense tropical fruit aromas during fermentation.',
-    color: 'grape'
-  },
-  FIRST_WORT_HOP: {
-    type: 'FWH Technique',
-    text: 'First wort hopping can create smoother, more harmonious bitterness while maintaining IBU levels.',
-    color: 'indigo'
-  },
-  POOR_STORAGE_WARNING: {
-    type: 'Quality Warning',
-    text: 'For optimal quality, store hops cold and sealed. Use fresh hops when possible for best results.',
-    color: 'yellow'
-  },
-  BITTERNESS_STABILITY: {
-    type: 'Storage Stability',
-    text: 'High Beta:Alpha ratio (≥0.8) provides better bitterness stability during hop aging.',
-    color: 'blue'
-  },
-  AGING_POTENTIAL: {
-    type: 'Aging Character',
-    text: 'Beta:Alpha ratio ≥0.9 may develop pleasant oxidized aromas during extended aging (Belgian styles).',
-    color: 'orange'
-  }
-};
-
 // Comprehensive brewing guidelines based on modern hop science
 const BREWING_GUIDELINES = {
   BITTERING: 'Add 60+ minutes for clean bitterness. Super-alpha hops (>11% AA) provide maximum efficiency.',
@@ -202,9 +132,6 @@ const BrewingSummary = ({ hopData }) => {
 
   // Advanced hop classification based on modern understanding
   const getHopPurpose = (avgAlpha, avgOil, avgBeta) => {
-    // Calculate Beta:Alpha ratio for stability assessment
-    const betaAlphaRatio = avgAlpha > 0 ? avgBeta / avgAlpha : 0;
-    
     // Super-Alpha classification (highest priority)
     if (avgAlpha >= ALPHA_THRESHOLDS.SUPER_ALPHA) {
       return HOP_PURPOSE_RULES.SUPER_ALPHA;
@@ -248,18 +175,6 @@ const BrewingSummary = ({ hopData }) => {
       purpose: getHopPurpose(avgAlpha, avgOil, avgBeta)
     };
   });
-
-  const overallStats = {
-    avgAlpha: stats.reduce((sum, hop) => sum + hop.avgAlpha, 0) / stats.length,
-    avgBeta: stats.reduce((sum, hop) => sum + hop.avgBeta, 0) / stats.length,
-    avgOil: stats.reduce((sum, hop) => sum + hop.avgOil, 0) / stats.length,
-    avgCohumulone: stats.filter(hop => hop.avgCohumulone > 0).reduce((sum, hop) => sum + hop.avgCohumulone, 0) / (stats.filter(hop => hop.avgCohumulone > 0).length || 1),
-  };
-
-  const purposeCount = stats.reduce((acc, hop) => {
-    acc[hop.purpose.label] = (acc[hop.purpose.label] || 0) + 1;
-    return acc;
-  }, {});
 
   // Get specific brewing recommendations for an individual hop
   const getHopSpecificRecommendations = (hop) => {
@@ -386,125 +301,6 @@ const BrewingSummary = ({ hopData }) => {
     return recommendations;
   };
 
-  const getBrewingRecommendations = () => {
-    const recommendations = new Set();
-    let hasSuperAlpha = false;
-    let hasBittering = false;
-    let hasAroma = false;
-    let hasNoble = false;
-    let hasHighCohumulone = false;
-    let hasLowCohumulone = false;
-    let hasStableBitterness = false;
-    let hasAgingPotential = false;
-    let hasHighOil = false;
-
-    stats.forEach(hop => {
-        // Track hop types for targeted recommendations
-        if (hop.purpose.label === 'Super-Alpha') {
-            hasSuperAlpha = true;
-        }
-        if (hop.purpose.label === 'Bittering' || hop.purpose.label === 'Dual-Purpose' || hop.purpose.label === 'Super-Alpha') {
-            hasBittering = true;
-        }
-        if (hop.purpose.label.includes('Aroma') || hop.purpose.label === 'Dual-Purpose') {
-            hasAroma = true;
-        }
-        if (hop.purpose.label === 'Noble/Aroma') {
-            hasNoble = true;
-        }
-        
-        // Cohumulone analysis - based on research showing it affects IBU yield
-        if (hop.avgCohumulone > COHUMULONE_THRESHOLDS.HIGH) {
-            hasHighCohumulone = true;
-        }
-        if (hop.avgCohumulone > 0 && hop.avgCohumulone < COHUMULONE_THRESHOLDS.LOW) {
-            hasLowCohumulone = true;
-        }
-        
-        // Beta:Alpha ratio analysis
-        if (hop.betaAlphaRatio >= BETA_ALPHA_THRESHOLDS.STABLE) {
-            hasStableBitterness = true;
-        }
-        if (hop.betaAlphaRatio >= BETA_ALPHA_THRESHOLDS.AGING_POTENTIAL) {
-            hasAgingPotential = true;
-        }
-        
-        // High oil content for aroma recommendations
-        if (hop.avgOil >= OIL_THRESHOLDS.HIGH) {
-            hasHighOil = true;
-        }
-    });
-    
-    // Add targeted recommendations based on hop analysis
-    if (hasSuperAlpha) {
-        recommendations.add(BREWING_RECOMMENDATIONS.BOIL_SCHEDULE_SUPER_ALPHA);
-    } else if (hasBittering) {
-        recommendations.add(BREWING_RECOMMENDATIONS.BOIL_SCHEDULE_BITTERING);
-    }
-    
-    if (hasAroma) {
-        recommendations.add(BREWING_RECOMMENDATIONS.BOIL_SCHEDULE_AROMA);
-    }
-    
-    if (hasHighOil) {
-        recommendations.add(BREWING_RECOMMENDATIONS.WHIRLPOOL_OPTIMIZATION);
-        recommendations.add(BREWING_RECOMMENDATIONS.DRY_HOP_TIMING);
-    }
-    
-    // Cohumulone-based IBU calculation adjustments
-    if (hasHighCohumulone) {
-        recommendations.add(BREWING_RECOMMENDATIONS.ADJUSTED_IBU_HIGH_COHUMULONE);
-    }
-    if (hasLowCohumulone) {
-        recommendations.add(BREWING_RECOMMENDATIONS.ADJUSTED_IBU_LOW_COHUMULONE);
-    }
-    
-    // General storage reminder
-    recommendations.add(BREWING_RECOMMENDATIONS.POOR_STORAGE_WARNING);
-    
-    // Stability and aging recommendations
-    if (hasStableBitterness) {
-        recommendations.add(BREWING_RECOMMENDATIONS.BITTERNESS_STABILITY);
-    }
-    if (hasAgingPotential) {
-        recommendations.add(BREWING_RECOMMENDATIONS.AGING_POTENTIAL);
-    }
-    
-    // Advanced techniques
-    if (hasNoble || hasBittering) {
-        recommendations.add(BREWING_RECOMMENDATIONS.FIRST_WORT_HOP);
-    }
-    
-    // Biotransformation potential (simplified - would need yeast data for full implementation)
-    if (hasAroma) {
-        recommendations.add(BREWING_RECOMMENDATIONS.BIOTRANSFORMATION_POTENTIAL);
-    }
-
-    return Array.from(recommendations);
-  };
-
-  const recommendations = getBrewingRecommendations();
-
-  const StatCard = ({ icon, color, label, value, unit }) => (
-    <Grid.Col span={{ base: 6, sm: 4, md: 2.4 }}>
-      <Card withBorder p="sm">
-        <Group wrap="nowrap" gap="xs">
-          <ThemeIcon color={color} variant="light" size="lg" radius="md">
-            {icon}
-          </ThemeIcon>
-          <div>
-            <Text size="xs" tt="uppercase" fw={700} c="dimmed">
-              {label}
-            </Text>
-            <Text fw={700} size="lg">
-              {value}
-              {unit && <Text span size="xs" c="dimmed" ml={4}>{unit}</Text>}
-            </Text>
-          </div>
-        </Group>
-      </Card>
-    </Grid.Col>
-  );
 
   return (
     <Paper shadow="sm" p="lg" radius="md">      
