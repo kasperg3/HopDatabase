@@ -58,8 +58,11 @@ cd HopDatabase
 # Install Python dependencies
 pip install -r requirements.txt
 
+# Install the hop_database package in development mode
+pip install -e .
+
 # Run the scraper to update data
-python scraper.py
+python run_scrapers.py
 
 # For website development
 cd website
@@ -68,6 +71,37 @@ npm start
 ```
 
 ## 🔧 Technical Implementation
+
+### Python Package Structure
+```
+hop_database/
+├── __init__.py              # Main package interface
+├── models/                  # Data models and validation
+│   ├── __init__.py
+│   └── hop_model.py        # HopEntry dataclass and utilities
+├── scrapers/               # Data collection modules
+│   ├── __init__.py
+│   ├── yakima_chief.py     # Yakima Chief Hops scraper
+│   ├── barth_haas.py       # BarthHaas scraper
+│   └── hopsteiner.py       # Hopsteiner scraper
+└── utils/                  # Utility functions
+    └── __init__.py
+```
+
+### Usage as Python Package
+```python
+from hop_database import HopEntry, save_hop_entries
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner
+
+# Run individual scrapers
+ych_hops = yakima_chief.scrape()
+bh_hops = barth_haas.scrape()
+hs_hops = hopsteiner.scrape()
+
+# Combine and save data
+all_hops = ych_hops + bh_hops + hs_hops
+save_hop_entries(all_hops, 'data/hops.json')
+```
 
 ### Data Processing
 - **Web Scraping Pipeline** - Automated data extraction from producer websites

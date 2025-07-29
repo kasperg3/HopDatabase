@@ -68,18 +68,33 @@ const HopSelector = ({
     return 0;
   };
 
-  const getAverageValue = (from, to) => {
-    const fromVal = parseValue(from);
-    const toVal = parseValue(to);
+  // Specific parser for oil values to handle unit consistency
+  const parseOilValue = (value) => {
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') {
+      // Handle both "1.5" and "1.5 mL/100g" formats
+      // Both should be treated as mL/100g values
+      const cleaned = value.replace(/[^\d.]/g, '');
+      const parsed = parseFloat(cleaned);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    return 0;
+  };
+
+  const getAverageValue = (from, to, isOil = false) => {
+    const parseFunc = isOil ? parseOilValue : parseValue;
+    const fromVal = parseFunc(from);
+    const toVal = parseFunc(to);
     if (fromVal === 0 && toVal === 0) return 0;
     if (toVal === 0) return fromVal;
     if (fromVal === 0) return toVal;
     return (fromVal + toVal) / 2;
   };
 
-  const formatRange = (from, to, unit = '%') => {
-    const fromVal = parseValue(from);
-    const toVal = parseValue(to);
+  const formatRange = (from, to, unit = '%', isOil = false) => {
+    const parseFunc = isOil ? parseOilValue : parseValue;
+    const fromVal = parseFunc(from);
+    const toVal = parseFunc(to);
     
     if (fromVal === 0 && toVal === 0) return 'N/A';
     if (fromVal === toVal) return `${fromVal}${unit}`;
@@ -122,7 +137,7 @@ const HopSelector = ({
   const uniqueHops = hopData.map(hop => {
     const avgAlpha = getAverageValue(hop.alpha_from, hop.alpha_to);
     const avgBeta = getAverageValue(hop.beta_from, hop.beta_to);
-    const avgOil = getAverageValue(hop.oil_from, hop.oil_to);
+    const avgOil = getAverageValue(hop.oil_from, hop.oil_to, true); // Use oil parser
     const avgCohumulone = getAverageValue(hop.co_h_from, hop.co_h_to);
     const betaAlphaRatio = avgAlpha > 0 ? avgBeta / avgAlpha : 0;
 
@@ -273,7 +288,7 @@ const HopSelector = ({
                           <IconDroplet size="0.8rem" />
                         </ThemeIcon>
                         <Text size="sm" fw={500}>Total Oil:</Text>
-                        <Text size="sm">{formatRange(hopInfo.oil_from, hopInfo.oil_to, ' ml/100g')}</Text>
+                        <Text size="sm">{formatRange(hopInfo.oil_from, hopInfo.oil_to, ' ml/100g', true)}</Text>
                       </Group>
                     </Stack>
                   </Grid.Col>

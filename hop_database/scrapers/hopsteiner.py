@@ -1,11 +1,11 @@
 import json
-import sys
-sys.path.append('..')
-from hop_model import HopEntry, save_hop_entries
+import os
+
+from ..models.hop_model import HopEntry, save_hop_entries
 
 def scrape():
     # Specify the path to the JSON file
-    file_path = "hopsteiner/hopsteiner_raw_data.json"
+    file_path = os.path.join(os.path.dirname(__file__), "..", "data", "hopsteiner_raw_data.json")
 
     # Load the JSON data from the file
     with open(file_path, "r") as file:

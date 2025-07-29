@@ -2,9 +2,8 @@ import json
 import os
 import requests as req
 from bs4 import BeautifulSoup
-import sys
-sys.path.append('..')
-from hop_model import HopEntry, save_hop_entries
+
+from ..models.hop_model import HopEntry, save_hop_entries
 
 
 def scrape():
@@ -12,7 +11,8 @@ def scrape():
     r = req.get(url)
     html = r.text
     # Perform the request and export the file
-    with open("BarthHaas/bh.html", "w") as file:
+    html_path = os.path.join(os.path.dirname(__file__), "..", "data", "bh.html")
+    with open(html_path, "w") as file:
         file.write(html)
 
     soup = BeautifulSoup(html, "html.parser")
@@ -27,8 +27,27 @@ def scrape():
         href = hop.find('a', {'class': 'section-card-link'})
         href = href['href'] if href is not None else ""
         
-        # Extract aroma data
-        aroma_data = {key.strip("raw"): value for key, value in json.loads(hop.attrs["data-filter-values"]).items()}
+        # Extract aroma data with error handling
+        try:
+            filter_values = hop.attrs.get("data-filter-values", "{}")
+            if isinstance(filter_values, str):
+                # Handle empty string case
+                if filter_values.strip() == "" or filter_values.strip() == '""':
+                    aroma_data_raw = {}
+                else:
+                    aroma_data_raw = json.loads(filter_values)
+            else:
+                aroma_data_raw = filter_values
+            
+            # Ensure aroma_data_raw is a dictionary
+            if isinstance(aroma_data_raw, dict):
+                aroma_data = {key.strip("raw"): value for key, value in aroma_data_raw.items()}
+            else:
+                print(f"Warning: data-filter-values is not a dict for hop {hop.attrs.get('data-name', 'unknown')}: {type(aroma_data_raw)}")
+                aroma_data = {}
+        except (json.JSONDecodeError, AttributeError, KeyError) as e:
+            print(f"Error parsing aroma data for hop {hop.attrs.get('data-name', 'unknown')}: {e}")
+            aroma_data = {}
         
         # Create HopEntry directly
         hop_entry = HopEntry(

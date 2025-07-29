@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include hop_database *.py
+recursive-include data *.json
+recursive-include BarthHaas *.html
+recursive-include hopsteiner *.json
+recursive-include YakimaChiefHops *.html

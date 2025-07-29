@@ -1,11 +1,9 @@
 from bs4 import BeautifulSoup
 import requests as req
 import math
-import time
-import sys
+import os
 
-sys.path.append("..")
-from hop_model import HopEntry, save_hop_entries
+from ..models.hop_model import HopEntry, save_hop_entries
 
 
 def extract_sensory_analysis(hop_url):
@@ -106,7 +104,8 @@ def scrape():
     )
     html = r.text
     # Perform the request and export the file
-    with open("YakimaChiefHops/yvh_html.html", "w") as file:
+    html_path = os.path.join(os.path.dirname(__file__), "..", "data", "yvh_html.html")
+    with open(html_path, "w") as file:
         file.write(html)
 
     soup = BeautifulSoup(html, "html.parser")
@@ -158,7 +157,15 @@ def scrape():
 
             oil_range = properties_dict.get("Oil", "").split("-")
             oil_low = oil_range[0].strip() if oil_range else ""
-            oil_high = oil_range[1].strip("%") if len(oil_range) > 1 else ""
+            # Extract only the number from oil_high, removing units like "mL/100g"
+            if len(oil_range) > 1:
+                oil_high_raw = oil_range[1].strip()
+                # Extract just the number part from strings like "3 mL/100g"
+                import re
+                oil_number_match = re.match(r'^(\d+\.?\d*)', oil_high_raw)
+                oil_high = oil_number_match.group(1) if oil_number_match else ""
+            else:
+                oil_high = ""
 
             if name and hop_aromas_notes:
                 # Extract sensory analysis data
