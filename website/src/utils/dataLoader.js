@@ -68,7 +68,7 @@ export const processHopData = (rawData) => {
       notes: hop.notes || [],
       
       // Normalize aroma data
-      aromas: normalizeAromaData(hop.aromas || {}),
+      aromas: hop.aromas || {},
       
       // Additional properties if available
       additional_properties: hop.additional_properties || {}
@@ -76,40 +76,4 @@ export const processHopData = (rawData) => {
 
     return processedHop;
   }).filter(hop => hop.name && hop.name.trim() !== ''); // Filter out any hops without names
-};
-
-const normalizeAromaData = (aromaData) => {
-  // Standard aroma categories we want to support
-  const standardCategories = {
-    'Citrus': ['Citrus', 'citrusy', 'citrus'],
-    'Resin/Pine': ['Resin/Pine', 'resinous', 'piney', 'pine', 'resin'],
-    'Spice': ['Spice', 'spicy', 'spices'],
-    'Herbal': ['Herbal', 'herbal'],
-    'Grassy': ['Grassy', 'grassy', 'green'],
-    'Floral': ['Floral', 'floral'],
-    'Berry': ['Berry', 'berry', 'berries'],
-    'Stone Fruit': ['Stone Fruit', 'stone fruit'],
-    'Tropical Fruit': ['Tropical Fruit', 'tropical fruit', 'tropical', 'tropical fruits'],
-  };
-
-  const normalizedAromas = {};
-
-  // Initialize all categories with 0
-  Object.keys(standardCategories).forEach(category => {
-    normalizedAromas[category] = 0;
-  });
-
-  // Map the existing aroma data to standard categories
-  Object.entries(aromaData).forEach(([key, value]) => {
-    const normalizedValue = typeof value === 'string' ? parseFloat(value) || 0 : value || 0;
-    const keyLower = key.trim().toLowerCase();
-    for (const [standardCategory, aliases] of Object.entries(standardCategories)) {
-      if (aliases.some(alias => keyLower === alias.trim().toLowerCase())) {
-        normalizedAromas[standardCategory] = Math.max(normalizedAromas[standardCategory], normalizedValue);
-        break;
-      }
-    }
-  });
-
-  return normalizedAromas;
 };

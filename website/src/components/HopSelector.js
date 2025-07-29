@@ -222,6 +222,20 @@ const HopSelector = ({
       });
     }
     
+    // If filtering by aroma, sort by sum of selected aroma intensities (descending)
+    if (selectedAromas.length > 0) {
+      return filtered.sort((a, b) => {
+        // Sum intensities of selected aromas for each hop
+        const sumA = selectedAromas.reduce((acc, aroma) => acc + (a.aromas?.[aroma] || 0), 0);
+        const sumB = selectedAromas.reduce((acc, aroma) => acc + (b.aromas?.[aroma] || 0), 0);
+        // If sums are equal, fallback to displayName
+        if (sumB === sumA) {
+          return a.displayName.localeCompare(b.displayName);
+        }
+        return sumB - sumA;
+      });
+    }
+    // Default sort by displayName
     return filtered.sort((a, b) => a.displayName.localeCompare(b.displayName));
   }, [uniqueHops, selectedAromas]);
 
