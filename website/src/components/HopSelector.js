@@ -425,7 +425,6 @@ const HopSelector = ({
 
         {/* Hop Selection MultiSelect */}
         <MultiSelect
-          label="Select Hops to Compare"
           placeholder="Search and choose hops..."
           value={selectedHops}
           searchable
