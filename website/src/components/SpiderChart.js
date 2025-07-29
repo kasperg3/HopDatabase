@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Paper, Title, Text, Box, Grid, Card, Group, ThemeIcon, useMantineColorScheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import {
   IconChartBar,
   IconDroplet,
@@ -10,6 +11,7 @@ import Plot from 'react-plotly.js';
 const SpiderChart = ({ hopData }) => {
   const chartRef = useRef();
   const { colorScheme } = useMantineColorScheme();
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   // Define consistent aroma categories mapping
   const aromaCategories = [
@@ -72,16 +74,16 @@ const SpiderChart = ({ hopData }) => {
   // StatCard component
   const StatCard = ({ icon, color, label, value, unit }) => (
     <Grid.Col span={{ base: 6, sm: 3 }}>
-      <Card withBorder p="sm">
+      <Card withBorder p={isMobile ? "xs" : "sm"}>
         <Group wrap="nowrap" gap="xs">
-          <ThemeIcon color={color} variant="light" size="lg" radius="md">
+          <ThemeIcon color={color} variant="light" size={isMobile ? "md" : "lg"} radius="md">
             {icon}
           </ThemeIcon>
           <div>
             <Text size="xs" fw={700} c="dimmed">
               {label}
             </Text>
-            <Text fw={700} size="lg">
+            <Text fw={700} size={isMobile ? "md" : "lg"}>
               {value}
               {unit && <Text span size="xs" c="dimmed" ml={4}>{unit}</Text>}
             </Text>
@@ -164,7 +166,7 @@ const SpiderChart = ({ hopData }) => {
         showline: false,
         gridcolor: colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(128, 128, 128, 0.3)',
         tickfont: { 
-          size: 12, 
+          size: isMobile ? 9 : 12, 
           color: colorScheme === 'dark' ? '#C1C2C5' : '#666' 
         },
         rotation: 90,
@@ -175,36 +177,47 @@ const SpiderChart = ({ hopData }) => {
     legend: {
       orientation: 'h',
       yanchor: 'bottom',
-      y: -0.15,
+      y: isMobile ? -0.25 : -0.15,
       xanchor: 'center',
       x: 0.5,
       font: {
-        color: colorScheme === 'dark' ? '#C1C2C5' : '#333'
+        color: colorScheme === 'dark' ? '#C1C2C5' : '#333',
+        size: isMobile ? 10 : 12
       }
     },
     font: { 
-      size: 12,
+      size: isMobile ? 10 : 12,
       color: colorScheme === 'dark' ? '#C1C2C5' : '#333'
     },
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
-    margin: { t: 100, b: 100, l: 80, r: 80 },
-    autosize: true
+    margin: { t: 20, b: isMobile ? 80 : 100, l: 20, r: 20 },
+    autosize: true,
+    dragmode: false,
+    scrollZoom: false,
+    doubleClick: false
   };
 
   const config = {
     responsive: true,
-    displayModeBar: false
+    displayModeBar: false,
+    staticPlot: false,
+    scrollZoom: false,
+    doubleClick: false,
+    showTips: false,
+    showAxisDragHandles: false,
+    showAxisRangeEntryBoxes: false,
+    modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d']
   };
 
   return (
-    <Paper shadow="sm" p="lg">
-      <Title order={3} mb="md">
+    <Paper shadow="sm" p={isMobile ? "md" : "lg"}>
+      <Title order={isMobile ? 4 : 3} mb="md">
         Aroma Profile Comparison
       </Title>
       
       {hopData && hopData.length > 0 ? (
-        <Box style={{ height: 500 }}>
+        <Box style={{ height: isMobile ? 350 : 500 }}>
           <Plot
             ref={chartRef}
             data={createSpiderChartData()}
@@ -217,7 +230,7 @@ const SpiderChart = ({ hopData }) => {
       ) : (
         <Box 
           style={{ 
-            height: 400, 
+            height: isMobile ? 300 : 400, 
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center',
@@ -225,7 +238,7 @@ const SpiderChart = ({ hopData }) => {
           }}
           bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
         >
-          <Text c="dimmed">
+          <Text c="dimmed" size={isMobile ? "sm" : "md"}>
             Select hops to see their aroma profile comparison
           </Text>
         </Box>
@@ -235,28 +248,28 @@ const SpiderChart = ({ hopData }) => {
         <Box mt="lg">
           <Grid>
             <StatCard 
-              icon={<IconChartBar size="1.4rem" />} 
+              icon={<IconChartBar size={isMobile ? "1.2rem" : "1.4rem"} />} 
               color="orange" 
               label="Avg α" 
               value={overallStats.avgAlpha.toFixed(1)} 
               unit="%" 
             />
             <StatCard 
-              icon={<IconChartBar size="1.4rem" />} 
+              icon={<IconChartBar size={isMobile ? "1.2rem" : "1.4rem"} />} 
               color="blue" 
               label="Avg β" 
               value={overallStats.avgBeta.toFixed(1)} 
               unit="%" 
             />
             <StatCard 
-              icon={<IconDroplet size="1.4rem" />} 
+              icon={<IconDroplet size={isMobile ? "1.2rem" : "1.4rem"} />} 
               color="teal" 
               label="Avg Oil" 
               value={overallStats.avgOil.toFixed(1)} 
               unit="ml/100g" 
             />
             <StatCard 
-              icon={<IconShieldCheck size="1.4rem" />} 
+              icon={<IconShieldCheck size={isMobile ? "1.2rem" : "1.4rem"} />} 
               color="red" 
               label="Avg Coh." 
               value={overallStats.avgCohumulone.toFixed(1)} 
