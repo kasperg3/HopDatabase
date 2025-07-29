@@ -205,7 +205,7 @@ return (
 
 function App() {
   return (
-    <MantineProvider theme={theme} defaultColorScheme="auto">
+    <MantineProvider theme={theme} defaultColorScheme="light">
       <AppContent />
     </MantineProvider>
   );
