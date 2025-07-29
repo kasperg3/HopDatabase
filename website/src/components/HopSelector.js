@@ -355,9 +355,6 @@ const HopSelector = ({
               
               {selectedAromas.length > 0 && (
                 <Group justify="space-between" mt="sm">
-                  <Text size="xs" c="dimmed">
-                    Selected: {selectedAromas.join(', ')}
-                  </Text>
                   <Button
                     variant="light"
                     size="xs"
