@@ -122,10 +122,12 @@ def scrape():
             "5": "Resin/Pine",   # Resinous → Resin/Pine
             "6": "Herbal",       # Herbal → Herbal
             "7": "Floral",       # sugar like → closest match is Floral (sweet aromatics)
-            "8": "Herbal",       # Other → default to Herbal
+            "8": "Other",       # Other 
         }
 
         if "aromas" in entry:
+            # Remove any key "8" from the aromas dictionary before mapping
+            entry["aromas"].pop("8", None)  # Remove key "8" if it exists
             hop_aromas = {
                 aroma_mapping[str(key)]: value for key, value in entry["aromas"].items()
             }

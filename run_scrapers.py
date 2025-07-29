@@ -38,6 +38,8 @@ def main():
     
     # Save to JSON file
     output_path = os.path.join(data_dir, 'hops.json')
+    
+    combined_hop_entries.sort(key=lambda hop: hop.name)
     save_hop_entries(combined_hop_entries, output_path)
     
     print(f"Data saved to {output_path}")

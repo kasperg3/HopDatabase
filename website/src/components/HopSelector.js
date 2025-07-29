@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Paper,
   Text,
@@ -13,6 +13,9 @@ import {
   Tooltip,
   Divider,
   useMantineColorScheme,
+  Collapse,
+  Button,
+  Chip,
 } from '@mantine/core';
 import {
   IconFlask,
@@ -22,6 +25,9 @@ import {
   IconShieldCheck,
   IconScale,
   IconLeaf,
+  IconX,
+  IconChevronDown,
+  IconChevronUp,
 } from '@tabler/icons-react';
 
 // Advanced classification functions based on modern hop science
@@ -56,6 +62,10 @@ const HopSelector = ({
   onHopSelection
 }) => {
   const { colorScheme } = useMantineColorScheme();
+  
+  // Filter states
+  const [selectedAromas, setSelectedAromas] = useState([]);
+  const [filtersExpanded, setFiltersExpanded] = useState(false);
   
   // Helper functions
   const parseValue = (value) => {
@@ -133,6 +143,28 @@ const HopSelector = ({
     if (ratio < 0.5) return { label: 'Use Fresh', color: 'red', description: 'Rapid alpha degradation' };
     return { label: 'Standard Storage', color: 'gray', description: 'Normal degradation rate' };
   };
+  // Helper function to get top 3 aromas for a hop (including all ties with 3rd place)
+  const getTopAromas = (hop, count = 3) => {
+    if (!hop.aromas || typeof hop.aromas !== 'object') return [];
+    
+    const sortedAromas = Object.entries(hop.aromas)
+      .filter(([_, intensity]) => intensity > 0)
+      .sort(([_, a], [__, b]) => b - a)
+      .map(([category, intensity]) => ({ category, intensity }));
+    
+    if (sortedAromas.length <= count) {
+      return sortedAromas;
+    }
+    
+    // Get the intensity of the 3rd place aroma
+    const thirdPlaceIntensity = sortedAromas[count - 1].intensity;
+    
+    // Include all aromas that have intensity > 3rd place intensity OR equal to 3rd place intensity
+    return sortedAromas.filter(aroma => 
+      aroma.intensity >= thirdPlaceIntensity
+    );
+  };
+
   // Create unique hop entries with enhanced data processing
   const uniqueHops = hopData.map(hop => {
     const avgAlpha = getAverageValue(hop.alpha_from, hop.alpha_to);
@@ -156,11 +188,74 @@ const HopSelector = ({
     };
   });
 
+  // Extract standardized aroma categories for filtering (only those with intensity > 0)
+  const availableAromaCategories = useMemo(() => {
+    const aromaCounts = {};
+    
+    // Count how many hops have each aroma with intensity > 0
+    hopData.forEach(hop => {
+      if (hop.aromas && typeof hop.aromas === 'object') {
+        Object.entries(hop.aromas).forEach(([category, intensity]) => {
+          if (intensity > 0) {
+            aromaCounts[category] = (aromaCounts[category] || 0) + 1;
+          }
+        });
+      }
+    });
+    
+    // Only return categories that have at least one hop with intensity > 0
+    return Object.keys(aromaCounts).sort();
+  }, [hopData]);
+
+  // Filter hops based on selected aroma categories
+  const filteredHops = useMemo(() => {
+    let filtered = uniqueHops;
+    
+    // Filter by selected aroma categories (focus on top 3 aromas)
+    if (selectedAromas.length > 0) {
+      filtered = filtered.filter(hop => {
+        const topAromas = getTopAromas(hop, 3);
+        const topAromaCategories = topAromas.map(aroma => aroma.category);
+        
+        // Check if ALL of the selected aromas are in the top 3 (AND logic)
+        return selectedAromas.every(selectedAroma => topAromaCategories.includes(selectedAroma));
+      });
+    }
+    
+    return filtered.sort((a, b) => a.displayName.localeCompare(b.displayName));
+  }, [uniqueHops, selectedAromas]);
+
   // Sort by display name for better UX
-  const availableHops = uniqueHops.sort((a, b) => a.displayName.localeCompare(b.displayName));
+  const availableHops = filteredHops;
+
+  // Generate aroma combination suggestions
+  const getAromaCombinationSuggestions = () => {
+    if (selectedAromas.length === 0) return [];
+    
+    const suggestedCombinations = [
+      { aromas: ['Citrus', 'Tropical Fruit'], description: 'Modern American IPA character', style: 'American IPA' },
+      { aromas: ['Floral', 'Spice'], description: 'Classic European noble hop profile', style: 'Pilsner/Lager' },
+      { aromas: ['Resin/Pine'], description: 'West Coast IPA bitterness', style: 'West Coast IPA' },
+      { aromas: ['Berry', 'Stone Fruit'], description: 'New England IPA fruitiness', style: 'NEIPA' },
+      { aromas: ['Herbal', 'Grassy'], description: 'Traditional lager character', style: 'European Lager' },
+      { aromas: ['Citrus', 'Resin/Pine'], description: 'Cascade-style American hop blend', style: 'American Pale Ale' },
+      { aromas: ['Tropical Fruit', 'Stone Fruit'], description: 'Modern hazy IPA profile', style: 'Hazy IPA' },
+      { aromas: ['Spice', 'Herbal'], description: 'Belgian-style complexity', style: 'Belgian Ales' },
+      { aromas: ['Floral', 'Citrus'], description: 'Balanced aromatic profile', style: 'Session IPA' },
+    ];
+    
+    return suggestedCombinations.filter(combo => 
+      combo.aromas.some(aroma => selectedAromas.includes(aroma))
+    );
+  };
 
   const getHopInfo = (hopUniqueId) => {
     return uniqueHops.find(hop => hop.uniqueId === hopUniqueId);
+  };
+
+  // Clear all filters
+  const clearAllFilters = () => {
+    setSelectedAromas([]);
   };
 
   // Generate brewing tip based on hop characteristics
@@ -213,10 +308,111 @@ const HopSelector = ({
 
   return (
     <Paper shadow="sm" p="lg">
+      {/* Search and Filter Section */}
       <Box mb="md">
+        <Group justify="space-between" mb="md">
+          <Text size="lg" fw={600}>Hop Selection & Filtering</Text>
+          <Button
+            variant="subtle"
+            size="sm"
+            leftSection={filtersExpanded ? <IconChevronUp size="1rem" /> : <IconChevronDown size="1rem" />}
+            onClick={() => setFiltersExpanded(!filtersExpanded)}
+          >
+            {filtersExpanded ? 'Hide' : 'Show'} Filters
+          </Button>
+        </Group>
+
+        <Collapse in={filtersExpanded}>
+          <Stack gap="md" mb="md">
+            {/* Aroma Categories Filter */}
+            <Box>
+              <Text size="sm" fw={500} mb="xs">
+                Filter by Aroma Categories:
+              </Text>
+              <Chip.Group multiple value={selectedAromas} onChange={setSelectedAromas}>
+                <Group gap="xs">
+                  {availableAromaCategories.map((aroma) => (
+                    <Chip key={aroma} value={aroma} size="sm">
+                      {aroma}
+                    </Chip>
+                  ))}
+                </Group>
+              </Chip.Group>
+              
+              {selectedAromas.length > 0 && (
+                <Group justify="space-between" mt="sm">
+                  <Text size="xs" c="dimmed">
+                    Selected: {selectedAromas.join(', ')}
+                  </Text>
+                  <Button
+                    variant="light"
+                    size="xs"
+                    leftSection={<IconX size="0.8rem" />}
+                    onClick={clearAllFilters}
+                  >
+                    Clear filters
+                  </Button>
+                </Group>
+              )}
+            </Box>
+
+            {/* Aroma Combination Suggestions */}
+            {selectedAromas.length > 0 && (
+              <Box>
+                <Text size="sm" fw={500} mb="xs">
+                  Suggested Aroma Combinations:
+                </Text>
+                <Stack gap="xs">
+                  {getAromaCombinationSuggestions().map((suggestion, index) => (
+                    <Card key={index} p="xs" withBorder>
+                      <Group justify="space-between">
+                        <Box>
+                          <Group gap="xs" mb="xs">
+                            {suggestion.aromas.map((aroma) => (
+                              <Badge key={aroma} size="xs" variant="light" color="blue">
+                                {aroma}
+                              </Badge>
+                            ))}
+                            <Badge size="xs" variant="filled" color="grape">
+                              {suggestion.style}
+                            </Badge>
+                          </Group>
+                          <Text size="xs" c="dimmed">
+                            {suggestion.description}
+                          </Text>
+                        </Box>
+                        <Button
+                          size="xs"
+                          variant="light"
+                          onClick={() => setSelectedAromas(suggestion.aromas)}
+                        >
+                          Apply
+                        </Button>
+                      </Group>
+                    </Card>
+                  ))}
+                </Stack>
+              </Box>
+            )}
+
+            {/* Filter Results Summary */}
+            <Box p="sm" style={{ borderRadius: 6 }} bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}>
+              <Text size="sm" fw={500}>
+                Showing {availableHops.length} of {uniqueHops.length} hops
+                {selectedAromas.length > 0 && (
+                  <Text component="span" c="dimmed" size="sm">
+                    {' '}• with {selectedAromas.join(', ')} in their top 3 aromas
+                  </Text>
+                )}
+              </Text>
+            </Box>
+          </Stack>
+        </Collapse>
+
+        {/* Hop Selection MultiSelect */}
         <MultiSelect
-          label="Hops"
-          placeholder="Search and select hops to compare..."
+          label="Select Hops to Compare"
+          placeholder="Search and choose hops..."
           value={selectedHops}
           searchable
           clearable
@@ -324,29 +520,69 @@ const HopSelector = ({
                   </Grid.Col>
                 </Grid>
 
-                {/* Flavor Notes */}
-                {hopInfo.notes && hopInfo.notes.length > 0 && (
-                  <Box>
-                    <Group gap="xs" mb="xs">
-                      <ThemeIcon size="sm" variant="light" color="green">
-                        <IconLeaf size="0.8rem" />
-                      </ThemeIcon>
-                      <Text size="sm" fw={500}>Flavor Profile:</Text>
-                    </Group>
-                    <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                      {hopInfo.notes.map((note, i) => (
-                        <Badge 
-                          key={i} 
-                          variant="outline"
-                          size="sm"
-                          color="green"
-                        >
-                          {note}
-                        </Badge>
-                      ))}
+                {/* Aroma Profile & Flavor Notes */}
+                <Box mb="md">
+                  {/* Standardized Aroma Categories - DISABLED */}
+                  {/* {hopInfo.aromas && Object.entries(hopInfo.aromas).some(([_, intensity]) => intensity > 0) && (
+                    <Box mb="sm">
+                      <Group gap="xs" mb="xs">
+                        <ThemeIcon size="sm" variant="light" color="purple">
+                          <IconDroplet size="0.8rem" />
+                        </ThemeIcon>
+                        <Text size="sm" fw={500}>Aroma Profile (Top 3):</Text>
+                      </Group>
+                      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                        {getTopAromas(hopInfo, 3).map(({ category, intensity }, index) => (
+                          <Badge 
+                            key={category} 
+                            variant="filled"
+                            size="sm"
+                            color={index === 0 ? 'purple' : index === 1 ? 'violet' : 'indigo'}
+                          >
+                            #{index + 1} {category} ({intensity}/5)
+                          </Badge>
+                        ))}
+                      </Box>
+                      {/* Show additional aromas if any */}
+                      {/*Object.entries(hopInfo.aromas).filter(([_, intensity]) => intensity > 0).length > 3 && (
+                        <Box mt="xs">
+                          <Text size="xs" c="dimmed">
+                            Other aromas: {Object.entries(hopInfo.aromas)
+                              .filter(([_, intensity]) => intensity > 0)
+                              .sort(([_, a], [__, b]) => b - a)
+                              .slice(3)
+                              .map(([category, intensity]) => `${category} (${intensity})`)
+                              .join(', ')}
+                          </Text>
+                        </Box>
+                      )}
                     </Box>
-                  </Box>
-                )}
+                  )} */}
+
+                  {/* Text-based Flavor Notes */}
+                  {hopInfo.notes && hopInfo.notes.length > 0 && (
+                    <Box>
+                      <Group gap="xs" mb="xs">
+                        <ThemeIcon size="sm" variant="light" color="green">
+                          <IconLeaf size="0.8rem" />
+                        </ThemeIcon>
+                        <Text size="sm" fw={500}>Flavor Notes:</Text>
+                      </Group>
+                      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                        {hopInfo.notes.map((note, i) => (
+                          <Badge 
+                            key={i} 
+                            variant="outline"
+                            size="sm"
+                            color="green"
+                          >
+                            {note}
+                          </Badge>
+                        ))}
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
 
                 {/* Brewing Recommendations */}
                 <Box mt="md" p="sm" style={{ borderRadius: 6 }} bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}>
