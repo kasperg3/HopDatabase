@@ -88,8 +88,8 @@ const normalizeAromaData = (aromaData) => {
     'Grassy': ['Grassy', 'grassy', 'green'],
     'Floral': ['Floral', 'floral'],
     'Berry': ['Berry', 'berry', 'berries'],
-    'Stone Fruit': ['Stone Fruit', 'stone fruit', 'fruit'],
-    'Tropical Fruit': ['Tropical Fruit', 'tropical fruit', 'tropical']
+    'Stone Fruit': ['Stone Fruit', 'stone fruit'],
+    'Tropical Fruit': ['Tropical Fruit', 'tropical fruit', 'tropical', 'tropical fruits'],
   };
 
   const normalizedAromas = {};
@@ -101,14 +101,10 @@ const normalizeAromaData = (aromaData) => {
 
   // Map the existing aroma data to standard categories
   Object.entries(aromaData).forEach(([key, value]) => {
-    const normalizedValue = typeof value === 'string' ? parseInt(value) || 0 : value || 0;
-    
-    // Find the standard category that matches this key
+    const normalizedValue = typeof value === 'string' ? parseFloat(value) || 0 : value || 0;
+    const keyLower = key.trim().toLowerCase();
     for (const [standardCategory, aliases] of Object.entries(standardCategories)) {
-      if (aliases.some(alias => 
-        key.toLowerCase().includes(alias.toLowerCase()) || 
-        alias.toLowerCase().includes(key.toLowerCase())
-      )) {
+      if (aliases.some(alias => keyLower === alias.trim().toLowerCase())) {
         normalizedAromas[standardCategory] = Math.max(normalizedAromas[standardCategory], normalizedValue);
         break;
       }
