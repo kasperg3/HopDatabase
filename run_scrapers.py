@@ -14,12 +14,15 @@ from typing import Dict, List, Optional, Union
 
 # Import the data model and scrapers
 from hop_database.models.hop_model import HopEntry, save_hop_entries
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops
 
 
 def normalize_hop_name(name):
     """Normalizes hop names for consistent grouping."""
     name = name.lower()
+    # Remove both unicode and literal "®Brand" patterns
+    name = re.sub(r'(\\u00aeBrand|®Brand)', '', name)
+    name = re.sub(r'\(.*?\)', '', name)
     name = re.sub(r'[®™\'()]', '', name)
     name = re.sub(r'brand', '', name)
     name = re.sub(r'\s*-\s*\w{2,3}$', '', name)
@@ -60,8 +63,6 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
 
-            # CORRECTED: Directly use the already standardized aromas from the scraper's HopEntry object.
-            # The scrapers are responsible for calling set_standardized_aromas correctly.
             if isinstance(hop.standardized_aromas, dict):
                 all_standardized_aromas.append(hop.standardized_aromas)
 
@@ -83,8 +84,10 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         final_hop.href = all_hrefs[0] if all_hrefs else ""
 
         for key, values in range_values.items():
-            setattr(final_hop, f"{key}_from", min(values['from']) if values['from'] else 0.0)
-            setattr(final_hop, f"{key}_to", max(values['to']) if values['to'] else 0.0)
+            from_vals = [v for v in values['from'] if v > 0]
+            to_vals = [v for v in values['to'] if v > 0]
+            setattr(final_hop, f"{key}_from", min(from_vals) if from_vals else 0.0)
+            setattr(final_hop, f"{key}_to", max(to_vals) if to_vals else 0.0)
 
         aroma_aggregator = defaultdict(lambda: {'sum': 0, 'count': 0})
         for aroma_dict in all_standardized_aromas:
@@ -97,11 +100,13 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         final_hop.standardized_aromas = {aroma: 0 for aroma in final_hop.standardized_aromas}
         for aroma, data in aroma_aggregator.items():
             if data['count'] > 0:
-                final_hop.standardized_aromas[aroma] = data['sum'] / data['count']
+                final_hop.standardized_aromas[aroma] = round(data['sum'] / data['count'], 2)
 
         for base_key, values in additional_props_values.items():
-            final_hop.additional_properties[f"{base_key}_from"] = min(values['from']) if values['from'] else 0.0
-            final_hop.additional_properties[f"{base_key}_to"] = max(values['to']) if values['to'] else 0.0
+            from_vals = [v for v in values['from'] if v > 0]
+            to_vals = [v for v in values['to'] if v > 0]
+            final_hop.additional_properties[f"{base_key}_from"] = min(from_vals) if from_vals else 0.0
+            final_hop.additional_properties[f"{base_key}_to"] = max(to_vals) if to_vals else 0.0
 
         merged_hops.append(final_hop)
 
@@ -111,48 +116,43 @@ def main():
     """Run all scrapers, combine the data, and then merge it."""
     print("Starting hop data scraping...")
     
-    # Run all scrapers
-    print("Scraping Yakima Chief Hops...")
+    # --- Run all scrapers ---
+    print("\nScraping Yakima Chief Hops...")
     ych = yakima_chief.scrape(save=False)
     print(f"Found {len(ych)} hops from Yakima Chief")
     
-    ych_eu = yakima_chief.scrape("https://www.yakimachief.eu/commercial/hop-varieties.html?product_list_limit=all", save=False)
+    ych_eu = yakima_chief.scrape(url="https://www.yakimachief.eu/commercial/hop-varieties.html?product_list_limit=all", save=False)
     print(f"Found {len(ych_eu)} hops from Yakima Chief EU")
     
     ych_us_names = {hop.name for hop in ych}
     ych_combined = ych + [hop for hop in ych_eu if hop.name not in ych_us_names]
     
-    print("Scraping Barth Haas...")
+    print("\nScraping Barth Haas...")
     bh = barth_haas.scrape(save=False)
     print(f"Found {len(bh)} hops from Barth Haas")
     
-    print("Scraping Hopsteiner...")
+    print("\nScraping Hopsteiner...")
     hs = hopsteiner.scrape(save=False)
     print(f"Found {len(hs)} hops from Hopsteiner")
     
-    # Combine all entries
-    combined_hop_entries = ych_combined + bh + hs
-    print(f"Total raw hop entries: {len(combined_hop_entries)}")
+    # ADDED: Run Crosby Hops scraper
+    print("\nScraping Crosby Hops...")
+    crosby = crosby_hops.scrape(save=False)
+    print(f"Found {len(crosby)} hops from Crosby Hops")
     
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
-    os.makedirs(data_dir, exist_ok=True)
+    # --- Combine all entries ---
+    combined_hop_entries = ych_combined + bh + hs + crosby
+    print(f"\nTotal raw hop entries: {len(combined_hop_entries)}")
     
-    # # Save the raw, combined data
-    # raw_output_path = os.path.join(data_dir, 'hops.json')
-    # combined_hop_entries.sort(key=lambda hop: hop.name)
-    # save_hop_entries(combined_hop_entries, raw_output_path)
-    # print(f"Raw data saved to {raw_output_path}")
-
     # --- Run the merger on the combined data ---
     print("\nStarting hop data merging...")
     merged_data = merge_hops(combined_hop_entries)
+    print(f"Total merged hop entries: {len(merged_data)}")
     
-    # # Save the merged data
-    # merged_output_path = os.path.join(data_dir, 'merged_hops.json')
-    # merged_data.sort(key=lambda hop: hop.name)
-    # save_hop_entries(merged_data, merged_output_path)
-    # print(f"Merged data saved to {merged_output_path}")
+    # Sort final data by name
+    merged_data.sort(key=lambda hop: hop.name)
 
+    
     # Optionally, save to a website data directory as well
     website_data_path = os.path.join(os.path.dirname(__file__), 'website', 'public', 'data', 'hops.json')
     if os.path.exists(os.path.dirname(website_data_path)):
