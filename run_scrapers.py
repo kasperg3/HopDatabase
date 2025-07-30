@@ -20,6 +20,15 @@ def main():
     ych = yakima_chief.scrape()
     print(f"Found {len(ych)} hops from Yakima Chief")
     
+    ych_eu = yakima_chief.scrape("https://www.yakimachief.eu/commercial/hop-varieties.html?product_list_limit=all")
+    print(f"Found {len(ych_eu)} hops from Yakima Chief EU")
+    
+    # Combine US and EU hops
+    # Merge EU hops into US hops, keeping US version if names overlap
+    ych_us_names = {hop.name for hop in ych}
+    ych_combined = ych + [hop for hop in ych_eu if hop.name not in ych_us_names]
+    ych = ych_combined
+    
     print("Scraping Barth Haas...")
     bh = barth_haas.scrape()
     print(f"Found {len(bh)} hops from Barth Haas")

@@ -95,6 +95,48 @@
         }
     },
     {
+        "name": "Ahtanum\u00aeBrand",
+        "country": "",
+        "source": "Yakima Chief Hops",
+        "href": "https://www.yakimachief.eu/commercial/hop-varieties/ahtanum.html",
+        "alpha_from": "4",
+        "alpha_to": "6",
+        "beta_from": "5",
+        "beta_to": "6.5",
+        "oil_from": "0.5",
+        "oil_to": "2",
+        "co_h_from": "30",
+        "co_h_to": "35",
+        "notes": [
+            "Cedar",
+            "Citrus",
+            "Floral",
+            "Grassy",
+            "Herbal"
+        ],
+        "aromas": {
+            "Citrus": 0,
+            "Resin/Pine": 0,
+            "Spice": 0,
+            "Herbal": 0,
+            "Grassy": 0,
+            "Floral": 0,
+            "Berry": 0,
+            "Stone Fruit": 0,
+            "Tropical Fruit": 0
+        },
+        "additional_properties": {},
+        "brewing_stats": {
+            "brewing_purpose": "Dual Purpose",
+            "avg_alpha": 5.0,
+            "avg_beta": 5.8,
+            "avg_oil": 1.25,
+            "avg_cohumulone": 32.5,
+            "alpha_classification": "Low",
+            "oil_classification": "Low"
+        }
+    },
+    {
         "name": "Akoya",
         "country": "Germany",
         "source": "Hopsteiner",
@@ -1259,6 +1301,46 @@
         "country": "",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/brewers-gold.html",
+        "alpha_from": "8",
+        "alpha_to": "11",
+        "beta_from": "4",
+        "beta_to": "6.5",
+        "oil_from": "1.5",
+        "oil_to": "3",
+        "co_h_from": "40",
+        "co_h_to": "48",
+        "notes": [
+            "Black Currant",
+            "Fruity",
+            "Spicy"
+        ],
+        "aromas": {
+            "Citrus": 0,
+            "Resin/Pine": 0,
+            "Spice": 0,
+            "Herbal": 0,
+            "Grassy": 0,
+            "Floral": 0,
+            "Berry": 0,
+            "Stone Fruit": 0,
+            "Tropical Fruit": 0
+        },
+        "additional_properties": {},
+        "brewing_stats": {
+            "brewing_purpose": "Dual Purpose",
+            "avg_alpha": 9.5,
+            "avg_beta": 5.2,
+            "avg_oil": 2.25,
+            "avg_cohumulone": 44.0,
+            "alpha_classification": "Medium",
+            "oil_classification": "Medium"
+        }
+    },
+    {
+        "name": "Brewer's Gold - UK",
+        "country": "",
+        "source": "Yakima Chief Hops",
+        "href": "https://www.yakimachief.eu/catalog/product/view/id/72037/s/brewers-gold/category/98/",
         "alpha_from": "8",
         "alpha_to": "11",
         "beta_from": "4",
@@ -8184,6 +8266,48 @@
         }
     },
     {
+        "name": "Simcoe\u00aeBrand",
+        "country": "",
+        "source": "Yakima Chief Hops",
+        "href": "https://www.yakimachief.eu/catalog/product/view/id/72126/s/simcoe-brand/category/98/",
+        "alpha_from": "10",
+        "alpha_to": "16",
+        "beta_from": "3.5",
+        "beta_to": "5.5",
+        "oil_from": "0.5",
+        "oil_to": "3",
+        "co_h_from": "17",
+        "co_h_to": "21",
+        "notes": [
+            "Citrus",
+            "Grapefruit",
+            "Stone Fruit",
+            "Tropical",
+            "Woody"
+        ],
+        "aromas": {
+            "Citrus": 0,
+            "Resin/Pine": 0,
+            "Spice": 0,
+            "Herbal": 0,
+            "Grassy": 0,
+            "Floral": 0,
+            "Berry": 0,
+            "Stone Fruit": 0,
+            "Tropical Fruit": 0
+        },
+        "additional_properties": {},
+        "brewing_stats": {
+            "brewing_purpose": "Bittering",
+            "avg_alpha": 13.0,
+            "avg_beta": 4.5,
+            "avg_oil": 1.75,
+            "avg_cohumulone": 19.0,
+            "alpha_classification": "High",
+            "oil_classification": "Medium"
+        }
+    },
+    {
         "name": "Sladek - CZ",
         "country": "",
         "source": "Yakima Chief Hops",
@@ -12716,12 +12840,12 @@
         "country": "Germany",
         "source": "Barth Haas",
         "href": "https://www.barthhaas.com//hops-and-products/hops/huell-classic",
-        "alpha_from": "",
-        "alpha_to": "",
-        "beta_from": "",
-        "beta_to": "",
-        "oil_from": "",
-        "oil_to": "",
+        "alpha_from": "4.5",
+        "alpha_to": "8",
+        "beta_from": "3",
+        "beta_to": "5",
+        "oil_from": "0.9",
+        "oil_to": "1.7",
         "co_h_from": "",
         "co_h_to": "",
         "notes": [
@@ -12732,24 +12856,24 @@
             "Chilli"
         ],
         "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
+            "Citrus": 3,
+            "Resin/Pine": 2,
+            "Spice": 2,
+            "Herbal": 2,
+            "Grassy": 3,
+            "Floral": 3,
+            "Berry": 2,
+            "Stone Fruit": 4,
             "Tropical Fruit": 0
         },
         "additional_properties": {},
         "brewing_stats": {
             "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 0.0,
-            "avg_beta": 0.0,
-            "avg_oil": 0.0,
+            "avg_alpha": 6.2,
+            "avg_beta": 4.0,
+            "avg_oil": 1.3,
             "avg_cohumulone": 0.0,
-            "alpha_classification": "Low",
+            "alpha_classification": "Medium",
             "oil_classification": "Low"
         }
     },

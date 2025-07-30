@@ -98,15 +98,9 @@ def convert_polygon_to_intensities(points, aroma_labels):
     return sensory_data
 
 
-def scrape():
-    r = req.get(
-        "https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all"
-    )
+def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all"):
+    r = req.get(url)
     html = r.text
-    # Perform the request and export the file
-    html_path = os.path.join(os.path.dirname(__file__), "..", "data", "yvh_html.html")
-    with open(html_path, "w") as file:
-        file.write(html)
 
     soup = BeautifulSoup(html, "html.parser")
 
