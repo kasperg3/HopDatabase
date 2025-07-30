@@ -8286,15 +8286,15 @@
             "Woody"
         ],
         "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
+            "Citrus": 3,
+            "Resin/Pine": 2,
+            "Spice": 1,
+            "Herbal": 2,
+            "Grassy": 1,
+            "Floral": 2,
+            "Berry": 2,
+            "Stone Fruit": 2,
+            "Tropical Fruit": 3
         },
         "additional_properties": {},
         "brewing_stats": {
