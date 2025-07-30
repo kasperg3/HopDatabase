@@ -429,7 +429,7 @@ const HopSelector = ({
           maxValues={5}
           data={availableHops.map((hop) => ({
             value: hop.uniqueId,
-            label: hop.uniqueId
+            label: hop.name
           }))}
           onChange={onHopSelection}
           mb="md"

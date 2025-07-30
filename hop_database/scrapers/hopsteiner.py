@@ -3,7 +3,7 @@ import os
 
 from ..models.hop_model import HopEntry, save_hop_entries
 
-def scrape():
+def scrape(save=False):
     # Specify the path to the JSON file
     file_path = os.path.join(os.path.dirname(__file__), "..", "data", "hopsteiner_raw_data.json")
 
@@ -175,8 +175,9 @@ def scrape():
         hop_data.append(hop_entry)
     
     # Save using the new model's save function
-    save_hop_entries(hop_data, "data/hopsteiner.json")
-    print(f"Data dumped to data/hopsteiner.json, with {len(hop_data)} entries")
+    if save:
+        save_hop_entries(hop_data, "data/hopsteiner.json")
+        print(f"Data dumped to data/hopsteiner.json, with {len(hop_data)} entries")
 
     return hop_data
 

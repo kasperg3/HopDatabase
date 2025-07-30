@@ -98,7 +98,7 @@ def convert_polygon_to_intensities(points, aroma_labels):
     return sensory_data
 
 
-def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all"):
+def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all",save=False):
     r = req.get(url)
     html = r.text
 
@@ -202,7 +202,8 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
 
     # Save using the model's save function
     output_file = "data/yakimachiefhops.json"
-    save_hop_entries(hop_entries, output_file)
+    if save:
+        save_hop_entries(hop_entries, output_file)
 
     return hop_entries
 

@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from ..models.hop_model import HopEntry, save_hop_entries
 
 
-def scrape():
+def scrape(save=True):
     url = "https://www.barthhaas.com/hops-and-products/hop-varieties-overview"
     r = req.get(url)
     html = r.text
@@ -70,10 +70,11 @@ def scrape():
         hop_entry.set_standardized_aromas("barth", aroma_data)
         hop_entries.append(hop_entry)
     
-        
-    # Save using the new model's save function  
-    save_hop_entries(hop_entries, "data/baathhaas.json")
-    print(f"Data dumped to data/baathhaas.json, with {len(hop_entries)} entries")
+
+    # Save using the new model's save function
+    if save:
+        save_hop_entries(hop_entries, "data/barthhaas.json")
+        print(f"Data dumped to data/barthhaas.json, with {len(hop_entries)} entries")
 
     return hop_entries
 
