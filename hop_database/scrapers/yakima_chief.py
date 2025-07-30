@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests as req
 import math
 import os
+import re
 
 from ..models.hop_model import HopEntry, save_hop_entries
 
@@ -96,7 +97,29 @@ def convert_polygon_to_intensities(points, aroma_labels):
         sensory_data[aroma_category] = intensity
 
     return sensory_data
+def process_name_and_country(name: str):
+    """
+    Determines the country of origin based on tags in the hop name
+    and returns a cleaned name and the country.
+    """
+    country = ""
+    cleaned_name = name
 
+    if name.startswith("GR "):
+        country = "Germany"
+        cleaned_name = name[3:]
+    elif "Hop Revolution" in name or name.startswith("NZ "):
+        country = "New Zealand"
+        cleaned_name = name.replace("Hop Revolution", "").replace("NZ ", "").strip()
+    elif name.startswith("CZ "):
+        country = "Czech Republic"
+        cleaned_name = name[3:]
+    elif name.lower().endswith("- nz hops"):
+        country = "New Zealand"
+        cleaned_name = name[:-9].strip()
+
+    cleaned_name = re.sub(r'\s*\(\w+\)$', '', cleaned_name)
+    return cleaned_name.strip(), country
 
 def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?product_list_limit=all",save=False):
     r = req.get(url)
@@ -164,11 +187,12 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
             if name and hop_aromas_notes:
                 # Extract sensory analysis data
                 sensory_data = extract_sensory_analysis(href)
-
+                # Use the function to process the name and country
+                name, country = process_name_and_country(name)
                 # Create HopEntry directly
                 hop_entry = HopEntry(
                     name=name,
-                    country="",
+                    country=country,
                     source="Yakima Chief Hops",
                     href=href,
                     alpha_from=alpha_low,

@@ -6904,86 +6904,6 @@
         }
     },
     {
-        "name": "Nz pacific jade",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-pacific-jade-brand-nz.html",
-        "alpha_from": 12.0,
-        "alpha_to": 15.0,
-        "beta_from": 7.0,
-        "beta_to": 9.0,
-        "oil_from": 1.0,
-        "oil_to": 2.0,
-        "co_h_from": 24.0,
-        "co_h_to": 26.0,
-        "notes": [
-            "black pepper",
-            "citrus",
-            "spicy"
-        ],
-        "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Bittering",
-            "avg_alpha": 13.5,
-            "avg_beta": 8.0,
-            "avg_oil": 1.5,
-            "avg_cohumulone": 25.0,
-            "alpha_classification": "High",
-            "oil_classification": "Medium"
-        }
-    },
-    {
-        "name": "Nz southern cross  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-southern-cross-brand-nz.html",
-        "alpha_from": 11.0,
-        "alpha_to": 14.0,
-        "beta_from": 5.0,
-        "beta_to": 6.0,
-        "oil_from": 1.0,
-        "oil_to": 2.0,
-        "co_h_from": 25.0,
-        "co_h_to": 28.0,
-        "notes": [
-            "lemon",
-            "pine",
-            "spicy"
-        ],
-        "aromas": {
-            "Citrus": 3.0,
-            "Resin/Pine": 4.0,
-            "Spice": 2.0,
-            "Herbal": 1.0,
-            "Grassy": 1.0,
-            "Floral": 2.0,
-            "Berry": 1.0,
-            "Stone Fruit": 2.0,
-            "Tropical Fruit": 3.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Bittering",
-            "avg_alpha": 12.5,
-            "avg_beta": 5.5,
-            "avg_oil": 1.5,
-            "avg_cohumulone": 26.5,
-            "alpha_classification": "High",
-            "oil_classification": "Medium"
-        }
-    },
-    {
         "name": "Olympic",
         "country": "",
         "source": "Yakima Chief Hops",
@@ -7167,6 +7087,46 @@
             "avg_cohumulone": 36.5,
             "alpha_classification": "High",
             "oil_classification": "Low"
+        }
+    },
+    {
+        "name": "Pacific jade",
+        "country": "New Zealand",
+        "source": "Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-pacific-jade-brand-nz.html",
+        "alpha_from": 12.0,
+        "alpha_to": 15.0,
+        "beta_from": 7.0,
+        "beta_to": 9.0,
+        "oil_from": 1.0,
+        "oil_to": 2.0,
+        "co_h_from": 24.0,
+        "co_h_to": 26.0,
+        "notes": [
+            "black pepper",
+            "citrus",
+            "spicy"
+        ],
+        "aromas": {
+            "Citrus": 0,
+            "Resin/Pine": 0,
+            "Spice": 0,
+            "Herbal": 0,
+            "Grassy": 0,
+            "Floral": 0,
+            "Berry": 0,
+            "Stone Fruit": 0,
+            "Tropical Fruit": 0
+        },
+        "additional_properties": {},
+        "brewing_stats": {
+            "brewing_purpose": "Bittering",
+            "avg_alpha": 13.5,
+            "avg_beta": 8.0,
+            "avg_oil": 1.5,
+            "avg_cohumulone": 25.0,
+            "alpha_classification": "High",
+            "oil_classification": "Medium"
         }
     },
     {
@@ -8823,6 +8783,46 @@
             "avg_cohumulone": 26.5,
             "alpha_classification": "High",
             "oil_classification": "Low"
+        }
+    },
+    {
+        "name": "Southern cross  - hops",
+        "country": "New Zealand",
+        "source": "Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-southern-cross-brand-nz.html",
+        "alpha_from": 11.0,
+        "alpha_to": 14.0,
+        "beta_from": 5.0,
+        "beta_to": 6.0,
+        "oil_from": 1.0,
+        "oil_to": 2.0,
+        "co_h_from": 25.0,
+        "co_h_to": 28.0,
+        "notes": [
+            "lemon",
+            "pine",
+            "spicy"
+        ],
+        "aromas": {
+            "Citrus": 3.0,
+            "Resin/Pine": 4.0,
+            "Spice": 2.0,
+            "Herbal": 1.0,
+            "Grassy": 1.0,
+            "Floral": 2.0,
+            "Berry": 1.0,
+            "Stone Fruit": 2.0,
+            "Tropical Fruit": 3.0
+        },
+        "additional_properties": {},
+        "brewing_stats": {
+            "brewing_purpose": "Bittering",
+            "avg_alpha": 12.5,
+            "avg_beta": 5.5,
+            "avg_oil": 1.5,
+            "avg_cohumulone": 26.5,
+            "alpha_classification": "High",
+            "oil_classification": "Medium"
         }
     },
     {
