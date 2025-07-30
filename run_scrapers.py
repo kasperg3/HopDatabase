@@ -7,7 +7,7 @@ This script runs all hop scrapers and combines the data into a single JSON file.
 
 import os
 
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, yakima_valley
 from hop_database.models.hop_model import save_hop_entries
 
 
@@ -52,4 +52,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    yakima_valley.main()  # Run the Yakima Valley scraper directly for testing
