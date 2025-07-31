@@ -219,16 +219,16 @@ const HopSelector = ({
         setOilRange([OIL_THRESHOLDS.VERY_HIGH, 4]);
         break;
       case 'HIGH':
-        setOilRange([OIL_THRESHOLDS.HIGH, OIL_THRESHOLDS.VERY_HIGH - 0.1]);
+        setOilRange([OIL_THRESHOLDS.HIGH, Math.round((OIL_THRESHOLDS.VERY_HIGH - 0.1) * 10) / 10]);
         break;
       case 'MEDIUM':
-        setOilRange([OIL_THRESHOLDS.MEDIUM, OIL_THRESHOLDS.HIGH - 0.1]);
+        setOilRange([OIL_THRESHOLDS.MEDIUM, Math.round((OIL_THRESHOLDS.HIGH - 0.1) * 10) / 10]);
         break;
       case 'LOW':
-        setOilRange([OIL_THRESHOLDS.LOW, OIL_THRESHOLDS.MEDIUM - 0.1]);
+        setOilRange([OIL_THRESHOLDS.LOW, Math.round((OIL_THRESHOLDS.MEDIUM - 0.1) * 10) / 10]);
         break;
       case 'VERY_LOW':
-        setOilRange([0, OIL_THRESHOLDS.LOW - 0.1]);
+        setOilRange([0, Math.round((OIL_THRESHOLDS.LOW - 0.1) * 10) / 10]);
         break;
       default:
         setOilRange([0, 4]);
@@ -347,6 +347,12 @@ const HopSelector = ({
       };
     });
   };
+  // Helper function to check if a hop has all zero aromas
+  const hasAllZeroAromas = (hop) => {
+    if (!hop.aromas || typeof hop.aromas !== 'object') return true;
+    return Object.values(hop.aromas).every(intensity => intensity === 0);
+  };
+
   // Helper function to get bottom 3 aromas for a hop (including all ties with 3rd place)
   const getBottomAromas = (hop, count = 3) => {
     if (!hop.aromas || typeof hop.aromas !== 'object') return [];
@@ -464,41 +470,51 @@ const HopSelector = ({
         
         // Alpha acid filter
         if (useAlphaFilter) {
-          const avgAlpha = hop.avgAlpha;
+          const avgAlpha = hop.avgAlpha || 0; // Default to 0 if not present
           matches = matches && avgAlpha >= alphaRange[0] && avgAlpha <= alphaRange[1];
         }
         
         // Cohumulone filter
         if (useCohumuloneFilter) {
-          const avgCohumulone = hop.avgCohumulone;
-          // Only filter if the hop has cohumulone data (> 0)
-          if (avgCohumulone > 0) {
-            matches = matches && avgCohumulone >= cohumuloneRange[0] && avgCohumulone <= cohumuloneRange[1];
-          } else {
-            // If hop has no cohumulone data and filter is active, exclude it
-            matches = false;
-          }
+          const avgCohumulone = hop.avgCohumulone || 0; // Default to 0 if not present
+          matches = matches && avgCohumulone >= cohumuloneRange[0] && avgCohumulone <= cohumuloneRange[1];
         }
         
         // Oil filter
         if (useOilFilter) {
-          const avgOil = hop.avgOil;
-          // Only filter if the hop has oil data (> 0)
-          if (avgOil > 0) {
-            matches = matches && avgOil >= oilRange[0] && avgOil <= oilRange[1];
-          } else {
-            // If hop has no oil data and filter is active, exclude it
-            matches = false;
-          }
+          const avgOil = hop.avgOil || 0; // Default to 0 if not present
+          matches = matches && avgOil >= oilRange[0] && avgOil <= oilRange[1];
         }
         
         return matches;
       });
     }
     
+// Sorting logic
+// When only aroma filters are active: Hops with all zero aromas are placed at the bottom, and the rest are sorted according to the sophisticated aroma-based sorting logic.
+// When only brewing parameter filters are active (alpha, cohumulone, oil): All hops are sorted alphabetically by name, regardless of their aroma data.
+// When no filters are active: All hops are sorted alphabetically by name.
+// When both aroma and brewing parameter filters are active: The aroma-based sorting (including zero-aroma placement at bottom) takes precedence since aroma filters are present.
+
+
     // Sort by aroma intensities with improved balanced approach
     if (allSelectedAromas.length > 0) {
       return filtered.sort((a, b) => {
+        // Check if either hop has all zero aromas - place those at the bottom
+        // (only when aroma filters are active, not for brewing parameter filters)
+        const aHasAllZero = hasAllZeroAromas(a);
+        const bHasAllZero = hasAllZeroAromas(b);
+        
+        // If one has all zero aromas and the other doesn't, put the zero one last
+        if (aHasAllZero && !bHasAllZero) return 1;
+        if (!aHasAllZero && bHasAllZero) return -1;
+        
+        // If both have all zero aromas, sort by name
+        if (aHasAllZero && bHasAllZero) {
+          return a.displayName.localeCompare(b.displayName);
+        }
+        
+        // Normal sorting for hops with non-zero aromas
         // Calculate sums for high priority (green) aromas
         const sumHighA = selectedAromasHigh.reduce((acc, aroma) => acc + (a.aromas?.[aroma] || 0), 0);
         const sumHighB = selectedAromasHigh.reduce((acc, aroma) => acc + (b.aromas?.[aroma] || 0), 0);
@@ -587,7 +603,7 @@ const HopSelector = ({
         return a.displayName.localeCompare(b.displayName);
       });
     }
-    // Default sort by displayName
+    // Default sort by displayName (alphabetical order when no filters are active)
     return filtered.sort((a, b) => a.displayName.localeCompare(b.displayName));
   }, [uniqueHops, useAlphaFilter, useCohumuloneFilter, useOilFilter, alphaRange, cohumuloneRange, oilRange, getAllSelectedAromas, getSelectedAromasHigh, getSelectedAromasLow]);
 
@@ -926,7 +942,7 @@ const HopSelector = ({
                         step={0.5}
                         value={alphaRange}
                         onChange={(value) => {
-                          setAlphaRange(value);
+                          setAlphaRange([Math.round(value[0] * 2) / 2, Math.round(value[1] * 2) / 2]);
                           setAlphaThreshold(''); // Clear threshold when manually adjusting
                           setUseAlphaFilter(true); // Enable filter when adjusting
                         }}
@@ -956,7 +972,7 @@ const HopSelector = ({
                         step={1}
                         value={cohumuloneRange}
                         onChange={(value) => {
-                          setCohumuloneRange(value);
+                          setCohumuloneRange([Math.round(value[0]), Math.round(value[1])]);
                           setCohumuloneThreshold(''); // Clear threshold when manually adjusting
                           setUseCohumuloneFilter(true); // Enable filter when adjusting
                         }}
@@ -984,7 +1000,7 @@ const HopSelector = ({
                         step={0.1}
                         value={oilRange}
                         onChange={(value) => {
-                          setOilRange(value);
+                          setOilRange([Math.round(value[0] * 10) / 10, Math.round(value[1] * 10) / 10]);
                           setOilThreshold(''); // Clear threshold when manually adjusting
                           setUseOilFilter(true); // Enable filter when adjusting
                         }}
