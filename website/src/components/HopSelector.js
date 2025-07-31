@@ -588,7 +588,7 @@ const HopSelector = ({
     }
     // Default sort by displayName
     return filtered.sort((a, b) => a.displayName.localeCompare(b.displayName));
-  }, [uniqueHops, aromaStates, useAlphaFilter, useCohumuloneFilter, useOilFilter, alphaRange, cohumuloneRange, oilRange, getAllSelectedAromas, getSelectedAromasHigh, getSelectedAromasLow]);
+  }, [uniqueHops, useAlphaFilter, useCohumuloneFilter, useOilFilter, alphaRange, cohumuloneRange, oilRange, getAllSelectedAromas, getSelectedAromasHigh, getSelectedAromasLow]);
 
   // Sort by display name for better UX
   const availableHops = filteredHops;
