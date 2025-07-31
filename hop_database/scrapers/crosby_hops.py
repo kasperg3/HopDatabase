@@ -121,6 +121,10 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             raw_aroma_data = {label: int(val) for label, val in zip(labels, values)}
         
         # --- Create and Populate HopEntry ---
+        # Remove "ml/100g" from total_oil value if present
+        total_oil = raw_data.get('total_oil', '')
+        total_oil = total_oil.replace('ml/100g', '').strip()
+
         hop_entry = HopEntry(
             name=raw_data.get('name', 'Unknown'),
             country=raw_data.get('country', 'USA'),
@@ -130,8 +134,8 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             alpha_to=parse_range(raw_data.get('alpha', ''))[1],
             beta_from=parse_range(raw_data.get('beta', ''))[0],
             beta_to=parse_range(raw_data.get('beta', ''))[1],
-            oil_from=parse_range(raw_data.get('total_oil', ''))[0],
-            oil_to=parse_range(raw_data.get('total_oil', ''))[1],
+            oil_from=parse_range(total_oil)[0],
+            oil_to=parse_range(total_oil)[1],
             co_h_from=parse_range(raw_data.get('cohumulone', ''))[0],
             co_h_to=parse_range(raw_data.get('cohumulone', ''))[1],
             notes=raw_data.get('notes', []),

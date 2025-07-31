@@ -108,9 +108,11 @@ def process_name_and_country(name: str):
     if name.startswith("GR "):
         country = "Germany"
         cleaned_name = name[3:]
-    elif "Hop Revolution" in name or name.startswith("NZ "):
+    elif "Hop Revolution" in name or "NZ" in name or "- nz hops" in name.lower():
         country = "New Zealand"
-        cleaned_name = name.replace("Hop Revolution", "").replace("NZ ", "").strip()
+        # Remove all variants of "- nz hops" (case-insensitive, with optional spaces)
+        cleaned_name = re.sub(r"(?i)\s*-\s*nz\s*hops\s*", "", name)
+        cleaned_name = cleaned_name.replace("Hop Revolution", "").replace("NZ ", "").strip()
     elif name.startswith("CZ "):
         country = "Czech Republic"
         cleaned_name = name[3:]
