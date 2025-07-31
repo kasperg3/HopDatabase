@@ -9,7 +9,7 @@
         "beta_from": 3.0,
         "beta_to": 4.6,
         "oil_from": 0.8,
-        "oil_to": 2.51,
+        "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -641,7 +641,7 @@
         "beta_from": 3.7,
         "beta_to": 6.6,
         "oil_from": 1.1,
-        "oil_to": 2.41,
+        "oil_to": 2.4,
         "co_h_from": 40.0,
         "co_h_to": 42.0,
         "notes": [
@@ -692,7 +692,7 @@
             "brewing_purpose": "Bittering",
             "avg_alpha": 11.2,
             "avg_beta": 5.2,
-            "avg_oil": 1.76,
+            "avg_oil": 1.75,
             "avg_cohumulone": 41.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
@@ -774,7 +774,7 @@
         "beta_from": 3.9,
         "beta_to": 6.0,
         "oil_from": 1.0,
-        "oil_to": 2.51,
+        "oil_to": 2.5,
         "co_h_from": 36.0,
         "co_h_to": 45.0,
         "notes": [
@@ -823,7 +823,7 @@
         "beta_from": 4.0,
         "beta_to": 8.0,
         "oil_from": 1.0,
-        "oil_to": 2.51,
+        "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -924,7 +924,7 @@
         "beta_from": 5.0,
         "beta_to": 6.0,
         "oil_from": 1.3,
-        "oil_to": 1.51,
+        "oil_to": 1.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -948,7 +948,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 8.5,
             "avg_beta": 5.5,
-            "avg_oil": 1.41,
+            "avg_oil": 1.4,
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
@@ -1374,7 +1374,7 @@
         "beta_from": 5.0,
         "beta_to": 10.0,
         "oil_from": 0.5,
-        "oil_to": 1.751,
+        "oil_to": 1.75,
         "co_h_from": 15.0,
         "co_h_to": 22.0,
         "notes": [
@@ -1424,7 +1424,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 3.5,
             "avg_beta": 7.5,
-            "avg_oil": 1.13,
+            "avg_oil": 1.12,
             "avg_cohumulone": 18.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
@@ -1565,7 +1565,7 @@
         "beta_from": 3.5,
         "beta_to": 7.1,
         "oil_from": 0.5,
-        "oil_to": 1.81,
+        "oil_to": 1.8,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
         "notes": [
@@ -1614,7 +1614,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 8.5,
             "avg_beta": 5.3,
-            "avg_oil": 1.16,
+            "avg_oil": 1.15,
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
@@ -1849,7 +1849,7 @@
         "beta_from": 3.0,
         "beta_to": 4.5,
         "oil_from": 1.0,
-        "oil_to": 2.71,
+        "oil_to": 2.7,
         "co_h_from": 26.0,
         "co_h_to": 35.0,
         "notes": [
@@ -1917,7 +1917,7 @@
         "beta_from": 2.7,
         "beta_to": 4.5,
         "oil_from": 1.0,
-        "oil_to": 3100.0,
+        "oil_to": 3.0,
         "co_h_from": 20.0,
         "co_h_to": 24.0,
         "notes": [
@@ -1948,10 +1948,10 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 13.0,
             "avg_beta": 3.6,
-            "avg_oil": 1550.5,
+            "avg_oil": 2.0,
             "avg_cohumulone": 22.0,
             "alpha_classification": "High",
-            "oil_classification": "High"
+            "oil_classification": "Medium"
         }
     },
     {
@@ -2109,7 +2109,7 @@
         "beta_from": 4.0,
         "beta_to": 6.0,
         "oil_from": 2.0,
-        "oil_to": 3100.0,
+        "oil_to": 4.5,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
         "notes": [
@@ -2137,7 +2137,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 15.7,
             "avg_beta": 5.0,
-            "avg_oil": 1551.0,
+            "avg_oil": 3.25,
             "avg_cohumulone": 30.0,
             "alpha_classification": "High",
             "oil_classification": "High"
@@ -2210,7 +2210,7 @@
         "beta_from": 3.0,
         "beta_to": 6.1,
         "oil_from": 1.0,
-        "oil_to": 3.91,
+        "oil_to": 3.9,
         "co_h_from": 32.0,
         "co_h_to": 45.0,
         "notes": [
@@ -2262,7 +2262,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 10.2,
             "avg_beta": 4.5,
-            "avg_oil": 2.46,
+            "avg_oil": 2.45,
             "avg_cohumulone": 38.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
@@ -2278,7 +2278,7 @@
         "beta_from": 3.0,
         "beta_to": 6.0,
         "oil_from": 1.2,
-        "oil_to": 3.91,
+        "oil_to": 3.9,
         "co_h_from": 34.0,
         "co_h_to": 45.0,
         "notes": [
@@ -2302,7 +2302,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 10.5,
             "avg_beta": 4.5,
-            "avg_oil": 2.56,
+            "avg_oil": 2.55,
             "avg_cohumulone": 39.5,
             "alpha_classification": "High",
             "oil_classification": "High"
@@ -2415,7 +2415,7 @@
         "beta_from": 4.0,
         "beta_to": 9.0,
         "oil_from": 0.8,
-        "oil_to": 2.11,
+        "oil_to": 2.1,
         "co_h_from": 19.0,
         "co_h_to": 26.0,
         "notes": [
@@ -2468,7 +2468,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 4.0,
             "avg_beta": 6.5,
-            "avg_oil": 1.46,
+            "avg_oil": 1.45,
             "avg_cohumulone": 22.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
@@ -2880,7 +2880,7 @@
         "beta_from": 5.0,
         "beta_to": 6.0,
         "oil_from": 1.6,
-        "oil_to": 2.41,
+        "oil_to": 2.4,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -3462,7 +3462,7 @@
         "beta_from": 5.7,
         "beta_to": 11.6,
         "oil_from": 1.5,
-        "oil_to": 3.31,
+        "oil_to": 3.3,
         "co_h_from": 32.0,
         "co_h_to": 43.0,
         "notes": [
@@ -3492,7 +3492,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 16.1,
             "avg_beta": 8.7,
-            "avg_oil": 2.41,
+            "avg_oil": 2.4,
             "avg_cohumulone": 37.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
@@ -3640,7 +3640,7 @@
         "beta_from": 2.0,
         "beta_to": 3.0,
         "oil_from": 0.5,
-        "oil_to": 1100.0,
+        "oil_to": 1.0,
         "co_h_from": 23.0,
         "co_h_to": 28.0,
         "notes": [
@@ -3681,13 +3681,13 @@
             "linalool_acid_to": 0.0
         },
         "brewing_stats": {
-            "brewing_purpose": "Aroma",
+            "brewing_purpose": "Dual Purpose",
             "avg_alpha": 5.5,
             "avg_beta": 2.5,
-            "avg_oil": 550.25,
+            "avg_oil": 0.75,
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
-            "oil_classification": "High"
+            "oil_classification": "Low"
         }
     },
     {
@@ -4527,7 +4527,7 @@
         "beta_from": 2.5,
         "beta_to": 6.0,
         "oil_from": 0.5,
-        "oil_to": 1100.0,
+        "oil_to": 1.0,
         "co_h_from": 17.0,
         "co_h_to": 25.0,
         "notes": [
@@ -4568,13 +4568,13 @@
             "linalool_acid_to": 0.33
         },
         "brewing_stats": {
-            "brewing_purpose": "Aroma",
+            "brewing_purpose": "Dual Purpose",
             "avg_alpha": 2.8,
             "avg_beta": 4.2,
-            "avg_oil": 550.25,
+            "avg_oil": 0.75,
             "avg_cohumulone": 21.0,
             "alpha_classification": "Low",
-            "oil_classification": "High"
+            "oil_classification": "Low"
         }
     },
     {
@@ -4690,7 +4690,7 @@
         "alpha_to": 0.0,
         "beta_from": 3.4,
         "beta_to": 0.0,
-        "oil_from": 1.51,
+        "oil_from": 1.5,
         "oil_to": 0.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
@@ -4716,7 +4716,7 @@
             "brewing_purpose": "Aroma",
             "avg_alpha": 7.5,
             "avg_beta": 3.4,
-            "avg_oil": 1.51,
+            "avg_oil": 1.5,
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
@@ -4897,7 +4897,7 @@
         "beta_from": 7.3,
         "beta_to": 7.9,
         "oil_from": 0.7,
-        "oil_to": 0.91,
+        "oil_to": 0.9,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
         "notes": [
@@ -4936,7 +4936,7 @@
         "beta_from": 3.5,
         "beta_to": 9.1,
         "oil_from": 1.0,
-        "oil_to": 5100.0,
+        "oil_to": 5.0,
         "co_h_from": 30.0,
         "co_h_to": 40.0,
         "notes": [
@@ -4964,7 +4964,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 12.0,
             "avg_beta": 6.3,
-            "avg_oil": 2550.5,
+            "avg_oil": 3.0,
             "avg_cohumulone": 35.0,
             "alpha_classification": "High",
             "oil_classification": "High"
@@ -5102,53 +5102,13 @@
     {
         "name": "Kohatu",
         "country": "New Zealand",
-        "source": "Crosby Hops",
-        "href": "https://www.crosbyhops.com/shop-hops/hop-catalog/nz-kohatu?hsLang=en",
+        "source": "Crosby Hops / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/kohatu-brand-nz.html",
         "alpha_from": 5.1,
-        "alpha_to": 6.8,
+        "alpha_to": 7.0,
         "beta_from": 4.0,
         "beta_to": 6.0,
         "oil_from": 0.12,
-        "oil_to": 1100.0,
-        "co_h_from": 21.0,
-        "co_h_to": 23.0,
-        "notes": [
-            "citrus",
-            "pine",
-            "tropical"
-        ],
-        "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Aroma",
-            "avg_alpha": 5.9,
-            "avg_beta": 5.0,
-            "avg_oil": 550.06,
-            "avg_cohumulone": 22.0,
-            "alpha_classification": "Low",
-            "oil_classification": "High"
-        }
-    },
-    {
-        "name": "Kohatu - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/kohatu-brand-nz.html",
-        "alpha_from": 6.0,
-        "alpha_to": 7.0,
-        "beta_from": 4.0,
-        "beta_to": 5.0,
-        "oil_from": 1.0,
         "oil_to": 2.0,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
@@ -5157,6 +5117,7 @@
             "citrus",
             "floral",
             "passion fruit",
+            "pine",
             "tropical"
         ],
         "aromas": {
@@ -5172,13 +5133,13 @@
         },
         "additional_properties": {},
         "brewing_stats": {
-            "brewing_purpose": "Aroma",
-            "avg_alpha": 6.5,
-            "avg_beta": 4.5,
-            "avg_oil": 1.5,
+            "brewing_purpose": "Dual Purpose",
+            "avg_alpha": 6.0,
+            "avg_beta": 5.0,
+            "avg_oil": 1.06,
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
-            "oil_classification": "Medium"
+            "oil_classification": "Low"
         }
     },
     {
@@ -5191,7 +5152,7 @@
         "beta_from": 6.3,
         "beta_to": 9.4,
         "oil_from": 0.5,
-        "oil_to": 3100.0,
+        "oil_to": 3.0,
         "co_h_from": 34.0,
         "co_h_to": 40.0,
         "notes": [
@@ -5221,13 +5182,13 @@
         },
         "additional_properties": {},
         "brewing_stats": {
-            "brewing_purpose": "Dual Purpose",
+            "brewing_purpose": "Bittering",
             "avg_alpha": 12.1,
             "avg_beta": 7.8,
-            "avg_oil": 1550.25,
+            "avg_oil": 1.75,
             "avg_cohumulone": 37.0,
             "alpha_classification": "High",
-            "oil_classification": "High"
+            "oil_classification": "Medium"
         }
     },
     {
@@ -5603,7 +5564,7 @@
         "beta_from": 5.0,
         "beta_to": 8.0,
         "oil_from": 1.4,
-        "oil_to": 2.61,
+        "oil_to": 2.6,
         "co_h_from": 21.0,
         "co_h_to": 29.0,
         "notes": [
@@ -5830,7 +5791,7 @@
         "beta_from": 7.0,
         "beta_to": 8.0,
         "oil_from": 1.1,
-        "oil_to": 1.61,
+        "oil_to": 1.6,
         "co_h_from": 50.1,
         "co_h_to": 0.0,
         "notes": [
@@ -5998,33 +5959,37 @@
     {
         "name": "Motueka",
         "country": "New Zealand",
-        "source": "Crosby Hops / Hopsteiner",
-        "href": "https://www.hopsteiner.com/variety-data-sheets/Motueka",
+        "source": "Crosby Hops / Hopsteiner / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/motueka-brand-nz.html",
         "alpha_from": 6.5,
         "alpha_to": 8.5,
         "beta_from": 5.0,
         "beta_to": 7.0,
         "oil_from": 0.6,
-        "oil_to": 1100.0,
+        "oil_to": 1.8,
         "co_h_from": 27.0,
-        "co_h_to": 30.0,
+        "co_h_to": 32.0,
         "notes": [
             "citrus",
             "fresh lime",
+            "fruity",
+            "lemon",
             "lemon zest",
+            "lime",
             "mojito",
+            "tropical",
             "tropical/fruit"
         ],
         "aromas": {
-            "Citrus": 3.0,
-            "Resin/Pine": 1.0,
+            "Citrus": 4.0,
+            "Resin/Pine": 2.5,
             "Spice": 1.0,
-            "Herbal": 2.0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
+            "Herbal": 2.5,
+            "Grassy": 1.0,
+            "Floral": 3.0,
+            "Berry": 2.0,
             "Stone Fruit": 3.0,
-            "Tropical Fruit": 0
+            "Tropical Fruit": 3.0
         },
         "additional_properties": {
             "acid_hardresins_from": 0.0,
@@ -6045,18 +6010,18 @@
             "linalool_acid_to": 0.0
         },
         "brewing_stats": {
-            "brewing_purpose": "Aroma",
+            "brewing_purpose": "Dual Purpose",
             "avg_alpha": 7.5,
             "avg_beta": 6.0,
-            "avg_oil": 550.3,
-            "avg_cohumulone": 28.5,
+            "avg_oil": 1.2,
+            "avg_cohumulone": 29.5,
             "alpha_classification": "Medium",
-            "oil_classification": "High"
+            "oil_classification": "Low"
         }
     },
     {
         "name": "Motueka  - machops",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/motueka-trade-brand-nz.html",
         "alpha_from": 4.0,
@@ -6091,47 +6056,6 @@
             "avg_beta": 6.0,
             "avg_oil": 1.15,
             "avg_cohumulone": 31.0,
-            "alpha_classification": "Medium",
-            "oil_classification": "Low"
-        }
-    },
-    {
-        "name": "Motueka  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/motueka-brand-nz.html",
-        "alpha_from": 6.5,
-        "alpha_to": 7.5,
-        "beta_from": 5.0,
-        "beta_to": 5.5,
-        "oil_from": 0.8,
-        "oil_to": 1.5,
-        "co_h_from": 28.0,
-        "co_h_to": 32.0,
-        "notes": [
-            "fruity",
-            "lemon",
-            "lime",
-            "tropical"
-        ],
-        "aromas": {
-            "Citrus": 5.0,
-            "Resin/Pine": 4.0,
-            "Spice": 1.0,
-            "Herbal": 3.0,
-            "Grassy": 1.0,
-            "Floral": 3.0,
-            "Berry": 2.0,
-            "Stone Fruit": 3.0,
-            "Tropical Fruit": 3.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 7.0,
-            "avg_beta": 5.2,
-            "avg_oil": 1.15,
-            "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
         }
@@ -6197,58 +6121,21 @@
     {
         "name": "Moutere",
         "country": "New Zealand",
-        "source": "Crosby Hops",
-        "href": "https://www.crosbyhops.com/shop-hops/hop-catalog/nz-moutere?hsLang=en",
-        "alpha_from": 18.0,
+        "source": "Crosby Hops / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/mouteretm-brand-nz.html",
+        "alpha_from": 12.6,
         "alpha_to": 19.5,
-        "beta_from": 8.0,
+        "beta_from": 7.3,
         "beta_to": 9.5,
         "oil_from": 1.0,
-        "oil_to": 2.31,
-        "co_h_from": 26.0,
+        "oil_to": 2.3,
+        "co_h_from": 24.0,
         "co_h_to": 28.0,
         "notes": [
             "berry",
             "citrus",
-            "grassy"
-        ],
-        "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Bittering",
-            "avg_alpha": 18.8,
-            "avg_beta": 8.8,
-            "avg_oil": 1.66,
-            "avg_cohumulone": 27.0,
-            "alpha_classification": "High",
-            "oil_classification": "Medium"
-        }
-    },
-    {
-        "name": "Moutere  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/mouteretm-brand-nz.html",
-        "alpha_from": 12.6,
-        "alpha_to": 12.6,
-        "beta_from": 7.3,
-        "beta_to": 7.3,
-        "oil_from": 1.1,
-        "oil_to": 1.1,
-        "co_h_from": 24.0,
-        "co_h_to": 28.0,
-        "notes": [
             "grapefruit",
+            "grassy",
             "passion fruit",
             "tropical"
         ],
@@ -6266,12 +6153,12 @@
         "additional_properties": {},
         "brewing_stats": {
             "brewing_purpose": "Bittering",
-            "avg_alpha": 12.6,
-            "avg_beta": 7.3,
-            "avg_oil": 1.1,
+            "avg_alpha": 16.1,
+            "avg_beta": 8.4,
+            "avg_oil": 1.65,
             "avg_cohumulone": 26.0,
             "alpha_classification": "High",
-            "oil_classification": "Low"
+            "oil_classification": "Medium"
         }
     },
     {
@@ -6386,8 +6273,8 @@
         }
     },
     {
-        "name": "Nectaron - nz hops",
-        "country": "",
+        "name": "Nectaron",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/nectaron-reg-brand-nz-hops-nz.html",
         "alpha_from": 21.0,
@@ -6428,35 +6315,37 @@
     {
         "name": "Nelson sauvin",
         "country": "New Zealand",
-        "source": "Crosby Hops / Hopsteiner",
-        "href": "https://www.hopsteiner.com/variety-data-sheets/Nelson-Sauvin",
+        "source": "Crosby Hops / Hopsteiner / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/nelson-sauvin-brand-nz.html",
         "alpha_from": 9.5,
         "alpha_to": 13.0,
         "beta_from": 4.5,
         "beta_to": 8.0,
-        "oil_from": 1.0,
+        "oil_from": 0.8,
         "oil_to": 1.5,
-        "co_h_from": 23.0,
+        "co_h_from": 20.0,
         "co_h_to": 34.0,
         "notes": [
             "berry",
+            "citrus",
             "fruity",
             "gooseberries",
             "grape",
             "herbal/earthy",
+            "tropical",
             "tropical/fruit",
             "white wine"
         ],
         "aromas": {
-            "Citrus": 2.0,
-            "Resin/Pine": 2.0,
-            "Spice": 3.0,
-            "Herbal": 2.0,
-            "Grassy": 0,
-            "Floral": 1.0,
-            "Berry": 0,
+            "Citrus": 3.5,
+            "Resin/Pine": 3.0,
+            "Spice": 2.0,
+            "Herbal": 2.5,
+            "Grassy": 1.0,
+            "Floral": 1.5,
+            "Berry": 2.0,
             "Stone Fruit": 3.0,
-            "Tropical Fruit": 0
+            "Tropical Fruit": 4.0
         },
         "additional_properties": {
             "acid_hardresins_from": 0.0,
@@ -6480,55 +6369,15 @@
             "brewing_purpose": "Bittering",
             "avg_alpha": 11.2,
             "avg_beta": 6.2,
-            "avg_oil": 1.25,
-            "avg_cohumulone": 28.5,
-            "alpha_classification": "High",
-            "oil_classification": "Low"
-        }
-    },
-    {
-        "name": "Nelson sauvin   - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/nelson-sauvin-brand-nz.html",
-        "alpha_from": 10.0,
-        "alpha_to": 13.0,
-        "beta_from": 5.0,
-        "beta_to": 8.0,
-        "oil_from": 0.8,
-        "oil_to": 1.5,
-        "co_h_from": 20.0,
-        "co_h_to": 24.0,
-        "notes": [
-            "citrus",
-            "tropical",
-            "white wine"
-        ],
-        "aromas": {
-            "Citrus": 5.0,
-            "Resin/Pine": 4.0,
-            "Spice": 1.0,
-            "Herbal": 3.0,
-            "Grassy": 1.0,
-            "Floral": 2.0,
-            "Berry": 2.0,
-            "Stone Fruit": 3.0,
-            "Tropical Fruit": 4.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Bittering",
-            "avg_alpha": 11.5,
-            "avg_beta": 6.5,
             "avg_oil": 1.15,
-            "avg_cohumulone": 22.0,
+            "avg_cohumulone": 27.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
         }
     },
     {
         "name": "Nelson sauvin  - machops",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/nelson-sauvin-trade-brand-machops-nz.html",
         "alpha_from": 9.0,
@@ -6672,7 +6521,7 @@
         "beta_from": 3.0,
         "beta_to": 5.0,
         "oil_from": 1.0,
-        "oil_to": 1.61,
+        "oil_to": 1.6,
         "co_h_from": 27.0,
         "co_h_to": 32.0,
         "notes": [
@@ -6721,7 +6570,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 8.0,
             "avg_beta": 4.0,
-            "avg_oil": 1.31,
+            "avg_oil": 1.3,
             "avg_cohumulone": 29.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
@@ -6737,7 +6586,7 @@
         "beta_from": 3.0,
         "beta_to": 6.0,
         "oil_from": 0.9,
-        "oil_to": 3.11,
+        "oil_to": 3.1,
         "co_h_from": 22.0,
         "co_h_to": 30.0,
         "notes": [
@@ -6943,7 +6792,7 @@
     },
     {
         "name": "Pacific gem",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/pacific-gem-nz.html",
         "alpha_from": 13.0,
@@ -7031,7 +6880,7 @@
         "beta_from": 5.0,
         "beta_to": 7.0,
         "oil_from": 1.5,
-        "oil_to": 2.51,
+        "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -7062,10 +6911,10 @@
         }
     },
     {
-        "name": "Pacifica  - machops",
-        "country": "",
+        "name": "Pacifica",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-trade-brand-machops-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-brand-nz.html",
         "alpha_from": 3.0,
         "alpha_to": 6.0,
         "beta_from": 5.0,
@@ -7102,10 +6951,10 @@
         }
     },
     {
-        "name": "Pacifica  - nz hops",
-        "country": "",
+        "name": "Pacifica  - machops",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-brand-nz.html",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/pacifica-trade-brand-machops-nz.html",
         "alpha_from": 3.0,
         "alpha_to": 6.0,
         "beta_from": 5.0,
@@ -7756,7 +7605,7 @@
         "beta_from": 5.0,
         "beta_to": 6.0,
         "oil_from": 0.8,
-        "oil_to": 2.31,
+        "oil_to": 2.3,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
         "notes": [
@@ -7783,7 +7632,7 @@
             "brewing_purpose": "Bittering",
             "avg_alpha": 11.5,
             "avg_beta": 5.5,
-            "avg_oil": 1.56,
+            "avg_oil": 1.55,
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
@@ -7791,7 +7640,7 @@
     },
     {
         "name": "Rakau  - machops",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/rakau-trade-brand-machops-nz.html",
         "alpha_from": 9.0,
@@ -7875,8 +7724,8 @@
     {
         "name": "Riwaka",
         "country": "New Zealand",
-        "source": "Crosby Hops / Hopsteiner",
-        "href": "https://www.hopsteiner.com/variety-data-sheets/Riwaka",
+        "source": "Crosby Hops / Hopsteiner / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/riwaka-brand-nz.html",
         "alpha_from": 4.5,
         "alpha_to": 6.5,
         "beta_from": 4.0,
@@ -7893,14 +7742,14 @@
         ],
         "aromas": {
             "Citrus": 4.0,
-            "Resin/Pine": 0,
-            "Spice": 0,
+            "Resin/Pine": 5.0,
+            "Spice": 1.0,
             "Herbal": 2.0,
-            "Grassy": 0,
-            "Floral": 2.0,
-            "Berry": 0,
-            "Stone Fruit": 4.0,
-            "Tropical Fruit": 0
+            "Grassy": 2.0,
+            "Floral": 1.5,
+            "Berry": 1.0,
+            "Stone Fruit": 2.5,
+            "Tropical Fruit": 2.0
         },
         "additional_properties": {
             "acid_hardresins_from": 0.0,
@@ -7931,46 +7780,6 @@
         }
     },
     {
-        "name": "Riwaka  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/riwaka-brand-nz.html",
-        "alpha_from": 4.5,
-        "alpha_to": 6.5,
-        "beta_from": 4.0,
-        "beta_to": 5.0,
-        "oil_from": 0.9,
-        "oil_to": 1.5,
-        "co_h_from": 32.0,
-        "co_h_to": 32.0,
-        "notes": [
-            "grapefruit",
-            "passion fruit",
-            "tropical"
-        ],
-        "aromas": {
-            "Citrus": 4.0,
-            "Resin/Pine": 5.0,
-            "Spice": 1.0,
-            "Herbal": 2.0,
-            "Grassy": 2.0,
-            "Floral": 1.0,
-            "Berry": 1.0,
-            "Stone Fruit": 1.0,
-            "Tropical Fruit": 2.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 5.5,
-            "avg_beta": 4.5,
-            "avg_oil": 1.2,
-            "avg_cohumulone": 32.0,
-            "alpha_classification": "Low",
-            "oil_classification": "Low"
-        }
-    },
-    {
         "name": "Saaz",
         "country": "Czech Republic",
         "source": "Crosby Hops / Yakima Chief Hops",
@@ -7980,7 +7789,7 @@
         "beta_from": 4.0,
         "beta_to": 8.0,
         "oil_from": 0.4,
-        "oil_to": 1100.0,
+        "oil_to": 1.0,
         "co_h_from": 23.0,
         "co_h_to": 26.0,
         "notes": [
@@ -8004,13 +7813,13 @@
         },
         "additional_properties": {},
         "brewing_stats": {
-            "brewing_purpose": "Aroma",
+            "brewing_purpose": "Dual Purpose",
             "avg_alpha": 4.2,
             "avg_beta": 6.0,
-            "avg_oil": 550.2,
+            "avg_oil": 0.7,
             "avg_cohumulone": 24.5,
             "alpha_classification": "Low",
-            "oil_classification": "High"
+            "oil_classification": "Low"
         }
     },
     {
@@ -8640,47 +8449,7 @@
     {
         "name": "Southern cross",
         "country": "New Zealand",
-        "source": "Crosby Hops",
-        "href": "https://www.crosbyhops.com/shop-hops/hop-catalog/nz-southern-cross?hsLang=en",
-        "alpha_from": 11.0,
-        "alpha_to": 14.0,
-        "beta_from": 5.0,
-        "beta_to": 6.0,
-        "oil_from": 1.0,
-        "oil_to": 1.31,
-        "co_h_from": 25.0,
-        "co_h_to": 28.0,
-        "notes": [
-            "citrus",
-            "piney/resinous",
-            "spicy"
-        ],
-        "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Bittering",
-            "avg_alpha": 12.5,
-            "avg_beta": 5.5,
-            "avg_oil": 1.16,
-            "avg_cohumulone": 26.5,
-            "alpha_classification": "High",
-            "oil_classification": "Low"
-        }
-    },
-    {
-        "name": "Southern cross  - hops",
-        "country": "New Zealand",
-        "source": "Yakima Chief Hops",
+        "source": "Crosby Hops / Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/nz-southern-cross-brand-nz.html",
         "alpha_from": 11.0,
         "alpha_to": 14.0,
@@ -8691,8 +8460,10 @@
         "co_h_from": 25.0,
         "co_h_to": 28.0,
         "notes": [
+            "citrus",
             "lemon",
             "pine",
+            "piney/resinous",
             "spicy"
         ],
         "aromas": {
@@ -9013,7 +8784,7 @@
     },
     {
         "name": "Sticklebract",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/sticklebract-nz.html",
         "alpha_from": 0.0,
@@ -9060,7 +8831,7 @@
         "beta_from": 5.0,
         "beta_to": 6.0,
         "oil_from": 2.3,
-        "oil_to": 3.51,
+        "oil_to": 3.5,
         "co_h_from": 21.0,
         "co_h_to": 0.0,
         "notes": [
@@ -9594,8 +9365,8 @@
         }
     },
     {
-        "name": "Superdelic , nz hops",
-        "country": "",
+        "name": "Superdelic , hops",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/superdelic-trade-brand-nz-hops-nz.html",
         "alpha_from": 9.0,
@@ -10020,7 +9791,7 @@
         "beta_from": 3.0,
         "beta_to": 5.0,
         "oil_from": 0.4,
-        "oil_to": 0.91,
+        "oil_to": 0.9,
         "co_h_from": 22.0,
         "co_h_to": 29.0,
         "notes": [
@@ -10065,7 +9836,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 4.2,
             "avg_beta": 4.0,
-            "avg_oil": 0.66,
+            "avg_oil": 0.65,
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
@@ -10185,7 +9956,7 @@
         "beta_from": 4.0,
         "beta_to": 5.0,
         "oil_from": 1.0,
-        "oil_to": 1.41,
+        "oil_to": 1.4,
         "co_h_from": 26.0,
         "co_h_to": 29.0,
         "notes": [
@@ -10209,7 +9980,7 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 6.0,
             "avg_beta": 4.5,
-            "avg_oil": 1.21,
+            "avg_oil": 1.2,
             "avg_cohumulone": 27.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
@@ -10434,7 +10205,7 @@
         "beta_from": 6.0,
         "beta_to": 7.0,
         "oil_from": 1.0,
-        "oil_to": 2.31,
+        "oil_to": 2.3,
         "co_h_from": 28.0,
         "co_h_to": 30.0,
         "notes": [
@@ -10458,7 +10229,7 @@
             "brewing_purpose": "Bittering",
             "avg_alpha": 11.0,
             "avg_beta": 6.5,
-            "avg_oil": 1.66,
+            "avg_oil": 1.65,
             "avg_cohumulone": 29.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
@@ -10474,7 +10245,7 @@
         "beta_from": 3.5,
         "beta_to": 5.0,
         "oil_from": 0.0,
-        "oil_to": 1.51,
+        "oil_to": 1.5,
         "co_h_from": 24.0,
         "co_h_to": 28.0,
         "notes": [
@@ -10498,7 +10269,7 @@
             "brewing_purpose": "Aroma",
             "avg_alpha": 5.0,
             "avg_beta": 4.2,
-            "avg_oil": 1.51,
+            "avg_oil": 1.5,
             "avg_cohumulone": 26.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
@@ -10514,7 +10285,7 @@
         "beta_from": 2.7,
         "beta_to": 2.7,
         "oil_from": 1.6,
-        "oil_to": 1.61,
+        "oil_to": 1.6,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
@@ -10699,7 +10470,7 @@
         "beta_from": 3.5,
         "beta_to": 5.5,
         "oil_from": 1.2,
-        "oil_to": 1.81,
+        "oil_to": 1.8,
         "co_h_from": 29.0,
         "co_h_to": 34.0,
         "notes": [
@@ -10784,7 +10555,7 @@
         "beta_from": 4.5,
         "beta_to": 5.5,
         "oil_from": 1.0,
-        "oil_to": 2.31,
+        "oil_to": 2.3,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
         "notes": [
@@ -10807,15 +10578,15 @@
             "brewing_purpose": "Aroma",
             "avg_alpha": 3.0,
             "avg_beta": 5.0,
-            "avg_oil": 1.66,
+            "avg_oil": 1.65,
             "avg_cohumulone": 23.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
         }
     },
     {
-        "name": "Wai-iti  - nz hops",
-        "country": "",
+        "name": "Wai-iti",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/wai-iti-brand-nz.html",
         "alpha_from": 1.5,
@@ -10858,49 +10629,10 @@
     {
         "name": "Waimea",
         "country": "New Zealand",
-        "source": "Crosby Hops",
-        "href": "https://www.crosbyhops.com/shop-hops/hop-catalog/nz-waimea?hsLang=en",
-        "alpha_from": 16.0,
-        "alpha_to": 19.0,
-        "beta_from": 7.0,
-        "beta_to": 9.0,
-        "oil_from": 2.0,
-        "oil_to": 2.21,
-        "co_h_from": 22.0,
-        "co_h_to": 24.0,
-        "notes": [
-            "citrus",
-            "piney/resinous"
-        ],
-        "aromas": {
-            "Citrus": 4.0,
-            "Resin/Pine": 2.0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 1.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 17.5,
-            "avg_beta": 8.0,
-            "avg_oil": 2.1,
-            "avg_cohumulone": 23.0,
-            "alpha_classification": "High",
-            "oil_classification": "Medium"
-        }
-    },
-    {
-        "name": "Waimea  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
+        "source": "Crosby Hops / Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/waimea-brand-nz.html",
         "alpha_from": 14.0,
-        "alpha_to": 17.0,
+        "alpha_to": 19.0,
         "beta_from": 7.0,
         "beta_to": 9.0,
         "oil_from": 1.5,
@@ -10909,25 +10641,26 @@
         "co_h_to": 24.0,
         "notes": [
             "citrus",
+            "piney/resinous",
             "stone fruit",
             "sweet aromatic",
             "tropical"
         ],
         "aromas": {
-            "Citrus": 5.0,
-            "Resin/Pine": 4.0,
+            "Citrus": 4.5,
+            "Resin/Pine": 3.0,
             "Spice": 1.0,
             "Herbal": 5.0,
             "Grassy": 1.0,
             "Floral": 3.0,
             "Berry": 1.0,
             "Stone Fruit": 4.0,
-            "Tropical Fruit": 4.0
+            "Tropical Fruit": 2.5
         },
         "additional_properties": {},
         "brewing_stats": {
             "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 15.5,
+            "avg_alpha": 16.5,
             "avg_beta": 8.0,
             "avg_oil": 2.0,
             "avg_cohumulone": 23.0,
@@ -10938,46 +10671,47 @@
     {
         "name": "Wakatu",
         "country": "New Zealand",
-        "source": "Crosby Hops",
-        "href": "https://www.crosbyhops.com/shop-hops/hop-catalog/nz-wakatu?hsLang=en",
-        "alpha_from": 6.5,
+        "source": "Crosby Hops / Yakima Chief Hops",
+        "href": "https://www.yakimachief.com/commercial/hop-varieties/wakatu-brand-nz.html",
+        "alpha_from": 5.0,
         "alpha_to": 8.5,
-        "beta_from": 8.4,
+        "beta_from": 7.5,
         "beta_to": 8.6,
-        "oil_from": 0.9,
-        "oil_to": 1.11,
+        "oil_from": 0.8,
+        "oil_to": 1.5,
         "co_h_from": 28.0,
-        "co_h_to": 30.0,
+        "co_h_to": 32.0,
         "notes": [
             "citrus",
             "floral",
-            "grassy"
+            "grassy",
+            "woody"
         ],
         "aromas": {
-            "Citrus": 0,
-            "Resin/Pine": 0,
-            "Spice": 0,
-            "Herbal": 0,
-            "Grassy": 0,
-            "Floral": 0,
-            "Berry": 0,
-            "Stone Fruit": 0,
-            "Tropical Fruit": 0
+            "Citrus": 4.0,
+            "Resin/Pine": 5.0,
+            "Spice": 2.0,
+            "Herbal": 3.0,
+            "Grassy": 2.0,
+            "Floral": 2.0,
+            "Berry": 2.0,
+            "Stone Fruit": 2.0,
+            "Tropical Fruit": 3.0
         },
         "additional_properties": {},
         "brewing_stats": {
             "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 7.5,
-            "avg_beta": 8.5,
-            "avg_oil": 1.01,
-            "avg_cohumulone": 29.0,
+            "avg_alpha": 6.8,
+            "avg_beta": 8.1,
+            "avg_oil": 1.15,
+            "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
         }
     },
     {
         "name": "Wakatu  - machops",
-        "country": "",
+        "country": "New Zealand",
         "source": "Yakima Chief Hops",
         "href": "https://www.yakimachief.com/commercial/hop-varieties/wakatu-trade-brand-machops-nz.html",
         "alpha_from": 4.5,
@@ -11009,46 +10743,6 @@
             "brewing_purpose": "Dual Purpose",
             "avg_alpha": 6.5,
             "avg_beta": 8.5,
-            "avg_oil": 1.15,
-            "avg_cohumulone": 30.0,
-            "alpha_classification": "Medium",
-            "oil_classification": "Low"
-        }
-    },
-    {
-        "name": "Wakatu  - nz hops",
-        "country": "",
-        "source": "Yakima Chief Hops",
-        "href": "https://www.yakimachief.com/commercial/hop-varieties/wakatu-brand-nz.html",
-        "alpha_from": 5.0,
-        "alpha_to": 8.5,
-        "beta_from": 7.5,
-        "beta_to": 8.5,
-        "oil_from": 0.8,
-        "oil_to": 1.5,
-        "co_h_from": 28.0,
-        "co_h_to": 32.0,
-        "notes": [
-            "citrus",
-            "grassy",
-            "woody"
-        ],
-        "aromas": {
-            "Citrus": 4.0,
-            "Resin/Pine": 5.0,
-            "Spice": 2.0,
-            "Herbal": 3.0,
-            "Grassy": 2.0,
-            "Floral": 2.0,
-            "Berry": 2.0,
-            "Stone Fruit": 2.0,
-            "Tropical Fruit": 3.0
-        },
-        "additional_properties": {},
-        "brewing_stats": {
-            "brewing_purpose": "Dual Purpose",
-            "avg_alpha": 6.8,
-            "avg_beta": 8.0,
             "avg_oil": 1.15,
             "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
@@ -11361,7 +11055,7 @@
         "beta_from": 8.0,
         "beta_to": 9.0,
         "oil_from": 1.8,
-        "oil_to": 2.51,
+        "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
         "notes": [
