@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import {
   Paper,
   Text,
@@ -302,23 +302,24 @@ const HopSelector = ({
     return { label: 'Standard Storage', color: 'gray', description: 'Normal degradation rate' };
   };
   // Helper functions for aroma states
-  const getSelectedAromasHigh = () => {
+
+  const getSelectedAromasHigh = useCallback(() => {
     return Object.entries(aromaStates)
       .filter(([_, state]) => state === 'high')
       .map(([aroma, _]) => aroma);
-  };
+  }, [aromaStates]);
 
-  const getSelectedAromasLow = () => {
+  const getSelectedAromasLow = useCallback(() => {
     return Object.entries(aromaStates)
       .filter(([_, state]) => state === 'low')
       .map(([aroma, _]) => aroma);
-  };
+  }, [aromaStates]);
 
-  const getAllSelectedAromas = () => {
+  const getAllSelectedAromas = useCallback(() => {
     return Object.entries(aromaStates)
       .filter(([_, state]) => state !== 'none')
       .map(([aroma, _]) => aroma);
-  };
+  }, [aromaStates]);
 
   const handleAromaClick = (aroma) => {
     setAromaStates(prev => {
