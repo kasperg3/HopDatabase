@@ -1,15 +1,29 @@
 {
-  "short_name": "Hop Tool",
-  "name": "Hop Comparison Tool",
+  "short_name": "Hop Database",
+  "name": "Hop Database - Ultimate Hop Comparison Tool",
+  "description": "The ultimate hop database and comparison tool for brewers. Compare 200+ hop varieties with detailed brewing parameters.",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2e7d32",
+  "background_color": "#ffffff",
+  "categories": ["productivity", "food", "lifestyle"],
+  "lang": "en"
 }

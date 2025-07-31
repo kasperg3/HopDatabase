@@ -153,7 +153,9 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         final_hop.notes = sorted(list(all_notes))
         final_hop.country = all_countries[0] if all_countries else ""
         final_hop.source = " / ".join(sorted(list(all_sources)))
-        final_hop.href = all_hrefs[0] if all_hrefs else ""
+        # Store all unique hrefs, separated by " | " for multiple sources
+        unique_hrefs = list(dict.fromkeys(all_hrefs))  # Remove duplicates while preserving order
+        final_hop.href = " | ".join(unique_hrefs) if unique_hrefs else ""
 
         for key, values in range_values.items():
             from_vals = [v for v in values['from'] if v > 0]

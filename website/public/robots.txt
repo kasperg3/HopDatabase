@@ -1,3 +1,19 @@
 User-agent: *
 Allow: /
+Disallow: /static/
+Disallow: *.json$
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+Allow: /data/hops.json
+
+User-agent: Bingbot
+Allow: /
+Allow: /data/hops.json
+
+# Sitemap location
 Sitemap: https://www.grontved.xyz/HopDatabase/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
