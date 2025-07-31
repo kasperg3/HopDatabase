@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import {
   Paper,
   Text,
+  Title,
   Box,
   MultiSelect,
   Badge,
@@ -11,7 +12,6 @@ import {
   Card,
   Grid,
   Tooltip,
-  Divider,
   useMantineColorScheme,
   Collapse,
   Button,
@@ -19,16 +19,11 @@ import {
   Tabs,
   Flex,
   RangeSlider,
-  NumberInput,
 } from '@mantine/core';
 import {
   IconFlask,
   IconDroplet,
-  IconChartBar,
   IconTarget,
-  IconShieldCheck,
-  IconScale,
-  IconLeaf,
   IconX,
   IconChevronDown,
   IconChevronUp,
@@ -276,18 +271,6 @@ const HopSelector = ({
     return (fromVal + toVal) / 2;
   };
 
-  const formatRange = (from, to, unit = '%', isOil = false) => {
-    const parseFunc = isOil ? parseOilValue : parseValue;
-    const fromVal = parseFunc(from);
-    const toVal = parseFunc(to);
-    
-    if (fromVal === 0 && toVal === 0) return 'N/A';
-    if (fromVal === toVal) return `${fromVal}${unit}`;
-    if (toVal === 0) return `${fromVal}${unit}`;
-    if (fromVal === 0) return `${toVal}${unit}`;
-    return `${fromVal} - ${toVal}${unit}`;
-  };
-
   // Advanced classification functions
   const getHopPurpose = (avgAlpha, avgOil, avgBeta) => {
     if (avgAlpha >= ALPHA_THRESHOLDS.SUPER_ALPHA) {
@@ -512,34 +495,100 @@ const HopSelector = ({
       });
     }
     
-    // Sort by aroma intensities with green (high) taking precedence over red (low)
+    // Sort by aroma intensities with improved balanced approach
     if (allSelectedAromas.length > 0) {
       return filtered.sort((a, b) => {
         // Calculate sums for high priority (green) aromas
         const sumHighA = selectedAromasHigh.reduce((acc, aroma) => acc + (a.aromas?.[aroma] || 0), 0);
         const sumHighB = selectedAromasHigh.reduce((acc, aroma) => acc + (b.aromas?.[aroma] || 0), 0);
         
-        // If high priority aromas are different, sort by them (descending - highest first)
-        if (sumHighB !== sumHighA) {
-          return sumHighB - sumHighA;
-        }
-        
-        // If high priority aromas are equal, sort by low priority (red) aromas
+        // Calculate sums for low priority (red) aromas  
         const sumLowA = selectedAromasLow.reduce((acc, aroma) => acc + (a.aromas?.[aroma] || 0), 0);
         const sumLowB = selectedAromasLow.reduce((acc, aroma) => acc + (b.aromas?.[aroma] || 0), 0);
         
-        // For low priority aromas, sort ascending (lowest first)
-        if (sumLowA !== sumLowB) {
-          return sumLowA - sumLowB;
+        // If only high priority aromas are selected, sort by them directly
+        if (selectedAromasHigh.length > 0 && selectedAromasLow.length === 0) {
+          if (Math.abs(sumHighB - sumHighA) > 0.01) {
+            return sumHighB - sumHighA;
+          }
+          return a.displayName.localeCompare(b.displayName);
         }
         
-        // If all sums are equal, fallback to displayName
+        // If only low priority aromas are selected, sort by them directly
+        if (selectedAromasLow.length > 0 && selectedAromasHigh.length === 0) {
+          if (Math.abs(sumLowA - sumLowB) > 0.01) {
+            return sumLowA - sumLowB;
+          }
+          return a.displayName.localeCompare(b.displayName);
+        }
+        
+        // When both high and low priority aromas are selected, use an adaptive weighted approach
+        if (selectedAromasHigh.length > 0 && selectedAromasLow.length > 0) {
+          // Normalize by the number of selected aromas
+          const normalizedHighA = sumHighA / selectedAromasHigh.length;
+          const normalizedHighB = sumHighB / selectedAromasHigh.length;
+          const normalizedLowA = sumLowA / selectedAromasLow.length;
+          const normalizedLowB = sumLowB / selectedAromasLow.length;
+          
+          // Calculate the relative differences
+          const highDiff = Math.abs(normalizedHighB - normalizedHighA);
+          const lowDiff = Math.abs(normalizedLowB - normalizedLowA);
+          
+          // Define thresholds for "significant" differences
+          const significantHighThreshold = 1.5; // If high difference is > 1.5, prioritize high
+          const significantLowThreshold = 1.0;   // If low difference is > 1.0, consider it significant
+          
+          // If high difference is significant, prioritize high aromas
+          if (highDiff >= significantHighThreshold) {
+            return sumHighB - sumHighA;
+          }
+          
+          // If low difference is significant and high difference is small, prioritize low aromas
+          if (lowDiff >= significantLowThreshold && highDiff < significantHighThreshold) {
+            return sumLowA - sumLowB;
+          }
+          
+          // If both differences are small or similar, use balanced weighting
+          // Adjust weights based on relative differences
+          let highWeight = 1.0;
+          let lowWeight = 1.0;
+          
+          // If low difference is larger than high difference, give more weight to low priority
+          if (lowDiff > highDiff) {
+            lowWeight = 1.5;
+            highWeight = 0.8;
+          } else if (highDiff > lowDiff) {
+            highWeight = 1.5;
+            lowWeight = 0.8;
+          }
+          
+          // Calculate weighted composite score (higher is better)
+          const maxAromaValue = 8; // Based on data analysis, max aroma value is around 8
+          const scoreA = (highWeight * normalizedHighA) + (lowWeight * (maxAromaValue - normalizedLowA));
+          const scoreB = (highWeight * normalizedHighB) + (lowWeight * (maxAromaValue - normalizedLowB));
+          
+          // Sort by composite score (descending - highest score first)
+          if (Math.abs(scoreB - scoreA) > 0.1) {
+            return scoreB - scoreA;
+          }
+          
+          // If composite scores are very close, fall back to direct comparison
+          if (Math.abs(sumHighB - sumHighA) > 0.01) {
+            return sumHighB - sumHighA;
+          }
+          
+          if (Math.abs(sumLowA - sumLowB) > 0.01) {
+            return sumLowA - sumLowB;
+          }
+        }
+        
+        // Fallback to displayName
         return a.displayName.localeCompare(b.displayName);
       });
     }
     // Default sort by displayName
     return filtered.sort((a, b) => a.displayName.localeCompare(b.displayName));
-  }, [uniqueHops, aromaStates, useAlphaFilter, useCohumuloneFilter, useOilFilter, alphaRange, cohumuloneRange, oilRange]);
+  }, [uniqueHops, aromaStates, useAlphaFilter, useCohumuloneFilter, useOilFilter, alphaRange, cohumuloneRange, oilRange, getAllSelectedAromas, getSelectedAromasHigh, getSelectedAromasLow]);
 
   // Sort by display name for better UX
   const availableHops = filteredHops;
@@ -630,21 +679,6 @@ const HopSelector = ({
     ];
   };
 
-//   const getAromaCombinationSuggestions = () => {
-//     const allSelectedAromas = getAllSelectedAromas();
-//     if (allSelectedAromas.length === 0) return [];
-    
-//     const allCombinations = getAllAromaCombinations();
-    
-//     return allCombinations.filter(combo => {
-//       if (combo.type === 'mixed') {
-//         return combo.aromasHigh.some(aroma => allSelectedAromas.includes(aroma)) ||
-//                combo.aromasLow.some(aroma => allSelectedAromas.includes(aroma));
-//       }
-//       return combo.aromas.some(aroma => allSelectedAromas.includes(aroma));
-//     }).slice(0, 6); // Limit to 6 most relevant suggestions
-//   };
-
   const getPopularPresets = () => {
     const allCombinations = getAllAromaCombinations();
     return [
@@ -675,10 +709,6 @@ const HopSelector = ({
     setAromaStates(newAromaStates);
   };
 
-  const getHopInfo = (hopUniqueId) => {
-    return uniqueHops.find(hop => hop.uniqueId === hopUniqueId);
-  };
-
   // Clear all filters
   const clearAllFilters = () => {
     setAromaStates({});
@@ -694,60 +724,12 @@ const HopSelector = ({
     setShowCustomRanges(false);
   };
 
-  // Generate brewing tip based on hop characteristics
-  const getBrewingTip = (hopInfo) => {
-    const tips = [];
-    
-    if (hopInfo.avgAlpha > 15) {
-      tips.push('High alpha - excellent for bittering additions');
-    } else if (hopInfo.avgAlpha < 5) {
-      tips.push('Low alpha - ideal for aroma and late additions');
-    }
-    
-    if (hopInfo.avgOil > 2.5) {
-      tips.push('high oil content provides intense aroma');
-    }
-    
-    if (hopInfo.cohumuloneClass.label.includes('Low')) {
-      tips.push('smooth, refined bitterness character');
-    } else if (hopInfo.cohumuloneClass.label.includes('High')) {
-      tips.push('punchy bitterness - use carefully');
-    }
-    
-    if (hopInfo.betaAlphaClass.label.includes('Stable')) {
-      tips.push('excellent storage stability');
-    }
-    
-    const purposeMap = {
-      'Bittering': 'Add early in boil (60-90 min) for clean bitterness',
-      'Aroma': 'Add late in boil (&lt;15 min), whirlpool, or dry hop',
-      'Dual-Purpose': 'Versatile - great for any stage of brewing'
-    };
-    
-    if (purposeMap[hopInfo.purpose.label]) {
-      tips.push(purposeMap[hopInfo.purpose.label]);
-    }
-    
-    return tips.join('; ') || 'Excellent brewing characteristics.';
-  };
-
-  // Helper to get border color for cards
-  const getBorderColor = (color) => {
-    const colorMap = {
-      'orange': '#fd7e14',
-      'green': '#51cf66',
-      'blue': '#339af0',
-      'violet': '#845ec2'
-    };
-    return colorMap[color] || '#ced4da';
-  };
-
   return (
     <Paper shadow="sm" p="lg">
       {/* Search and Filter Section */}
       <Box mb="md">
         <Group justify="space-between" mb="md">
-          <Text size="lg" fw={600}>Hop Selection & Filtering</Text>
+          <Title order={3}>Hop Selection & Filtering</Title>
           <Button
             variant="subtle"
             size="sm"
@@ -800,7 +782,7 @@ const HopSelector = ({
                   Filter by Aroma Categories:
                 </Text>
                 <Tooltip 
-                  label="Green filters show hops with the aroma in top 3, while Red filters show hops with the aroma in bottom 3 (including 0 intensity). Green sorting takes precedence over red. Click chips to cycle through: Unselected → Green (sort by highest intensity) → Red (sort by lowest intensity) → Unselected"
+                  label="Green filters show hops with the aroma in top 3, while Red filters show hops with the aroma in bottom 3 (including 0 intensity). Sorting intelligently balances both priorities: when green differences are large (>1.5), green takes precedence; when red differences are significant (>1.0) and green differences are small, red takes precedence; otherwise uses weighted scoring. Click chips to cycle through: Unselected → Green (sort by highest intensity) → Red (sort by lowest intensity) → Unselected"
                   multiline
                   w={300}
                   withArrow
@@ -1084,177 +1066,6 @@ const HopSelector = ({
           mb="md"
         />
       </Box>
-
-      {selectedHops.length > 0 && (
-        <Stack gap="md">
-          <Divider label="Selected Hops" labelPosition="center" />
-          {selectedHops.map((hopName) => {
-            const hopInfo = getHopInfo(hopName);
-            if (!hopInfo) return null;
-
-            const IconComponent = hopInfo.purpose.icon;
-
-            return (
-              <Card key={hopName} withBorder p="md" style={{ borderLeft: `4px solid ${getBorderColor(hopInfo.purpose.color)}` }}>
-                {/* Header Section */}
-                <Group justify="space-between" mb="sm">
-                  <Group>
-                    <ThemeIcon color={hopInfo.purpose.color} variant="light" size="lg">
-                      <IconComponent size="1.2rem" />
-                    </ThemeIcon>
-                    <div>
-                      <Text fw={600} size="lg" c="blue">
-                        {hopInfo.displayName}
-                      </Text>
-                      <Group gap="xs">
-                        <Text size="sm" c="dimmed">
-                          {hopInfo.country} • {hopInfo.source}
-                        </Text>
-                        <Tooltip label={hopInfo.purpose.description} withArrow>
-                          <Badge color={hopInfo.purpose.color} variant="light" size="sm">
-                            {hopInfo.purpose.label}
-                          </Badge>
-                        </Tooltip>
-                      </Group>
-                    </div>
-                  </Group>
-                </Group>
-
-                {/* Chemistry Analysis */}
-                <Grid mb="md">
-                  <Grid.Col span={6}>
-                    <Stack gap="xs">
-                      <Group gap="xs">
-                        <ThemeIcon size="sm" variant="light" color="orange">
-                          <IconFlask size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>Alpha Acids:</Text>
-                        <Text size="sm">{formatRange(hopInfo.alpha_from, hopInfo.alpha_to)}</Text>
-                      </Group>
-                      <Group gap="xs">
-                        <ThemeIcon size="sm" variant="light" color="blue">
-                          <IconChartBar size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>Beta Acids:</Text>
-                        <Text size="sm">{formatRange(hopInfo.beta_from, hopInfo.beta_to)}</Text>
-                      </Group>
-                      <Group gap="xs">
-                        <ThemeIcon size="sm" variant="light" color="teal">
-                          <IconDroplet size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>Total Oil:</Text>
-                        <Text size="sm">{formatRange(hopInfo.oil_from, hopInfo.oil_to, ' ml/100g', true)}</Text>
-                      </Group>
-                    </Stack>
-                  </Grid.Col>
-                  <Grid.Col span={6}>
-                    <Stack gap="xs">
-                      {hopInfo.avgCohumulone > 0 && (
-                        <Group gap="xs">
-                          <ThemeIcon size="sm" variant="light" color="yellow">
-                            <IconShieldCheck size="0.8rem" />
-                          </ThemeIcon>
-                          <Text size="sm" fw={500}>Cohumulone:</Text>
-                          <Text size="sm">{formatRange(hopInfo.co_h_from, hopInfo.co_h_to)}</Text>
-                          <Tooltip label={hopInfo.cohumuloneClass.description} withArrow>
-                            <Badge size="xs" color={hopInfo.cohumuloneClass.color} variant="light">
-                              {hopInfo.cohumuloneClass.label}
-                            </Badge>
-                          </Tooltip>
-                        </Group>
-                      )}
-                      <Group gap="xs">
-                        <ThemeIcon size="sm" variant="light" color="gray">
-                          <IconScale size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>β/α Ratio:</Text>
-                        <Text size="sm">{hopInfo.betaAlphaRatio.toFixed(2)}</Text>
-                        <Tooltip label={hopInfo.betaAlphaClass.description} withArrow>
-                          <Badge size="xs" color={hopInfo.betaAlphaClass.color} variant="light">
-                            {hopInfo.betaAlphaClass.label}
-                          </Badge>
-                        </Tooltip>
-                      </Group>
-                    </Stack>
-                  </Grid.Col>
-                </Grid>
-
-                {/* Aroma Profile & Flavor Notes */}
-                <Box mb="md">
-                  {/* Standardized Aroma Categories - DISABLED */}
-                  {/* {hopInfo.aromas && Object.entries(hopInfo.aromas).some(([_, intensity]) => intensity > 0) && (
-                    <Box mb="sm">
-                      <Group gap="xs" mb="xs">
-                        <ThemeIcon size="sm" variant="light" color="purple">
-                          <IconDroplet size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>Aroma Profile (Top 3):</Text>
-                      </Group>
-                      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                        {getTopAromas(hopInfo, 3).map(({ category, intensity }, index) => (
-                          <Badge 
-                            key={category} 
-                            variant="filled"
-                            size="sm"
-                            color={index === 0 ? 'purple' : index === 1 ? 'violet' : 'indigo'}
-                          >
-                            #{index + 1} {category} ({intensity}/5)
-                          </Badge>
-                        ))}
-                      </Box>
-                      {/* Show additional aromas if any */}
-                      {/*Object.entries(hopInfo.aromas).filter(([_, intensity]) => intensity > 0).length > 3 && (
-                        <Box mt="xs">
-                          <Text size="xs" c="dimmed">
-                            Other aromas: {Object.entries(hopInfo.aromas)
-                              .filter(([_, intensity]) => intensity > 0)
-                              .sort(([_, a], [__, b]) => b - a)
-                              .slice(3)
-                              .map(([category, intensity]) => `${category} (${intensity})`)
-                              .join(', ')}
-                          </Text>
-                        </Box>
-                      )}
-                    </Box>
-                  )} */}
-
-                  {/* Text-based Flavor Notes */}
-                  {hopInfo.notes && hopInfo.notes.length > 0 && (
-                    <Box>
-                      <Group gap="xs" mb="xs">
-                        <ThemeIcon size="sm" variant="light" color="green">
-                          <IconLeaf size="0.8rem" />
-                        </ThemeIcon>
-                        <Text size="sm" fw={500}>Flavor Notes:</Text>
-                      </Group>
-                      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                        {hopInfo.notes.map((note, i) => (
-                          <Badge 
-                            key={i} 
-                            variant="outline"
-                            size="sm"
-                            color="green"
-                          >
-                            {note}
-                          </Badge>
-                        ))}
-                      </Box>
-                    </Box>
-                  )}
-                </Box>
-
-                {/* Brewing Recommendations */}
-                <Box mt="md" p="sm" style={{ borderRadius: 6 }} bg={colorScheme === 'dark' ? 'dark.5' : 'gray.1'}>
-                  <Text size="xs" fw={500} mb="xs">Quick Brewing Tips:</Text>
-                  <Text size="xs" c="dimmed">
-                    {getBrewingTip(hopInfo)}
-                  </Text>
-                </Box>
-              </Card>
-            );
-          })}
-        </Stack>
-      )}
 
       {/* Browse All Combinations Modal */}
       <Modal

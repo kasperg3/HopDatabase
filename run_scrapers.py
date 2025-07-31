@@ -34,11 +34,83 @@ def get_safe_float(value, default=0.0):
     try: return float(value)
     except (ValueError, TypeError): return default
 
+# Add a mapping for known equivalent hop names
+MERGE_NAME_ALIASES = {
+    "hallertauer mittelfrüher": "hallertauer mittelfrüh",
+    "hallertauer mittelfrueh": "hallertauer mittelfrüh",
+    "hallertau mittelfrüh": "hallertauer mittelfrüh",
+    "East kent goldings" : "East kent golding",
+    "Fuggle" : "Fuggles"
+    # Add more aliases as needed
+}
+
+def scale_aroma_values_by_source(hops_data: List[HopEntry]) -> List[HopEntry]:
+    """
+    Scale aroma values to 0-5 range based on the maximum value found for each source.
+    This ensures each producer's data is properly normalized relative to their own scale.
+    """
+    # Group hops by source to analyze their aroma ranges
+    source_max_values = defaultdict(lambda: defaultdict(float))
+    
+    # First pass: find the maximum aroma value for each source and aroma category
+    for hop in hops_data:
+        if hop.source and isinstance(hop.standardized_aromas, dict):
+            for aroma_category, value in hop.standardized_aromas.items():
+                if isinstance(value, (int, float)) and value > 0:
+                    current_max = source_max_values[hop.source][aroma_category]
+                    source_max_values[hop.source][aroma_category] = max(current_max, float(value))
+    
+    # Calculate overall max for each source (across all aroma categories)
+    source_overall_max = {}
+    for source, aroma_maxes in source_max_values.items():
+        if aroma_maxes:
+            source_overall_max[source] = max(aroma_maxes.values())
+        else:
+            source_overall_max[source] = 1.0  # Default to prevent division by zero
+    
+    print("\nAroma scaling analysis by source:")
+    for source, max_val in source_overall_max.items():
+        print(f"  {source}: max aroma value = {max_val}")
+    
+    # Track which sources need scaling to avoid duplicate messages
+    scaled_sources = set()
+    
+    # Second pass: scale the aroma values
+    for hop in hops_data:
+        if hop.source and isinstance(hop.standardized_aromas, dict):
+            overall_max = source_overall_max.get(hop.source, 1.0)
+            
+            # Only scale if the max value is greater than 5
+            if overall_max > 5:
+                scale_factor = 5.0 / overall_max
+                
+                # Print scaling message only once per source
+                if hop.source not in scaled_sources:
+                    print(f"  Scaling {hop.source} by factor {scale_factor:.3f}")
+                    scaled_sources.add(hop.source)
+                
+                for aroma_category in hop.standardized_aromas:
+                    original_value = hop.standardized_aromas[aroma_category]
+                    if isinstance(original_value, (int, float)) and original_value > 0:
+                        scaled_value = original_value * scale_factor
+                        # Round to 1 decimal place and ensure it's within 0-5
+                        hop.standardized_aromas[aroma_category] = min(5.0, max(0.0, round(scaled_value, 1)))
+            else:
+                # Even if no scaling needed, ensure values are clamped to 0-5 and rounded
+                for aroma_category in hop.standardized_aromas:
+                    original_value = hop.standardized_aromas[aroma_category]
+                    if isinstance(original_value, (int, float)):
+                        hop.standardized_aromas[aroma_category] = min(5.0, max(0.0, round(float(original_value), 1)))
+    
+    return hops_data
+
 def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
     """Merges a list of HopEntry objects into a standardized list."""
     grouped_hops = defaultdict(list)
     for hop in hops_data:
         normalized_name = normalize_hop_name(hop.name)
+        # Use alias mapping if available
+        normalized_name = MERGE_NAME_ALIASES.get(normalized_name, normalized_name)
         if normalized_name:
             grouped_hops[normalized_name].append(hop)
 
@@ -144,9 +216,13 @@ def main():
     combined_hop_entries = ych_combined + bh + hs + crosby
     print(f"\nTotal raw hop entries: {len(combined_hop_entries)}")
     
-    # --- Run the merger on the combined data ---
+    # --- Scale aroma values by source before merging ---
+    print("\nScaling aroma values by source...")
+    scaled_hop_entries = scale_aroma_values_by_source(combined_hop_entries)
+    
+    # --- Run the merger on the scaled data ---
     print("\nStarting hop data merging...")
-    merged_data = merge_hops(combined_hop_entries)
+    merged_data = merge_hops(scaled_hop_entries)
     print(f"Total merged hop entries: {len(merged_data)}")
     
     # Sort final data by name

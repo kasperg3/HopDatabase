@@ -39,6 +39,7 @@ Our comprehensive database aggregates information from industry-leading hop prod
 * **🌾 Hopsteiner** - Premium hop varieties and detailed chemistry data
 * **🏔️ Yakima Chief Hops** - Pacific Northwest hop expertise
 * **🇩🇪 BarthHaas** - Traditional European varieties and innovation
+* **🇺🇸 Crosby Hops** - American hop varieties with comprehensive aroma profiles
 
 ## 🚀 Getting Started
 
@@ -83,7 +84,8 @@ hop_database/
 │   ├── __init__.py
 │   ├── yakima_chief.py     # Yakima Chief Hops scraper
 │   ├── barth_haas.py       # BarthHaas scraper
-│   └── hopsteiner.py       # Hopsteiner scraper
+│   ├── hopsteiner.py       # Hopsteiner scraper
+│   └── crosby_hops.py      # Crosby Hops scraper
 └── utils/                  # Utility functions
     └── __init__.py
 ```
@@ -91,15 +93,16 @@ hop_database/
 ### Usage as Python Package
 ```python
 from hop_database import HopEntry, save_hop_entries
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops
 
 # Run individual scrapers
 ych_hops = yakima_chief.scrape()
 bh_hops = barth_haas.scrape()
 hs_hops = hopsteiner.scrape()
+ch_hops = crosby_hops.scrape()
 
 # Combine and save data
-all_hops = ych_hops + bh_hops + hs_hops
+all_hops = ych_hops + bh_hops + hs_hops + ch_hops
 save_hop_entries(all_hops, 'data/hops.json')
 ```
 

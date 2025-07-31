@@ -113,7 +113,7 @@ class HopEntry:
 
     # Aroma Information
     notes: List[str] = field(default_factory=list)
-    standardized_aromas: Dict[str, int] = field(default_factory=dict)
+    standardized_aromas: Dict[str, Union[int, float]] = field(default_factory=dict)
 
     # Source-specific data (optional)
     raw_aroma_data: Dict[str, Union[int, float]] = field(default_factory=dict)
@@ -153,7 +153,7 @@ class HopEntry:
                 if standard_aroma and standard_aroma in self.standardized_aromas:
                     # Take the maximum intensity if multiple source categories map to same standard category
                     current_intensity = (
-                        int(intensity) if isinstance(intensity, (int, float)) else 0
+                        float(intensity) if isinstance(intensity, (int, float)) else 0
                     )
                     self.standardized_aromas[standard_aroma] = max(
                         self.standardized_aromas[standard_aroma], current_intensity
