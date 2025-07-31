@@ -385,7 +385,6 @@ const SelectedHops = ({ hopData, selectedHops }) => {
           );
         })}
       </Grid>      
-      </Collapse>
 
       {/* Brewing Analysis Tabs - Show only when hops are selected */}
       {selectedHops.length > 0 && (
@@ -410,6 +409,8 @@ const SelectedHops = ({ hopData, selectedHops }) => {
           </Tabs>
         </Box>
       )}
+      </Collapse>
+
     </Paper>
   );
 };
