@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Paper, Title, Text, Box, Grid, Card, Group, ThemeIcon, useMantineColorScheme, Collapse, Button } from '@mantine/core';
 import {
   IconChartBar,
@@ -201,7 +201,7 @@ const SpiderChart = ({ hopData }) => {
   return (
     <Paper shadow="sm" p={{ base: "md", sm: "lg" }}>
       <Group justify="space-between" align="center" mb="md">
-        <Title order={3}>
+        <Title order={4}>
           Aroma Profile Comparison
         </Title>
         <Button
@@ -284,4 +284,4 @@ const SpiderChart = ({ hopData }) => {
   );
 };
 
-export default SpiderChart;
+export default React.memo(SpiderChart);

@@ -23,7 +23,7 @@ import StylePresetsModal from './StylePresetsModal';
 import FilterSummary from './FilterSummary';
 
 // Import hooks and utilities
-import { useHopFiltering } from './useHopFiltering';
+import { useHopFilteringWithContext } from '../../hooks/useHopFilteringWithContext';
 import { getAllAromaCombinations, getPopularPresets } from './presets';
 
 const HopSelector = ({ 
@@ -35,7 +35,7 @@ const HopSelector = ({
   const [filtersExpanded, setFiltersExpanded] = useState(false);
   const [presetsModalOpen, setPresetsModalOpen] = useState(false);
   
-  // Use the custom hook for filtering logic
+  // Use the context-aware filtering hook
   const {
     // State
     aromaStates,
@@ -77,7 +77,7 @@ const HopSelector = ({
     cycleCohumuloneThreshold,
     cycleOilThreshold,
     clearAllFilters,
-  } = useHopFiltering(hopData);
+  } = useHopFilteringWithContext(hopData);
 
   // Helper function to apply a preset combination
   const applyPreset = (preset) => {
@@ -102,7 +102,7 @@ const HopSelector = ({
       {/* Search and Filter Section */}
       <Box mb="md">
         <Group justify="space-between" mb="md">
-          <Title order={3}>Hop Selection & Filtering</Title>
+          <Title order={4}>Hop Selection & Filtering</Title>
           <Button
             variant="subtle"
             size="sm"

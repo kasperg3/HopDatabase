@@ -150,7 +150,7 @@ const SelectedHops = ({ hopData, selectedHops }) => {
   return (
     <Paper shadow="sm" p="lg">
       <Group justify="space-between" align="center" mb="md">
-        <Title order={3}>Selected Hops Details</Title>
+        <Title order={4}>Selected Hops Details</Title>
         <Button
           variant="subtle"
           size="sm"
