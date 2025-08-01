@@ -29,84 +29,19 @@ import {
 } from '@tabler/icons-react';
 import BrewingParametersComparison from './BrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
-
-// Advanced classification functions based on modern hop science
-const ALPHA_THRESHOLDS = {
-  SUPER_ALPHA: 11,
-  HIGH: 8,
-  MEDIUM: 5,
-  LOW: 3,
-  VERY_LOW: 3,
-};
-
-const OIL_THRESHOLDS = {
-  VERY_HIGH: 2.5,
-  HIGH: 1.5,
-  MEDIUM: 0.8,
-  LOW: 0.4,
-};
-
-const COHUMULONE_THRESHOLDS = {
-  HIGH: 34,
-  LOW: 25,
-};
-
-const BETA_ALPHA_THRESHOLDS = {
-  STABLE: 0.8,
-  AGING_POTENTIAL: 0.9,
-};
+import {
+  getAverageValue,
+  formatRange,
+  getCohumuloneClassification,
+  getBetaAlphaClassification
+} from '../utils/hopUtils';
+import { ALPHA_THRESHOLDS, OIL_THRESHOLDS } from '../utils/hopConstants';
 
 const SelectedHops = ({ hopData, selectedHops }) => {
   const { colorScheme } = useMantineColorScheme();
   const [isExpanded, setIsExpanded] = useState(true);
 
-  // Helper functions
-  const parseValue = (value) => {
-    if (typeof value === 'number') return value;
-    if (typeof value === 'string') {
-      const cleaned = value.replace(/[^\d.]/g, '');
-      const parsed = parseFloat(cleaned);
-      return isNaN(parsed) ? 0 : parsed;
-    }
-    return 0;
-  };
-
-  // Specific parser for oil values to handle unit consistency
-  const parseOilValue = (value) => {
-    if (typeof value === 'number') return value;
-    if (typeof value === 'string') {
-      // Handle both "1.5" and "1.5 mL/100g" formats
-      // Both should be treated as mL/100g values
-      const cleaned = value.replace(/[^\d.]/g, '');
-      const parsed = parseFloat(cleaned);
-      return isNaN(parsed) ? 0 : parsed;
-    }
-    return 0;
-  };
-
-  const getAverageValue = (from, to, isOil = false) => {
-    const parseFunc = isOil ? parseOilValue : parseValue;
-    const fromVal = parseFunc(from);
-    const toVal = parseFunc(to);
-    if (fromVal === 0 && toVal === 0) return 0;
-    if (toVal === 0) return fromVal;
-    if (fromVal === 0) return toVal;
-    return (fromVal + toVal) / 2;
-  };
-
-  const formatRange = (from, to, unit = '%', isOil = false) => {
-    const parseFunc = isOil ? parseOilValue : parseValue;
-    const fromVal = parseFunc(from);
-    const toVal = parseFunc(to);
-    
-    if (fromVal === 0 && toVal === 0) return 'N/A';
-    if (fromVal === toVal) return `${fromVal}${unit}`;
-    if (toVal === 0) return `${fromVal}${unit}`;
-    if (fromVal === 0) return `${toVal}${unit}`;
-    return `${fromVal} - ${toVal}${unit}`;
-  };
-
-  // Advanced classification functions
+  // Local getHopPurpose function that includes icon components
   const getHopPurpose = (avgAlpha, avgOil, avgBeta) => {
     if (avgAlpha >= ALPHA_THRESHOLDS.SUPER_ALPHA) {
       return { label: 'Super-Alpha', color: 'red', icon: IconFlask, description: 'Maximum bittering efficiency' };
@@ -121,20 +56,6 @@ const SelectedHops = ({ hopData, selectedHops }) => {
       return { label: 'Bittering', color: 'orange', icon: IconFlask, description: 'Efficient bittering' };
     }
     return { label: 'Dual-Purpose', color: 'violet', icon: IconTarget, description: 'Versatile applications' };
-  };
-
-  const getCohumuloneClassification = (avgCohumulone) => {
-    if (avgCohumulone === 0) return { label: 'Unknown', color: 'gray', description: 'Data not available' };
-    if (avgCohumulone > COHUMULONE_THRESHOLDS.HIGH) return { label: 'High IBU Yield', color: 'yellow', description: '+15-25% more IBUs than predicted' };
-    if (avgCohumulone < COHUMULONE_THRESHOLDS.LOW) return { label: 'Low IBU Yield', color: 'blue', description: 'May yield fewer IBUs' };
-    return { label: 'Standard IBUs', color: 'green', description: 'Standard IBU prediction' };
-  };
-
-  const getBetaAlphaClassification = (ratio) => {
-    if (ratio >= BETA_ALPHA_THRESHOLDS.AGING_POTENTIAL) return { label: 'Aging Potential', color: 'orange', description: 'May develop pleasant aged character' };
-    if (ratio >= BETA_ALPHA_THRESHOLDS.STABLE) return { label: 'Storage Stable', color: 'blue', description: 'Good bitterness stability' };
-    if (ratio < 0.5) return { label: 'Use Fresh', color: 'red', description: 'Rapid alpha degradation' };
-    return { label: 'Standard Storage', color: 'gray', description: 'Normal degradation rate' };
   };
 
   // Create unique hop entries with enhanced data processing

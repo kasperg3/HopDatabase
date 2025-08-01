@@ -8,6 +8,7 @@ import {
   IconChevronUp,
 } from '@tabler/icons-react';
 import Plot from 'react-plotly.js';
+import { getAverageValue } from '../utils/hopUtils';
 
 const SpiderChart = ({ hopData }) => {
   const chartRef = useRef();
@@ -29,25 +30,6 @@ const SpiderChart = ({ hopData }) => {
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
     '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE'
   ];
-
-  // Statistics calculation functions
-  const parseValue = (value) => {
-    if (typeof value === 'number') return value;
-    if (typeof value === 'string') {
-      const cleaned = value.replace(/[^\d.]/g, '');
-      const parsed = parseFloat(cleaned);
-      return isNaN(parsed) ? 0 : parsed;
-    }
-    return 0;
-  };
-  const getAverageValue = (from, to) => {
-    const fromVal = parseValue(from);
-    const toVal = parseValue(to);
-    if (fromVal === 0 && toVal === 0) return 0;
-    if (toVal === 0) return fromVal;
-    if (fromVal === 0) return toVal;
-    return (fromVal + toVal) / 2;
-  };
 
   // Calculate overall statistics
   const calculateOverallStats = () => {

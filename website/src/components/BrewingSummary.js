@@ -16,42 +16,17 @@ import {
   IconDroplet,
   IconTarget,
 } from '@tabler/icons-react';
+import {
+  getAverageValue
+} from '../utils/hopUtils';
+import {
+  ALPHA_THRESHOLDS,
+  OIL_THRESHOLDS,
+  COHUMULONE_THRESHOLDS,
+  BETA_ALPHA_THRESHOLDS
+} from '../utils/hopConstants';
 
-// ===== BREWING PARAMETER CONSTANTS (ADVANCED CHEMISTRY-BASED) =====
-
-// Alpha acid classification thresholds (from research)
-const ALPHA_THRESHOLDS = {
-  SUPER_ALPHA: 11, // >= 11% Super-Alpha (Maximum bittering efficiency)
-  HIGH: 8, // 8-11% High/Assertive (Powerful bittering)
-  MEDIUM: 5, // 5-8% Medium (Balanced bittering)
-  LOW: 3, // 3-5% Low (Aroma-focused)
-  VERY_LOW: 3, // < 3% Very Low (Noble hops)
-};
-
-// Total Oil content classification thresholds (mL/100g) - refined based on research
-const OIL_THRESHOLDS = {
-  VERY_HIGH: 2.5, // >= 2.5 mL/100g = Very High (Modern American varieties)
-  HIGH: 1.5, // 1.5 - 2.4 mL/100g = High 
-  MEDIUM: 0.8, // 0.8 - 1.4 mL/100g = Medium
-  LOW: 0.4, // 0.4 - 0.7 mL/100g = Low (Traditional varieties)
-};
-
-// Cohumulone thresholds - Updated based on research showing it affects IBU yield, not harshness
-const COHUMULONE_THRESHOLDS = {
-  HIGH: 34, // >34% High (Yields more IBUs than predicted)
-  MODERATE: 26, // 26-33% Moderate (Standard IBU predictions)
-  LOW: 25, // <25% Low (May yield fewer IBUs than predicted)
-};
-
-// Note: HSI (Hop Storage Index) data not available in current dataset
-
-// Beta:Alpha ratio thresholds for stability assessment
-const BETA_ALPHA_THRESHOLDS = {
-  STABLE: 0.8, // >= 0.8 indicates good bitterness stability over time
-  AGING_POTENTIAL: 0.9, // >= 0.9 may develop pleasant aromas during aging
-};
-
-// Advanced hop classification based on chemistry - More nuanced than traditional categories
+// BrewingSummary-specific constants
 const HOP_PURPOSE_RULES = {
   SUPER_ALPHA: {
     alpha_min: ALPHA_THRESHOLDS.SUPER_ALPHA,
@@ -111,26 +86,7 @@ const BrewingSummary = ({ hopData }) => {
     return null;
   }
 
-  const parseValue = (value) => {
-    if (typeof value === 'number') return value;
-    if (typeof value === 'string') {
-      const cleaned = value.replace(/[^\d.]/g, '');
-      const parsed = parseFloat(cleaned);
-      return isNaN(parsed) ? 0 : parsed;
-    }
-    return 0;
-  };
-
-  const getAverageValue = (from, to) => {
-    const fromVal = parseValue(from);
-    const toVal = parseValue(to);
-    if (fromVal === 0 && toVal === 0) return 0;
-    if (toVal === 0) return fromVal;
-    if (fromVal === 0) return toVal;
-    return (fromVal + toVal) / 2;
-  };
-
-  // Advanced hop classification based on modern understanding
+  // Advanced hop classification based on modern understanding - with BrewingSummary-specific rules
   const getHopPurpose = (avgAlpha, avgOil, avgBeta) => {
     // Super-Alpha classification (highest priority)
     if (avgAlpha >= ALPHA_THRESHOLDS.SUPER_ALPHA) {

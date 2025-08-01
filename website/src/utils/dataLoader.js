@@ -20,12 +20,11 @@ export const loadHopData = async () => {
       throw new Error('No hop data found in the file');
     }
 
-    console.log(`Loaded ${data.length} hops from data source`);
+    // Data loaded successfully
     return data;
   } catch (error) {
     console.error('Error loading hop data:', error);
-    console.error('Current environment:', process.env.NODE_ENV);
-    throw error;
+    return [];
   }
 };
 
