@@ -1,6 +1,13 @@
 // Data loader utility to fetch and process hop data from multiple sources
 
+let cachedHopData = null;
+
 export const loadHopData = async () => {
+  // Return cached data if available
+  if (cachedHopData) {
+    return cachedHopData;
+  }
+
   try {
     // Use the correct path for both development and production
     // In development, React serves files from the public folder at the root
@@ -20,6 +27,9 @@ export const loadHopData = async () => {
       throw new Error('No hop data found in the file');
     }
 
+    // Cache the data
+    cachedHopData = data;
+    
     // Data loaded successfully
     return data;
   } catch (error) {

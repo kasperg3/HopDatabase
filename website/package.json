@@ -16,12 +16,14 @@
     "recharts": "^3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && npm run analyze",
+    "build:prod": "GENERATE_SOURCEMAP=false craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d build",
+    "analyze": "npx webpack-bundle-analyzer build/static/js/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +44,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0"
+    "@craco/craco": "^7.1.0",
+    "gh-pages": "^6.1.0",
+    "webpack-bundle-analyzer": "^4.10.1"
   }
 }

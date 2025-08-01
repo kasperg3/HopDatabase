@@ -27,7 +27,7 @@ import {
   IconChevronDown,
   IconChevronUp,
 } from '@tabler/icons-react';
-import BrewingParametersComparison from './BrewingParametersComparison';
+import LazyBrewingParametersComparison from './LazyBrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
 import {
   getAverageValue,
@@ -321,7 +321,7 @@ const SelectedHops = ({ hopData, selectedHops }) => {
             </Tabs.List>
             
             <Tabs.Panel value="brewing-parameters" pt="lg">
-              <BrewingParametersComparison hopData={uniqueHops.filter(hop => selectedHops.includes(hop.uniqueId))} />
+              <LazyBrewingParametersComparison hopData={uniqueHops.filter(hop => selectedHops.includes(hop.uniqueId))} />
             </Tabs.Panel>
 
             <Tabs.Panel value="brewing-summary" pt="lg">

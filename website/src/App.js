@@ -21,7 +21,7 @@ import { notifications } from '@mantine/notifications';
 import { Notifications } from '@mantine/notifications';
 import { IconSun, IconMoon, IconShare, IconCheck, IconCopy } from '@tabler/icons-react';
 import HopSelector from './components/HopSelector';
-import SpiderChart from './components/SpiderChart';
+import LazySpiderChart, { preloadSpiderChart } from './components/LazySpiderChart';
 import SelectedHops from './components/SelectedHops';
 import { loadHopData, processHopData } from './utils/dataLoader';
 
@@ -157,6 +157,11 @@ function AppContent() {
         if (urlHops.length > 0) {
           setSelectedHops(urlHops);
         }
+
+        // Preload chart components after a short delay to improve perceived performance
+        setTimeout(() => {
+          preloadSpiderChart();
+        }, 1000);
       } catch (err) {
         setError('Failed to load hop data: ' + err.message);
       } finally {
@@ -331,7 +336,7 @@ return (
 
                 {/* 2. Aroma Profile Comparison - Full Width */}
                 <Box mb="xl">
-                    <SpiderChart hopData={getSelectedHopData()} />
+                    <LazySpiderChart hopData={getSelectedHopData()} />
                 </Box>
 
                 {/* 3. Selected Hops Display - Full Width */}

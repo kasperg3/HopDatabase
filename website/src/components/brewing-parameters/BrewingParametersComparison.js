@@ -1,6 +1,5 @@
 import { Paper, Grid } from '@mantine/core';
 import { processHopData } from '../../utils/hopUtils';
-import ParametersTable from './ParametersTable';
 import ParametersRadarChart from './ParametersRadarChart';
 import ParametersLegend from './ParametersLegend';
 import { useRadarChartData } from './useRadarChartData';

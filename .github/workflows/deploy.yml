@@ -38,7 +38,7 @@ jobs:
     - name: Build React app
       run: |
         cd website
-        npm run build --loglevel=error
+        npm run build:prod
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
