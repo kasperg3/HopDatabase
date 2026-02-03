@@ -230,8 +230,21 @@ def main():
     # Sort final data by name
     merged_data.sort(key=lambda hop: hop.name)
 
+    # Save to data directory for CI/CD pipeline
+    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    os.makedirs(data_dir, exist_ok=True)
     
-    # Optionally, save to a website data directory as well
+    # Save as hops.json (primary output)
+    hops_json_path = os.path.join(data_dir, 'hops.json')
+    save_hop_entries(merged_data, hops_json_path)
+    print(f"Saved merged data to {hops_json_path}")
+    
+    # Save as combined.json (for releases/backward compatibility)
+    combined_json_path = os.path.join(data_dir, 'combined.json')
+    save_hop_entries(merged_data, combined_json_path)
+    print(f"Saved merged data to {combined_json_path}")
+    
+    # Also save to website data directory for local development
     website_data_path = os.path.join(os.path.dirname(__file__), 'website', 'public', 'data', 'hops.json')
     if os.path.exists(os.path.dirname(website_data_path)):
         save_hop_entries(merged_data, website_data_path)
