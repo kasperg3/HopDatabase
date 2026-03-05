@@ -7,9 +7,11 @@ Contains scrapers for different hop suppliers.
 from . import yakima_chief
 from . import barth_haas  
 from . import hopsteiner
+from . import yakima_valley
 
 __all__ = [
     "yakima_chief",
     "barth_haas",
-    "hopsteiner"
+    "hopsteiner",
+    "yakima_valley",
 ]
