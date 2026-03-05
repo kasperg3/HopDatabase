@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Union
 
 # Import the data model and scrapers
 from hop_database.models.hop_model import HopEntry, save_hop_entries
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops, hops_australia
 
 
 def normalize_hop_name(name):
@@ -214,8 +214,13 @@ def main():
     crosby = crosby_hops.scrape(save=False)
     print(f"Found {len(crosby)} hops from Crosby Hops")
     
+    # ADDED: Run Hop Products Australia scraper
+    print("\nScraping Hop Products Australia (hops.com.au)...")
+    hpa = hops_australia.scrape(save=False)
+    print(f"Found {len(hpa)} hops from Hop Products Australia")
+    
     # --- Combine all entries ---
-    combined_hop_entries = ych_combined + bh + hs + crosby
+    combined_hop_entries = ych_combined + bh + hs + crosby + hpa
     print(f"\nTotal raw hop entries: {len(combined_hop_entries)}")
     
     # --- Scale aroma values by source before merging ---

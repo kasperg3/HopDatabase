@@ -9,7 +9,7 @@ __version__ = "1.0.0"
 __author__ = "HopDatabase Contributors"
 
 from .models.hop_model import HopEntry, save_hop_entries, load_hop_entries
-from .scrapers import yakima_chief, barth_haas, hopsteiner
+from .scrapers import yakima_chief, barth_haas, hopsteiner, hops_australia
 
 __all__ = [
     "HopEntry",
@@ -17,5 +17,6 @@ __all__ = [
     "load_hop_entries",
     "yakima_chief",
     "barth_haas", 
-    "hopsteiner"
+    "hopsteiner",
+    "hops_australia",
 ]

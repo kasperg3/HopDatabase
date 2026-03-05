@@ -85,6 +85,29 @@ AROMA_MAPPINGS = {
         "Tropical/Fruit": "Tropical Fruit",
         # Unmapped from source: "Cheesy/Sweaty", "Pungent/Dank", "Woody/Tobacco", "Catty", "Onion/Garlic"
     },
+    # Hop Products Australia (hops.com.au) mappings
+    "australianhops": {
+        "Citrus": "Citrus",
+        "Tropical": "Tropical Fruit",
+        "Tropical Fruit": "Tropical Fruit",
+        "Stone Fruit": "Stone Fruit",
+        "Floral": "Floral",
+        "Herbal": "Herbal",
+        "Earthy": "Herbal",
+        "Grassy": "Grassy",
+        "Resinous": "Resin/Pine",
+        "Pine": "Resin/Pine",
+        "Spicy": "Spice",
+        "Spice": "Spice",
+        "Berry": "Berry",
+        "Passionfruit": "Tropical Fruit",
+        "Peach": "Stone Fruit",
+        "Mango": "Tropical Fruit",
+        "Lemon": "Citrus",
+        "Orange": "Citrus",
+        "Lime": "Citrus",
+        "Pineapple": "Tropical Fruit",
+    },
 }
 
 
