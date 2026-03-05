@@ -183,13 +183,13 @@ def process_product(product: dict) -> Optional[HopEntry]:
         if not name:
             return None
 
-        # Some products (e.g., accessories) may have no brewing data — skip them
-        # if the description doesn't mention alpha acids
-        if body_html and not re.search(r"alpha", body_html, re.IGNORECASE):
-            return None
-
         country = get_country_from_tags(tags)
         brewing_values = parse_brewing_values(body_html)
+
+        # Some products (e.g., accessories) may have no brewing data — skip them
+        # if no alpha acid data could be parsed
+        if not brewing_values.get("alpha_from"):
+            return None
         notes = parse_notes(body_html)
         href = f"{BASE_URL}/products/{handle}"
 
