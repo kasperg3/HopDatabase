@@ -139,7 +139,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             co_h_from=parse_range(raw_data.get('cohumulone', ''))[0],
             co_h_to=parse_range(raw_data.get('cohumulone', ''))[1],
             notes=raw_data.get('notes', []),
-            additional_properties={'storage': raw_data.get('storage', 'N/A')}
+            storage=raw_data.get('storage', '')
         )
 
         # Standardize aromas using the model's method

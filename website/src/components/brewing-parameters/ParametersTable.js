@@ -14,6 +14,7 @@ import {
   IconTarget,
   IconShieldCheck,
   IconScale,
+  IconArchive,
 } from '@tabler/icons-react';
 import { formatRange } from '../../utils/hopUtils';
 import { CHART_COLORS } from '../../utils/hopConstants';
@@ -164,6 +165,27 @@ const ParametersTable = ({ processedHops }) => {
               </Table.Td>
             ))}
           </Table.Tr>
+
+          {/* Storage Row */}
+          {processedHops.some(hop => hop.storage) && (
+            <Table.Tr>
+              <Table.Th>
+                <Group gap="xs">
+                  <ThemeIcon size="sm" variant="light" color="indigo">
+                    <IconArchive size="0.8rem" />
+                  </ThemeIcon>
+                  <Text fw={700}>Storage</Text>
+                </Group>
+              </Table.Th>
+              {processedHops.map((hop) => (
+                <Table.Td key={`${hop.name}-storage`} ta="center">
+                  <Text size="sm" fw={600}>
+                    {hop.storage || 'N/A'}
+                  </Text>
+                </Table.Td>
+              ))}
+            </Table.Tr>
+          )}
         </Table.Tbody>
       </Table>
     </Paper>

@@ -206,6 +206,7 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                     co_h_from=co_h_low,
                     co_h_to=co_h_high,
                     notes=hop_aromas_notes,
+                    storage=str(properties_dict.get("Storage", "")).strip(),
                 )
 
                 # Set standardized aromas from sensory analysis data

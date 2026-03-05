@@ -26,6 +26,7 @@ import {
   IconLeaf,
   IconChevronDown,
   IconChevronUp,
+  IconArchive,
 } from '@tabler/icons-react';
 import LazyBrewingParametersComparison from './LazyBrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
@@ -246,6 +247,15 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                       </Badge>
                     </Tooltip>
                   </Group>
+                  {hopInfo.storage && (
+                    <Group gap="xs">
+                      <ThemeIcon size="sm" variant="light" color="indigo">
+                        <IconArchive size="0.8rem" />
+                      </ThemeIcon>
+                      <Text size="sm" fw={500}>Storage:</Text>
+                      <Text size="sm">{hopInfo.storage}</Text>
+                    </Group>
+                  )}
                 </Stack>
 
                 {/* Flavor Notes */}
