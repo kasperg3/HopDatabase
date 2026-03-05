@@ -115,21 +115,24 @@ def parse_brewing_values(body_html: str) -> dict:
 
     # Fall back to regex on plain text for common label patterns
     patterns = [
+        # Support both ranges (e.g., "9.5 - 11.5") and single values (e.g., "12")
         ("alpha_from", "alpha_to",
-         r"Alpha\s*Acids?:?\s*([\d.]+)\s*[-\u2013]\s*([\d.]+)"),
+         r"Alpha\s*Acids?:?\s*([\d.]+)(?:\s*[-\u2013]\s*([\d.]+))?"),
         ("beta_from", "beta_to",
-         r"Beta\s*Acids?:?\s*([\d.]+)\s*[-\u2013]\s*([\d.]+)"),
+         r"Beta\s*Acids?:?\s*([\d.]+)(?:\s*[-\u2013]\s*([\d.]+))?"),
         ("co_h_from", "co_h_to",
-         r"Cohumulone:?\s*([\d.]+)\s*[-\u2013]\s*([\d.]+)"),
+         r"Cohumulone:?\s*([\d.]+)(?:\s*[-\u2013]\s*([\d.]+))?"),
         ("oil_from", "oil_to",
-         r"(?:Total\s*)?Oil:?\s*([\d.]+)\s*[-\u2013]\s*([\d.]+)"),
+         r"(?:Total\s*)?Oil:?\s*([\d.]+)(?:\s*[-\u2013]\s*([\d.]+))?"),
     ]
     for from_key, to_key, pattern in patterns:
         if from_key not in values:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
-                values[from_key] = match.group(1)
-                values[to_key] = match.group(2)
+                from_val = match.group(1)
+                to_val = match.group(2) if match.group(2) is not None else from_val
+                values[from_key] = from_val
+                values[to_key] = to_val
 
     return values
 
