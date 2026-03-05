@@ -118,6 +118,9 @@ class HopEntry:
     # Source-specific data (optional)
     raw_aroma_data: Dict[str, Union[int, float]] = field(default_factory=dict)
 
+    # Storage/survivability (percentage of alpha acids retained after storage)
+    storage: str = ""
+
     # Additional properties (for Hopsteiner extended data)
     additional_properties: Dict[str, Union[str, float, int]] = field(
         default_factory=dict
@@ -270,6 +273,7 @@ class HopEntry:
             "oil_to": self.oil_to,
             "co_h_from": self.co_h_from,
             "co_h_to": self.co_h_to,
+            "storage": self.storage,
             "notes": self.notes,
             "aromas": self.standardized_aromas,
             "additional_properties": self.additional_properties,

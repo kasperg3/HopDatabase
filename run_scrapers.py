@@ -125,6 +125,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         all_sources = set()
         all_hrefs = []
         all_standardized_aromas = []
+        all_storage = []
         
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
@@ -134,6 +135,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             if hop.country: all_countries.append(hop.country)
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
+            if hop.storage: all_storage.append(hop.storage)
 
             if isinstance(hop.standardized_aromas, dict):
                 all_standardized_aromas.append(hop.standardized_aromas)
@@ -156,6 +158,9 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         # Store all unique hrefs, separated by " | " for multiple sources
         unique_hrefs = list(dict.fromkeys(all_hrefs))  # Remove duplicates while preserving order
         final_hop.href = " | ".join(unique_hrefs) if unique_hrefs else ""
+        # Use the first available storage value (deduplicated)
+        unique_storage = list(dict.fromkeys(all_storage))
+        final_hop.storage = " / ".join(unique_storage) if unique_storage else ""
 
         for key, values in range_values.items():
             from_vals = [v for v in values['from'] if v > 0]
