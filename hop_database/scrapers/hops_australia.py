@@ -457,7 +457,12 @@ def scrape(save: bool = False) -> List[HopEntry]:
             executor.submit(process_hop_page, url): url for url in hop_links
         }
         for future in concurrent.futures.as_completed(future_to_url):
-            result = future.result()
+            url = future_to_url[future]
+            try:
+                result = future.result()
+            except Exception as e:
+                print(f"Error processing hop page {url}: {e}")
+                continue
             if result:
                 hop_entries.append(result)
 
