@@ -123,6 +123,11 @@ class HopEntry:
         default_factory=dict
     )
 
+    # Product variants (e.g., T-90 Pellets, Whole Cone, LupuLN2, Lupomax)
+    # Each entry: {"type": str, "alpha_from": ..., "alpha_to": ..., "beta_from": ...,
+    #              "beta_to": ..., "oil_from": ..., "oil_to": ..., "co_h_from": ..., "co_h_to": ...}
+    product_variants: List[Dict] = field(default_factory=list)
+
     def __post_init__(self):
         """Initialize standardized aromas with default values if not provided."""
         if not self.standardized_aromas:
@@ -273,6 +278,7 @@ class HopEntry:
             "notes": self.notes,
             "aromas": self.standardized_aromas,
             "additional_properties": self.additional_properties,
+            "product_variants": self.product_variants,
             "brewing_stats": self.get_brewing_stats(),
         }
 

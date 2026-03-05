@@ -129,6 +129,9 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
 
+        # Collect product variants, deduplicated by type name
+        all_product_variants: Dict[str, Dict] = {}
+
         for hop in entries:
             all_notes.update([note.strip().lower() for note in hop.notes if note])
             if hop.country: all_countries.append(hop.country)
@@ -149,6 +152,12 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
                 elif prop_key.endswith("_to"):
                     base_key = prop_key[:-3]
                     additional_props_values[base_key]['to'].append(get_safe_float(prop_val))
+
+            # Merge product variants: keep first occurrence per type name
+            for variant in hop.product_variants:
+                variant_type = variant.get("type", "")
+                if variant_type and variant_type not in all_product_variants:
+                    all_product_variants[variant_type] = variant
 
         final_hop.notes = sorted(list(all_notes))
         final_hop.country = all_countries[0] if all_countries else ""
@@ -181,6 +190,11 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             to_vals = [v for v in values['to'] if v > 0]
             final_hop.additional_properties[f"{base_key}_from"] = min(from_vals) if from_vals else 0.0
             final_hop.additional_properties[f"{base_key}_to"] = max(to_vals) if to_vals else 0.0
+
+        # Attach collected product variants (sorted by type name for consistency)
+        final_hop.product_variants = sorted(
+            list(all_product_variants.values()), key=lambda v: v.get("type", "")
+        )
 
         merged_hops.append(final_hop)
 
