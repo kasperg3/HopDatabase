@@ -12,6 +12,7 @@
         "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal",
@@ -55,6 +56,7 @@
         "oil_to": 1.7,
         "co_h_from": 42.0,
         "co_h_to": 44.0,
+        "storage": "",
         "notes": [
             "citrusy",
             "cranberry",
@@ -118,6 +120,7 @@
         "oil_to": 0.5,
         "co_h_from": 15.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "dried fruit",
             "hay",
@@ -160,6 +163,7 @@
         "oil_to": 3.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "dried fruits",
             "honey",
@@ -203,6 +207,7 @@
         "oil_to": 2.0,
         "co_h_from": 30.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "cedar",
             "citrus",
@@ -246,6 +251,7 @@
         "oil_to": 2.0,
         "co_h_from": 27.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "green fruit",
             "pepper",
@@ -305,6 +311,7 @@
         "oil_to": 2.0,
         "co_h_from": 20.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "citrus",
             "stone fruit",
@@ -347,6 +354,7 @@
         "oil_to": 1.3,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "apricot",
             "peach",
@@ -406,6 +414,7 @@
         "oil_to": 4.4,
         "co_h_from": 26.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "resinous",
             "spicy",
@@ -464,6 +473,7 @@
         "oil_to": 2.5,
         "co_h_from": 20.0,
         "co_h_to": 27.0,
+        "storage": "",
         "notes": [
             "apricot",
             "black tea",
@@ -533,6 +543,7 @@
         "oil_to": 2.5,
         "co_h_from": 24.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "grapefruit",
             "lime",
@@ -591,6 +602,7 @@
         "oil_to": 1.6,
         "co_h_from": 21.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "caramel",
             "citrus",
@@ -656,6 +668,7 @@
         "oil_to": 2.4,
         "co_h_from": 40.0,
         "co_h_to": 42.0,
+        "storage": "",
         "notes": [
             "berry",
             "black berries",
@@ -724,6 +737,7 @@
         "oil_to": 2.6,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "aniseed",
             "apple blossom",
@@ -791,6 +805,7 @@
         "oil_to": 2.5,
         "co_h_from": 36.0,
         "co_h_to": 45.0,
+        "storage": "",
         "notes": [
             "basil",
             "berry",
@@ -841,6 +856,7 @@
         "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "berry",
             "stone fruit",
@@ -882,6 +898,7 @@
         "oil_to": 2.5,
         "co_h_from": 28.0,
         "co_h_to": 45.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -944,6 +961,7 @@
         "oil_to": 1.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "stone fruit",
@@ -985,6 +1003,7 @@
         "oil_to": 2.0,
         "co_h_from": 25.0,
         "co_h_to": 27.0,
+        "storage": "",
         "notes": [
             "barrique",
             "dried fruit",
@@ -1049,6 +1068,7 @@
         "oil_to": 4.0,
         "co_h_from": 25.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -1114,6 +1134,7 @@
         "oil_to": 1.5,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "hoppy",
             "spicy"
@@ -1171,6 +1192,7 @@
         "oil_to": 1.7,
         "co_h_from": 33.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "camomile blossom",
             "caramel",
@@ -1231,6 +1253,7 @@
         "oil_to": 3.5,
         "co_h_from": 28.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "candied lime",
             "citrus",
@@ -1294,6 +1317,7 @@
         "oil_to": 3.0,
         "co_h_from": 40.0,
         "co_h_to": 48.0,
+        "storage": "",
         "notes": [
             "black currant",
             "currant",
@@ -1357,6 +1381,7 @@
         "oil_to": 2.0,
         "co_h_from": 30.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus",
             "eucalyptus",
@@ -1402,6 +1427,7 @@
         "oil_to": 1.75,
         "co_h_from": 15.0,
         "co_h_to": 22.0,
+        "storage": "",
         "notes": [
             "apricot",
             "berry",
@@ -1469,6 +1495,7 @@
         "oil_to": 2.5,
         "co_h_from": 40.0,
         "co_h_to": 42.0,
+        "storage": "",
         "notes": [
             "apple",
             "melon",
@@ -1528,6 +1555,7 @@
         "oil_to": 2.0,
         "co_h_from": 29.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "black currant",
             "blackberry",
@@ -1630,6 +1658,7 @@
         "oil_to": 1.8,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -1696,6 +1725,7 @@
         "oil_to": 3.6,
         "co_h_from": 24.0,
         "co_h_to": 27.0,
+        "storage": "",
         "notes": [
             "earthy",
             "hay",
@@ -1744,6 +1774,7 @@
         "oil_to": 3.5,
         "co_h_from": 23.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "bergamot",
             "cedar",
@@ -1858,6 +1889,7 @@
         "oil_to": 1.5,
         "co_h_from": 20.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "artichoke",
             "banana",
@@ -1921,6 +1953,7 @@
         "oil_to": 2.0,
         "co_h_from": 33.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus",
             "cream",
@@ -1964,6 +1997,7 @@
         "oil_to": 2.7,
         "co_h_from": 26.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "apricot",
             "basil",
@@ -2033,6 +2067,7 @@
         "oil_to": 3.0,
         "co_h_from": 20.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "blackberry",
             "citrus",
@@ -2126,6 +2161,7 @@
         "oil_to": 1.0,
         "co_h_from": 35.0,
         "co_h_to": 42.0,
+        "storage": "",
         "notes": [
             "citrusy",
             "cream",
@@ -2192,6 +2228,7 @@
         "oil_to": 0.9,
         "co_h_from": 30.5,
         "co_h_to": 36.5,
+        "storage": "",
         "notes": [
             "earthy",
             "grassy",
@@ -2234,6 +2271,7 @@
         "oil_to": 2.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "earthy",
             "fruity"
@@ -2274,6 +2312,7 @@
         "oil_to": 4.5,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "fennel seeds",
@@ -2319,6 +2358,7 @@
         "oil_to": 3.5,
         "co_h_from": 30.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "black pepper",
             "light citrus",
@@ -2377,6 +2417,7 @@
         "oil_to": 3.9,
         "co_h_from": 32.0,
         "co_h_to": 45.0,
+        "storage": "",
         "notes": [
             "citrus",
             "elderflower",
@@ -2446,6 +2487,7 @@
         "oil_to": 3.9,
         "co_h_from": 34.0,
         "co_h_to": 45.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -2487,6 +2529,7 @@
         "oil_to": 1.9,
         "co_h_from": 29.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "floral",
             "green tea",
@@ -2545,6 +2588,7 @@
         "oil_to": 4.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "sweet aromatic",
@@ -2586,6 +2630,7 @@
         "oil_to": 2.1,
         "co_h_from": 19.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "apricot",
             "black tea",
@@ -2656,6 +2701,7 @@
         "oil_to": 4.0,
         "co_h_from": 26.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "dank",
@@ -2698,6 +2744,7 @@
         "oil_to": 1.1,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "citrusy",
             "earthy",
@@ -2757,6 +2804,7 @@
         "oil_to": 1.7,
         "co_h_from": 18.0,
         "co_h_to": 20.0,
+        "storage": "",
         "notes": [
             "blueberry",
             "fennel",
@@ -2817,6 +2865,7 @@
         "oil_to": 0.8,
         "co_h_from": 26.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "earthy",
             "herbal",
@@ -2859,6 +2908,7 @@
         "oil_to": 0.8,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "dill",
             "earthy",
@@ -2902,6 +2952,7 @@
         "oil_to": 3.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "basil",
             "cedar",
@@ -2945,6 +2996,7 @@
         "oil_to": 4.5,
         "co_h_from": 30.0,
         "co_h_to": 37.0,
+        "storage": "",
         "notes": [
             "bubblegum",
             "citrus",
@@ -2993,6 +3045,7 @@
         "oil_to": 3.3,
         "co_h_from": 28.0,
         "co_h_to": 36.0,
+        "storage": "",
         "notes": [
             "and candied lemon",
             "apricot",
@@ -3060,6 +3113,7 @@
         "oil_to": 2.4,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "guava",
             "lime",
@@ -3103,6 +3157,7 @@
         "oil_to": 2.8,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "black currant",
             "green pepper",
@@ -3146,6 +3201,7 @@
         "oil_to": 1.8,
         "co_h_from": 30.0,
         "co_h_to": 36.0,
+        "storage": "",
         "notes": [
             "bergamot",
             "black currant",
@@ -3192,6 +3248,7 @@
         "oil_to": 3.7,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "lime",
             "nutmeg",
@@ -3235,6 +3292,7 @@
         "oil_to": 2.8,
         "co_h_from": 24.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "and floral rose",
             "blueberry",
@@ -3294,6 +3352,7 @@
         "oil_to": 1.1,
         "co_h_from": 50.0,
         "co_h_to": 55.0,
+        "storage": "",
         "notes": [
             "grassy",
             "herbal",
@@ -3336,6 +3395,7 @@
         "oil_to": 4.4,
         "co_h_from": 28.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "black currant",
             "dark fruits",
@@ -3395,6 +3455,7 @@
         "oil_to": 3.9,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "hay",
             "juniper",
@@ -3438,6 +3499,7 @@
         "oil_to": 2.0,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal",
@@ -3480,6 +3542,7 @@
         "oil_to": 2.5,
         "co_h_from": 24.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -3522,6 +3585,7 @@
         "oil_to": 2.0,
         "co_h_from": 32.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "celeriac",
             "citrus",
@@ -3588,6 +3652,7 @@
         "oil_to": 1.4,
         "co_h_from": 25.0,
         "co_h_to": 33.0,
+        "storage": "",
         "notes": [
             "celeriac",
             "curry",
@@ -3654,6 +3719,7 @@
         "oil_to": 3.3,
         "co_h_from": 32.0,
         "co_h_to": 43.0,
+        "storage": "",
         "notes": [
             "black currant",
             "black current",
@@ -3701,6 +3767,7 @@
         "oil_to": 2.0,
         "co_h_from": 34.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "citrus",
             "cognac",
@@ -3769,6 +3836,7 @@
         "oil_to": 1.6,
         "co_h_from": 11.0,
         "co_h_to": 16.0,
+        "storage": "",
         "notes": [
             "artichoke",
             "berry",
@@ -3835,6 +3903,7 @@
         "oil_to": 1.0,
         "co_h_from": 23.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "earthy",
             "floral",
@@ -3896,6 +3965,7 @@
         "oil_to": 1.9,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "cassis",
             "citrus",
@@ -3962,6 +4032,7 @@
         "oil_to": 3.9,
         "co_h_from": 21.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "apple",
             "cedar",
@@ -4024,6 +4095,7 @@
         "oil_to": 2.2,
         "co_h_from": 17.0,
         "co_h_to": 22.0,
+        "storage": "",
         "notes": [
             "citrusy",
             "mint",
@@ -4083,6 +4155,7 @@
         "oil_to": 1.5,
         "co_h_from": 18.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "bergamot",
             "carnation",
@@ -4151,6 +4224,7 @@
         "oil_to": 3.7,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "banana",
             "chocolate",
@@ -4214,6 +4288,7 @@
         "oil_to": 1.3,
         "co_h_from": 24.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "apricot",
             "cognac",
@@ -4281,6 +4356,7 @@
         "oil_to": 2.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "apricot",
             "caramel",
@@ -4322,6 +4398,7 @@
         "oil_to": 2.2,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "coconut",
             "peach",
@@ -4363,6 +4440,7 @@
         "oil_to": 2.5,
         "co_h_from": 40.0,
         "co_h_to": 46.0,
+        "storage": "",
         "notes": [
             "citrus",
             "coconut",
@@ -4405,6 +4483,7 @@
         "oil_to": 3.0,
         "co_h_from": 20.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -4448,6 +4527,7 @@
         "oil_to": 4.0,
         "co_h_from": 26.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal",
@@ -4491,6 +4571,7 @@
         "oil_to": 4.0,
         "co_h_from": 26.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "earthy",
@@ -4534,6 +4615,7 @@
         "oil_to": 2.8,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "earthy",
             "leek",
@@ -4577,6 +4659,7 @@
         "oil_to": 1.0,
         "co_h_from": 20.0,
         "co_h_to": 23.0,
+        "storage": "",
         "notes": [
             "floral",
             "spicy"
@@ -4617,6 +4700,7 @@
         "oil_to": 2.0,
         "co_h_from": 26.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "super alpha with clean bitterness"
         ],
@@ -4673,6 +4757,7 @@
         "oil_to": 2.9,
         "co_h_from": 31.0,
         "co_h_to": 38.0,
+        "storage": "",
         "notes": [
             "apricot",
             "citrus",
@@ -4739,6 +4824,7 @@
         "oil_to": 1.0,
         "co_h_from": 17.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "hay",
             "herbal/earthy",
@@ -4800,6 +4886,7 @@
         "oil_to": 1.3,
         "co_h_from": 17.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "black tea",
             "camomile blossom",
@@ -4847,6 +4934,7 @@
         "oil_to": 2.5,
         "co_h_from": 16.0,
         "co_h_to": 20.0,
+        "storage": "",
         "notes": [
             "citrus",
             "citrusy",
@@ -4906,6 +4994,7 @@
         "oil_to": 0.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "herbal",
             "melon",
@@ -4948,6 +5037,7 @@
         "oil_to": 2.6,
         "co_h_from": 29.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "berry jam",
             "grapefruit",
@@ -5007,6 +5097,7 @@
         "oil_to": 1.7,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "chilli",
             "green grassy",
@@ -5050,6 +5141,7 @@
         "oil_to": 2.1,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "caramel",
             "citrus",
@@ -5116,6 +5208,7 @@
         "oil_to": 0.9,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "berry",
             "stone fruit"
@@ -5156,6 +5249,7 @@
         "oil_to": 5.0,
         "co_h_from": 30.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "berry",
             "bubblegum",
@@ -5201,6 +5295,7 @@
         "oil_to": 3.0,
         "co_h_from": 36.0,
         "co_h_to": 42.0,
+        "storage": "",
         "notes": [
             "berry",
             "bubblegum",
@@ -5244,6 +5339,7 @@
         "oil_to": 2.0,
         "co_h_from": 34.0,
         "co_h_to": 37.0,
+        "storage": "",
         "notes": [
             "citrus",
             "fruity",
@@ -5287,6 +5383,7 @@
         "oil_to": 2.0,
         "co_h_from": 35.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "citrus",
             "earthy",
@@ -5333,6 +5430,7 @@
         "oil_to": 2.0,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -5377,6 +5475,7 @@
         "oil_to": 3.0,
         "co_h_from": 34.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -5427,6 +5526,7 @@
         "oil_to": 2.0,
         "co_h_from": 28.0,
         "co_h_to": 34.0,
+        "storage": "",
         "notes": [
             "green tea",
             "lemon",
@@ -5485,6 +5585,7 @@
         "oil_to": 2.0,
         "co_h_from": 22.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "floral",
             "herbal",
@@ -5546,6 +5647,7 @@
         "oil_to": 3.4,
         "co_h_from": 21.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "bergamot",
             "citrus",
@@ -5594,6 +5696,7 @@
         "oil_to": 2.5,
         "co_h_from": 33.0,
         "co_h_to": 39.0,
+        "storage": "",
         "notes": [
             "berry",
             "orange",
@@ -5653,6 +5756,7 @@
         "oil_to": 1.2,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "floral",
             "lemon",
@@ -5711,6 +5815,7 @@
         "oil_to": 1.1,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "apple blossom",
             "cedar",
@@ -5754,6 +5859,7 @@
         "oil_to": 2.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "camomile blossom",
             "ginger",
@@ -5797,6 +5903,7 @@
         "oil_to": 2.6,
         "co_h_from": 21.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -5842,6 +5949,7 @@
         "oil_to": 2.8,
         "co_h_from": 31.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "black currant",
             "bubble gum",
@@ -5908,6 +6016,7 @@
         "oil_to": 2.2,
         "co_h_from": 26.0,
         "co_h_to": 33.0,
+        "storage": "",
         "notes": [
             "aniseed",
             "chocolate",
@@ -5970,6 +6079,7 @@
         "oil_to": 4.0,
         "co_h_from": 25.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus and summery characteristics",
             "grapefruit",
@@ -6028,6 +6138,7 @@
         "oil_to": 1.6,
         "co_h_from": 50.1,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -6069,6 +6180,7 @@
         "oil_to": 3.0,
         "co_h_from": 29.0,
         "co_h_to": 34.0,
+        "storage": "",
         "notes": [
             "cedar",
             "chocolate",
@@ -6117,6 +6229,7 @@
         "oil_to": 1.9,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "cherry",
             "plum",
@@ -6160,6 +6273,7 @@
         "oil_to": 3.0,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -6207,6 +6321,7 @@
         "oil_to": 1.8,
         "co_h_from": 27.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "fresh lime",
@@ -6271,6 +6386,7 @@
         "oil_to": 1.5,
         "co_h_from": 28.0,
         "co_h_to": 34.0,
+        "storage": "",
         "notes": [
             "fruity",
             "lemon",
@@ -6313,6 +6429,7 @@
         "oil_to": 1.7,
         "co_h_from": 22.0,
         "co_h_to": 23.0,
+        "storage": "",
         "notes": [
             "floral",
             "herbal",
@@ -6372,6 +6489,7 @@
         "oil_to": 2.3,
         "co_h_from": 24.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -6416,6 +6534,7 @@
         "oil_to": 2.0,
         "co_h_from": 21.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "curry",
             "fennel",
@@ -6466,6 +6585,7 @@
         "oil_to": 2.5,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "cedar",
             "citrus",
@@ -6529,6 +6649,7 @@
         "oil_to": 6.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "stone fruit",
@@ -6570,6 +6691,7 @@
         "oil_to": 1.5,
         "co_h_from": 20.0,
         "co_h_to": 34.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -6634,6 +6756,7 @@
         "oil_to": 1.5,
         "co_h_from": 20.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "citrus",
             "tropical",
@@ -6675,6 +6798,7 @@
         "oil_to": 2.5,
         "co_h_from": 36.0,
         "co_h_to": 38.0,
+        "storage": "",
         "notes": [
             "spicy"
         ],
@@ -6714,6 +6838,7 @@
         "oil_to": 2.2,
         "co_h_from": 24.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "floral",
             "pine",
@@ -6773,6 +6898,7 @@
         "oil_to": 1.6,
         "co_h_from": 27.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "grassy",
@@ -6839,6 +6965,7 @@
         "oil_to": 3.1,
         "co_h_from": 22.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -6908,6 +7035,7 @@
         "oil_to": 2.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "spicy"
@@ -6948,6 +7076,7 @@
         "oil_to": 2.4,
         "co_h_from": 13.0,
         "co_h_to": 17.0,
+        "storage": "",
         "notes": [
             "aniseed",
             "barrique",
@@ -7014,6 +7143,7 @@
         "oil_to": 0.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "earthy",
@@ -7057,6 +7187,7 @@
         "oil_to": 1.6,
         "co_h_from": 35.0,
         "co_h_to": 38.0,
+        "storage": "",
         "notes": [
             "berry",
             "spicy",
@@ -7098,6 +7229,7 @@
         "oil_to": 2.0,
         "co_h_from": 24.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "black pepper",
             "citrus",
@@ -7139,6 +7271,7 @@
         "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -7180,6 +7313,7 @@
         "oil_to": 2.0,
         "co_h_from": 22.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -7221,6 +7355,7 @@
         "oil_to": 2.0,
         "co_h_from": 22.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -7262,6 +7397,7 @@
         "oil_to": 2.0,
         "co_h_from": 26.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -7305,6 +7441,7 @@
         "oil_to": 3.0,
         "co_h_from": 27.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -7346,6 +7483,7 @@
         "oil_to": 2.0,
         "co_h_from": 29.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus",
             "dried fruits",
@@ -7415,6 +7553,7 @@
         "oil_to": 2.5,
         "co_h_from": 29.0,
         "co_h_to": 31.0,
+        "storage": "",
         "notes": [
             "chocolate",
             "floral",
@@ -7474,6 +7613,7 @@
         "oil_to": 2.4,
         "co_h_from": 36.0,
         "co_h_to": 38.0,
+        "storage": "",
         "notes": [
             "citrus",
             "citrusy",
@@ -7538,6 +7678,7 @@
         "oil_to": 1.5,
         "co_h_from": 32.0,
         "co_h_to": 37.0,
+        "storage": "",
         "notes": [
             "lemon",
             "orange",
@@ -7579,6 +7720,7 @@
         "oil_to": 1.7,
         "co_h_from": 30.0,
         "co_h_to": 31.9,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -7622,6 +7764,7 @@
         "oil_to": 4.5,
         "co_h_from": 22.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "banana",
             "bergamot",
@@ -7686,6 +7829,7 @@
         "oil_to": 2.0,
         "co_h_from": 18.0,
         "co_h_to": 23.0,
+        "storage": "",
         "notes": [
             "chocolate",
             "curry",
@@ -7751,6 +7895,7 @@
         "oil_to": 2.0,
         "co_h_from": 26.0,
         "co_h_to": 39.0,
+        "storage": "",
         "notes": [
             "cedar",
             "citrus",
@@ -7812,6 +7957,7 @@
         "oil_to": 1.0,
         "co_h_from": 25.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "black currant",
             "cassis",
@@ -7878,6 +8024,7 @@
         "oil_to": 2.3,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "apricot",
             "citrus",
@@ -7922,6 +8069,7 @@
         "oil_to": 2.0,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "apricot",
             "citrus",
@@ -7964,6 +8112,7 @@
         "oil_to": 1.3,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "cognac",
             "green pepper",
@@ -8007,6 +8156,7 @@
         "oil_to": 1.5,
         "co_h_from": 29.0,
         "co_h_to": 36.0,
+        "storage": "",
         "notes": [
             "citrus",
             "grapefruit",
@@ -8066,6 +8216,7 @@
         "oil_to": 1.0,
         "co_h_from": 23.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "earthy",
             "floral",
@@ -8110,6 +8261,7 @@
         "oil_to": 1.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "camomile blossom",
             "hay",
@@ -8153,6 +8305,7 @@
         "oil_to": 1.0,
         "co_h_from": 24.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "cucumber",
             "geranium",
@@ -8216,6 +8369,7 @@
         "oil_to": 4.0,
         "co_h_from": 20.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "citrus",
             "coconut",
@@ -8263,6 +8417,7 @@
         "oil_to": 2.0,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "floral",
             "herbal",
@@ -8304,6 +8459,7 @@
         "oil_to": 17.0,
         "co_h_from": 12.0,
         "co_h_to": 17.0,
+        "storage": "",
         "notes": [
             "black tea",
             "citrus",
@@ -8369,6 +8525,7 @@
         "oil_to": 1.5,
         "co_h_from": 27.0,
         "co_h_to": 31.0,
+        "storage": "",
         "notes": [
             "citrus",
             "earthy",
@@ -8411,6 +8568,7 @@
         "oil_to": 3.0,
         "co_h_from": 17.0,
         "co_h_to": 21.0,
+        "storage": "",
         "notes": [
             "citrus",
             "grapefruit",
@@ -8454,6 +8612,7 @@
         "oil_to": 2.0,
         "co_h_from": 23.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "cognac",
             "floral",
@@ -8500,6 +8659,7 @@
         "oil_to": 1.2,
         "co_h_from": 23.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "citrus",
             "fruity",
@@ -8558,6 +8718,7 @@
         "oil_to": 0.8,
         "co_h_from": 13.0,
         "co_h_to": 18.0,
+        "storage": "",
         "notes": [
             "aniseed",
             "butter",
@@ -8622,6 +8783,7 @@
         "oil_to": 2.0,
         "co_h_from": 45.0,
         "co_h_to": 55.0,
+        "storage": "",
         "notes": [
             "mango",
             "passion fruit",
@@ -8680,6 +8842,7 @@
         "oil_to": 5.0,
         "co_h_from": 20.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "cedarwood",
             "herbal",
@@ -8746,6 +8909,7 @@
         "oil_to": 2.0,
         "co_h_from": 25.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "citrus",
             "lemon",
@@ -8789,6 +8953,7 @@
         "oil_to": 1.0,
         "co_h_from": 26.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "apricot",
             "earthy",
@@ -8856,6 +9021,7 @@
         "oil_to": 1.1,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "barrique",
             "cinnamon",
@@ -8899,6 +9065,7 @@
         "oil_to": 1.0,
         "co_h_from": 22.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "floral",
             "fruity",
@@ -8960,6 +9127,7 @@
         "oil_to": 1.5,
         "co_h_from": 21.0,
         "co_h_to": 27.0,
+        "storage": "",
         "notes": [
             "cucumber",
             "floral",
@@ -9025,6 +9193,7 @@
         "oil_to": 2.0,
         "co_h_from": 21.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -9088,6 +9257,7 @@
         "oil_to": 0.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "pine"
@@ -9128,6 +9298,7 @@
         "oil_to": 3.5,
         "co_h_from": 21.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "pungent/dank",
@@ -9169,6 +9340,7 @@
         "oil_to": 0.8,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "camomile blossom",
             "eucalyptus",
@@ -9212,6 +9384,7 @@
         "oil_to": 0.8,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "citrus",
             "citrusy",
@@ -9273,6 +9446,7 @@
         "oil_to": 2.3,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "basil",
             "cucumber",
@@ -9316,6 +9490,7 @@
         "oil_to": 0.9,
         "co_h_from": 27.0,
         "co_h_to": 31.0,
+        "storage": "",
         "notes": [
             "green tea",
             "herbal",
@@ -9374,6 +9549,7 @@
         "oil_to": 1.7,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "green pepper",
             "incense",
@@ -9415,6 +9591,7 @@
         "oil_to": 4.0,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "citrus",
             "pine",
@@ -9473,6 +9650,7 @@
         "oil_to": 1.3,
         "co_h_from": 20.0,
         "co_h_to": 25.0,
+        "storage": "",
         "notes": [
             "apricot",
             "melon"
@@ -9513,6 +9691,7 @@
         "oil_to": 3.0,
         "co_h_from": 28.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "citrus",
             "citrusy",
@@ -9580,6 +9759,7 @@
         "oil_to": 2.5,
         "co_h_from": 35.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "grass",
             "spicy"
@@ -9637,6 +9817,7 @@
         "oil_to": 4.0,
         "co_h_from": 24.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "curry",
             "fruity",
@@ -9682,6 +9863,7 @@
         "oil_to": 2.2,
         "co_h_from": 26.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -9724,6 +9906,7 @@
         "oil_to": 0.6,
         "co_h_from": 29.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "earthy",
             "herbal"
@@ -9764,6 +9947,7 @@
         "oil_to": 2.1,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "barrique",
             "chocolate",
@@ -9807,6 +9991,7 @@
         "oil_to": 1.1,
         "co_h_from": 23.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "floral",
             "herbal",
@@ -9848,6 +10033,7 @@
         "oil_to": 2.0,
         "co_h_from": 15.0,
         "co_h_to": 17.0,
+        "storage": "",
         "notes": [
             "citrus",
             "lemon",
@@ -9908,6 +10094,7 @@
         "oil_to": 2.7,
         "co_h_from": 32.0,
         "co_h_to": 36.0,
+        "storage": "",
         "notes": [
             "cedar",
             "grapefruit",
@@ -9954,6 +10141,7 @@
         "oil_to": 4.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "apple",
             "grapefruit",
@@ -9997,6 +10185,7 @@
         "oil_to": 1.8,
         "co_h_from": 35.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "caramel",
             "citrusy",
@@ -10065,6 +10254,7 @@
         "oil_to": 0.6,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "bergamot",
             "cognac",
@@ -10108,6 +10298,7 @@
         "oil_to": 0.9,
         "co_h_from": 22.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "black tea",
             "floral",
@@ -10170,6 +10361,7 @@
         "oil_to": 4.0,
         "co_h_from": 30.0,
         "co_h_to": 40.0,
+        "storage": "",
         "notes": [
             "aniseed",
             "curry",
@@ -10230,6 +10422,7 @@
         "oil_to": 2.2,
         "co_h_from": 47.0,
         "co_h_to": 53.0,
+        "storage": "",
         "notes": [
             "cherry",
             "grapefruit",
@@ -10276,6 +10469,7 @@
         "oil_to": 1.4,
         "co_h_from": 26.0,
         "co_h_to": 29.0,
+        "storage": "",
         "notes": [
             "floral",
             "grassy",
@@ -10317,6 +10511,7 @@
         "oil_to": 3.0,
         "co_h_from": 20.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "fruity",
@@ -10376,6 +10571,7 @@
         "oil_to": 2.0,
         "co_h_from": 20.0,
         "co_h_to": 23.0,
+        "storage": "",
         "notes": [
             "artichoke",
             "citrus",
@@ -10442,6 +10638,7 @@
         "oil_to": 3.0,
         "co_h_from": 22.0,
         "co_h_to": 26.0,
+        "storage": "",
         "notes": [
             "bubblegum",
             "citrus",
@@ -10487,6 +10684,7 @@
         "oil_to": 0.8,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "black currant",
             "blueberry",
@@ -10530,6 +10728,7 @@
         "oil_to": 2.3,
         "co_h_from": 28.0,
         "co_h_to": 30.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -10571,6 +10770,7 @@
         "oil_to": 1.5,
         "co_h_from": 24.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "earthy",
             "floral",
@@ -10612,6 +10812,7 @@
         "oil_to": 1.6,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal/earthy",
@@ -10653,6 +10854,7 @@
         "oil_to": 1.2,
         "co_h_from": 14.0,
         "co_h_to": 20.0,
+        "storage": "",
         "notes": [
             "earthy",
             "grass",
@@ -10715,6 +10917,7 @@
         "oil_to": 2.8,
         "co_h_from": 28.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -10758,6 +10961,7 @@
         "oil_to": 2.9,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "ginger",
             "lime",
@@ -10801,6 +11005,7 @@
         "oil_to": 1.8,
         "co_h_from": 29.0,
         "co_h_to": 34.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -10845,6 +11050,7 @@
         "oil_to": 3.0,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "cedar",
             "lavender",
@@ -10888,6 +11094,7 @@
         "oil_to": 2.3,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "citrus",
             "stone fruit"
@@ -10928,6 +11135,7 @@
         "oil_to": 1.5,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "berry",
             "citrus",
@@ -10971,6 +11179,7 @@
         "oil_to": 2.5,
         "co_h_from": 22.0,
         "co_h_to": 24.0,
+        "storage": "",
         "notes": [
             "citrus",
             "piney/resinous",
@@ -11014,6 +11223,7 @@
         "oil_to": 1.5,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "floral",
@@ -11056,6 +11266,7 @@
         "oil_to": 1.5,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "grassy",
@@ -11097,6 +11308,7 @@
         "oil_to": 2.5,
         "co_h_from": 23.0,
         "co_h_to": 28.0,
+        "storage": "",
         "notes": [
             "chocolate",
             "citrus",
@@ -11145,6 +11357,7 @@
         "oil_to": 1.2,
         "co_h_from": 33.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "fruity",
             "herbal",
@@ -11203,6 +11416,7 @@
         "oil_to": 1.2,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "apricot",
             "earthy",
@@ -11246,6 +11460,7 @@
         "oil_to": 1.7,
         "co_h_from": 28.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "berry",
             "cedar",
@@ -11315,6 +11530,7 @@
         "oil_to": 1.5,
         "co_h_from": 21.0,
         "co_h_to": 23.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal",
@@ -11356,6 +11572,7 @@
         "oil_to": 2.0,
         "co_h_from": 30.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "cedar",
             "citrus",
@@ -11399,6 +11616,7 @@
         "oil_to": 2.5,
         "co_h_from": 0.0,
         "co_h_to": 0.0,
+        "storage": "",
         "notes": [
             "berry",
             "spicy",
@@ -11440,6 +11658,7 @@
         "oil_to": 4.5,
         "co_h_from": 27.0,
         "co_h_to": 35.0,
+        "storage": "",
         "notes": [
             "black pepper",
             "fennel",
@@ -11503,6 +11722,7 @@
         "oil_to": 1.5,
         "co_h_from": 28.0,
         "co_h_to": 32.0,
+        "storage": "",
         "notes": [
             "citrus",
             "herbal",

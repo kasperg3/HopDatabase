@@ -48,6 +48,7 @@ jobs:
           name: hop_database
           path: |
             data/hops.json
+            data/combined.json
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -87,9 +88,7 @@ jobs:
       
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag_name }}
           release_name: ${{ steps.version.outputs.release_name }}
@@ -103,11 +102,7 @@ jobs:
 
       - name: Upload Release Asset
         id: upload-release-asset 
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./data/combined.json
-          asset_name: combined.json
-          asset_content_type: application/json
+          tag_name: ${{ steps.version.outputs.tag_name }}
+          files: ./data/combined.json

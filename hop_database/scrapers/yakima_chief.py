@@ -51,7 +51,10 @@ def _parse_properties_table(table):
             parts = clean.split('-', 1)
             return parts[0].strip(), parts[1].strip()
         val = re.sub(r'[^0-9.]', '', clean)
-        return val, ""
+        # For single values, treat as a closed range (val, val)
+        if not val:
+            return "", ""
+        return val, val
 
     alpha_range = parse_range(props.get("Alpha", ""))
     beta_range = parse_range(props.get("Beta", ""))

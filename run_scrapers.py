@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Union
 
 # Import the data model and scrapers
 from hop_database.models.hop_model import HopEntry, save_hop_entries
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops, john_i_haas, yakima_valley_hops
 
 
 def normalize_hop_name(name):
@@ -125,18 +125,22 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         all_sources = set()
         all_hrefs = []
         all_standardized_aromas = []
+        all_storage = []
         
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
 
-        # Collect product variants, deduplicated by type name
+        # Collect product variants, merged by type using min/max for numeric range fields
         all_product_variants: Dict[str, Dict] = {}
+        _range_min_keys = {"alpha_from", "beta_from", "oil_from", "co_h_from"}
+        _range_max_keys = {"alpha_to", "beta_to", "oil_to", "co_h_to"}
 
         for hop in entries:
             all_notes.update([note.strip().lower() for note in hop.notes if note])
             if hop.country: all_countries.append(hop.country)
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
+            if hop.storage: all_storage.append(hop.storage)
 
             if isinstance(hop.standardized_aromas, dict):
                 all_standardized_aromas.append(hop.standardized_aromas)
@@ -153,11 +157,37 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
                     base_key = prop_key[:-3]
                     additional_props_values[base_key]['to'].append(get_safe_float(prop_val))
 
-            # Merge product variants: keep first occurrence per type name
+            # Merge product variants by type using min/max for numeric range fields
             for variant in hop.product_variants:
                 variant_type = variant.get("type", "")
-                if variant_type and variant_type not in all_product_variants:
-                    all_product_variants[variant_type] = variant
+                if not variant_type:
+                    continue
+                existing = all_product_variants.get(variant_type)
+                if existing is None:
+                    all_product_variants[variant_type] = dict(variant)
+                    continue
+                merged = dict(existing)
+                for key, value in variant.items():
+                    if value in (None, ""):
+                        continue
+                    if key in _range_min_keys:
+                        new_val = get_safe_float(value)
+                        existing_num = get_safe_float(merged.get(key))
+                        if existing_num == 0:
+                            merged[key] = value
+                        elif new_val > 0:
+                            merged[key] = str(min(existing_num, new_val))
+                    elif key in _range_max_keys:
+                        new_val = get_safe_float(value)
+                        existing_num = get_safe_float(merged.get(key))
+                        if existing_num == 0:
+                            merged[key] = value
+                        elif new_val > 0:
+                            merged[key] = str(max(existing_num, new_val))
+                    else:
+                        if not merged.get(key):
+                            merged[key] = value
+                all_product_variants[variant_type] = merged
 
         final_hop.notes = sorted(list(all_notes))
         final_hop.country = all_countries[0] if all_countries else ""
@@ -165,6 +195,9 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         # Store all unique hrefs, separated by " | " for multiple sources
         unique_hrefs = list(dict.fromkeys(all_hrefs))  # Remove duplicates while preserving order
         final_hop.href = " | ".join(unique_hrefs) if unique_hrefs else ""
+        # Use the first available storage value (deduplicated)
+        unique_storage = list(dict.fromkeys(all_storage))
+        final_hop.storage = " / ".join(unique_storage) if unique_storage else ""
 
         for key, values in range_values.items():
             from_vals = [v for v in values['from'] if v > 0]
@@ -228,8 +261,18 @@ def main():
     crosby = crosby_hops.scrape(save=False)
     print(f"Found {len(crosby)} hops from Crosby Hops")
     
+    # ADDED: Run John I. Haas scraper
+    print("\nScraping John I. Haas...")
+    jih = john_i_haas.scrape(save=False)
+    print(f"Found {len(jih)} hops from John I. Haas")
+    
+    # ADDED: Run Yakima Valley Hops scraper
+    print("\nScraping Yakima Valley Hops...")
+    yvh = yakima_valley_hops.scrape(save=False)
+    print(f"Found {len(yvh)} hops from Yakima Valley Hops")
+    
     # --- Combine all entries ---
-    combined_hop_entries = ych_combined + bh + hs + crosby
+    combined_hop_entries = ych_combined + bh + hs + crosby + jih + yvh
     print(f"\nTotal raw hop entries: {len(combined_hop_entries)}")
     
     # --- Scale aroma values by source before merging ---
@@ -244,7 +287,20 @@ def main():
     # Sort final data by name
     merged_data.sort(key=lambda hop: hop.name)
 
+    # Save to data directory for CI/CD pipeline
+    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    os.makedirs(data_dir, exist_ok=True)
     
+    # Save as hops.json (primary output)
+    hops_json_path = os.path.join(data_dir, 'hops.json')
+    save_hop_entries(merged_data, hops_json_path)
+    print(f"Saved merged data to {hops_json_path}")
+    
+    # Save as combined.json (for releases/backward compatibility)
+    combined_json_path = os.path.join(data_dir, 'combined.json')
+    save_hop_entries(merged_data, combined_json_path)
+    print(f"Saved merged data to {combined_json_path}")
+
     # Optionally, save to a website data directory as well
     website_data_path = os.path.join(os.path.dirname(__file__), 'website', 'public', 'data', 'hops.json')
     if os.path.exists(os.path.dirname(website_data_path)):

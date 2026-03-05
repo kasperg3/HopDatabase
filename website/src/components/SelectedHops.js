@@ -29,6 +29,7 @@ import {
   IconChevronDown,
   IconChevronUp,
   IconPackage,
+  IconArchive,
 } from '@tabler/icons-react';
 import LazyBrewingParametersComparison from './LazyBrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
@@ -249,6 +250,15 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                       </Badge>
                     </Tooltip>
                   </Group>
+                  {hopInfo.storage && (
+                    <Group gap="xs">
+                      <ThemeIcon size="sm" variant="light" color="indigo">
+                        <IconArchive size="0.8rem" />
+                      </ThemeIcon>
+                      <Text size="sm" fw={500}>Storage:</Text>
+                      <Text size="sm">{hopInfo.storage}</Text>
+                    </Group>
+                  )}
                 </Stack>
 
                 {/* Flavor Notes */}
@@ -312,29 +322,32 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                       withTableBorder={false}
                       withColumnBorders={false}
                       fz="xs"
-                      style={{ fontSize: '0.7rem' }}
+                      styles={{
+                        th: { paddingRight: 4 },
+                        td: { paddingRight: 4 },
+                      }}
                     >
                       <Table.Thead>
                         <Table.Tr>
-                          <Table.Th style={{ paddingLeft: 0, paddingRight: 4 }}>Form</Table.Th>
-                          <Table.Th style={{ paddingRight: 4 }}>Alpha</Table.Th>
-                          <Table.Th style={{ paddingRight: 4 }}>Beta</Table.Th>
-                          <Table.Th style={{ paddingRight: 4 }}>Oil</Table.Th>
+                          <Table.Th style={{ paddingLeft: 0 }}>Form</Table.Th>
+                          <Table.Th>Alpha</Table.Th>
+                          <Table.Th>Beta</Table.Th>
+                          <Table.Th>Oil</Table.Th>
                         </Table.Tr>
                       </Table.Thead>
                       <Table.Tbody>
-                        {hopInfo.product_variants.map((variant, i) => (
-                          <Table.Tr key={i}>
-                            <Table.Td style={{ paddingLeft: 0, paddingRight: 4, fontWeight: 500 }}>
+                        {hopInfo.product_variants.map((variant) => (
+                          <Table.Tr key={variant.type}>
+                            <Table.Td style={{ paddingLeft: 0, fontWeight: 500 }}>
                               {variant.type}
                             </Table.Td>
-                            <Table.Td style={{ paddingRight: 4 }}>
+                            <Table.Td>
                               {formatRange(variant.alpha_from, variant.alpha_to)}
                             </Table.Td>
-                            <Table.Td style={{ paddingRight: 4 }}>
+                            <Table.Td>
                               {formatRange(variant.beta_from, variant.beta_to)}
                             </Table.Td>
-                            <Table.Td style={{ paddingRight: 4 }}>
+                            <Table.Td>
                               {formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}
                             </Table.Td>
                           </Table.Tr>
