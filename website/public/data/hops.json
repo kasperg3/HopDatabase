@@ -39,7 +39,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Admiral",
@@ -101,7 +102,8 @@
             "avg_cohumulone": 43.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Aged hops blend",
@@ -142,7 +144,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Agnus",
@@ -184,7 +187,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ahtanum",
@@ -226,7 +230,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Akoya",
@@ -284,7 +289,8 @@
             "avg_cohumulone": 28.5,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ales for als blend",
@@ -325,7 +331,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Alora",
@@ -383,7 +390,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Altus",
@@ -440,7 +448,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Amarillo",
@@ -508,7 +517,31 @@
             "avg_cohumulone": 23.5,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "8",
+                "alpha_to": "11",
+                "beta_from": "6",
+                "beta_to": "7",
+                "oil_from": "1.5",
+                "oil_to": "1.9",
+                "co_h_from": "21",
+                "co_h_to": "24"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "16",
+                "alpha_to": "22",
+                "beta_from": "12",
+                "beta_to": "14",
+                "oil_from": "3.0",
+                "oil_to": "3.8",
+                "co_h_from": "21",
+                "co_h_to": "24"
+            }
+        ]
     },
     {
         "name": "Apollo",
@@ -565,7 +598,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Aramis",
@@ -629,7 +663,8 @@
             "avg_cohumulone": 24.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ariana",
@@ -696,7 +731,8 @@
             "avg_cohumulone": 41.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Aurora",
@@ -762,7 +798,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Azacca",
@@ -811,7 +848,8 @@
             "avg_cohumulone": 40.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Belma",
@@ -851,7 +889,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bitter gold",
@@ -912,7 +951,8 @@
             "avg_cohumulone": 36.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Blend",
@@ -952,7 +992,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Boadicea",
@@ -1015,7 +1056,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bobek",
@@ -1079,7 +1121,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bor",
@@ -1135,7 +1178,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bramling cross",
@@ -1194,7 +1238,8 @@
             "avg_cohumulone": 34.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bravo",
@@ -1256,7 +1301,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Brewers gold",
@@ -1318,7 +1364,8 @@
             "avg_cohumulone": 44.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Bru-1",
@@ -1362,7 +1409,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Callista",
@@ -1428,7 +1476,8 @@
             "avg_cohumulone": 18.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Calypso",
@@ -1486,7 +1535,8 @@
             "avg_cohumulone": 41.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Cascade",
@@ -1553,7 +1603,31 @@
             "avg_cohumulone": 34.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "4.5",
+                "alpha_to": "7",
+                "beta_from": "4.5",
+                "beta_to": "7",
+                "oil_from": "0.7",
+                "oil_to": "1.4",
+                "co_h_from": "33",
+                "co_h_to": "40"
+            },
+            {
+                "type": "Whole Cone",
+                "alpha_from": "4.5",
+                "alpha_to": "7",
+                "beta_from": "4.5",
+                "beta_to": "7",
+                "oil_from": "0.7",
+                "oil_to": "1.4",
+                "co_h_from": "33",
+                "co_h_to": "40"
+            }
+        ]
     },
     {
         "name": "Cashmere",
@@ -1618,7 +1692,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Celeia",
@@ -1665,7 +1740,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Centennial",
@@ -1733,7 +1809,31 @@
             "avg_cohumulone": 26.5,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "9.5",
+                "alpha_to": "11.5",
+                "beta_from": "3.5",
+                "beta_to": "4.5",
+                "oil_from": "1.5",
+                "oil_to": "2.3",
+                "co_h_from": "29",
+                "co_h_to": "30"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "19",
+                "alpha_to": "23",
+                "beta_from": "7",
+                "beta_to": "9",
+                "oil_from": "3.0",
+                "oil_to": "4.6",
+                "co_h_from": "29",
+                "co_h_to": "30"
+            }
+        ]
     },
     {
         "name": "Challenger",
@@ -1795,7 +1895,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Chelan",
@@ -1837,7 +1938,8 @@
             "avg_cohumulone": 34.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Chinook",
@@ -1905,7 +2007,42 @@
             "avg_cohumulone": 30.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "12",
+                "alpha_to": "14",
+                "beta_from": "3",
+                "beta_to": "4",
+                "oil_from": "1.7",
+                "oil_to": "2.7",
+                "co_h_from": "29",
+                "co_h_to": "34"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "24",
+                "alpha_to": "28",
+                "beta_from": "6",
+                "beta_to": "8",
+                "oil_from": "3.4",
+                "oil_to": "5.4",
+                "co_h_from": "29",
+                "co_h_to": "34"
+            },
+            {
+                "type": "Whole Cone",
+                "alpha_from": "12",
+                "alpha_to": "14",
+                "beta_from": "3",
+                "beta_to": "4",
+                "oil_from": "1.7",
+                "oil_to": "2.7",
+                "co_h_from": "29",
+                "co_h_to": "34"
+            }
+        ]
     },
     {
         "name": "Citra",
@@ -1952,7 +2089,42 @@
             "avg_cohumulone": 22.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "11",
+                "alpha_to": "13",
+                "beta_from": "3.5",
+                "beta_to": "4.5",
+                "oil_from": "2.2",
+                "oil_to": "2.8",
+                "co_h_from": "22",
+                "co_h_to": "24"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "22",
+                "alpha_to": "26",
+                "beta_from": "7",
+                "beta_to": "9",
+                "oil_from": "4.4",
+                "oil_to": "5.6",
+                "co_h_from": "22",
+                "co_h_to": "24"
+            },
+            {
+                "type": "Lupomax\u00ae",
+                "alpha_from": "18",
+                "alpha_to": "22",
+                "beta_from": "5.5",
+                "beta_to": "7.5",
+                "oil_from": "3.5",
+                "oil_to": "4.5",
+                "co_h_from": "22",
+                "co_h_to": "24"
+            }
+        ]
     },
     {
         "name": "Cluster",
@@ -2017,7 +2189,8 @@
             "avg_cohumulone": 38.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Cluster fugget",
@@ -2058,7 +2231,8 @@
             "avg_cohumulone": 33.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Columbia",
@@ -2097,7 +2271,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Columbus",
@@ -2141,7 +2316,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Columbus / tomahawk",
@@ -2198,7 +2374,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Comet",
@@ -2266,7 +2443,8 @@
             "avg_cohumulone": 38.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Comet - estate grown",
@@ -2306,7 +2484,8 @@
             "avg_cohumulone": 39.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Contessa",
@@ -2363,7 +2542,8 @@
             "avg_cohumulone": 30.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Cryo poporiginal blend",
@@ -2403,7 +2583,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Crystal",
@@ -2472,7 +2653,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ctz",
@@ -2513,7 +2695,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Delta",
@@ -2571,7 +2754,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Diamant",
@@ -2630,7 +2814,8 @@
             "avg_cohumulone": 19.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "East kent golding",
@@ -2671,7 +2856,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "East kent goldings",
@@ -2713,7 +2899,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Eclipse",
@@ -2755,7 +2942,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ekuanot",
@@ -2802,7 +2990,42 @@
             "avg_cohumulone": 33.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "13",
+                "alpha_to": "15",
+                "beta_from": "4",
+                "beta_to": "5",
+                "oil_from": "2.5",
+                "oil_to": "3.5",
+                "co_h_from": "35",
+                "co_h_to": "38"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "26",
+                "alpha_to": "30",
+                "beta_from": "8",
+                "beta_to": "10",
+                "oil_from": "5.0",
+                "oil_to": "7.0",
+                "co_h_from": "35",
+                "co_h_to": "38"
+            },
+            {
+                "type": "Incognito\u00ae",
+                "alpha_from": "55",
+                "alpha_to": "65",
+                "beta_from": "0",
+                "beta_to": "0",
+                "oil_from": "0",
+                "oil_to": "0",
+                "co_h_from": "0",
+                "co_h_to": "0"
+            }
+        ]
     },
     {
         "name": "El dorado",
@@ -2868,7 +3091,31 @@
             "avg_cohumulone": 32.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "14",
+                "alpha_to": "17",
+                "beta_from": "7",
+                "beta_to": "8",
+                "oil_from": "2.5",
+                "oil_to": "3.0",
+                "co_h_from": "28",
+                "co_h_to": "33"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "28",
+                "alpha_to": "34",
+                "beta_from": "14",
+                "beta_to": "16",
+                "oil_from": "5.0",
+                "oil_to": "6.0",
+                "co_h_from": "28",
+                "co_h_to": "33"
+            }
+        ]
     },
     {
         "name": "Elani",
@@ -2910,7 +3157,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ella",
@@ -2952,7 +3200,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Endeavour",
@@ -2997,7 +3246,8 @@
             "avg_cohumulone": 33.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Enigma",
@@ -3039,7 +3289,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Erebus",
@@ -3097,7 +3348,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "Medium",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ernest",
@@ -3138,7 +3390,8 @@
             "avg_cohumulone": 52.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Eureka!",
@@ -3196,7 +3449,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Extra styrian dana",
@@ -3238,7 +3492,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Falconers flight",
@@ -3279,7 +3534,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Falconers flight 7cs",
@@ -3320,7 +3576,8 @@
             "avg_cohumulone": 27.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "First gold",
@@ -3385,7 +3642,8 @@
             "avg_cohumulone": 33.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Fuggle",
@@ -3450,7 +3708,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Galaxy",
@@ -3496,7 +3755,8 @@
             "avg_cohumulone": 37.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Galena",
@@ -3563,7 +3823,8 @@
             "avg_cohumulone": 37.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Glacier",
@@ -3628,7 +3889,8 @@
             "avg_cohumulone": 13.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Golding",
@@ -3688,7 +3950,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertau blanc",
@@ -3753,7 +4016,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertauer magnum",
@@ -3814,7 +4078,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertauer merkur",
@@ -3872,7 +4137,8 @@
             "avg_cohumulone": 19.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertauer mittelfr\u00fch",
@@ -3939,7 +4205,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertauer taurus",
@@ -4001,7 +4268,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hallertauer tradition",
@@ -4067,7 +4335,8 @@
             "avg_cohumulone": 27.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Harmonie",
@@ -4107,7 +4376,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 1019 c.v.",
@@ -4147,7 +4417,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 472",
@@ -4188,7 +4459,8 @@
             "avg_cohumulone": 43.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 630",
@@ -4230,7 +4502,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 638",
@@ -4272,7 +4545,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 682",
@@ -4314,7 +4588,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hbc 682 c.v.",
@@ -4356,7 +4631,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Helga",
@@ -4395,7 +4671,8 @@
             "avg_cohumulone": 21.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Helios",
@@ -4450,7 +4727,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Herkules",
@@ -4515,7 +4793,8 @@
             "avg_cohumulone": 34.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hersbrucker",
@@ -4575,7 +4854,8 @@
             "avg_cohumulone": 21.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hersbrucker sp\u00e4t",
@@ -4621,7 +4901,8 @@
             "avg_cohumulone": 21.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Horizon",
@@ -4679,7 +4960,8 @@
             "avg_cohumulone": 18.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hqg3",
@@ -4720,7 +5002,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Hs09326",
@@ -4778,7 +5061,8 @@
             "avg_cohumulone": 30.5,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Huell classic",
@@ -4820,7 +5104,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Huell melon",
@@ -4885,7 +5170,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "H\u00fcll melon",
@@ -4924,7 +5210,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Idaho 7",
@@ -4968,7 +5255,8 @@
             "avg_cohumulone": 35.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Idaho gem",
@@ -5010,7 +5298,8 @@
             "avg_cohumulone": 39.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Jarrylo",
@@ -5052,7 +5341,8 @@
             "avg_cohumulone": 35.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Kazbek",
@@ -5097,7 +5387,8 @@
             "avg_cohumulone": 37.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Kohatu",
@@ -5140,7 +5431,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Krush",
@@ -5189,7 +5481,8 @@
             "avg_cohumulone": 37.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Lemondrop",
@@ -5246,7 +5539,8 @@
             "avg_cohumulone": 31.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Liberty",
@@ -5306,7 +5600,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Loral",
@@ -5353,7 +5648,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Lotus",
@@ -5411,7 +5707,8 @@
             "avg_cohumulone": 36.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Lubelski",
@@ -5468,7 +5765,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Lublin",
@@ -5510,7 +5808,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Magnat",
@@ -5552,7 +5851,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Magnum",
@@ -5596,7 +5896,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Mandarina bavaria",
@@ -5661,7 +5962,8 @@
             "avg_cohumulone": 33.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Marynka",
@@ -5722,7 +6024,8 @@
             "avg_cohumulone": 29.5,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Melba",
@@ -5779,7 +6082,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Meridian",
@@ -5819,7 +6123,8 @@
             "avg_cohumulone": 50.1,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Millennium",
@@ -5866,7 +6171,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Monroe",
@@ -5908,7 +6214,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Mosaic",
@@ -5954,7 +6261,42 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "11.5",
+                "alpha_to": "13.5",
+                "beta_from": "3.2",
+                "beta_to": "3.9",
+                "oil_from": "1.0",
+                "oil_to": "1.5",
+                "co_h_from": "24",
+                "co_h_to": "26"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "23",
+                "alpha_to": "27",
+                "beta_from": "6.4",
+                "beta_to": "7.8",
+                "oil_from": "2.0",
+                "oil_to": "3.0",
+                "co_h_from": "24",
+                "co_h_to": "26"
+            },
+            {
+                "type": "Lupomax\u00ae",
+                "alpha_from": "18",
+                "alpha_to": "22",
+                "beta_from": "5",
+                "beta_to": "6.5",
+                "oil_from": "1.6",
+                "oil_to": "2.4",
+                "co_h_from": "24",
+                "co_h_to": "26"
+            }
+        ]
     },
     {
         "name": "Motueka",
@@ -6017,7 +6359,8 @@
             "avg_cohumulone": 29.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Motueka  - machops",
@@ -6058,7 +6401,8 @@
             "avg_cohumulone": 31.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Mount hood",
@@ -6116,7 +6460,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Moutere",
@@ -6159,7 +6504,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Mt. hood",
@@ -6208,7 +6554,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Mt. rainier",
@@ -6270,7 +6617,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Nectaron",
@@ -6310,7 +6658,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Nelson sauvin",
@@ -6373,7 +6722,8 @@
             "avg_cohumulone": 27.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Nelson sauvin  - machops",
@@ -6413,7 +6763,8 @@
             "avg_cohumulone": 22.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Newport",
@@ -6451,7 +6802,8 @@
             "avg_cohumulone": 37.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Northdown",
@@ -6509,7 +6861,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Northern brewer",
@@ -6574,7 +6927,8 @@
             "avg_cohumulone": 29.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Nugget",
@@ -6642,7 +6996,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Olympic",
@@ -6681,7 +7036,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Opal",
@@ -6746,7 +7102,8 @@
             "avg_cohumulone": 15.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacific crest",
@@ -6788,7 +7145,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacific gem",
@@ -6828,7 +7186,8 @@
             "avg_cohumulone": 36.5,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacific jade",
@@ -6868,7 +7227,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacific sunrise",
@@ -6908,7 +7268,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacifica",
@@ -6948,7 +7309,8 @@
             "avg_cohumulone": 23.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pacifica  - machops",
@@ -6988,7 +7350,8 @@
             "avg_cohumulone": 23.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Palisade",
@@ -7030,7 +7393,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pekko",
@@ -7070,7 +7434,8 @@
             "avg_cohumulone": 28.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Perle",
@@ -7138,7 +7503,8 @@
             "avg_cohumulone": 32.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Phoenix",
@@ -7196,7 +7562,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pilgrim",
@@ -7259,7 +7626,8 @@
             "avg_cohumulone": 37.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pilot",
@@ -7299,7 +7667,8 @@
             "avg_cohumulone": 34.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pink boots blend",
@@ -7341,7 +7710,8 @@
             "avg_cohumulone": 30.9,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Polaris",
@@ -7404,7 +7774,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Premiant",
@@ -7468,7 +7839,8 @@
             "avg_cohumulone": 20.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Pride of ringwood",
@@ -7528,7 +7900,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Progress",
@@ -7593,7 +7966,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Rakau",
@@ -7636,7 +8010,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Rakau  - machops",
@@ -7677,7 +8052,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Relax",
@@ -7719,7 +8095,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Riwaka",
@@ -7777,7 +8154,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Saaz",
@@ -7820,7 +8198,8 @@
             "avg_cohumulone": 24.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Saaz late",
@@ -7862,7 +8241,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Saazer",
@@ -7924,7 +8304,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sabro",
@@ -7970,7 +8351,8 @@
             "avg_cohumulone": 22.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Santiam",
@@ -8010,7 +8392,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Saphir",
@@ -8074,7 +8457,8 @@
             "avg_cohumulone": 14.5,
             "alpha_classification": "Low",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Savinjski golding",
@@ -8115,7 +8499,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Simcoe",
@@ -8157,7 +8542,31 @@
             "avg_cohumulone": 19.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": [
+            {
+                "type": "T-90 Pellets",
+                "alpha_from": "12",
+                "alpha_to": "14",
+                "beta_from": "4",
+                "beta_to": "5",
+                "oil_from": "2.0",
+                "oil_to": "2.5",
+                "co_h_from": "15",
+                "co_h_to": "20"
+            },
+            {
+                "type": "LupuLN2\u00ae Cryo Hops\u00ae",
+                "alpha_from": "24",
+                "alpha_to": "28",
+                "beta_from": "8",
+                "beta_to": "10",
+                "oil_from": "4.0",
+                "oil_to": "5.0",
+                "co_h_from": "15",
+                "co_h_to": "20"
+            }
+        ]
     },
     {
         "name": "Sladek",
@@ -8202,7 +8611,8 @@
             "avg_cohumulone": 26.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sl\u00e1dek",
@@ -8259,7 +8669,8 @@
             "avg_cohumulone": 24.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Smaragd",
@@ -8322,7 +8733,8 @@
             "avg_cohumulone": 15.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Solero",
@@ -8379,7 +8791,8 @@
             "avg_cohumulone": 50.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sorachi ace",
@@ -8444,7 +8857,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Southern cross",
@@ -8486,7 +8900,8 @@
             "avg_cohumulone": 26.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sovereign",
@@ -8552,7 +8967,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Spalt spalter",
@@ -8594,7 +9010,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Spalter",
@@ -8654,7 +9071,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Spalter select",
@@ -8718,7 +9136,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sterling",
@@ -8780,7 +9199,8 @@
             "avg_cohumulone": 24.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sticklebract",
@@ -8819,7 +9239,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Strata",
@@ -8859,7 +9280,8 @@
             "avg_cohumulone": 21.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Strisselspalt",
@@ -8901,7 +9323,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Strisselspalter",
@@ -8961,7 +9384,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Styrian gold",
@@ -9003,7 +9427,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Styrian golding",
@@ -9060,7 +9485,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Styrian savinjski golding",
@@ -9100,7 +9526,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sultana",
@@ -9157,7 +9584,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Summer",
@@ -9196,7 +9624,8 @@
             "avg_cohumulone": 22.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Summit",
@@ -9262,7 +9691,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Super galena",
@@ -9318,7 +9748,8 @@
             "avg_cohumulone": 37.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Super pride",
@@ -9362,7 +9793,8 @@
             "avg_cohumulone": 27.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Superdelic , hops",
@@ -9403,7 +9835,8 @@
             "avg_cohumulone": 28.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sussex hop",
@@ -9442,7 +9875,8 @@
             "avg_cohumulone": 30.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sybilla",
@@ -9484,7 +9918,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Sylva",
@@ -9524,7 +9959,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tahoma",
@@ -9583,7 +10019,8 @@
             "avg_cohumulone": 16.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Talus",
@@ -9628,7 +10065,8 @@
             "avg_cohumulone": 34.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tango",
@@ -9670,7 +10108,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Target",
@@ -9737,7 +10176,8 @@
             "avg_cohumulone": 37.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tettnang tettnanger",
@@ -9779,7 +10219,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tettnanger",
@@ -9840,7 +10281,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Titan",
@@ -9899,7 +10341,8 @@
             "avg_cohumulone": 35.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Topaz",
@@ -9944,7 +10387,8 @@
             "avg_cohumulone": 50.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tradition",
@@ -9984,7 +10428,8 @@
             "avg_cohumulone": 27.5,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Trident",
@@ -10042,7 +10487,8 @@
             "avg_cohumulone": 25.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Triskel",
@@ -10107,7 +10553,8 @@
             "avg_cohumulone": 21.5,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Triumph",
@@ -10151,7 +10598,8 @@
             "avg_cohumulone": 24.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Tsingdao flower",
@@ -10193,7 +10641,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Turkeys pick",
@@ -10233,7 +10682,8 @@
             "avg_cohumulone": 29.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Us saaz",
@@ -10273,7 +10723,8 @@
             "avg_cohumulone": 26.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Usda 008",
@@ -10313,7 +10764,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Vanguard",
@@ -10374,7 +10826,8 @@
             "avg_cohumulone": 17.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Veterans blend",
@@ -10416,7 +10869,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Vic secret",
@@ -10458,7 +10912,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Vista",
@@ -10501,7 +10956,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Vital",
@@ -10543,7 +10999,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Wai",
@@ -10582,7 +11039,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Low",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Wai-iti",
@@ -10624,7 +11082,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Waimea",
@@ -10666,7 +11125,8 @@
             "avg_cohumulone": 23.0,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Wakatu",
@@ -10707,7 +11167,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Wakatu  - machops",
@@ -10747,7 +11208,8 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Warrior",
@@ -10794,7 +11256,8 @@
             "avg_cohumulone": 25.5,
             "alpha_classification": "High",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Whitbread golding",
@@ -10851,7 +11314,8 @@
             "avg_cohumulone": 34.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Whitbread goldings variety",
@@ -10893,7 +11357,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Willamette",
@@ -10961,7 +11426,8 @@
             "avg_cohumulone": 31.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Yakima gold",
@@ -11001,7 +11467,8 @@
             "avg_cohumulone": 22.0,
             "alpha_classification": "Medium",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Ycr 1",
@@ -11043,7 +11510,8 @@
             "avg_cohumulone": 32.5,
             "alpha_classification": "Low",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Zappa",
@@ -11083,7 +11551,8 @@
             "avg_cohumulone": 0.0,
             "alpha_classification": "Medium",
             "oil_classification": "Medium"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Zeus",
@@ -11145,7 +11614,8 @@
             "avg_cohumulone": 31.0,
             "alpha_classification": "High",
             "oil_classification": "High"
-        }
+        },
+        "product_variants": []
     },
     {
         "name": "Zythos",
@@ -11185,6 +11655,7 @@
             "avg_cohumulone": 30.0,
             "alpha_classification": "High",
             "oil_classification": "Low"
-        }
+        },
+        "product_variants": []
     }
 ]
