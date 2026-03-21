@@ -8,7 +8,6 @@ import {
   Group,
   Collapse,
   Button,
-  Text,
   Divider,
   useMantineColorScheme,
   Badge,

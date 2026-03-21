@@ -1,4 +1,4 @@
-import { Group, Text, Badge, Box, useMantineColorScheme } from '@mantine/core';
+import { Group, Text, Badge } from '@mantine/core';
 
 const FilterSummary = ({
   availableHops,
@@ -13,8 +13,6 @@ const FilterSummary = ({
   cohumuloneRange,
   oilRange,
 }) => {
-  const { colorScheme } = useMantineColorScheme();
-  const isDark = colorScheme === 'dark';
   const hasFilters = getAllSelectedAromas().length > 0 || useAlphaFilter || useCohumuloneFilter || useOilFilter;
   const pct = uniqueHops.length > 0 ? Math.round((availableHops.length / uniqueHops.length) * 100) : 100;
 
