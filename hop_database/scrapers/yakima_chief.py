@@ -152,14 +152,19 @@ def extract_product_variants(soup):
     return variants
 
 
-def extract_sensory_analysis(hop_url):
+def extract_sensory_analysis(soup_or_url):
     """
-    Extract sensory analysis data from individual hop page.
+    Extract sensory analysis data from an individual hop page.
+
+    Accepts either a pre-parsed BeautifulSoup object or a URL string.
     Returns a dictionary with aroma categories and their intensity values (0-5).
     """
     try:
-        response = req.get(hop_url)
-        soup = BeautifulSoup(response.text, "html.parser")
+        if isinstance(soup_or_url, str):
+            response = req.get(soup_or_url)
+            soup = BeautifulSoup(response.text, "html.parser")
+        else:
+            soup = soup_or_url
 
         # Find the sensory analysis SVG
         sensory_div = soup.find("div", {"class": "sensory-analysis"})
@@ -332,14 +337,14 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                 oil_high = ""
 
             if name and hop_aromas_notes:
-                # Fetch individual hop page for sensory analysis and product variants
+                # Fetch individual hop page once for both sensory analysis and product variants
                 try:
                     hop_page_response = req.get(href, timeout=30)
                     hop_page_soup = BeautifulSoup(hop_page_response.text, "html.parser")
-                    sensory_data = extract_sensory_analysis(href)
+                    sensory_data = extract_sensory_analysis(hop_page_soup)
                     product_variants = extract_product_variants(hop_page_soup)
                 except Exception:
-                    sensory_data = extract_sensory_analysis(href)
+                    sensory_data = {}
                     product_variants = []
 
                 # Use the function to process the name and country

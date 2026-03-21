@@ -17,6 +17,20 @@ from hop_database.models.hop_model import HopEntry, save_hop_entries
 from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops, john_i_haas, yakima_valley_hops, hops_australia
 
 
+COUNTRY_ALIASES = {
+    "united states": "USA",
+    "united states of america": "USA",
+    "us": "USA",
+    "great britain": "United Kingdom",
+    "uk": "United Kingdom",
+    "england": "United Kingdom",
+}
+
+def normalize_country(country: str) -> str:
+    """Normalizes country names to a consistent form."""
+    return COUNTRY_ALIASES.get(country.strip().lower(), country.strip())
+
+
 def normalize_hop_name(name):
     """Normalizes hop names for consistent grouping."""
     name = name.lower()
@@ -137,7 +151,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
 
         for hop in entries:
             all_notes.update([note.strip().lower() for note in hop.notes if note])
-            if hop.country: all_countries.append(hop.country)
+            if hop.country: all_countries.append(normalize_country(hop.country))
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
             if hop.storage: all_storage.append(hop.storage)
