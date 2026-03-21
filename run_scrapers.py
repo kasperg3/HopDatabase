@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Union
 
 # Import the data model and scrapers
 from hop_database.models.hop_model import HopEntry, save_hop_entries
-from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops, john_i_haas, yakima_valley_hops
+from hop_database.scrapers import yakima_chief, barth_haas, hopsteiner, crosby_hops, john_i_haas, yakima_valley_hops, hops_australia
 
 
 def normalize_hop_name(name):
@@ -126,9 +126,14 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         all_hrefs = []
         all_standardized_aromas = []
         all_storage = []
-        
+
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
+
+        # Collect product variants, merged by type using min/max for numeric range fields
+        all_product_variants: Dict[str, Dict] = {}
+        _range_min_keys = {"alpha_from", "beta_from", "oil_from", "co_h_from"}
+        _range_max_keys = {"alpha_to", "beta_to", "oil_to", "co_h_to"}
 
         for hop in entries:
             all_notes.update([note.strip().lower() for note in hop.notes if note])
@@ -151,6 +156,38 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
                 elif prop_key.endswith("_to"):
                     base_key = prop_key[:-3]
                     additional_props_values[base_key]['to'].append(get_safe_float(prop_val))
+
+            # Merge product variants by type using min/max for numeric range fields
+            for variant in getattr(hop, 'product_variants', []):
+                variant_type = variant.get("type", "")
+                if not variant_type:
+                    continue
+                existing = all_product_variants.get(variant_type)
+                if existing is None:
+                    all_product_variants[variant_type] = dict(variant)
+                    continue
+                merged = dict(existing)
+                for key, value in variant.items():
+                    if value in (None, ""):
+                        continue
+                    if key in _range_min_keys:
+                        new_val = get_safe_float(value)
+                        existing_num = get_safe_float(merged.get(key))
+                        if existing_num == 0:
+                            merged[key] = value
+                        elif new_val > 0:
+                            merged[key] = str(min(existing_num, new_val))
+                    elif key in _range_max_keys:
+                        new_val = get_safe_float(value)
+                        existing_num = get_safe_float(merged.get(key))
+                        if existing_num == 0:
+                            merged[key] = value
+                        elif new_val > 0:
+                            merged[key] = str(max(existing_num, new_val))
+                    else:
+                        if not merged.get(key):
+                            merged[key] = value
+                all_product_variants[variant_type] = merged
 
         final_hop.notes = sorted(list(all_notes))
         final_hop.country = all_countries[0] if all_countries else ""
@@ -186,6 +223,11 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             to_vals = [v for v in values['to'] if v > 0]
             final_hop.additional_properties[f"{base_key}_from"] = min(from_vals) if from_vals else 0.0
             final_hop.additional_properties[f"{base_key}_to"] = max(to_vals) if to_vals else 0.0
+
+        # Attach collected product variants (sorted by type name for consistency)
+        final_hop.product_variants = sorted(
+            list(all_product_variants.values()), key=lambda v: v.get("type", "")
+        )
 
         merged_hops.append(final_hop)
 
@@ -228,9 +270,14 @@ def main():
     print("\nScraping Yakima Valley Hops...")
     yvh = yakima_valley_hops.scrape(save=False)
     print(f"Found {len(yvh)} hops from Yakima Valley Hops")
-    
+
+    # ADDED: Run Hop Products Australia scraper
+    print("\nScraping Hop Products Australia (hops.com.au)...")
+    hpa = hops_australia.scrape(save=False)
+    print(f"Found {len(hpa)} hops from Hop Products Australia")
+
     # --- Combine all entries ---
-    combined_hop_entries = ych_combined + bh + hs + crosby + jih + yvh
+    combined_hop_entries = ych_combined + bh + hs + crosby + jih + yvh + hpa
     print(f"\nTotal raw hop entries: {len(combined_hop_entries)}")
     
     # --- Scale aroma values by source before merging ---

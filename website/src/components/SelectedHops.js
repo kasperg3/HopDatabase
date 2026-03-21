@@ -15,6 +15,8 @@ import {
   Button,
   Title,
   Tabs,
+  Table,
+  Divider,
 } from '@mantine/core';
 import {
   IconFlask,
@@ -27,6 +29,7 @@ import {
   IconChevronDown,
   IconChevronUp,
   IconArchive,
+  IconPackage,
 } from '@tabler/icons-react';
 import LazyBrewingParametersComparison from './LazyBrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
@@ -301,6 +304,56 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                         </Badge>
                       )}
                     </Box>
+                  </Box>
+                )}
+
+                {/* Product Variants */}
+                {hopInfo.product_variants && hopInfo.product_variants.length > 0 && (
+                  <Box mb="md">
+                    <Divider mb="xs" />
+                    <Group gap="xs" mb="xs">
+                      <ThemeIcon size="sm" variant="light" color="indigo">
+                        <IconPackage size="0.8rem" />
+                      </ThemeIcon>
+                      <Text size="sm" fw={500}>Product Forms:</Text>
+                    </Group>
+                    <Table
+                      striped
+                      withTableBorder={false}
+                      withColumnBorders={false}
+                      fz="xs"
+                      styles={{
+                        th: { paddingRight: 4 },
+                        td: { paddingRight: 4 },
+                      }}
+                    >
+                      <Table.Thead>
+                        <Table.Tr>
+                          <Table.Th style={{ paddingLeft: 0 }}>Form</Table.Th>
+                          <Table.Th>Alpha</Table.Th>
+                          <Table.Th>Beta</Table.Th>
+                          <Table.Th>Oil</Table.Th>
+                        </Table.Tr>
+                      </Table.Thead>
+                      <Table.Tbody>
+                        {hopInfo.product_variants.map((variant) => (
+                          <Table.Tr key={variant.type}>
+                            <Table.Td style={{ paddingLeft: 0, fontWeight: 500 }}>
+                              {variant.type}
+                            </Table.Td>
+                            <Table.Td>
+                              {formatRange(variant.alpha_from, variant.alpha_to)}
+                            </Table.Td>
+                            <Table.Td>
+                              {formatRange(variant.beta_from, variant.beta_to)}
+                            </Table.Td>
+                            <Table.Td>
+                              {formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}
+                            </Table.Td>
+                          </Table.Tr>
+                        ))}
+                      </Table.Tbody>
+                    </Table>
                   </Box>
                 )}
 
