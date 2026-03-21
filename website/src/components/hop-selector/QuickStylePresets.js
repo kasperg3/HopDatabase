@@ -8,14 +8,6 @@ import {
 } from '@mantine/core';
 import { IconBook } from '@tabler/icons-react';
 
-const STYLE_ICONS = {
-  'American IPA':   '🍺',
-  'NEIPA':          '🌤️',
-  'West Coast IPA': '🌊',
-  'Pilsner/Lager':  '🥂',
-  'Belgian Ales':   '🏰',
-  'English Bitter': '🫖',
-};
 
 const QuickStylePresets = ({
   getPopularPresets,
@@ -49,9 +41,6 @@ const QuickStylePresets = ({
             key={index}
             onClick={() => applyPreset(preset)}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 5,
               padding: '5px 11px',
               borderRadius: 8,
               background: isDark ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-1)',
@@ -65,7 +54,6 @@ const QuickStylePresets = ({
               color: isDark ? 'var(--mantine-color-gray-3)' : 'var(--mantine-color-gray-8)',
             }}
           >
-            <span style={{ fontSize: 15 }}>{STYLE_ICONS[preset.style] || '🍺'}</span>
             {preset.style}
           </UnstyledButton>
         ))}

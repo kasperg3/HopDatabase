@@ -8,17 +8,6 @@ import {
 } from '@mantine/core';
 import { IconHelp } from '@tabler/icons-react';
 
-const AROMA_ICONS = {
-  'Citrus':        '🍋',
-  'Resin/Pine':    '🌲',
-  'Spice':         '🌶️',
-  'Herbal':        '🌿',
-  'Grassy':        '🌱',
-  'Floral':        '🌸',
-  'Berry':         '🫐',
-  'Stone Fruit':   '🍑',
-  'Tropical Fruit':'🍍',
-};
 
 const AromaFilters = ({
   availableAromaCategories,
@@ -96,9 +85,6 @@ const AromaFilters = ({
                 userSelect: 'none',
               }}
             >
-              <span style={{ fontSize: 15, lineHeight: 1 }}>
-                {AROMA_ICONS[aroma] || '●'}
-              </span>
               <span>{aroma}</span>
               {isHigh && (
                 <Box
