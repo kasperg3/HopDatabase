@@ -85,6 +85,29 @@ AROMA_MAPPINGS = {
         "Tropical/Fruit": "Tropical Fruit",
         # Unmapped from source: "Cheesy/Sweaty", "Pungent/Dank", "Woody/Tobacco", "Catty", "Onion/Garlic"
     },
+    # Hop Products Australia (hops.com.au) mappings
+    "australianhops": {
+        "Citrus": "Citrus",
+        "Tropical": "Tropical Fruit",
+        "Tropical Fruit": "Tropical Fruit",
+        "Stone Fruit": "Stone Fruit",
+        "Floral": "Floral",
+        "Herbal": "Herbal",
+        "Earthy": "Herbal",
+        "Grassy": "Grassy",
+        "Resinous": "Resin/Pine",
+        "Pine": "Resin/Pine",
+        "Spicy": "Spice",
+        "Spice": "Spice",
+        "Berry": "Berry",
+        "Passionfruit": "Tropical Fruit",
+        "Peach": "Stone Fruit",
+        "Mango": "Tropical Fruit",
+        "Lemon": "Citrus",
+        "Orange": "Citrus",
+        "Lime": "Citrus",
+        "Pineapple": "Tropical Fruit",
+    },
 }
 
 
@@ -125,6 +148,11 @@ class HopEntry:
     additional_properties: Dict[str, Union[str, float, int]] = field(
         default_factory=dict
     )
+
+    # Product variants (e.g., T-90 Pellets, Whole Cone, LupuLN2, Lupomax)
+    # Each entry: {"type": str, "alpha_from": ..., "alpha_to": ..., "beta_from": ...,
+    #              "beta_to": ..., "oil_from": ..., "oil_to": ..., "co_h_from": ..., "co_h_to": ...}
+    product_variants: List[Dict] = field(default_factory=list)
 
     def __post_init__(self):
         """Initialize standardized aromas with default values if not provided."""
@@ -277,6 +305,7 @@ class HopEntry:
             "notes": self.notes,
             "aromas": self.standardized_aromas,
             "additional_properties": self.additional_properties,
+            "product_variants": self.product_variants,
             "brewing_stats": self.get_brewing_stats(),
         }
 

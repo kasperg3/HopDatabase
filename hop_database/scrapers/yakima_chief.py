@@ -3,18 +3,161 @@ import requests as req
 import math
 import os
 import re
+import json
 
 from ..models.hop_model import HopEntry, save_hop_entries
 
+# Known product type keywords and their canonical names
+PRODUCT_TYPE_PATTERNS = [
+    (r'lupuln2|cryo\s*hops?|cryo\s*pellets?', 'LupuLN2® Cryo Hops®'),
+    (r'lupomax', 'Lupomax®'),
+    (r'incognito', 'Incognito®'),
+    (r'whole\s*cone|cone', 'Whole Cone'),
+    (r't-?90|pellets?', 'T-90 Pellets'),
+]
 
-def extract_sensory_analysis(hop_url):
+
+def _detect_product_type(text):
+    """Detect product type from text using known patterns. Returns canonical name or None."""
+    text_lower = text.lower()
+    for pattern, canonical_name in PRODUCT_TYPE_PATTERNS:
+        if re.search(pattern, text_lower):
+            return canonical_name
+    return None
+
+
+def _parse_properties_table(table):
     """
-    Extract sensory analysis data from individual hop page.
+    Parse a product-properties table and return a dict of brewing values.
+    Returns None if the table cannot be parsed.
+    """
+    if not table:
+        return None
+
+    props = {}
+    for row in table.find_all("tr"):
+        cells = row.find_all("td")
+        if len(cells) < 2:
+            continue
+        try:
+            key = cells[0].get_text().strip().rstrip(":").strip()
+            value = cells[1].get_text().strip()
+            if key:
+                props[key] = value
+        except Exception:
+            continue
+
+    if not props:
+        return None
+
+    def parse_range(value_str):
+        if not value_str:
+            return "", ""
+        clean = re.sub(r'\s*(mL/100g|%)\s*', '', value_str, flags=re.IGNORECASE).strip()
+        if '-' in clean:
+            parts = clean.split('-', 1)
+            return parts[0].strip(), parts[1].strip()
+        val = re.sub(r'[^0-9.]', '', clean)
+        if not val:
+            return "", ""
+        return val, val
+
+    alpha_range = parse_range(props.get("Alpha", ""))
+    beta_range = parse_range(props.get("Beta", ""))
+    co_h_range = parse_range(props.get("CO_H", ""))
+    oil_range = parse_range(props.get("Oil", ""))
+
+    if not alpha_range[0] and not alpha_range[1]:
+        return None
+
+    return {
+        "alpha_from": alpha_range[0],
+        "alpha_to": alpha_range[1],
+        "beta_from": beta_range[0],
+        "beta_to": beta_range[1],
+        "oil_from": oil_range[0],
+        "oil_to": oil_range[1],
+        "co_h_from": co_h_range[0],
+        "co_h_to": co_h_range[1],
+    }
+
+
+def extract_product_variants(soup):
+    """
+    Extract product variants (T-90 Pellets, Whole Cone, LupuLN2, Lupomax, etc.)
+    and their brewing values from a parsed individual hop page.
+
+    Returns a list of dicts, each with:
+      {"type": str, "alpha_from": str, "alpha_to": str, "beta_from": str,
+       "beta_to": str, "oil_from": str, "oil_to": str, "co_h_from": str, "co_h_to": str}
+    """
+    variants = []
+
+    # Strategy 1: Multiple product-properties tables each preceded by a type heading
+    prop_tables = soup.find_all("table", {"class": "product-properties"})
+    if len(prop_tables) > 1:
+        for table in prop_tables:
+            product_type = None
+            for sibling in table.previous_siblings:
+                text = getattr(sibling, 'get_text', lambda: str(sibling))()
+                text = text.strip()
+                if text:
+                    product_type = _detect_product_type(text)
+                    if product_type:
+                        break
+            if not product_type:
+                parent = table.parent
+                if parent:
+                    heading = parent.find(['h1', 'h2', 'h3', 'h4', 'h5', 'strong'])
+                    if heading:
+                        product_type = _detect_product_type(heading.get_text())
+            if not product_type:
+                product_type = "T-90 Pellets"
+
+            values = _parse_properties_table(table)
+            if values:
+                variant = {"type": product_type}
+                variant.update(values)
+                if not any(v["type"] == product_type for v in variants):
+                    variants.append(variant)
+
+        if variants:
+            return variants
+
+    # Strategy 2: Look for product tabs/accordion sections with type labels
+    tab_selectors = [
+        {"class": re.compile(r'hop-product(?:-form|-type|-tab)?', re.I)},
+        {"class": re.compile(r'product-form(?:-tab|-section|-item)?', re.I)},
+        {"class": re.compile(r'product-type(?:-tab|-section)?', re.I)},
+    ]
+    for selector in tab_selectors:
+        sections = soup.find_all(["div", "section", "article"], selector)
+        for section in sections:
+            heading = section.find(['h1', 'h2', 'h3', 'h4', 'h5', 'strong', 'span'])
+            if not heading:
+                continue
+            product_type = _detect_product_type(heading.get_text())
+            if not product_type:
+                continue
+            table = section.find("table")
+            values = _parse_properties_table(table)
+            if values:
+                variant = {"type": product_type}
+                variant.update(values)
+                if not any(v["type"] == product_type for v in variants):
+                    variants.append(variant)
+        if variants:
+            return variants
+
+    return variants
+
+
+def extract_sensory_analysis(soup):
+    """
+    Extract sensory analysis data from an individual hop page.
     Returns a dictionary with aroma categories and their intensity values (0-5).
     """
     try:
-        response = req.get(hop_url)
-        soup = BeautifulSoup(response.text, "html.parser")
 
         # Find the sensory analysis SVG
         sensory_div = soup.find("div", {"class": "sensory-analysis"})
@@ -59,8 +202,7 @@ def extract_sensory_analysis(hop_url):
 
         return sensory_data
 
-    except Exception as e:
-        print(f"Error extracting sensory analysis from {hop_url}: {e}")
+    except Exception:
         return {}
 
 
@@ -187,8 +329,16 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                 oil_high = ""
 
             if name and hop_aromas_notes:
-                # Extract sensory analysis data
-                sensory_data = extract_sensory_analysis(href)
+                # Fetch individual hop page once for both sensory analysis and product variants
+                try:
+                    hop_page_response = req.get(href, timeout=30)
+                    hop_page_soup = BeautifulSoup(hop_page_response.text, "html.parser")
+                    sensory_data = extract_sensory_analysis(hop_page_soup)
+                    product_variants = extract_product_variants(hop_page_soup)
+                except Exception:
+                    sensory_data = {}
+                    product_variants = []
+
                 # Use the function to process the name and country
                 name, country = process_name_and_country(name)
                 # Create HopEntry directly
@@ -207,6 +357,7 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                     co_h_to=co_h_high,
                     notes=hop_aromas_notes,
                     storage=str(properties_dict.get("Storage", "")).strip(),
+                    product_variants=product_variants,
                 )
 
                 # Set standardized aromas from sensory analysis data

@@ -8,6 +8,8 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches:
+    - 'claude/*' # Trigger on claude/* branch pushes for CI validation
   workflow_dispatch: # Allow manual trigger
     inputs:
       version:
