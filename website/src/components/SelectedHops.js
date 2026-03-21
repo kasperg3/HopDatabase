@@ -42,6 +42,128 @@ import {
 } from '../utils/hopUtils';
 import { ALPHA_THRESHOLDS, OIL_THRESHOLDS } from '../utils/hopConstants';
 
+// Variant type display names and badge colours
+const VARIANT_COLORS = {
+  'T-90 Pellets': 'blue',
+  'LupuLN2® Cryo Hops®': 'cyan',
+  'Lupomax®': 'violet',
+  'Incognito®': 'dark',
+  'Whole Cone': 'green',
+};
+
+const VariantsComparison = ({ hopData }) => {
+  const hopsWithVariants = hopData.filter(h => h.product_variants?.length > 0);
+
+  // Collect all variant types present across selected hops
+  const allVariantTypes = [...new Set(
+    hopsWithVariants.flatMap(h => h.product_variants.map(v => v.type))
+  )].sort();
+
+  const [activeVariant, setActiveVariant] = useState(allVariantTypes[0] || '');
+
+  if (hopsWithVariants.length === 0) return null;
+
+  const variantRows = hopsWithVariants.map(hop => {
+    const v = hop.product_variants.find(v => v.type === activeVariant);
+    return { hop, variant: v || null };
+  });
+
+  return (
+    <Stack gap="md">
+      <Text size="sm" c="dimmed">
+        Compare brewing parameters across product forms. Cryo Hops® and Lupomax® concentrate
+        alpha acids and oils — use lower weights than T-90 pellets.
+      </Text>
+
+      {/* Variant type selector */}
+      <Group gap="xs">
+        {allVariantTypes.map(type => (
+          <Badge
+            key={type}
+            color={VARIANT_COLORS[type] || 'gray'}
+            variant={activeVariant === type ? 'filled' : 'outline'}
+            size="md"
+            style={{ cursor: 'pointer' }}
+            onClick={() => setActiveVariant(type)}
+          >
+            {type}
+          </Badge>
+        ))}
+      </Group>
+
+      {/* Comparison table for selected variant type */}
+      <Table striped withTableBorder highlightOnHover>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Hop</Table.Th>
+            <Table.Th>Alpha</Table.Th>
+            <Table.Th>Beta</Table.Th>
+            <Table.Th>Total Oil</Table.Th>
+            <Table.Th>Cohumulone</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          {variantRows.map(({ hop, variant }) => (
+            <Table.Tr key={hop.uniqueId}>
+              <Table.Td fw={500}>
+                <Group gap="xs">
+                  {hop.displayName}
+                  <Badge size="xs" color="gray" variant="light">{hop.country}</Badge>
+                </Group>
+              </Table.Td>
+              {variant ? (
+                <>
+                  <Table.Td>{formatRange(variant.alpha_from, variant.alpha_to, '%')}</Table.Td>
+                  <Table.Td>{formatRange(variant.beta_from, variant.beta_to, '%')}</Table.Td>
+                  <Table.Td>{formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}</Table.Td>
+                  <Table.Td>{formatRange(variant.co_h_from, variant.co_h_to, '%')}</Table.Td>
+                </>
+              ) : (
+                <Table.Td colSpan={4}>
+                  <Text size="sm" c="dimmed" fs="italic">Not available in this form</Text>
+                </Table.Td>
+              )}
+            </Table.Tr>
+          ))}
+        </Table.Tbody>
+      </Table>
+
+      {/* Per-hop variant overview — all forms side by side */}
+      {hopsWithVariants.length === 1 && (
+        <Box mt="sm">
+          <Text fw={500} size="sm" mb="xs">All product forms — {hopsWithVariants[0].displayName}</Text>
+          <Table striped withTableBorder>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Form</Table.Th>
+                <Table.Th>Alpha</Table.Th>
+                <Table.Th>Beta</Table.Th>
+                <Table.Th>Total Oil</Table.Th>
+                <Table.Th>Cohumulone</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {hopsWithVariants[0].product_variants.map(v => (
+                <Table.Tr key={v.type}>
+                  <Table.Td>
+                    <Badge color={VARIANT_COLORS[v.type] || 'gray'} variant="light" size="sm">
+                      {v.type}
+                    </Badge>
+                  </Table.Td>
+                  <Table.Td>{formatRange(v.alpha_from, v.alpha_to, '%')}</Table.Td>
+                  <Table.Td>{formatRange(v.beta_from, v.beta_to, '%')}</Table.Td>
+                  <Table.Td>{formatRange(v.oil_from, v.oil_to, ' ml/100g')}</Table.Td>
+                  <Table.Td>{formatRange(v.co_h_from, v.co_h_to, '%')}</Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        </Box>
+      )}
+    </Stack>
+  );
+};
+
 // Purpose border accent colors
 const PURPOSE_ACCENTS = {
   'Super-Alpha':   '#ef5350',
@@ -377,6 +499,11 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                 <Tabs.Tab value="brewing-summary">
                   Brewing Summary
                 </Tabs.Tab>
+              {uniqueHops.filter(hop => selectedHops.includes(hop.uniqueId) && hop.product_variants?.length > 0).length > 0 && (
+                <Tabs.Tab value="variants" leftSection={<IconPackage size={14} />}>
+                  Product Variants
+                </Tabs.Tab>
+              )}
               </Tabs.List>
 
               <Tabs.Panel value="brewing-parameters">
@@ -389,6 +516,10 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                 <BrewingSummary
                   hopData={uniqueHops.filter(hop => selectedHops.includes(hop.uniqueId))}
                 />
+              </Tabs.Panel>
+
+              <Tabs.Panel value="variants">
+                <VariantsComparison hopData={uniqueHops.filter(hop => selectedHops.includes(hop.uniqueId))} />
               </Tabs.Panel>
             </Tabs>
           </Box>
