@@ -1,47 +1,73 @@
 import {
   Group,
-  ThemeIcon,
   Text,
   Button,
   Flex,
+  UnstyledButton,
+  useMantineColorScheme,
 } from '@mantine/core';
-import { IconBeer, IconBook } from '@tabler/icons-react';
+import { IconBook } from '@tabler/icons-react';
 
-const QuickStylePresets = ({ 
-  getPopularPresets, 
-  applyPreset, 
-  setPresetsModalOpen 
+const STYLE_ICONS = {
+  'American IPA':   '🍺',
+  'NEIPA':          '🌤️',
+  'West Coast IPA': '🌊',
+  'Pilsner/Lager':  '🥂',
+  'Belgian Ales':   '🏰',
+  'English Bitter': '🫖',
+};
+
+const QuickStylePresets = ({
+  getPopularPresets,
+  applyPreset,
+  setPresetsModalOpen,
 }) => {
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+
   return (
     <>
-      <Group justify="space-between" mb="xs">
-        <Group gap="xs">
-          <ThemeIcon size="sm" variant="light" color="blue">
-            <IconBeer size="0.8rem" />
-          </ThemeIcon>
-          <Text size="sm" fw={500}>Quick Style Presets:</Text>
-        </Group>
+      <Group justify="space-between" mb="sm" align="center">
+        <Text size="sm" fw={600} style={{ fontFamily: 'Space Grotesk, Inter, sans-serif' }}>
+          Style Presets
+        </Text>
         <Button
           size="xs"
           variant="subtle"
-          leftSection={<IconBook size="0.8rem" />}
+          color="blue"
+          leftSection={<IconBook size={12} />}
           onClick={() => setPresetsModalOpen(true)}
+          radius="md"
         >
           Browse All (37)
         </Button>
       </Group>
-      
+
       <Flex gap="xs" wrap="wrap">
         {getPopularPresets().map((preset, index) => (
-          <Button
+          <UnstyledButton
             key={index}
-            size="xs"
-            variant="light"
-            color="blue"
             onClick={() => applyPreset(preset)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 5,
+              padding: '5px 11px',
+              borderRadius: 8,
+              background: isDark ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-1)',
+              border: `1.5px solid ${isDark ? 'var(--mantine-color-dark-3)' : 'var(--mantine-color-gray-3)'}`,
+              fontFamily: 'Inter, sans-serif',
+              fontSize: 13,
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+              userSelect: 'none',
+              color: isDark ? 'var(--mantine-color-gray-3)' : 'var(--mantine-color-gray-8)',
+            }}
           >
+            <span style={{ fontSize: 15 }}>{STYLE_ICONS[preset.style] || '🍺'}</span>
             {preset.style}
-          </Button>
+          </UnstyledButton>
         ))}
       </Flex>
     </>
