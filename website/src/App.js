@@ -7,17 +7,53 @@ import AppContent from './components/AppContent';
 const theme = createTheme({
   colors: {
     hop: [
-      '#f0f9f0', '#d8f0d8', '#b8e6b8', '#92d692', '#6bb86b',
-      '#2e7d32', '#1c5e20', '#0e4c14', '#053a0a', '#002900'
+      '#f0faf0', '#d6f5d6', '#adebad', '#7ddb7d', '#52c752',
+      '#2ea82e', '#228a22', '#186d18', '#0f510f', '#083608'
     ],
     amber: [
-      '#fff8e1', '#ffecb3', '#ffe082', '#ffd54f', '#ffca28',
-      '#ff8f00', '#ff6f00', '#e65100', '#bf360c', '#8f2a00'
-    ]
+      '#fff9e6', '#ffeeb3', '#ffe180', '#ffd44d', '#ffc61a',
+      '#e6a800', '#b38300', '#805e00', '#4d3800', '#1a1300'
+    ],
+    gold: [
+      '#fffbf0', '#fff3cc', '#ffe999', '#ffdf66', '#ffd433',
+      '#f0bc00', '#bd9400', '#8a6c00', '#574400', '#241c00'
+    ],
   },
   primaryColor: 'hop',
   defaultRadius: 'md',
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+  fontFamilyMonospace: 'ui-monospace, SFMono-Regular, monospace',
+  headings: {
+    fontFamily: 'Space Grotesk, Inter, sans-serif',
+    fontWeight: '600',
+  },
+  components: {
+    Paper: {
+      defaultProps: {
+        radius: 'lg',
+      },
+    },
+    Card: {
+      defaultProps: {
+        radius: 'lg',
+      },
+    },
+    Button: {
+      defaultProps: {
+        radius: 'md',
+      },
+    },
+    Badge: {
+      defaultProps: {
+        radius: 'sm',
+      },
+    },
+    MultiSelect: {
+      defaultProps: {
+        radius: 'md',
+      },
+    },
+  },
 });
 
 function App() {
