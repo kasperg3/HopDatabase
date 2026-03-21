@@ -10,6 +10,7 @@ on:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
     branches:
     - 'claude/*' # Trigger on claude/* branch pushes for CI validation
+    - 'copilot/tag-release-v*' # Trigger release when Copilot creates a release branch
   workflow_dispatch: # Allow manual trigger
     inputs:
       version:
@@ -54,7 +55,7 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/') || startsWith(github.ref, 'refs/heads/copilot/tag-release-v')
     steps:
       - uses: actions/checkout@v4
       
@@ -69,6 +70,11 @@ jobs:
             else
               echo "release_name=Release ${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
             fi
+          elif [[ "${{ github.ref }}" == refs/heads/copilot/tag-release-v* ]]; then
+            # Extract version from Copilot release branch name: copilot/tag-release-vX.Y.Z -> vX.Y.Z
+            VERSION="${GITHUB_REF#refs/heads/copilot/tag-release-}"
+            echo "tag_name=$VERSION" >> $GITHUB_OUTPUT
+            echo "release_name=Release $VERSION" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == "schedule" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             # Generate version based on current date (YYYY.MM format)
             VERSION="v$(date +'%Y.%m')"
@@ -80,13 +86,19 @@ jobs:
             echo "release_name=Release ${{ github.ref_name }}" >> $GITHUB_OUTPUT
           fi
       
-      - name: Create and push tag (for scheduled runs)
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Create and push tag (for scheduled/dispatch/release-branch runs)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/copilot/tag-release-v')
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git tag ${{ steps.version.outputs.tag_name }}
-          git push origin ${{ steps.version.outputs.tag_name }}
+          git fetch origin main
+          # Only create and push the tag if it does not already exist
+          if git ls-remote --tags origin "${{ steps.version.outputs.tag_name }}" | grep -q .; then
+            echo "Tag ${{ steps.version.outputs.tag_name }} already exists, skipping tag creation."
+          else
+            git tag ${{ steps.version.outputs.tag_name }} $(git rev-parse origin/main)
+            git push origin ${{ steps.version.outputs.tag_name }}
+          fi
       
       - name: Download artifact
         uses: actions/download-artifact@v4
