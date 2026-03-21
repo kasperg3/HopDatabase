@@ -152,19 +152,12 @@ def extract_product_variants(soup):
     return variants
 
 
-def extract_sensory_analysis(soup_or_url):
+def extract_sensory_analysis(soup):
     """
     Extract sensory analysis data from an individual hop page.
-
-    Accepts either a pre-parsed BeautifulSoup object or a URL string.
     Returns a dictionary with aroma categories and their intensity values (0-5).
     """
     try:
-        if isinstance(soup_or_url, str):
-            response = req.get(soup_or_url)
-            soup = BeautifulSoup(response.text, "html.parser")
-        else:
-            soup = soup_or_url
 
         # Find the sensory analysis SVG
         sensory_div = soup.find("div", {"class": "sensory-analysis"})
@@ -209,8 +202,7 @@ def extract_sensory_analysis(soup_or_url):
 
         return sensory_data
 
-    except Exception as e:
-        print(f"Error extracting sensory analysis from {hop_url}: {e}")
+    except Exception:
         return {}
 
 

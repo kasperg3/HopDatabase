@@ -34,7 +34,6 @@ def normalize_country(country: str) -> str:
 def normalize_hop_name(name):
     """Normalizes hop names for consistent grouping."""
     name = name.lower()
-    # Remove both unicode and literal "®Brand" patterns
     name = re.sub(r'(\\u00aeBrand|®Brand)', '', name)
     name = re.sub(r'\(.*?\)', '', name)
     name = re.sub(r'[®™\'()]', '', name)
@@ -49,6 +48,8 @@ def get_safe_float(value, default=0.0):
     if value is None or value == '': return default
     try: return float(value)
     except (ValueError, TypeError): return default
+
+INVALID_HOP_NAMES = {"hop varieties", "hop variety", "all hops", "unknown"}
 
 # Add a mapping for known equivalent hop names
 MERGE_NAME_ALIASES = {
@@ -122,13 +123,9 @@ def scale_aroma_values_by_source(hops_data: List[HopEntry]) -> List[HopEntry]:
 
 def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
     """Merges a list of HopEntry objects into a standardized list."""
-    # Names that are category pages or scraper artifacts, not actual hop varieties
-    INVALID_HOP_NAMES = {"hop varieties", "hop variety", "all hops", "unknown"}
-
     grouped_hops = defaultdict(list)
     for hop in hops_data:
         normalized_name = normalize_hop_name(hop.name)
-        # Use alias mapping if available
         normalized_name = MERGE_NAME_ALIASES.get(normalized_name, normalized_name)
         if normalized_name and normalized_name not in INVALID_HOP_NAMES:
             grouped_hops[normalized_name].append(hop)
