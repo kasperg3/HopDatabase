@@ -40,6 +40,8 @@ def normalize_hop_name(name):
     name = re.sub(r'[®™\'()]', '', name)
     name = re.sub(r'brand', '', name)
     name = re.sub(r'\s*-\s*\w{2,3}$', '', name)
+    # Strip trailing " hops" or " hop" suffix (common in Yakima Valley Hops names)
+    name = re.sub(r'\s+hops?$', '', name)
     return name.strip()
 
 def get_safe_float(value, default=0.0):
@@ -53,8 +55,8 @@ MERGE_NAME_ALIASES = {
     "hallertauer mittelfrüher": "hallertauer mittelfrüh",
     "hallertauer mittelfrueh": "hallertauer mittelfrüh",
     "hallertau mittelfrüh": "hallertauer mittelfrüh",
-    "East kent goldings" : "East kent golding",
-    "Fuggle" : "Fuggles"
+    "east kent goldings" : "east kent golding",
+    "fuggle" : "fuggles"
     # Add more aliases as needed
 }
 
@@ -120,12 +122,15 @@ def scale_aroma_values_by_source(hops_data: List[HopEntry]) -> List[HopEntry]:
 
 def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
     """Merges a list of HopEntry objects into a standardized list."""
+    # Names that are category pages or scraper artifacts, not actual hop varieties
+    INVALID_HOP_NAMES = {"hop varieties", "hop variety", "all hops", "unknown"}
+
     grouped_hops = defaultdict(list)
     for hop in hops_data:
         normalized_name = normalize_hop_name(hop.name)
         # Use alias mapping if available
         normalized_name = MERGE_NAME_ALIASES.get(normalized_name, normalized_name)
-        if normalized_name:
+        if normalized_name and normalized_name not in INVALID_HOP_NAMES:
             grouped_hops[normalized_name].append(hop)
 
     merged_hops = []
