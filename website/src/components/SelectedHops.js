@@ -76,14 +76,14 @@ const VariantsComparison = ({ hopData }) => {
       </Text>
 
       {/* Variant type selector */}
-      <Group gap="xs">
+      <Group gap="xs" wrap="wrap">
         {allVariantTypes.map(type => (
           <Badge
             key={type}
             color={VARIANT_COLORS[type] || 'gray'}
             variant={activeVariant === type ? 'filled' : 'outline'}
             size="md"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', whiteSpace: 'normal', height: 'auto', padding: '4px 10px' }}
             onClick={() => setActiveVariant(type)}
           >
             {type}
@@ -92,72 +92,76 @@ const VariantsComparison = ({ hopData }) => {
       </Group>
 
       {/* Comparison table for selected variant type */}
-      <Table striped withTableBorder highlightOnHover>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Hop</Table.Th>
-            <Table.Th>Alpha</Table.Th>
-            <Table.Th>Beta</Table.Th>
-            <Table.Th>Total Oil</Table.Th>
-            <Table.Th>Cohumulone</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {variantRows.map(({ hop, variant }) => (
-            <Table.Tr key={hop.uniqueId}>
-              <Table.Td fw={500}>
-                <Group gap="xs">
-                  {hop.displayName}
-                  <Badge size="xs" color="gray" variant="light">{hop.country}</Badge>
-                </Group>
-              </Table.Td>
-              {variant ? (
-                <>
-                  <Table.Td>{formatRange(variant.alpha_from, variant.alpha_to, '%')}</Table.Td>
-                  <Table.Td>{formatRange(variant.beta_from, variant.beta_to, '%')}</Table.Td>
-                  <Table.Td>{formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}</Table.Td>
-                  <Table.Td>{formatRange(variant.co_h_from, variant.co_h_to, '%')}</Table.Td>
-                </>
-              ) : (
-                <Table.Td colSpan={4}>
-                  <Text size="sm" c="dimmed" fs="italic">Not available in this form</Text>
-                </Table.Td>
-              )}
+      <Box style={{ overflowX: 'auto' }}>
+        <Table striped withTableBorder highlightOnHover style={{ minWidth: 420 }}>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Hop</Table.Th>
+              <Table.Th>α%</Table.Th>
+              <Table.Th>β%</Table.Th>
+              <Table.Th>Oil</Table.Th>
+              <Table.Th>CoH%</Table.Th>
             </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
+          </Table.Thead>
+          <Table.Tbody>
+            {variantRows.map(({ hop, variant }) => (
+              <Table.Tr key={hop.uniqueId}>
+                <Table.Td fw={500} style={{ whiteSpace: 'nowrap' }}>{hop.displayName}</Table.Td>
+                {variant ? (
+                  <>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.alpha_from, variant.alpha_to, '%')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.beta_from, variant.beta_to, '%')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.co_h_from, variant.co_h_to, '%')}</Table.Td>
+                  </>
+                ) : (
+                  <Table.Td colSpan={4}>
+                    <Text size="sm" c="dimmed" fs="italic">Not available in this form</Text>
+                  </Table.Td>
+                )}
+              </Table.Tr>
+            ))}
+          </Table.Tbody>
+        </Table>
+      </Box>
 
       {/* Per-hop variant overview — all forms side by side */}
       {hopsWithVariants.length === 1 && (
         <Box mt="sm">
           <Text fw={500} size="sm" mb="xs">All product forms — {hopsWithVariants[0].displayName}</Text>
-          <Table striped withTableBorder>
-            <Table.Thead>
-              <Table.Tr>
-                <Table.Th>Form</Table.Th>
-                <Table.Th>Alpha</Table.Th>
-                <Table.Th>Beta</Table.Th>
-                <Table.Th>Total Oil</Table.Th>
-                <Table.Th>Cohumulone</Table.Th>
-              </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>
-              {hopsWithVariants[0].product_variants.map(v => (
-                <Table.Tr key={v.type}>
-                  <Table.Td>
-                    <Badge color={VARIANT_COLORS[v.type] || 'gray'} variant="light" size="sm">
-                      {v.type}
-                    </Badge>
-                  </Table.Td>
-                  <Table.Td>{formatRange(v.alpha_from, v.alpha_to, '%')}</Table.Td>
-                  <Table.Td>{formatRange(v.beta_from, v.beta_to, '%')}</Table.Td>
-                  <Table.Td>{formatRange(v.oil_from, v.oil_to, ' ml/100g')}</Table.Td>
-                  <Table.Td>{formatRange(v.co_h_from, v.co_h_to, '%')}</Table.Td>
+          <Box style={{ overflowX: 'auto' }}>
+            <Table striped withTableBorder style={{ minWidth: 420 }}>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Form</Table.Th>
+                  <Table.Th>α%</Table.Th>
+                  <Table.Th>β%</Table.Th>
+                  <Table.Th>Oil</Table.Th>
+                  <Table.Th>CoH%</Table.Th>
                 </Table.Tr>
-              ))}
-            </Table.Tbody>
-          </Table>
+              </Table.Thead>
+              <Table.Tbody>
+                {hopsWithVariants[0].product_variants.map(v => (
+                  <Table.Tr key={v.type}>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>
+                      <Text
+                        size="xs"
+                        fw={600}
+                        c={VARIANT_COLORS[v.type] || 'gray'}
+                        style={{ whiteSpace: 'nowrap' }}
+                      >
+                        {v.type}
+                      </Text>
+                    </Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.alpha_from, v.alpha_to, '%')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.beta_from, v.beta_to, '%')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.oil_from, v.oil_to, ' ml/100g')}</Table.Td>
+                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.co_h_from, v.co_h_to, '%')}</Table.Td>
+                  </Table.Tr>
+                ))}
+              </Table.Tbody>
+            </Table>
+          </Box>
         </Box>
       )}
     </Stack>
