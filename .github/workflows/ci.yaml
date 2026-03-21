@@ -93,10 +93,10 @@ jobs:
           git config --local user.name "GitHub Action"
           git fetch origin main
           # Only create and push the tag if it does not already exist
-          if git ls-remote --tags origin "${{ steps.version.outputs.tag_name }}" | grep -q "${{ steps.version.outputs.tag_name }}"; then
+          if git ls-remote --tags origin "${{ steps.version.outputs.tag_name }}" | grep -q .; then
             echo "Tag ${{ steps.version.outputs.tag_name }} already exists, skipping tag creation."
           else
-            git tag ${{ steps.version.outputs.tag_name }} origin/main
+            git tag ${{ steps.version.outputs.tag_name }} $(git rev-parse origin/main)
             git push origin ${{ steps.version.outputs.tag_name }}
           fi
       
