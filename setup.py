@@ -11,7 +11,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="hop-database",
-    version="1.0.0",
+    version="2026.3.1",
     author="HopDatabase Contributors",
     description="A comprehensive database and scraping system for hop varieties",
     long_description=long_description,
