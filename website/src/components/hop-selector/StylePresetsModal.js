@@ -10,12 +10,14 @@ import {
   Text,
   Button,
 } from '@mantine/core';
+import { IconCheck } from '@tabler/icons-react';
 
-const StylePresetsModal = ({ 
-  presetsModalOpen, 
-  setPresetsModalOpen, 
-  getAllAromaCombinations, 
-  applyPreset 
+const StylePresetsModal = ({
+  presetsModalOpen,
+  setPresetsModalOpen,
+  getAllAromaCombinations,
+  applyPreset,
+  activePresetStyle,
 }) => {
   return (
     <Modal
@@ -41,72 +43,91 @@ const StylePresetsModal = ({
             <Grid>
               {getAllAromaCombinations()
                 .filter(combo => combo.category === category)
-                .map((combo, index) => (
-                  <Grid.Col key={index} span={6}>
-                    <Card withBorder p="md" h="100%">
-                      <Stack gap="sm" h="100%" justify="space-between">
-                        <Box>
-                          <Group justify="space-between" mb="xs">
-                            <Badge variant="filled" color="grape">
-                              {combo.style}
-                            </Badge>
-                            <Group gap={4}>
-                              {combo.type === 'low' && (
-                                <Badge size="xs" variant="outline" color="orange">
-                                  Subtle
-                                </Badge>
-                              )}
-                              {combo.type === 'mixed' && (
-                                <Badge size="xs" variant="outline" color="violet">
-                                  Mixed Profile
-                                </Badge>
+                .map((combo, index) => {
+                  const isActive = combo.style === activePresetStyle;
+
+                  return (
+                    <Grid.Col key={index} span={6}>
+                      <Card
+                        withBorder
+                        p="md"
+                        h="100%"
+                        style={isActive ? {
+                          borderColor: 'var(--mantine-color-green-5)',
+                          borderWidth: 2,
+                        } : undefined}
+                      >
+                        <Stack gap="sm" h="100%" justify="space-between">
+                          <Box>
+                            <Group justify="space-between" mb="xs">
+                              <Badge variant="filled" color={isActive ? 'green' : 'grape'}>
+                                {combo.style}
+                              </Badge>
+                              <Group gap={4}>
+                                {isActive && (
+                                  <Badge size="xs" variant="filled" color="green" leftSection={<IconCheck size={10} />}>
+                                    Active
+                                  </Badge>
+                                )}
+                                {combo.type === 'low' && (
+                                  <Badge size="xs" variant="outline" color="orange">
+                                    Subtle
+                                  </Badge>
+                                )}
+                                {combo.type === 'mixed' && (
+                                  <Badge size="xs" variant="outline" color="violet">
+                                    Mixed Profile
+                                  </Badge>
+                                )}
+                              </Group>
+                            </Group>
+
+                            <Group gap={4} mb="xs" wrap="wrap">
+                              {combo.type === 'mixed' ? (
+                                <>
+                                  {combo.aromasHigh.map((aroma) => (
+                                    <Badge key={aroma} size="sm" variant="light" color="green">
+                                      {aroma} ↑
+                                    </Badge>
+                                  ))}
+                                  {combo.aromasLow.map((aroma) => (
+                                    <Badge key={aroma} size="sm" variant="light" color="red">
+                                      {aroma} ↓
+                                    </Badge>
+                                  ))}
+                                </>
+                              ) : (
+                                combo.aromas.map((aroma) => (
+                                  <Badge key={aroma} size="sm" variant="light" color={combo.type === 'low' ? 'orange' : 'blue'}>
+                                    {aroma}
+                                  </Badge>
+                                ))
                               )}
                             </Group>
-                          </Group>
-                          
-                          <Group gap={4} mb="xs" wrap="wrap">
-                            {combo.type === 'mixed' ? (
-                              <>
-                                {combo.aromasHigh.map((aroma) => (
-                                  <Badge key={aroma} size="sm" variant="light" color="green">
-                                    {aroma} ↑
-                                  </Badge>
-                                ))}
-                                {combo.aromasLow.map((aroma) => (
-                                  <Badge key={aroma} size="sm" variant="light" color="red">
-                                    {aroma} ↓
-                                  </Badge>
-                                ))}
-                              </>
-                            ) : (
-                              combo.aromas.map((aroma) => (
-                                <Badge key={aroma} size="sm" variant="light" color={combo.type === 'low' ? 'orange' : 'blue'}>
-                                  {aroma}
-                                </Badge>
-                              ))
-                            )}
-                          </Group>
-                          
-                          <Text size="sm" c="dimmed">
-                            {combo.description}
-                          </Text>
-                        </Box>
-                        
-                        <Button
-                          size="sm"
-                          variant="light"
-                          fullWidth
-                          onClick={() => {
-                            applyPreset(combo);
-                            setPresetsModalOpen(false);
-                          }}
-                        >
-                          Apply
-                        </Button>
-                      </Stack>
-                    </Card>
-                  </Grid.Col>
-                ))}
+
+                            <Text size="sm" c="dimmed">
+                              {combo.description}
+                            </Text>
+                          </Box>
+
+                          <Button
+                            size="sm"
+                            variant={isActive ? 'filled' : 'light'}
+                            color={isActive ? 'green' : undefined}
+                            fullWidth
+                            leftSection={isActive ? <IconCheck size={14} /> : undefined}
+                            onClick={() => {
+                              applyPreset(combo);
+                              setPresetsModalOpen(false);
+                            }}
+                          >
+                            {isActive ? 'Active' : 'Apply'}
+                          </Button>
+                        </Stack>
+                      </Card>
+                    </Grid.Col>
+                  );
+                })}
             </Grid>
           </Tabs.Panel>
         ))}

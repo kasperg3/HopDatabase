@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   Paper,
   Title,
@@ -27,7 +27,7 @@ import StylePresetsModal from './StylePresetsModal';
 import FilterSummary from './FilterSummary';
 
 import { useHopFilteringWithContext } from '../../hooks/useHopFilteringWithContext';
-import { getAllAromaCombinations, getPopularPresets } from './presets';
+import { getAllAromaCombinations, getPopularPresets, getActivePresetStyle } from './presets';
 
 const HopSelector = ({
   hopData,
@@ -74,6 +74,11 @@ const HopSelector = ({
     cycleOilThreshold,
     clearAllFilters,
   } = useHopFilteringWithContext(hopData);
+
+  const activePresetStyle = useMemo(
+    () => getActivePresetStyle(aromaStates),
+    [aromaStates]
+  );
 
   const applyPreset = (preset) => {
     const newAromaStates = {};
@@ -165,6 +170,7 @@ const HopSelector = ({
             getPopularPresets={getPopularPresets}
             applyPreset={applyPreset}
             setPresetsModalOpen={setPresetsModalOpen}
+            activePresetStyle={activePresetStyle}
           />
 
           <Box>
@@ -236,6 +242,7 @@ const HopSelector = ({
         setPresetsModalOpen={setPresetsModalOpen}
         getAllAromaCombinations={getAllAromaCombinations}
         applyPreset={applyPreset}
+        activePresetStyle={activePresetStyle}
       />
     </Paper>
   );

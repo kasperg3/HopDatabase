@@ -13,6 +13,7 @@ const QuickStylePresets = ({
   getPopularPresets,
   applyPreset,
   setPresetsModalOpen,
+  activePresetStyle,
 }) => {
   const { colorScheme } = useMantineColorScheme();
   const isDark = colorScheme === 'dark';
@@ -36,27 +37,37 @@ const QuickStylePresets = ({
       </Group>
 
       <Flex gap="xs" wrap="wrap">
-        {getPopularPresets().map((preset, index) => (
-          <UnstyledButton
-            key={index}
-            onClick={() => applyPreset(preset)}
-            style={{
-              padding: '5px 11px',
-              borderRadius: 8,
-              background: isDark ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-1)',
-              border: `1.5px solid ${isDark ? 'var(--mantine-color-dark-3)' : 'var(--mantine-color-gray-3)'}`,
-              fontFamily: 'Inter, sans-serif',
-              fontSize: 13,
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-              userSelect: 'none',
-              color: isDark ? 'var(--mantine-color-gray-3)' : 'var(--mantine-color-gray-8)',
-            }}
-          >
-            {preset.style}
-          </UnstyledButton>
-        ))}
+        {getPopularPresets().map((preset, index) => {
+          const isActive = preset.style === activePresetStyle;
+
+          return (
+            <UnstyledButton
+              key={index}
+              onClick={() => applyPreset(preset)}
+              style={{
+                padding: '5px 11px',
+                borderRadius: 8,
+                background: isActive
+                  ? isDark ? 'rgba(46,168,46,0.22)' : 'rgba(46,168,46,0.12)'
+                  : isDark ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-1)',
+                border: `1.5px solid ${isActive
+                  ? 'var(--mantine-color-green-5)'
+                  : isDark ? 'var(--mantine-color-dark-3)' : 'var(--mantine-color-gray-3)'}`,
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 13,
+                fontWeight: isActive ? 600 : 500,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                userSelect: 'none',
+                color: isActive
+                  ? isDark ? 'var(--mantine-color-green-4)' : 'var(--mantine-color-green-8)'
+                  : isDark ? 'var(--mantine-color-gray-3)' : 'var(--mantine-color-gray-8)',
+              }}
+            >
+              {preset.style}
+            </UnstyledButton>
+          );
+        })}
       </Flex>
     </>
   );

@@ -31,6 +31,7 @@ import {
   IconArchive,
   IconPackage,
   IconList,
+  IconNotes,
 } from '@tabler/icons-react';
 import LazyBrewingParametersComparison from './LazyBrewingParametersComparison';
 import BrewingSummary from './BrewingSummary';
@@ -39,6 +40,7 @@ import {
   formatRange,
   getCohumuloneClassification,
   getBetaAlphaClassification,
+  generateSensoryDescription,
 } from '../utils/hopUtils';
 import { ALPHA_THRESHOLDS, OIL_THRESHOLDS } from '../utils/hopConstants';
 
@@ -391,6 +393,26 @@ const SelectedHops = ({ hopData, selectedHops }) => {
                         </Box>
                       </Box>
                     )}
+
+                    {/* Sensory Profile */}
+                    {(() => {
+                      const description = generateSensoryDescription(hopInfo);
+                      return description ? (
+                        <Box mb="md">
+                          <Group gap="xs" mb={6}>
+                            <ThemeIcon size="xs" variant="light" color="grape" radius="sm">
+                              <IconNotes size={9} />
+                            </ThemeIcon>
+                            <Text size="xs" fw={600} c="dimmed" tt="uppercase" style={{ letterSpacing: '0.05em' }}>
+                              Sensory Profile
+                            </Text>
+                          </Group>
+                          <Text size="xs" c="dimmed" style={{ lineHeight: 1.5 }}>
+                            {description}
+                          </Text>
+                        </Box>
+                      ) : null;
+                    })()}
 
                     {/* Product Variants */}
                     {hopInfo.product_variants && hopInfo.product_variants.length > 0 && (
