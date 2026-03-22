@@ -7,9 +7,9 @@ Extracts hop data from the main listing page, individual hop pages,
 and PDF technical data sheets (for sensory analysis).
 """
 
+import concurrent.futures
 import io
 import re
-import time
 from typing import Dict, List, Optional, Tuple
 
 import requests
@@ -561,7 +561,7 @@ def enrich_with_pdf(hop_entry: HopEntry) -> None:
             hop_entry.oil_from, hop_entry.oil_to = parse_range(pdf_bv["oil"])
 
 
-PDF_DELAY = 3  # seconds to wait between PDF downloads
+MAX_WORKERS = 5  # concurrent threads for page and PDF fetches
 
 
 def scrape(save: bool = False) -> List[HopEntry]:
@@ -569,9 +569,8 @@ def scrape(save: bool = False) -> List[HopEntry]:
     Main entry point: scrape all hops from hops.com.au.
 
     Phase 1 — load the listing page and collect hop page URLs.
-    Phase 2 — visit each hop page sequentially to parse HTML data and find PDF links.
-    Phase 3 — download each PDF sequentially with a delay between requests,
-               then parse sensory and brewing data from the PDF.
+    Phase 2 — fetch all hop pages concurrently (HTML + locate PDF URL).
+    Phase 3 — download and parse PDFs concurrently.
 
     Args:
         save: If True, save results to data/hops_australia.json.
@@ -585,23 +584,23 @@ def scrape(save: bool = False) -> List[HopEntry]:
         print("No hop links found for hops.com.au — skipping.")
         return []
 
-    # Phase 2: load each hop page sequentially
-    print(f"\nLoading {len(hop_links)} hop pages sequentially...")
+    # Phase 2: fetch hop pages concurrently
+    print(f"\nLoading {len(hop_links)} hop pages concurrently...")
     hop_entries: List[HopEntry] = []
-    for i, url in enumerate(hop_links, 1):
-        print(f"  [{i}/{len(hop_links)}] {url}")
-        entry = process_hop_page(url)
-        if entry:
-            hop_entries.append(entry)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {executor.submit(process_hop_page, url): url for url in hop_links}
+        for future in concurrent.futures.as_completed(futures):
+            entry = future.result()
+            if entry:
+                hop_entries.append(entry)
 
     print(f"\nLoaded {len(hop_entries)} hop pages. Now downloading PDFs...")
 
-    # Phase 3: download PDFs one at a time with a delay between each
-    for i, entry in enumerate(hop_entries):
-        if entry.additional_properties.get("_pdf_url"):
-            if i > 0:
-                time.sleep(PDF_DELAY)
-            enrich_with_pdf(entry)
+    # Phase 3: download and parse PDFs concurrently
+    entries_with_pdf = [e for e in hop_entries if e.additional_properties.get("_pdf_url")]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = [executor.submit(enrich_with_pdf, e) for e in entries_with_pdf]
+        concurrent.futures.wait(futures)
 
     # Filter out non-hop pages that Strategy 5 may have picked up (e.g. "About Us",
     # "Sustainability Strategies").  A real hop page will have at least one numeric
