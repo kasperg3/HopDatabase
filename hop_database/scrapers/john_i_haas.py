@@ -10,7 +10,6 @@ and the PDF.
 
 import io
 import re
-import time
 import concurrent.futures
 from typing import Dict, Optional, Tuple, List, Set
 
@@ -166,13 +165,19 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
             print(f"    [DEBUG] PDF total chars: {len(full_text)}")
             print(f"    [DEBUG] PDF text (first 1500 chars):\n{full_text[:1500]}")
 
-            # Brewing values — match "Alpha 5.5 - 8.5%" style lines
+            # Brewing values.
+            # Handles three PDF formats seen in the wild:
+            #   MiniSpecSheet:  "Alpha (%) 13-17"
+            #   Haas:           "Alpha Acids* 10.1 - 14.1%"
+            #   HPA:            "Alpha 16.2 – 18.4%"
+            # Key fix: capture only digit-range, not arbitrary whitespace (old [\d.\s\-–]+
+            # could match empty/whitespace strings).  Optional parenthetical units like
+            # "(%)" or "(% of Alpha Acids)" or "(ml/100g)" are skipped via (?:\([^)]*\))?.
             for pattern, key in [
-                (r"(?i)alpha\s*(?:acid[s]?)?\s*[:\-]?\s*([\d.\s\-–]+%?)", "alpha"),
-                (r"(?i)beta\s*(?:acid[s]?)?\s*[:\-]?\s*([\d.\s\-–]+%?)", "beta"),
-                (r"(?i)co-?h(?:umulone)?\s*[:\-]?\s*([\d.\s\-–]+%?)", "cohumulone"),
-                (r"(?i)total\s+oil\s*[:\-]?\s*([\d.\s\-–]+\w*/?\w*)", "oil"),
-                (r"(?i)oil\s+content\s*[:\-]?\s*([\d.\s\-–]+\w*/?\w*)", "oil"),
+                (r"(?i)alpha\s*(?:acids?\*?)?\s*(?:\([^)]*\))?\s*\*?\s*([\d.]+\s*[-–]\s*[\d.]+)", "alpha"),
+                (r"(?i)beta\s*(?:acids?\*?)?\s*(?:\([^)]*\))?\s*\*?\s*([\d.]+\s*[-–]\s*[\d.]+)", "beta"),
+                (r"(?i)co-?h(?:umulone)?\s*(?:\([^)]*\))?\s*([\d.]+\s*[-–]\s*[\d.]+)", "cohumulone"),
+                (r"(?i)(?:total\s+)?oil(?:\s+content)?\s*(?:\([^)]*\))?\s*([\d.]+\s*[-–]\s*[\d.]+)", "oil"),
             ]:
                 m = re.search(pattern, full_text)
                 if m and not result[key]:
@@ -351,7 +356,9 @@ def process_pdf_directly(pdf_url: str, anchor_text: str) -> Optional[HopEntry]:
     Creates a HopEntry from a PDF spec sheet directly (used when no hop page exists).
     The hop name is derived from the anchor text or filename.
     """
-    name = anchor_text if anchor_text and 1 < len(anchor_text) < 60 else hop_name_from_pdf_filename(pdf_url)
+    # Always derive name from filename: catalog PDFs all have anchor "Download Specs"
+    # which is useless as a hop name.
+    name = hop_name_from_pdf_filename(pdf_url)
     if not name:
         return None
 
@@ -414,8 +421,11 @@ def scrape(save: bool = False) -> List[HopEntry]:
     else:
         print("  No root-level hop variety pages found; falling back to PDF-only mode.")
 
-    # Phase 2: process any PDFs not already covered by hop pages
-    # (PDFs discovered on catalog pages that don't have a matching hop page)
+    # Phase 2: process any PDFs not already covered by hop pages.
+    # `processed_pdf_urls` tracks PDFs consumed during Phase 1.  Because hop variety
+    # pages each download their own PDF internally, we approximate the set by skipping
+    # PDFs whose derived filename-name matches a Phase 1 hop name.
+    phase1_names = {e.name.lower() for e in hop_entries}
     remaining_pdfs = {url: anchor for url, anchor in pdf_links.items()
                       if url not in processed_pdf_urls}
     if remaining_pdfs:
@@ -427,8 +437,9 @@ def scrape(save: bool = False) -> List[HopEntry]:
             }
             for future in concurrent.futures.as_completed(futures):
                 result = future.result()
-                if result:
+                if result and result.name.lower() not in phase1_names:
                     hop_entries.append(result)
+                    phase1_names.add(result.name.lower())
 
     print(f"\nJohn I. Haas: successfully scraped {len(hop_entries)} hops "
           f"({len(hop_page_links)} pages + {len(remaining_pdfs)} PDFs attempted).")

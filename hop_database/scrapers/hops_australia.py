@@ -51,6 +51,18 @@ def _get_with_retry(url: str, timeout: int = PAGE_TIMEOUT, retries: int = 3) -> 
     raise RuntimeError(f"Failed to fetch {url} after {retries} attempts")
 
 
+def _normalize_hop_url(href: str) -> str:
+    """Normalize a hops.com.au URL to use www and trailing slash."""
+    href = href.rstrip("/")
+    href = re.sub(r"^https?://hops\.com\.au", BASE_URL, href, flags=re.I)
+    return href + "/"
+
+
+def _is_on_domain(href: str) -> bool:
+    """True if href belongs to hops.com.au (with or without www)."""
+    return bool(re.match(r"^https?://(?:www\.)?hops\.com\.au/", href, re.I))
+
+
 def get_hop_links(listing_url: str = HOPS_LISTING_URL) -> List[str]:
     """Fetch the main hop listing page and return all individual hop page URLs."""
     print(f"Fetching hop listing from {listing_url} ...")
@@ -62,41 +74,84 @@ def get_hop_links(listing_url: str = HOPS_LISTING_URL) -> List[str]:
 
     soup = BeautifulSoup(response.content, "html.parser")
     hop_links: List[str] = []
+    seen: set = set()
 
+    def _add(href: str) -> None:
+        norm = _normalize_hop_url(href)
+        if norm not in seen:
+            seen.add(norm)
+            hop_links.append(norm)
+
+    # Strategy 1: Classic WordPress — h2/h3 with entry-title or post-title class
     candidates = (
         soup.find_all("h2", class_=re.compile(r"entry-title|post-title", re.I))
         or soup.find_all("h3", class_=re.compile(r"entry-title|post-title", re.I))
         or []
     )
-
-    seen: set = set()
     for heading in candidates:
         a_tag = heading.find("a", href=True)
         if a_tag:
-            href = a_tag["href"]
-            if href not in seen:
-                seen.add(href)
-                hop_links.append(href)
+            _add(a_tag["href"])
 
+    # Strategy 2: Gutenberg block theme — wp-block-post-title headings
+    if not hop_links:
+        for heading in soup.find_all(
+            ["h2", "h3"], class_=re.compile(r"wp-block-post-title", re.I)
+        ):
+            a_tag = heading.find("a", href=True)
+            if a_tag:
+                _add(a_tag["href"])
+
+    # Strategy 3: Any link whose path matches /hops/<slug>/ (handles www/non-www,
+    # relative and absolute hrefs, and any theme)
+    if not hop_links:
+        hop_slug_re = re.compile(
+            r"^https?://(?:www\.)?hops\.com\.au/hops/([^/]+)/?$", re.I
+        )
+        for a_tag in soup.find_all("a", href=True):
+            href = a_tag["href"]
+            if href.startswith("/"):
+                href = BASE_URL + href
+            if hop_slug_re.match(href):
+                _add(href)
+
+    # Strategy 4: WordPress REST API — works even when the page is JS-rendered
+    if not hop_links:
+        try:
+            api_url = BASE_URL + "/wp-json/wp/v2/posts?per_page=100&_fields=link"
+            api_resp = requests.get(api_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
+            if api_resp.status_code == 200:
+                posts = api_resp.json()
+                hop_slug_re = re.compile(r"/hops/[^/]+/?$", re.I)
+                for post in posts:
+                    link = post.get("link", "")
+                    if hop_slug_re.search(link):
+                        _add(link)
+                if hop_links:
+                    print(f"  Found {len(hop_links)} hop links via WordPress REST API")
+        except Exception as exc:
+            print(f"  Warning: WP REST API fallback failed: {exc}")
+
+    # Strategy 5: Broad on-domain fallback — catches any remaining link patterns
+    # Uses flexible domain matching (www or non-www) and handles relative hrefs
     if not hop_links:
         listing_path = HOPS_LISTING_URL.rstrip("/")
         for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"].rstrip("/")
-            is_on_domain = href.startswith(BASE_URL)
-            is_not_root = href != BASE_URL
-            is_not_listing = href != listing_path
-            is_not_resource = not re.search(r"\.(pdf|png|jpg|css|js)$", href, re.I)
-            is_not_wp = "/wp-" not in href and "/#" not in href
+            href = a_tag["href"]
+            if href.startswith("/"):
+                href = BASE_URL + href
+            href_norm = href.rstrip("/")
             if (
-                is_on_domain
-                and is_not_root
-                and is_not_listing
-                and is_not_resource
-                and is_not_wp
-                and href not in seen
+                _is_on_domain(href_norm)
+                and href_norm != BASE_URL.rstrip("/")
+                and href_norm != listing_path
+                and not re.search(r"\.(pdf|png|jpg|css|js)$", href_norm, re.I)
+                and "/wp-" not in href_norm
+                and "/#" not in href_norm
+                and href_norm not in seen
             ):
-                seen.add(href)
-                hop_links.append(href)
+                seen.add(href_norm)
+                hop_links.append(href_norm + "/")
 
     print(f"Found {len(hop_links)} hop links.")
     return hop_links
