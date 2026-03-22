@@ -142,6 +142,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         all_hrefs = []
         all_standardized_aromas = []
         all_storage = []
+        all_descriptions = []
 
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
@@ -157,6 +158,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
             if hop.storage: all_storage.append(hop.storage)
+            if hop.description: all_descriptions.append(hop.description)
 
             if isinstance(hop.standardized_aromas, dict):
                 all_standardized_aromas.append(hop.standardized_aromas)
@@ -206,6 +208,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
                 all_product_variants[variant_type] = merged
 
         final_hop.notes = sorted(list(all_notes))
+        final_hop.description = all_descriptions[0] if all_descriptions else ""
         final_hop.country = all_countries[0] if all_countries else ""
         final_hop.source = " / ".join(sorted(list(all_sources)))
         # Store all unique hrefs, separated by " | " for multiple sources
@@ -249,47 +252,56 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
 
     return merged_hops
 
+def _require_hops(results: list, source: str, min_count: int = 1) -> list:
+    """Raise an error if a scraper returned fewer hops than expected."""
+    if len(results) < min_count:
+        raise RuntimeError(
+            f"Scraper '{source}' returned {len(results)} hops (expected >= {min_count}). "
+            "Data collection is incomplete — aborting."
+        )
+    return results
+
+
 def main():
     """Run all scrapers, combine the data, and then merge it."""
     print("Starting hop data scraping...")
-    
+
     # --- Run all scrapers ---
     print("\nScraping Yakima Chief Hops...")
-    ych = yakima_chief.scrape(save=False)
+    ych = _require_hops(yakima_chief.scrape(save=False), "Yakima Chief Hops (US)")
     print(f"Found {len(ych)} hops from Yakima Chief")
-    
-    ych_eu = yakima_chief.scrape(url="https://www.yakimachief.eu/commercial/hop-varieties.html?product_list_limit=all", save=False)
+
+    ych_eu = _require_hops(
+        yakima_chief.scrape(url="https://www.yakimachief.eu/commercial/hop-varieties.html?product_list_limit=all", save=False),
+        "Yakima Chief Hops (EU)",
+    )
     print(f"Found {len(ych_eu)} hops from Yakima Chief EU")
-    
+
     ych_us_names = {hop.name for hop in ych}
     ych_combined = ych + [hop for hop in ych_eu if hop.name not in ych_us_names]
-    
+
     print("\nScraping Barth Haas...")
-    bh = barth_haas.scrape(save=False)
+    bh = _require_hops(barth_haas.scrape(save=False), "Barth Haas")
     print(f"Found {len(bh)} hops from Barth Haas")
-    
+
     print("\nScraping Hopsteiner...")
-    hs = hopsteiner.scrape(save=False)
+    hs = _require_hops(hopsteiner.scrape(save=False), "Hopsteiner")
     print(f"Found {len(hs)} hops from Hopsteiner")
-    
-    # ADDED: Run Crosby Hops scraper
+
     print("\nScraping Crosby Hops...")
-    crosby = crosby_hops.scrape(save=False)
+    crosby = _require_hops(crosby_hops.scrape(save=False), "Crosby Hops")
     print(f"Found {len(crosby)} hops from Crosby Hops")
-    
-    # ADDED: Run John I. Haas scraper
+
     print("\nScraping John I. Haas...")
-    jih = john_i_haas.scrape(save=False)
+    jih = _require_hops(john_i_haas.scrape(save=False), "John I. Haas")
     print(f"Found {len(jih)} hops from John I. Haas")
-    
-    # ADDED: Run Yakima Valley Hops scraper
+
     print("\nScraping Yakima Valley Hops...")
-    yvh = yakima_valley_hops.scrape(save=False)
+    yvh = _require_hops(yakima_valley_hops.scrape(save=False), "Yakima Valley Hops")
     print(f"Found {len(yvh)} hops from Yakima Valley Hops")
 
-    # ADDED: Run Hop Products Australia scraper
     print("\nScraping Hop Products Australia (hops.com.au)...")
-    hpa = hops_australia.scrape(save=False)
+    hpa = _require_hops(hops_australia.scrape(save=False), "Hop Products Australia")
     print(f"Found {len(hpa)} hops from Hop Products Australia")
 
     # --- Combine all entries ---

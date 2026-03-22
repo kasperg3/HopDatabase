@@ -82,6 +82,39 @@ def _parse_properties_table(table):
     }
 
 
+def extract_description(soup):
+    """
+    Extract a text description of the hop from its individual page.
+    Looks for descriptive paragraphs in the main content area.
+    """
+    # Try common content containers on Yakima Chief pages
+    for selector in [
+        {"class": re.compile(r"product-description|hop-description|product-detail", re.I)},
+        {"class": re.compile(r"product-info|hop-info|overview", re.I)},
+    ]:
+        container = soup.find(["div", "section"], selector)
+        if container:
+            paragraphs = []
+            for p in container.find_all("p"):
+                text = p.get_text(strip=True)
+                if len(text) > 40:
+                    paragraphs.append(text)
+            if paragraphs:
+                return " ".join(paragraphs[:3])
+
+    # Fallback: look for the first substantial paragraph in main content
+    main = soup.find("main") or soup.find("div", {"class": re.compile(r"main|content", re.I)})
+    if main:
+        for p in main.find_all("p"):
+            text = p.get_text(strip=True)
+            if len(text) > 60 and not re.match(
+                r"^(alpha|beta|cohumulone|oil|storage|copyright)", text, re.I
+            ):
+                return text
+
+    return ""
+
+
 def extract_product_variants(soup):
     """
     Extract product variants (T-90 Pellets, Whole Cone, LupuLN2, Lupomax, etc.)
@@ -329,12 +362,14 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                 oil_high = ""
 
             if name and hop_aromas_notes:
-                # Fetch individual hop page once for both sensory analysis and product variants
+                # Fetch individual hop page once for sensory analysis, product variants and description
+                description = ""
                 try:
                     hop_page_response = req.get(href, timeout=30)
                     hop_page_soup = BeautifulSoup(hop_page_response.text, "html.parser")
                     sensory_data = extract_sensory_analysis(hop_page_soup)
                     product_variants = extract_product_variants(hop_page_soup)
+                    description = extract_description(hop_page_soup)
                 except Exception:
                     sensory_data = {}
                     product_variants = []
@@ -358,6 +393,7 @@ def scrape(url="https://www.yakimachief.com/commercial/hop-varieties.html?produc
                     notes=hop_aromas_notes,
                     storage=str(properties_dict.get("Storage", "")).strip(),
                     product_variants=product_variants,
+                    description=description,
                 )
 
                 # Set standardized aromas from sensory analysis data

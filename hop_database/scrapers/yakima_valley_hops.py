@@ -191,6 +191,23 @@ def process_product(product: dict) -> Optional[HopEntry]:
         # Extract notes
         notes = extract_notes(body_html)
 
+        # Extract description from product body_html
+        description = ""
+        if body_html:
+            desc_soup = BeautifulSoup(body_html, "html.parser")
+            for p in desc_soup.find_all("p"):
+                text = p.get_text(strip=True)
+                if len(text) > 60 and not re.match(
+                    r"^(alpha|beta|cohumulone|oil|storage|copyright)", text, re.I
+                ):
+                    description = text
+                    break
+        if not description:
+            description = product.get("body_html", "")
+            if description:
+                description = BeautifulSoup(description, "html.parser").get_text(strip=True)
+                description = description[:500].strip() if len(description) > 500 else description
+
         # Skip entries with no meaningful brewing data
         if not alpha_from and not alpha_to and not beta_from and not beta_to:
             return None
@@ -209,6 +226,7 @@ def process_product(product: dict) -> Optional[HopEntry]:
             co_h_from=co_h_from,
             co_h_to=co_h_to,
             notes=notes,
+            description=description,
         )
 
         return hop_entry
