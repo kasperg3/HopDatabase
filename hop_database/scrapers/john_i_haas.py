@@ -52,15 +52,32 @@ def get_hop_links(catalog_url: str = CATALOG_URL) -> List[str]:
     try:
         response = requests.get(catalog_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
         response.raise_for_status()
+        print(f"  [DEBUG] Catalog page status: {response.status_code}, URL after redirect: {response.url}")
         soup = BeautifulSoup(response.content, "html.parser")
 
+        # Dump all unique hrefs for debugging
+        all_hrefs = sorted({a["href"] for a in soup.find_all("a", href=True)})
+        johnihaas_hrefs = [h for h in all_hrefs if "johnihaas" in h or h.startswith("/")]
+        print(f"  [DEBUG] Total <a href> tags: {len(all_hrefs)}, johnihaas/relative: {len(johnihaas_hrefs)}")
+        print(f"  [DEBUG] Sample hrefs (first 40 johnihaas/relative):")
+        for h in johnihaas_hrefs[:40]:
+            print(f"    {h}")
+
         hop_links = set()
+        # Try multiple URL patterns for hop variety pages
+        patterns = [
+            r"^(https?://www\.johnihaas\.com)?/variety/[^/]+/?$",
+            r"^(https?://www\.johnihaas\.com)?/hops?/[^/]+/?$",
+            r"^(https?://www\.johnihaas\.com)?/hop-varieties?/[^/]+/?$",
+            r"^(https?://www\.johnihaas\.com)?/products/hops?/[^/]+/?$",
+        ]
         for a_tag in soup.find_all("a", href=True):
             href = a_tag["href"]
-            # Individual hop pages are at /variety/{slug}
-            if re.match(r"^(https?://www\.johnihaas\.com)?/variety/[^/]+/?$", href):
-                full_url = href if href.startswith("http") else BASE_URL + href
-                hop_links.add(full_url.rstrip("/"))
+            for pattern in patterns:
+                if re.match(pattern, href):
+                    full_url = href if href.startswith("http") else BASE_URL + href
+                    hop_links.add(full_url.rstrip("/"))
+                    break
 
         print(f"Found {len(hop_links)} unique hop links on John I. Haas.")
         return list(hop_links)
@@ -200,6 +217,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             if m and key not in brewing:
                 brewing[key] = m.group(1).strip()
 
+    print(f"  [DEBUG] {hop_url} — brewing keys found in HTML: {list(brewing.keys())}")
     alpha_from, alpha_to = parse_range(brewing.get("alpha", brewing.get("alpha acids", "")))
     beta_from, beta_to = parse_range(brewing.get("beta", brewing.get("beta acids", "")))
     co_h_from, co_h_to = parse_range(brewing.get("cohumulone", brewing.get("co-h", "")))
