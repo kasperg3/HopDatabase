@@ -169,6 +169,7 @@ def scrape(save=False):
             co_h_from=co_h_low,
             co_h_to=co_h_high,
             notes=hop_aromas_notes,
+            description=entry.get("description", ""),
             additional_properties=additional_properties,
             standardized_aromas=hop_aromas
         )        

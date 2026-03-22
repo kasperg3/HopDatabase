@@ -123,6 +123,7 @@ class HopEntry:
     country: str = ""
     source: str = ""
     href: str = ""
+    description: str = ""
 
     # Brewing Parameters
     alpha_from: Union[str, float] = ""
@@ -293,6 +294,7 @@ class HopEntry:
             "country": self.country,
             "source": self.source,
             "href": self.href,
+            "description": self.description,
             "alpha_from": self.alpha_from,
             "alpha_to": self.alpha_to,
             "beta_from": self.beta_from,

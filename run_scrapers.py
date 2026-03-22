@@ -142,6 +142,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
         all_hrefs = []
         all_standardized_aromas = []
         all_storage = []
+        all_descriptions = []
 
         range_values = defaultdict(lambda: {'from': [], 'to': []})
         additional_props_values = defaultdict(lambda: {'from': [], 'to': []})
@@ -157,6 +158,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
             if hop.source: all_sources.add(hop.source)
             if hop.href: all_hrefs.append(hop.href)
             if hop.storage: all_storage.append(hop.storage)
+            if hop.description: all_descriptions.append(hop.description)
 
             if isinstance(hop.standardized_aromas, dict):
                 all_standardized_aromas.append(hop.standardized_aromas)
@@ -206,6 +208,7 @@ def merge_hops(hops_data: List[HopEntry]) -> List[HopEntry]:
                 all_product_variants[variant_type] = merged
 
         final_hop.notes = sorted(list(all_notes))
+        final_hop.description = all_descriptions[0] if all_descriptions else ""
         final_hop.country = all_countries[0] if all_countries else ""
         final_hop.source = " / ".join(sorted(list(all_sources)))
         # Store all unique hrefs, separated by " | " for multiple sources

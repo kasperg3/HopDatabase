@@ -185,8 +185,8 @@ def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
     """
     Extract sensory/aroma intensity values from an HPA PDF technical data sheet.
 
-    HPA PDFs include a "Sensory Analysis" section with aroma categories and
-    scores on a 1–10 scale. Requires pdfplumber.
+    HPA PDFs include a "Beer sensory" radar chart and analytical data.
+    Tries multiple extraction strategies using pdfplumber.
     """
     sensory: Dict[str, float] = {}
 
@@ -199,6 +199,7 @@ def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
     try:
         with pdfplumber.open(io.BytesIO(pdf_content)) as pdf:
             for page in pdf.pages:
+                # Strategy 1: Try table extraction
                 tables = page.extract_tables() or []
                 for table in tables:
                     for row in (table or []):
@@ -214,15 +215,16 @@ def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
                                 if score is not None:
                                     sensory[mapped] = max(sensory.get(mapped, 0.0), score)
 
+                # Strategy 2: Extract text and parse labeled sections
                 text = page.extract_text() or ""
                 lines = text.splitlines()
                 in_sensory = False
                 for line in lines:
-                    if re.search(r"sensory\s+anal", line, re.I):
+                    if re.search(r"beer\s+sensory|sensory\s+anal", line, re.I):
                         in_sensory = True
                         continue
                     if in_sensory and re.search(
-                        r"(oil\s+compos|usage|brewing\s+val|storage|note)", line, re.I
+                        r"(oil\s+compos|usage|brewing\s+val|storage|analytical|raw\s+hop)", line, re.I
                     ):
                         in_sensory = False
                         continue
@@ -230,12 +232,13 @@ def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
                     if not in_sensory:
                         continue
 
+                    # Match "LabelName   5" or "Label Name: 5" or "LabelName 5.5"
                     match = re.match(
-                        r"^([A-Za-z][A-Za-z\s/]+?)\s{2,}(\d+(?:\.\d+)?)\s*$", line
+                        r"^([A-Za-z][A-Za-z\s/&]+?)\s{2,}(\d+(?:\.\d+)?)\s*$", line
                     )
                     if not match:
                         match = re.match(
-                            r"^([A-Za-z][A-Za-z\s/]+?)\s*[:\-–]\s*(\d+(?:\.\d+)?)\s*$",
+                            r"^([A-Za-z][A-Za-z\s/&]+?)\s*[:\-–]\s*(\d+(?:\.\d+)?)\s*$",
                             line,
                         )
                     if match:
@@ -247,10 +250,80 @@ def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
                             if score is not None:
                                 sensory[mapped] = max(sensory.get(mapped, 0.0), score)
 
+                # Strategy 3: Try extracting words with bounding boxes to correlate
+                # labels near numeric values (for charts where values appear near labels)
+                if not sensory:
+                    try:
+                        words = page.extract_words(x_tolerance=5, y_tolerance=5)
+                        _extract_sensory_from_words(words, sensory)
+                    except Exception:
+                        pass
+
     except Exception as exc:
         print(f"  Warning: could not parse PDF for sensory data: {exc}")
 
     return sensory
+
+
+def _extract_sensory_from_words(words: list, sensory: Dict[str, float]) -> None:
+    """
+    Try to correlate text labels and numeric values from word bounding boxes.
+    Used as a fallback when structured text extraction fails.
+    """
+    # Group words by approximate Y position (same line)
+    lines_by_y: Dict[int, list] = {}
+    for word in words:
+        y_key = round(float(word.get("top", 0)) / 5) * 5
+        lines_by_y.setdefault(y_key, []).append(word)
+
+    for y_key in sorted(lines_by_y.keys()):
+        line_words = sorted(lines_by_y[y_key], key=lambda w: float(w.get("x0", 0)))
+        line_text = " ".join(w["text"] for w in line_words)
+
+        # Look for lines like "Citrus 7" or "Tropical Fruit 8"
+        match = re.match(
+            r"^([A-Za-z][A-Za-z\s/&]+?)\s+(\d+(?:\.\d+)?)\s*$", line_text.strip()
+        )
+        if match:
+            label = match.group(1).strip()
+            score_str = match.group(2).strip()
+            mapped = _map_sensory_label(label)
+            if mapped:
+                score = _parse_score(score_str)
+                if score is not None:
+                    sensory[mapped] = max(sensory.get(mapped, 0.0), score)
+
+
+def parse_pdf_brewing_values(pdf_content: bytes) -> Dict[str, str]:
+    """
+    Extract analytical brewing values (alpha, beta, cohumulone, oil) from an HPA PDF.
+    These appear as text in the 'Analytical data' section.
+    """
+    values: Dict[str, str] = {}
+
+    try:
+        import pdfplumber
+    except ImportError:
+        return values
+
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_content)) as pdf:
+            for page in pdf.pages:
+                text = page.extract_text() or ""
+                # Match patterns like "Alpha 7.0 - 8.6%" or "Alpha 7.0 – 8.6%"
+                for pattern, key in [
+                    (r"Alpha\s+([\d.\s\-–]+%?)", "alpha"),
+                    (r"Beta\s+([\d.\s\-–]+%?)", "beta"),
+                    (r"Cohumulone\s+([\d.\s\-–]+[%\w]*(?:\s+of\s+\S+)?)", "cohumulone"),
+                    (r"Total\s+oil\s+([\d.\s\-–]+\w+/?\w*)", "oil"),
+                ]:
+                    m = re.search(pattern, text, re.I)
+                    if m and key not in values:
+                        values[key] = m.group(1).strip()
+    except Exception as exc:
+        print(f"  Warning: could not parse PDF for brewing values: {exc}")
+
+    return values
 
 
 # HPA sensory category names that appear in their PDFs → AROMA_MAPPINGS keys
@@ -279,6 +352,31 @@ def _parse_score(text: str) -> Optional[float]:
     if m:
         return float(m.group(0))
     return None
+
+
+def parse_description(soup: BeautifulSoup) -> str:
+    """Extract the main descriptive text about the hop variety from the page."""
+    # Try to find the main content area
+    main = (
+        soup.find("main")
+        or soup.find("div", class_=re.compile(r"entry-content|post-content|content", re.I))
+        or soup.find("article")
+    )
+    if not main:
+        main = soup
+
+    paragraphs = []
+    for p_tag in main.find_all("p"):
+        text = p_tag.get_text(strip=True)
+        # Skip very short paragraphs, or ones that look like metadata
+        if len(text) > 40 and not re.match(
+            r"^(alpha|beta|cohumulone|total oil|oil|storage|copyright|©)", text, re.I
+        ):
+            paragraphs.append(text)
+            if len(" ".join(paragraphs)) > 500:
+                break
+
+    return " ".join(paragraphs).strip()
 
 
 def parse_aroma_notes(soup: BeautifulSoup) -> List[str]:
@@ -331,6 +429,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
     coh_from, coh_to = parse_range(bv.get("cohumulone", ""))
     oil_from, oil_to = parse_range(bv.get("oil", ""))
 
+    description = parse_description(soup)
     notes = parse_aroma_notes(soup)
 
     sensory_data: Dict[str, float] = {}
@@ -339,7 +438,20 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         try:
             pdf_response = requests.get(pdf_url, headers=HEADERS, timeout=60)
             pdf_response.raise_for_status()
-            sensory_data = parse_pdf_sensory(pdf_response.content)
+            pdf_bytes = pdf_response.content
+            sensory_data = parse_pdf_sensory(pdf_bytes)
+
+            # If HTML page didn't have brewing values, try extracting from PDF
+            if not alpha_from:
+                pdf_bv = parse_pdf_brewing_values(pdf_bytes)
+                if pdf_bv.get("alpha") and not alpha_from:
+                    alpha_from, alpha_to = parse_range(pdf_bv["alpha"])
+                if pdf_bv.get("beta") and not beta_from:
+                    beta_from, beta_to = parse_range(pdf_bv["beta"])
+                if pdf_bv.get("cohumulone") and not coh_from:
+                    coh_from, coh_to = parse_range(pdf_bv["cohumulone"])
+                if pdf_bv.get("oil") and not oil_from:
+                    oil_from, oil_to = parse_range(pdf_bv["oil"])
         except requests.exceptions.RequestException as exc:
             print(f"  Warning: could not download PDF {pdf_url}: {exc}")
 
@@ -357,6 +469,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         co_h_from=coh_from,
         co_h_to=coh_to,
         notes=notes,
+        description=description,
     )
     hop_entry.set_standardized_aromas("australianhops", sensory_data)
 

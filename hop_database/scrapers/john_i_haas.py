@@ -171,6 +171,18 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
                         notes = candidate_notes
                     break
 
+        # --- Extract description ---
+        description = ""
+        main = soup.find("main") or soup.find("div", class_=re.compile(r"content|entry|main", re.I))
+        if main:
+            for p in main.find_all("p"):
+                text = p.get_text(strip=True)
+                if len(text) > 60 and not re.match(
+                    r"^(alpha|beta|cohumulone|oil|storage|copyright)", text, re.I
+                ):
+                    description = text
+                    break
+
         # Skip entries without any useful data
         if not alpha_from and not alpha_to and not beta_from and not beta_to:
             print(f"  Skipping {name} - no brewing data found")
@@ -190,6 +202,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             co_h_from=co_h_from,
             co_h_to=co_h_to,
             notes=notes,
+            description=description,
         )
 
         print(f"  Processed: {hop_entry.name} (alpha: {alpha_from}-{alpha_to}%)")

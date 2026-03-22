@@ -103,6 +103,28 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         if aroma_profile_tag and aroma_profile_tag.find('p'):
             raw_data['notes'] = [note.strip() for note in aroma_profile_tag.p.get_text(strip=True).split(',')]
 
+        # Scrape description
+        description = ""
+        for selector in ['p-description', 'hop-description', 'product-description', 'p-overview']:
+            desc_tag = soup.find('div', class_=selector)
+            if desc_tag:
+                text = desc_tag.get_text(strip=True)
+                if len(text) > 40:
+                    description = text
+                    break
+        if not description:
+            # Fallback: first long paragraph in main content
+            main = soup.find('main') or soup.find('div', class_=re.compile(r'content|main', re.I))
+            if main:
+                for p in main.find_all('p'):
+                    text = p.get_text(strip=True)
+                    if len(text) > 60 and not re.match(
+                        r'^(alpha|beta|cohumulone|oil|storage|copyright)', text, re.I
+                    ):
+                        description = text
+                        break
+        raw_data['description'] = description
+
         # Scrape brewing values
         brewing_values_tab = soup.find('div', id='tab-1')
         if brewing_values_tab:
@@ -139,7 +161,8 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             co_h_from=parse_range(raw_data.get('cohumulone', ''))[0],
             co_h_to=parse_range(raw_data.get('cohumulone', ''))[1],
             notes=raw_data.get('notes', []),
-            storage=raw_data.get('storage', '')
+            storage=raw_data.get('storage', ''),
+            description=raw_data.get('description', ''),
         )
 
         # Standardize aromas using the model's method
