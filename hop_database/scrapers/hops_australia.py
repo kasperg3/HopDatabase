@@ -253,19 +253,23 @@ def parse_brewing_values(soup: BeautifulSoup) -> Dict[str, str]:
 
 
 def parse_range(text: str) -> Tuple[str, str]:
-    """Parse a string like '12.5 - 14.5%' into (from_val, to_val) strings."""
+    """Parse a range string like '12.5 – 14.5%' or '2.5 - 3.0ml/100g' into (from, to).
+
+    Uses regex number extraction so unit strings with embedded digits
+    (e.g. 'ml/100g') don't corrupt the result.
+    """
     if not text:
         return "", ""
-    text = text.strip()
-    text = re.sub(r"[%a-zA-Z/]", "", text).strip()
-    text = re.sub(r"\s*[–—]\s*", "-", text)
-    if "-" in text:
-        parts = [p.strip() for p in text.split("-", 1)]
-        from_val = re.sub(r"[^0-9.]", "", parts[0])
-        to_val = re.sub(r"[^0-9.]", "", parts[1])
-        return from_val, to_val
-    val = re.sub(r"[^0-9.]", "", text)
-    return val, val
+    # Extract an explicit X – Y range first
+    m = re.search(r"(\d+(?:\.\d+)?)\s*[-–—]\s*(\d+(?:\.\d+)?)", text)
+    if m:
+        return m.group(1), m.group(2)
+    # Single numeric value
+    m = re.search(r"\d+(?:\.\d+)?", text)
+    if m:
+        val = m.group(0)
+        return val, val
+    return "", ""
 
 
 def _find_pdf_via_wp_api(hop_slug: str) -> Optional[str]:
@@ -434,7 +438,16 @@ def _extract_sensory_from_words(words: list, sensory: Dict[str, float]) -> None:
 def parse_pdf_brewing_values(pdf_content: bytes) -> Dict[str, str]:
     """
     Extract analytical brewing values (alpha, beta, cohumulone, oil) from an HPA PDF.
-    These appear as text in the 'Analytical data' section.
+
+    Two strategies:
+    1. Table extraction — handles PDFs where data is in tables (pdfplumber rows)
+    2. Text pattern matching — handles PDFs where data is in running text/paragraphs
+
+    Patterns cover several label styles seen in HPA and supplier PDFs:
+    - "Alpha 7.0 – 8.6%"          (HPA Australian sheets)
+    - "Alpha acids 7.0 - 8.6%"    (European / many supplier sheets)
+    - "Alpha Acid % 7.0 - 8.6"    (some American sheets)
+    - "Total oil 2.5 ml/100g"      (all HPA sheets)
     """
     values: Dict[str, str] = {}
 
@@ -443,20 +456,46 @@ def parse_pdf_brewing_values(pdf_content: bytes) -> Dict[str, str]:
     except ImportError:
         return values
 
+    _RANGE = r"\d+(?:\.\d+)?\s*[-–—]\s*\d+(?:\.\d+)?"
+
     try:
         with pdfplumber.open(io.BytesIO(pdf_content)) as pdf:
             for page in pdf.pages:
+                # Strategy 1: table extraction
+                for table in (page.extract_tables() or []):
+                    for row in table:
+                        if not row or len(row) < 2:
+                            continue
+                        label = (row[0] or "").strip().lower()
+                        # Combine remaining cells for the value
+                        value = " ".join(str(c) for c in row[1:] if c).strip()
+                        if not value or not re.search(_RANGE, value):
+                            continue
+                        if re.search(r"\balpha\b", label) and "co" not in label:
+                            values.setdefault("alpha", value)
+                        elif re.search(r"\bbeta\b", label):
+                            values.setdefault("beta", value)
+                        elif re.search(r"co-?h|cohumulone", label):
+                            values.setdefault("cohumulone", value)
+                        elif re.search(r"\boil\b", label):
+                            values.setdefault("oil", value)
+
+                # Strategy 2: text pattern matching
                 text = page.extract_text() or ""
-                # Match patterns like "Alpha 7.0 - 8.6%" or "Alpha 7.0 – 8.6%"
                 for pattern, key in [
-                    (r"Alpha\s+([\d.\s\-–]+%?)", "alpha"),
-                    (r"Beta\s+([\d.\s\-–]+%?)", "beta"),
-                    (r"Cohumulone\s+([\d.\s\-–]+[%\w]*(?:\s+of\s+\S+)?)", "cohumulone"),
-                    (r"Total\s+oil\s+([\d.\s\-–]+\w+/?\w*)", "oil"),
+                    # Alpha: plain "Alpha", "Alpha acids", "Alpha Acid %", "Total alpha"
+                    (r"(?:Total\s+)?[Aa]lpha(?:\s+[Aa]cids?\s*%?)?\s+(" + _RANGE + r")", "alpha"),
+                    # Beta: plain "Beta", "Beta acids"
+                    (r"[Bb]eta(?:\s+[Aa]cids?)?\s+(" + _RANGE + r")", "beta"),
+                    # Cohumulone / Co-H
+                    (r"[Cc]o-?h(?:umulone)?\s+(" + _RANGE + r")", "cohumulone"),
+                    # Total oil / Oil content
+                    (r"(?:[Tt]otal\s+)?[Oo]il(?:\s+[Cc]ontent)?\s+(" + _RANGE + r")", "oil"),
                 ]:
-                    m = re.search(pattern, text, re.I)
+                    m = re.search(pattern, text)
                     if m and key not in values:
                         values[key] = m.group(1).strip()
+
     except Exception as exc:
         print(f"  Warning: could not parse PDF for brewing values: {exc}")
 
