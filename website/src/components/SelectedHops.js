@@ -54,116 +54,72 @@ const VARIANT_COLORS = {
 const VariantsComparison = ({ hopData }) => {
   const hopsWithVariants = hopData.filter(h => h.product_variants?.length > 0);
 
-  // Collect all variant types present across selected hops
   const allVariantTypes = [...new Set(
     hopsWithVariants.flatMap(h => h.product_variants.map(v => v.type))
   )].sort();
 
-  const [activeVariant, setActiveVariant] = useState(allVariantTypes[0] || '');
-
   if (hopsWithVariants.length === 0) return null;
-
-  const variantRows = hopsWithVariants.map(hop => {
-    const v = hop.product_variants.find(v => v.type === activeVariant);
-    return { hop, variant: v || null };
-  });
 
   return (
     <Stack gap="md">
       <Text size="sm" c="dimmed">
-        Compare brewing parameters across product forms. Cryo Hops® and Lupomax® concentrate
-        alpha acids and oils — use lower weights than T-90 pellets.
+        Cryo Hops® and Lupomax® concentrate alpha acids and oils — use lower weights than T-90 pellets.
       </Text>
 
-      {/* Variant type selector */}
-      <Group gap="xs" wrap="wrap">
-        {allVariantTypes.map(type => (
-          <Badge
-            key={type}
-            color={VARIANT_COLORS[type] || 'gray'}
-            variant={activeVariant === type ? 'filled' : 'outline'}
-            size="md"
-            style={{ cursor: 'pointer', whiteSpace: 'normal', height: 'auto', padding: '4px 10px' }}
-            onClick={() => setActiveVariant(type)}
-          >
-            {type}
-          </Badge>
-        ))}
-      </Group>
+      {allVariantTypes.map(type => {
+        const color = VARIANT_COLORS[type] || 'gray';
+        const rows = hopsWithVariants.map(hop => ({
+          hop,
+          variant: hop.product_variants.find(v => v.type === type) || null,
+        }));
 
-      {/* Comparison table for selected variant type */}
-      <Box style={{ overflowX: 'auto' }}>
-        <Table striped withTableBorder highlightOnHover style={{ minWidth: 420 }}>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Hop</Table.Th>
-              <Table.Th>α%</Table.Th>
-              <Table.Th>β%</Table.Th>
-              <Table.Th>Oil</Table.Th>
-              <Table.Th>CoH%</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {variantRows.map(({ hop, variant }) => (
-              <Table.Tr key={hop.uniqueId}>
-                <Table.Td fw={500} style={{ whiteSpace: 'nowrap' }}>{hop.displayName}</Table.Td>
-                {variant ? (
-                  <>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.alpha_from, variant.alpha_to, '%')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.beta_from, variant.beta_to, '%')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.oil_from, variant.oil_to, ' ml/100g')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.co_h_from, variant.co_h_to, '%')}</Table.Td>
-                  </>
-                ) : (
-                  <Table.Td colSpan={4}>
-                    <Text size="sm" c="dimmed" fs="italic">Not available in this form</Text>
-                  </Table.Td>
-                )}
-              </Table.Tr>
-            ))}
-          </Table.Tbody>
-        </Table>
-      </Box>
-
-      {/* Per-hop variant overview — all forms side by side */}
-      {hopsWithVariants.length === 1 && (
-        <Box mt="sm">
-          <Text fw={500} size="sm" mb="xs">All product forms — {hopsWithVariants[0].displayName}</Text>
-          <Box style={{ overflowX: 'auto' }}>
-            <Table striped withTableBorder style={{ minWidth: 420 }}>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Form</Table.Th>
-                  <Table.Th>α%</Table.Th>
-                  <Table.Th>β%</Table.Th>
-                  <Table.Th>Oil</Table.Th>
-                  <Table.Th>CoH%</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {hopsWithVariants[0].product_variants.map(v => (
-                  <Table.Tr key={v.type}>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>
-                      <Text
-                        size="xs"
-                        fw={600}
-                        c={VARIANT_COLORS[v.type] || 'gray'}
-                        style={{ whiteSpace: 'nowrap' }}
-                      >
-                        {v.type}
-                      </Text>
-                    </Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.alpha_from, v.alpha_to, '%')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.beta_from, v.beta_to, '%')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.oil_from, v.oil_to, ' ml/100g')}</Table.Td>
-                    <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(v.co_h_from, v.co_h_to, '%')}</Table.Td>
+        return (
+          <Card key={type} withBorder padding={0} radius="sm">
+            <Box
+              px="sm"
+              py={6}
+              style={(theme) => ({
+                backgroundColor: `var(--mantine-color-${color}-light)`,
+                borderBottom: `2px solid var(--mantine-color-${color}-filled)`,
+              })}
+            >
+              <Text fw={600} size="sm" c={`${color}.8`}>{type}</Text>
+            </Box>
+            <Box style={{ overflowX: 'auto' }}>
+              <Table highlightOnHover style={{ minWidth: 360 }}>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Hop</Table.Th>
+                    <Table.Th>α%</Table.Th>
+                    <Table.Th>β%</Table.Th>
+                    <Table.Th>Oil (ml/100g)</Table.Th>
+                    <Table.Th>CoH%</Table.Th>
                   </Table.Tr>
-                ))}
-              </Table.Tbody>
-            </Table>
-          </Box>
-        </Box>
-      )}
+                </Table.Thead>
+                <Table.Tbody>
+                  {rows.map(({ hop, variant }) => (
+                    <Table.Tr key={hop.uniqueId}>
+                      <Table.Td fw={500} style={{ whiteSpace: 'nowrap' }}>{hop.displayName}</Table.Td>
+                      {variant ? (
+                        <>
+                          <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.alpha_from, variant.alpha_to, '%')}</Table.Td>
+                          <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.beta_from, variant.beta_to, '%')}</Table.Td>
+                          <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.oil_from, variant.oil_to, '')}</Table.Td>
+                          <Table.Td style={{ whiteSpace: 'nowrap' }}>{formatRange(variant.co_h_from, variant.co_h_to, '%')}</Table.Td>
+                        </>
+                      ) : (
+                        <Table.Td colSpan={4}>
+                          <Text size="sm" c="dimmed" fs="italic">Not available</Text>
+                        </Table.Td>
+                      )}
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
+            </Box>
+          </Card>
+        );
+      })}
     </Stack>
   );
 };
