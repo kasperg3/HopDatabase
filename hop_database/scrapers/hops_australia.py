@@ -64,83 +64,92 @@ def _is_on_domain(href: str) -> bool:
     return bool(re.match(r"^https?://(?:www\.)?hops\.com\.au/", href, re.I))
 
 
-def get_hop_links(listing_url: str = HOPS_LISTING_URL) -> List[str]:
-    """Fetch the main hop listing page and return all individual hop page URLs."""
+def collect_listing_links(listing_url: str = HOPS_LISTING_URL) -> Dict[str, Optional[str]]:
+    """
+    Fetch the hop listing page and return a {hop_url: pdf_url_or_None} mapping.
+
+    Scans each hop card/article for its page link and data-sheet PDF link in one
+    pass.  Falls back to slug-based matching when container pairing fails, and
+    finally falls back to the existing multi-strategy approaches for sites where
+    the listing page has an unusual structure.
+    """
+    _HOP_RE = re.compile(
+        r"^https?://(?:www\.)?hops\.com\.au/hops/([^/]+)/?$", re.I
+    )
+    _EXCLUDE_PDF = re.compile(r"/legal/|privacy|policy|terms|disclaimer", re.I)
+    _PDF_RE = re.compile(r"\.pdf", re.I)
+
     print(f"Fetching hop listing from {listing_url} ...")
     try:
         response = _get_with_retry(listing_url, timeout=PAGE_TIMEOUT)
     except requests.exceptions.RequestException as exc:
         print(f"Error fetching listing page: {exc}")
-        return []
+        return {}
 
     soup = BeautifulSoup(response.content, "html.parser")
-    hop_links: List[str] = []
-    seen: set = set()
 
-    def _add(href: str) -> None:
-        norm = _normalize_hop_url(href)
-        if norm not in seen:
-            seen.add(norm)
-            hop_links.append(norm)
+    def _abs(href: str) -> str:
+        href = re.sub(r"^https?://hops\.com\.au", BASE_URL, href, flags=re.I)
+        if href.startswith("/"):
+            return BASE_URL + href
+        return href
 
-    # Strategy 1: Classic WordPress — h2/h3 with entry-title or post-title class
-    candidates = (
-        soup.find_all("h2", class_=re.compile(r"entry-title|post-title", re.I))
-        or soup.find_all("h3", class_=re.compile(r"entry-title|post-title", re.I))
-        or []
+    result: Dict[str, Optional[str]] = {}   # hop_url → pdf_url
+
+    # --- Strategy 1-3: container-based pairing ---
+    # Each hop card (article or common WP post div) contains both its page link
+    # and its PDF data-sheet link; find them together.
+    containers = soup.find_all("article") or soup.find_all(
+        "div", class_=re.compile(r"post|entry|card|hops?-item", re.I)
     )
-    for heading in candidates:
-        a_tag = heading.find("a", href=True)
-        if a_tag:
-            _add(a_tag["href"])
+    for container in containers:
+        hop_url: Optional[str] = None
+        for a_tag in container.find_all("a", href=True):
+            href = _abs(a_tag["href"])
+            if _HOP_RE.match(href):
+                hop_url = _normalize_hop_url(href)
+                break
+        if not hop_url:
+            continue
+        pdf_url: Optional[str] = None
+        for a_tag in container.find_all("a", href=_PDF_RE):
+            href = _abs(a_tag["href"])
+            if not _EXCLUDE_PDF.search(href):
+                pdf_url = href
+                break
+        result.setdefault(hop_url, pdf_url)
 
-    # Strategy 2: Gutenberg block theme — wp-block-post-title headings
-    if not hop_links:
-        for heading in soup.find_all(
-            ["h2", "h3"], class_=re.compile(r"wp-block-post-title", re.I)
-        ):
-            a_tag = heading.find("a", href=True)
-            if a_tag:
-                _add(a_tag["href"])
-
-    # Strategy 3: Any link whose path matches /hops/<slug>/ (handles www/non-www,
-    # relative and absolute hrefs, and any theme)
-    if not hop_links:
-        hop_slug_re = re.compile(
-            r"^https?://(?:www\.)?hops\.com\.au/hops/([^/]+)/?$", re.I
-        )
+    # Strategy 4: collect all hop-path links if containers found nothing
+    if not result:
         for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"]
+            href = _abs(a_tag["href"])
             if href.startswith("/"):
                 href = BASE_URL + href
-            if hop_slug_re.match(href):
-                _add(href)
+            if _HOP_RE.match(href):
+                result.setdefault(_normalize_hop_url(href), None)
 
-    # Strategy 4: WordPress REST API — works even when the page is JS-rendered
-    if not hop_links:
+    # Strategy 5: WordPress REST API
+    if not result:
         try:
             api_url = BASE_URL + "/wp-json/wp/v2/posts?per_page=100&_fields=link"
             api_resp = requests.get(api_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
             if api_resp.status_code == 200:
-                posts = api_resp.json()
                 hop_slug_re = re.compile(r"/hops/[^/]+/?$", re.I)
-                for post in posts:
+                for post in api_resp.json():
                     link = post.get("link", "")
                     if hop_slug_re.search(link):
-                        _add(link)
-                if hop_links:
-                    print(f"  Found {len(hop_links)} hop links via WordPress REST API")
+                        result.setdefault(_normalize_hop_url(link), None)
+                if result:
+                    print(f"  Found {len(result)} hop links via WordPress REST API")
         except Exception as exc:
             print(f"  Warning: WP REST API fallback failed: {exc}")
 
-    # Strategy 5: Broad on-domain fallback — catches any remaining link patterns
-    # Uses flexible domain matching (www or non-www) and handles relative hrefs
-    if not hop_links:
+    # Strategy 6: broad on-domain fallback
+    if not result:
         listing_path = HOPS_LISTING_URL.rstrip("/")
+        seen: set = set()
         for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"]
-            if href.startswith("/"):
-                href = BASE_URL + href
+            href = _abs(a_tag["href"])
             href_norm = href.rstrip("/")
             if (
                 _is_on_domain(href_norm)
@@ -152,10 +161,30 @@ def get_hop_links(listing_url: str = HOPS_LISTING_URL) -> List[str]:
                 and href_norm not in seen
             ):
                 seen.add(href_norm)
-                hop_links.append(href_norm + "/")
+                result.setdefault(href_norm + "/", None)
 
-    print(f"Found {len(hop_links)} hop links.")
-    return hop_links
+    # Slug-based PDF matching for entries without a paired PDF
+    # Collect all non-excluded PDFs from the listing page
+    all_pdfs = [
+        _abs(a["href"])
+        for a in soup.find_all("a", href=_PDF_RE)
+        if not _EXCLUDE_PDF.search(a["href"])
+    ]
+    if all_pdfs:
+        for hop_url, existing_pdf in list(result.items()):
+            if existing_pdf:
+                continue
+            slug = hop_url.rstrip("/").rsplit("/", 1)[-1]
+            slug_norm = re.sub(r"[-\s]", "", slug).lower()
+            for pdf in all_pdfs:
+                pdf_filename = re.sub(r"[-\s_]", "", pdf.rsplit("/", 1)[-1]).lower()
+                if slug_norm in pdf_filename:
+                    result[hop_url] = pdf
+                    break
+
+    n_with_pdf = sum(1 for v in result.values() if v)
+    print(f"Found {len(result)} hop links ({n_with_pdf} with PDFs from listing page).")
+    return result
 
 
 def parse_brewing_values(soup: BeautifulSoup) -> Dict[str, str]:
@@ -514,13 +543,13 @@ def parse_aroma_notes(soup: BeautifulSoup) -> List[str]:
     return [n.lower() for n in notes if n]
 
 
-def process_hop_page(hop_url: str) -> Optional[HopEntry]:
+def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optional[HopEntry]:
     """Fetch a hop page and its PDF spec sheet, merge both sources into a HopEntry.
 
     HTML provides: name, country, description, aroma notes, and sometimes brewing values.
     PDF provides: authoritative brewing values (alpha/beta/cohumulone/oil) and sensory scores.
     When both sources have a brewing value the PDF wins (it is the official spec sheet).
-    PDF discovery: page links → WordPress REST API media search → skip if none found.
+    PDF discovery order: known_pdf_url (from listing page) → page link → WP REST API.
     """
     try:
         response = _get_with_retry(hop_url, timeout=PAGE_TIMEOUT)
@@ -545,8 +574,8 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
     description = parse_description(soup)
     notes = parse_aroma_notes(soup)
 
-    # PDF discovery: explicit page link first, then WP REST API
-    pdf_url = find_pdf_url(soup, hop_url) or _find_pdf_via_wp_api(hop_slug)
+    # PDF discovery: listing-page URL first, then page link, then WP REST API
+    pdf_url = known_pdf_url or find_pdf_url(soup, hop_url) or _find_pdf_via_wp_api(hop_slug)
 
     # PDF data — brewing values from PDF override HTML; sensory always from PDF
     pdf_bytes: Optional[bytes] = None
@@ -611,17 +640,20 @@ def scrape(save: bool = False) -> List[HopEntry]:
     Returns:
         List of HopEntry objects.
     """
-    # Phase 1: listing page
-    hop_links = get_hop_links()
-    if not hop_links:
+    # Phase 1: listing page — collect hop URLs and PDF links together
+    listing = collect_listing_links()
+    if not listing:
         print("No hop links found for hops.com.au — skipping.")
         return []
 
     # Phase 2: fetch + parse hop pages concurrently (HTML and PDF merged)
-    print(f"\nProcessing {len(hop_links)} hop pages concurrently...")
+    print(f"\nProcessing {len(listing)} hop pages concurrently...")
     hop_entries: List[HopEntry] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(process_hop_page, url): url for url in hop_links}
+        futures = {
+            executor.submit(process_hop_page, url, pdf_url): url
+            for url, pdf_url in listing.items()
+        }
         for future in concurrent.futures.as_completed(futures):
             entry = future.result()
             if entry:
@@ -635,7 +667,7 @@ def scrape(save: bool = False) -> List[HopEntry]:
         if any([e.alpha_from, e.alpha_to, e.beta_from, e.beta_to, e.oil_from, e.co_h_from])
     ]
 
-    print(f"\nHop Products Australia: scraped {len(hop_entries)} of {len(hop_links)} hops.")
+    print(f"\nHop Products Australia: scraped {len(hop_entries)} of {len(listing)} hops.")
 
     if save:
         save_hop_entries(hop_entries, "data/hops_australia.json")
