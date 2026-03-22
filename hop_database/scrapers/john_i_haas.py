@@ -2,15 +2,17 @@
 John I. Haas Hop Scraper
 
 Scrapes hop data from https://www.johnihaas.com/products/hops/
-Individual hop pages live at /variety/{slug} and each links to a PDF spec sheet.
-Brewing values and aroma data are parsed from both the page HTML and the PDF.
+and subcategory pages. Hop pages live at root-level slugs like
+/bru-1/, /el-dorado/, /sabro/ and link to PDF spec sheets.
+Brewing values and aroma data are parsed from both the page HTML
+and the PDF.
 """
 
 import io
 import re
 import time
 import concurrent.futures
-from typing import Dict, Optional, Tuple, List
+from typing import Dict, Optional, Tuple, List, Set
 
 import requests
 from bs4 import BeautifulSoup
@@ -18,7 +20,21 @@ from bs4 import BeautifulSoup
 from ..models.hop_model import HopEntry, save_hop_entries
 
 BASE_URL = "https://www.johnihaas.com"
-CATALOG_URL = "https://www.johnihaas.com/products/hops/"
+
+# All pages that may link to hop pages or PDF spec sheets
+CATALOG_PAGES = [
+    "https://www.johnihaas.com/products/hops/",
+    "https://www.johnihaas.com/products/bittering/",
+    "https://www.johnihaas.com/products/flavor-and-aroma/",
+]
+
+# Root-level slugs that are NOT hop variety pages
+NON_HOP_SLUGS = {
+    "about-us", "contact-us", "donations", "harvest", "how-to-buy",
+    "news-views", "privacy-policy", "terms-and-conditions-of-website-usage",
+    "termsandconditions", "products", "wp-content", "wp-admin",
+    "australian-hops",  # category landing page, not a variety
+}
 
 HEADERS = {
     "User-Agent": (
@@ -47,54 +63,77 @@ def parse_range(text: str) -> Tuple[str, str]:
     return "", ""
 
 
-def get_hop_links(catalog_url: str = CATALOG_URL) -> List[str]:
-    """Fetches the catalog page and returns all individual hop variety page URLs."""
-    try:
-        response = requests.get(catalog_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
-        response.raise_for_status()
-        print(f"  [DEBUG] Catalog page status: {response.status_code}, URL after redirect: {response.url}")
-        soup = BeautifulSoup(response.content, "html.parser")
+def hop_name_from_pdf_filename(pdf_url: str) -> str:
+    """Derive a best-guess hop name from a PDF filename."""
+    filename = pdf_url.rstrip("/").split("/")[-1]
+    # Strip extension
+    name = re.sub(r"\.pdf$", "", filename, flags=re.I)
+    # Strip common prefixes/suffixes
+    for prefix in [
+        r"^MiniSpecSheets[-_]",
+        r"^Haas_HopSpecSheets[-_]",
+        r"^Technical[-_](?:sheet|data)s?[-_]",
+        r"^HopSpecSheet[-_]",
+        r"^SpecSheet[-_]",
+    ]:
+        name = re.sub(prefix, "", name, flags=re.I)
+    for suffix in [r"[-_]Eng$", r"[-_]\d{4}$", r"[-_]Specs?$"]:
+        name = re.sub(suffix, "", name, flags=re.I)
+    # Replace dashes/underscores with spaces and title-case
+    name = re.sub(r"[-_]", " ", name).strip().title()
+    return name
 
-        # Dump all unique hrefs for debugging
-        all_hrefs = sorted({a["href"] for a in soup.find_all("a", href=True)})
-        johnihaas_hrefs = [h for h in all_hrefs if "johnihaas" in h or h.startswith("/")]
-        print(f"  [DEBUG] Total <a href> tags: {len(all_hrefs)}, johnihaas/relative: {len(johnihaas_hrefs)}")
-        print(f"  [DEBUG] Sample hrefs (first 40 johnihaas/relative):")
-        for h in johnihaas_hrefs[:40]:
-            print(f"    {h}")
 
-        hop_links = set()
-        # Try multiple URL patterns for hop variety pages
-        patterns = [
-            r"^(https?://www\.johnihaas\.com)?/variety/[^/]+/?$",
-            r"^(https?://www\.johnihaas\.com)?/hops?/[^/]+/?$",
-            r"^(https?://www\.johnihaas\.com)?/hop-varieties?/[^/]+/?$",
-            r"^(https?://www\.johnihaas\.com)?/products/hops?/[^/]+/?$",
-        ]
-        for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"]
-            for pattern in patterns:
-                if re.match(pattern, href):
+def collect_catalog_links() -> Tuple[Dict[str, str], Set[str]]:
+    """
+    Fetches all catalog pages and returns:
+      - pdf_links: {pdf_url: anchor_text}
+      - hop_page_links: set of root-level hop variety page URLs
+    """
+    pdf_links: Dict[str, str] = {}
+    hop_page_links: Set[str] = set()
+
+    for catalog_url in CATALOG_PAGES:
+        try:
+            resp = requests.get(catalog_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
+            resp.raise_for_status()
+            print(f"  [DEBUG] Fetched {catalog_url} → {resp.status_code}")
+            soup = BeautifulSoup(resp.content, "html.parser")
+
+            for a_tag in soup.find_all("a", href=True):
+                href = a_tag["href"]
+
+                # Direct PDF links (wp-content/uploads/*.pdf)
+                if "wp-content/uploads" in href and href.lower().endswith(".pdf"):
                     full_url = href if href.startswith("http") else BASE_URL + href
-                    hop_links.add(full_url.rstrip("/"))
-                    break
+                    if full_url not in pdf_links:
+                        anchor = a_tag.get_text(strip=True)
+                        pdf_links[full_url] = anchor
+                        print(f"    [DEBUG] PDF link: {full_url!r} (anchor: {anchor!r})")
+                    continue
 
-        print(f"Found {len(hop_links)} unique hop links on John I. Haas.")
-        return list(hop_links)
+                # Root-level hop variety page links: /slug/ or https://www.johnihaas.com/slug/
+                full_url = href if href.startswith("http") else BASE_URL + href
+                m = re.match(r"^https?://www\.johnihaas\.com/([^/]+)/?$", full_url)
+                if m:
+                    slug = m.group(1)
+                    if slug and slug not in NON_HOP_SLUGS:
+                        hop_page_links.add(full_url.rstrip("/"))
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching John I. Haas catalog: {e}")
-        return []
+        except requests.exceptions.RequestException as e:
+            print(f"  Error fetching catalog page {catalog_url}: {e}")
+
+    print(f"  [DEBUG] Collected {len(pdf_links)} PDF links and {len(hop_page_links)} root-level hop page links")
+    print(f"  [DEBUG] Root-level hop pages: {sorted(hop_page_links)}")
+    return pdf_links, hop_page_links
 
 
 def find_pdf_url(soup: BeautifulSoup) -> Optional[str]:
     """Find the PDF spec sheet link on a hop variety page."""
-    # Direct .pdf links
     for a_tag in soup.find_all("a", href=re.compile(r"\.pdf$", re.I)):
         href = a_tag["href"]
         return href if href.startswith("http") else BASE_URL + href
 
-    # Links labelled as spec sheet / download
     for a_tag in soup.find_all("a", href=True):
         label = a_tag.get_text(strip=True).lower()
         href = a_tag["href"]
@@ -123,6 +162,8 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
             full_text = ""
             for page in pdf.pages:
                 full_text += (page.extract_text() or "") + "\n"
+
+            print(f"    [DEBUG] PDF text (first 500 chars): {full_text[:500]!r}")
 
             # Brewing values — match "Alpha 5.5 - 8.5%" style lines
             for pattern, key in [
@@ -157,29 +198,17 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
                     result["description"] = line
                     break
 
+            print(f"    [DEBUG] PDF parsed: alpha={result['alpha']!r} beta={result['beta']!r} "
+                  f"coh={result['cohumulone']!r} oil={result['oil']!r}")
+
     except Exception as exc:
         print(f"  Warning: could not parse PDF: {exc}")
 
     return result
 
 
-def process_hop_page(hop_url: str) -> Optional[HopEntry]:
-    """Fetches a hop variety page, finds its PDF, and returns a HopEntry."""
-    try:
-        response = requests.get(hop_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, "html.parser")
-    except requests.exceptions.RequestException as e:
-        print(f"  Error fetching {hop_url}: {e}")
-        return None
-
-    # Name
-    h1 = soup.find("h1")
-    name = h1.get_text(strip=True) if h1 else hop_url.rstrip("/").split("/")[-1].replace("-", " ").title()
-
-    # Country from page text
-    country = "USA"
-    page_text = soup.get_text(" ", strip=True).lower()
+def _extract_country(page_text: str) -> str:
+    """Detect hop origin country from page text."""
     for keyword, country_name in {
         "germany": "Germany", "german": "Germany",
         "czech": "Czech Republic",
@@ -190,21 +219,26 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         "poland": "Poland",
         "france": "France",
     }.items():
-        if keyword in page_text:
-            country = country_name
-            break
+        if keyword in page_text.lower():
+            return country_name
+    return "USA"
 
-    # Brewing values from HTML
+
+def _extract_brewing_from_html(soup: BeautifulSoup) -> Dict[str, str]:
+    """Extract brewing value strings from HTML tables, definition lists, and inline text."""
     brewing: Dict[str, str] = {}
+
     for table in soup.find_all("table"):
         for row in table.find_all("tr"):
             cells = row.find_all(["th", "td"])
             if len(cells) >= 2:
                 key = cells[0].get_text(strip=True).lower()
                 brewing[key] = cells[1].get_text(strip=True)
+
     for dl in soup.find_all("dl"):
         for dt, dd in zip(dl.find_all("dt"), dl.find_all("dd")):
             brewing[dt.get_text(strip=True).lower()] = dd.get_text(strip=True)
+
     for elem in soup.find_all(["p", "div", "li", "span"]):
         text = elem.get_text(strip=True)
         for pattern, key in [
@@ -217,13 +251,30 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             if m and key not in brewing:
                 brewing[key] = m.group(1).strip()
 
-    print(f"  [DEBUG] {hop_url} — brewing keys found in HTML: {list(brewing.keys())}")
+    return brewing
+
+
+def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optional[HopEntry]:
+    """Fetches a hop variety page, finds its PDF, and returns a HopEntry."""
+    try:
+        response = requests.get(hop_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, "html.parser")
+    except requests.exceptions.RequestException as e:
+        print(f"  Error fetching {hop_url}: {e}")
+        return None
+
+    h1 = soup.find("h1")
+    name = h1.get_text(strip=True) if h1 else hop_url.rstrip("/").split("/")[-1].replace("-", " ").title()
+    country = _extract_country(soup.get_text(" ", strip=True))
+    brewing = _extract_brewing_from_html(soup)
+    print(f"  [DEBUG] {hop_url} name={name!r} country={country!r} brewing_keys={list(brewing.keys())}")
+
     alpha_from, alpha_to = parse_range(brewing.get("alpha", brewing.get("alpha acids", "")))
     beta_from, beta_to = parse_range(brewing.get("beta", brewing.get("beta acids", "")))
     co_h_from, co_h_to = parse_range(brewing.get("cohumulone", brewing.get("co-h", "")))
     oil_from, oil_to = parse_range(brewing.get("oil", brewing.get("total oil", "")))
 
-    # Notes and description from HTML
     notes: List[str] = []
     description = ""
     main = soup.find("main") or soup.find("div", class_=re.compile(r"content|entry|main", re.I))
@@ -236,15 +287,13 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
                 candidates = [n.strip() for n in re.split(r"[,;]", text) if n.strip()]
                 notes = notes or candidates
 
-    # PDF — find link and download
-    pdf_url = find_pdf_url(soup)
+    pdf_url = known_pdf_url or find_pdf_url(soup)
     if pdf_url:
         try:
             pdf_resp = requests.get(pdf_url, headers=HEADERS, timeout=PDF_TIMEOUT)
             pdf_resp.raise_for_status()
             pdf_data = parse_pdf_data(pdf_resp.content)
 
-            # Fill in missing brewing values from PDF
             if not alpha_from and pdf_data["alpha"]:
                 alpha_from, alpha_to = parse_range(pdf_data["alpha"])
             if not beta_from and pdf_data["beta"]:
@@ -257,6 +306,8 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
             description = description or pdf_data["description"]
         except requests.exceptions.RequestException as e:
             print(f"  Warning: could not download PDF {pdf_url}: {e}")
+    else:
+        print(f"  [DEBUG] No PDF found for {hop_url}")
 
     if not alpha_from and not alpha_to and not beta_from and not beta_to:
         print(f"  Skipping {name} — no brewing data found")
@@ -282,23 +333,92 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
     return hop_entry
 
 
+def process_pdf_directly(pdf_url: str, anchor_text: str) -> Optional[HopEntry]:
+    """
+    Creates a HopEntry from a PDF spec sheet directly (used when no hop page exists).
+    The hop name is derived from the anchor text or filename.
+    """
+    name = anchor_text if anchor_text and 1 < len(anchor_text) < 60 else hop_name_from_pdf_filename(pdf_url)
+    if not name:
+        return None
+
+    print(f"  [DEBUG] Processing PDF directly: {pdf_url!r} → name={name!r}")
+
+    try:
+        pdf_resp = requests.get(pdf_url, headers=HEADERS, timeout=PDF_TIMEOUT)
+        pdf_resp.raise_for_status()
+        pdf_data = parse_pdf_data(pdf_resp.content)
+    except requests.exceptions.RequestException as e:
+        print(f"  Warning: could not download PDF {pdf_url}: {e}")
+        return None
+
+    alpha_from, alpha_to = parse_range(pdf_data["alpha"])
+    beta_from, beta_to = parse_range(pdf_data["beta"])
+    co_h_from, co_h_to = parse_range(pdf_data["cohumulone"])
+    oil_from, oil_to = parse_range(pdf_data["oil"])
+
+    if not alpha_from and not beta_from:
+        print(f"  Skipping PDF {name} — no brewing data extracted from PDF")
+        return None
+
+    hop_entry = HopEntry(
+        name=name,
+        country="USA",  # default; PDFs rarely state country
+        source="John I. Haas",
+        href=pdf_url,
+        alpha_from=alpha_from,
+        alpha_to=alpha_to,
+        beta_from=beta_from,
+        beta_to=beta_to,
+        oil_from=oil_from,
+        oil_to=oil_to,
+        co_h_from=co_h_from,
+        co_h_to=co_h_to,
+        notes=pdf_data["notes"],
+        description=pdf_data["description"],
+    )
+    print(f"  Processed (PDF): {hop_entry.name} — alpha {alpha_from}-{alpha_to}%")
+    return hop_entry
+
+
 def scrape(save: bool = False) -> List[HopEntry]:
     """Main function to scrape all hops from John I. Haas."""
-    hop_links = get_hop_links(CATALOG_URL)
+    pdf_links, hop_page_links = collect_catalog_links()
 
-    if not hop_links:
-        print("No hop links found for John I. Haas.")
-        return []
+    # Track which PDFs get consumed by hop page processing
+    processed_pdf_urls: Set[str] = set()
+    hop_entries: List[HopEntry] = []
 
-    hop_entries = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        futures = {executor.submit(process_hop_page, url): url for url in hop_links}
-        for future in concurrent.futures.as_completed(futures):
-            result = future.result()
-            if result:
-                hop_entries.append(result)
+    # Phase 1: process each root-level hop variety page (HTML + PDF)
+    if hop_page_links:
+        print(f"  Processing {len(hop_page_links)} hop variety pages...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {executor.submit(process_hop_page, url): url for url in hop_page_links}
+            for future in concurrent.futures.as_completed(futures):
+                result = future.result()
+                if result:
+                    hop_entries.append(result)
+    else:
+        print("  No root-level hop variety pages found; falling back to PDF-only mode.")
 
-    print(f"\nJohn I. Haas: successfully scraped {len(hop_entries)} of {len(hop_links)} hops.")
+    # Phase 2: process any PDFs not already covered by hop pages
+    # (PDFs discovered on catalog pages that don't have a matching hop page)
+    remaining_pdfs = {url: anchor for url, anchor in pdf_links.items()
+                      if url not in processed_pdf_urls}
+    if remaining_pdfs:
+        print(f"  Processing {len(remaining_pdfs)} additional PDFs directly...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {
+                executor.submit(process_pdf_directly, url, anchor): url
+                for url, anchor in remaining_pdfs.items()
+            }
+            for future in concurrent.futures.as_completed(futures):
+                result = future.result()
+                if result:
+                    hop_entries.append(result)
+
+    print(f"\nJohn I. Haas: successfully scraped {len(hop_entries)} hops "
+          f"({len(hop_page_links)} pages + {len(remaining_pdfs)} PDFs attempted).")
 
     if save:
         save_hop_entries(hop_entries, "data/johnihaas.json")
