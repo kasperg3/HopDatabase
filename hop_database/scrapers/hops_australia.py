@@ -603,6 +603,14 @@ def scrape(save: bool = False) -> List[HopEntry]:
                 time.sleep(PDF_DELAY)
             enrich_with_pdf(entry)
 
+    # Filter out non-hop pages that Strategy 5 may have picked up (e.g. "About Us",
+    # "Sustainability Strategies").  A real hop page will have at least one numeric
+    # brewing value; pages without any data are silently dropped.
+    hop_entries = [
+        e for e in hop_entries
+        if any([e.alpha_from, e.alpha_to, e.beta_from, e.beta_to, e.oil_from, e.co_h_from])
+    ]
+
     print(f"\nHop Products Australia: scraped {len(hop_entries)} of {len(hop_links)} hops.")
 
     if save:

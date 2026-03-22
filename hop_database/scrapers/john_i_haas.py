@@ -162,9 +162,6 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
             for page in pdf.pages:
                 full_text += (page.extract_text() or "") + "\n"
 
-            print(f"    [DEBUG] PDF total chars: {len(full_text)}")
-            print(f"    [DEBUG] PDF text (first 1500 chars):\n{full_text[:1500]}")
-
             # Brewing values.
             # Handles three PDF formats seen in the wild:
             #   MiniSpecSheet:  "Alpha (%) 13-17"
@@ -176,15 +173,12 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
             for pattern, key in [
                 (r"(?i)alpha\s*(?:acids?\*?)?\s*(?:\([^)]*\))?\s*\*?\s*([\d.]+\s*[-–]\s*[\d.]+)", "alpha"),
                 (r"(?i)beta\s*(?:acids?\*?)?\s*(?:\([^)]*\))?\s*\*?\s*([\d.]+\s*[-–]\s*[\d.]+)", "beta"),
-                (r"(?i)co-?h(?:umulone)?\s*(?:\([^)]*\))?\s*([\d.]+\s*[-–]\s*[\d.]+)", "cohumulone"),
+                (r"(?i)co-?h(?:um(?:ulone)?)?\s*(?:\([^)]*\))?\s*([\d.]+\s*[-–]\s*[\d.]+)", "cohumulone"),
                 (r"(?i)(?:total\s+)?oil(?:\s+content)?\s*(?:\([^)]*\))?\s*([\d.]+\s*[-–]\s*[\d.]+)", "oil"),
             ]:
                 m = re.search(pattern, full_text)
                 if m and not result[key]:
                     result[key] = m.group(1).strip()
-                    print(f"    [DEBUG] PDF matched {key!r}: {result[key]!r}")
-                elif not result[key]:
-                    print(f"    [DEBUG] PDF no match for {key!r} (pattern: {pattern!r})")
 
             # Aroma/flavor notes — comma-separated descriptors
             for pattern in [
@@ -206,9 +200,6 @@ def parse_pdf_data(pdf_content: bytes) -> Dict:
                 if not re.match(r"(?i)^(alpha|beta|cohumulone|oil|storage|copyright|john i\. haas)", line):
                     result["description"] = line
                     break
-
-            print(f"    [DEBUG] PDF parsed summary: alpha={result['alpha']!r} beta={result['beta']!r} "
-                  f"coh={result['cohumulone']!r} oil={result['oil']!r} notes={result['notes']!r}")
 
     except Exception as exc:
         print(f"  Warning: could not parse PDF: {exc}")
@@ -277,14 +268,10 @@ def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optio
     name = h1.get_text(strip=True) if h1 else hop_url.rstrip("/").split("/")[-1].replace("-", " ").title()
     country = _extract_country(soup.get_text(" ", strip=True))
     brewing = _extract_brewing_from_html(soup)
-    print(f"  [DEBUG] {hop_url} name={name!r} country={country!r}")
-    print(f"  [DEBUG] HTML brewing dict: {brewing}")
-
     alpha_raw = brewing.get("alpha", brewing.get("alpha acids", ""))
     beta_raw = brewing.get("beta", brewing.get("beta acids", ""))
     coh_raw = brewing.get("cohumulone", brewing.get("co-h", ""))
     oil_raw = brewing.get("oil", brewing.get("total oil", ""))
-    print(f"  [DEBUG] HTML raw values: alpha={alpha_raw!r} beta={beta_raw!r} coh={coh_raw!r} oil={oil_raw!r}")
 
     alpha_from, alpha_to = parse_range(alpha_raw)
     beta_from, beta_to = parse_range(beta_raw)
@@ -322,11 +309,6 @@ def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optio
             description = description or pdf_data["description"]
         except requests.exceptions.RequestException as e:
             print(f"  Warning: could not download PDF {pdf_url}: {e}")
-    else:
-        print(f"  [DEBUG] No PDF found for {hop_url}")
-
-    print(f"  [DEBUG] {name} final values: alpha={alpha_from}-{alpha_to} beta={beta_from}-{beta_to} "
-          f"coh={co_h_from}-{co_h_to} oil={oil_from}-{oil_to}")
     if not alpha_from and not alpha_to and not beta_from and not beta_to:
         print(f"  Skipping {name} — no brewing data found (html_keys={list(brewing.keys())}, pdf_url={pdf_url!r})")
         return None
@@ -361,8 +343,6 @@ def process_pdf_directly(pdf_url: str, anchor_text: str) -> Optional[HopEntry]:
     name = hop_name_from_pdf_filename(pdf_url)
     if not name:
         return None
-
-    print(f"  [DEBUG] Processing PDF directly: {pdf_url!r} → name={name!r}")
 
     try:
         pdf_resp = requests.get(pdf_url, headers=HEADERS, timeout=PDF_TIMEOUT)
