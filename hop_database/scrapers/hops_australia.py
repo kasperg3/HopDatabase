@@ -240,21 +240,32 @@ def parse_range(text: str) -> Tuple[str, str]:
 
 def find_pdf_url(soup: BeautifulSoup, page_url: str) -> Optional[str]:
     """Look for a PDF technical data sheet link on the hop page."""
-    for a_tag in soup.find_all("a", href=re.compile(r"\.pdf$", re.I)):
-        href = a_tag["href"]
+    _EXCLUDE = re.compile(r"/legal/|privacy|policy|terms|disclaimer", re.I)
+    _PREFER = re.compile(r"spec|data.?sheet|technical|analytical|download", re.I)
+
+    def _abs(href: str) -> str:
         if href.startswith("http"):
             return href
         return BASE_URL.rstrip("/") + "/" + href.lstrip("/")
 
-    for a_tag in soup.find_all("a", href=True):
-        label = a_tag.get_text(strip=True).lower()
-        if any(kw in label for kw in ("data sheet", "technical", "download", "pdf")):
-            href = a_tag["href"]
-            if href.endswith(".pdf") or "pdf" in href.lower():
-                if href.startswith("http"):
-                    return href
-                return BASE_URL.rstrip("/") + "/" + href.lstrip("/")
-    return None
+    candidates: List[str] = []
+
+    for a_tag in soup.find_all("a", href=re.compile(r"\.pdf", re.I)):
+        href = a_tag["href"]
+        if not _EXCLUDE.search(href):
+            candidates.append(_abs(href))
+
+    if not candidates:
+        for a_tag in soup.find_all("a", href=True):
+            label = a_tag.get_text(strip=True).lower()
+            if any(kw in label for kw in ("data sheet", "technical", "download", "pdf")):
+                href = a_tag["href"]
+                if not _EXCLUDE.search(href) and (href.endswith(".pdf") or "pdf" in href.lower()):
+                    candidates.append(_abs(href))
+
+    # Prefer URLs that look like spec/analytical sheets over generic PDFs
+    preferred = [u for u in candidates if _PREFER.search(u)]
+    return preferred[0] if preferred else (candidates[0] if candidates else None)
 
 
 def parse_pdf_sensory(pdf_content: bytes) -> Dict[str, float]:
