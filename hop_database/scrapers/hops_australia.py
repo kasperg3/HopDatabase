@@ -10,6 +10,7 @@ and PDF technical data sheets (for sensory analysis).
 import concurrent.futures
 import io
 import re
+import time
 from typing import Dict, List, Optional, Tuple
 
 import requests
@@ -236,6 +237,26 @@ def parse_range(text: str) -> Tuple[str, str]:
         return from_val, to_val
     val = re.sub(r"[^0-9.]", "", text)
     return val, val
+
+
+def _find_pdf_via_wp_api(hop_slug: str) -> Optional[str]:
+    """Query the WordPress REST API for PDF attachments matching the hop slug.
+    Used as a fallback when the hop page doesn't link its spec sheet directly."""
+    _EXCLUDE = re.compile(r"/legal/|privacy|policy|terms|disclaimer", re.I)
+    try:
+        api_url = (
+            f"{BASE_URL}/wp-json/wp/v2/media"
+            f"?search={hop_slug}&mime_type=application/pdf&per_page=10"
+        )
+        resp = requests.get(api_url, headers=HEADERS, timeout=PAGE_TIMEOUT)
+        if resp.status_code == 200:
+            for item in resp.json():
+                url = item.get("source_url", "")
+                if url.lower().endswith(".pdf") and not _EXCLUDE.search(url):
+                    return url
+    except Exception:
+        pass
+    return None
 
 
 def find_pdf_url(soup: BeautifulSoup, page_url: str) -> Optional[str]:
@@ -494,9 +515,13 @@ def parse_aroma_notes(soup: BeautifulSoup) -> List[str]:
 
 
 def process_hop_page(hop_url: str) -> Optional[HopEntry]:
-    """Fetch a single hop page, parse all HTML data, and return a partial HopEntry.
-    PDF download is handled separately in scrape() to allow rate limiting.
-    Returns a HopEntry with pdf_url stored in additional_properties for later use."""
+    """Fetch a hop page and its PDF spec sheet, merge both sources into a HopEntry.
+
+    HTML provides: name, country, description, aroma notes, and sometimes brewing values.
+    PDF provides: authoritative brewing values (alpha/beta/cohumulone/oil) and sensory scores.
+    When both sources have a brewing value the PDF wins (it is the official spec sheet).
+    PDF discovery: page links → WordPress REST API media search → skip if none found.
+    """
     try:
         response = _get_with_retry(hop_url, timeout=PAGE_TIMEOUT)
     except requests.exceptions.RequestException as exc:
@@ -504,13 +529,13 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         return None
 
     soup = BeautifulSoup(response.content, "html.parser")
+    hop_slug = hop_url.rstrip("/").rsplit("/", 1)[-1]
 
+    # Name from <h1>, fallback to slug
     h1 = soup.find("h1")
-    name = h1.get_text(strip=True) if h1 else ""
-    if not name:
-        slug = hop_url.rstrip("/").rsplit("/", 1)[-1]
-        name = slug.replace("-", " ").title()
+    name = h1.get_text(strip=True) if h1 else hop_slug.replace("-", " ").title()
 
+    # Brewing values from HTML (tables / definition lists / inline text)
     bv = parse_brewing_values(soup)
     alpha_from, alpha_to = parse_range(bv.get("alpha", ""))
     beta_from, beta_to = parse_range(bv.get("beta", ""))
@@ -519,7 +544,30 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
 
     description = parse_description(soup)
     notes = parse_aroma_notes(soup)
-    pdf_url = find_pdf_url(soup, hop_url)
+
+    # PDF discovery: explicit page link first, then WP REST API
+    pdf_url = find_pdf_url(soup, hop_url) or _find_pdf_via_wp_api(hop_slug)
+
+    # PDF data — brewing values from PDF override HTML; sensory always from PDF
+    pdf_bytes: Optional[bytes] = None
+    if pdf_url:
+        try:
+            pdf_resp = _get_with_retry(pdf_url, timeout=PDF_TIMEOUT)
+            pdf_bytes = pdf_resp.content
+            print(f"  PDF downloaded: {pdf_url}")
+
+            pdf_bv = parse_pdf_brewing_values(pdf_bytes)
+            if pdf_bv.get("alpha"):
+                alpha_from, alpha_to = parse_range(pdf_bv["alpha"])
+            if pdf_bv.get("beta"):
+                beta_from, beta_to = parse_range(pdf_bv["beta"])
+            if pdf_bv.get("cohumulone"):
+                coh_from, coh_to = parse_range(pdf_bv["cohumulone"])
+            if pdf_bv.get("oil"):
+                oil_from, oil_to = parse_range(pdf_bv["oil"])
+        except requests.exceptions.RequestException as exc:
+            print(f"  Warning: could not download PDF {pdf_url}: {exc}")
+            pdf_bytes = None
 
     hop_entry = HopEntry(
         name=name,
@@ -536,40 +584,14 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
         co_h_to=coh_to,
         notes=notes,
         description=description,
-        additional_properties={"_pdf_url": pdf_url or ""},
     )
+
+    if pdf_bytes:
+        sensory_data = parse_pdf_sensory(pdf_bytes)
+        hop_entry.set_standardized_aromas("australianhops", sensory_data)
+
     print(f"  Page loaded: {name} — pdf: {pdf_url or 'none'}")
     return hop_entry
-
-
-def enrich_with_pdf(hop_entry: HopEntry) -> None:
-    """Download and parse the PDF for a hop entry, updating it in place."""
-    pdf_url = hop_entry.additional_properties.pop("_pdf_url", "")
-    if not pdf_url:
-        return
-
-    try:
-        pdf_response = _get_with_retry(pdf_url, timeout=PDF_TIMEOUT)
-        pdf_bytes = pdf_response.content
-        print(f"  PDF downloaded: {pdf_url}")
-    except requests.exceptions.RequestException as exc:
-        print(f"  Warning: could not download PDF {pdf_url}: {exc}")
-        return
-
-    sensory_data = parse_pdf_sensory(pdf_bytes)
-    hop_entry.set_standardized_aromas("australianhops", sensory_data)
-
-    # Fill in brewing values from PDF if HTML page had none
-    if not hop_entry.alpha_from:
-        pdf_bv = parse_pdf_brewing_values(pdf_bytes)
-        if pdf_bv.get("alpha"):
-            hop_entry.alpha_from, hop_entry.alpha_to = parse_range(pdf_bv["alpha"])
-        if pdf_bv.get("beta"):
-            hop_entry.beta_from, hop_entry.beta_to = parse_range(pdf_bv["beta"])
-        if pdf_bv.get("cohumulone"):
-            hop_entry.co_h_from, hop_entry.co_h_to = parse_range(pdf_bv["cohumulone"])
-        if pdf_bv.get("oil"):
-            hop_entry.oil_from, hop_entry.oil_to = parse_range(pdf_bv["oil"])
 
 
 MAX_WORKERS = 5  # concurrent threads for page and PDF fetches
@@ -580,8 +602,8 @@ def scrape(save: bool = False) -> List[HopEntry]:
     Main entry point: scrape all hops from hops.com.au.
 
     Phase 1 — load the listing page and collect hop page URLs.
-    Phase 2 — fetch all hop pages concurrently (HTML + locate PDF URL).
-    Phase 3 — download and parse PDFs concurrently.
+    Phase 2 — for each hop page concurrently: fetch HTML, find PDF (page link or
+               WP REST API), download PDF, merge both sources into a HopEntry.
 
     Args:
         save: If True, save results to data/hops_australia.json.
@@ -595,8 +617,8 @@ def scrape(save: bool = False) -> List[HopEntry]:
         print("No hop links found for hops.com.au — skipping.")
         return []
 
-    # Phase 2: fetch hop pages concurrently
-    print(f"\nLoading {len(hop_links)} hop pages concurrently...")
+    # Phase 2: fetch + parse hop pages concurrently (HTML and PDF merged)
+    print(f"\nProcessing {len(hop_links)} hop pages concurrently...")
     hop_entries: List[HopEntry] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_hop_page, url): url for url in hop_links}
@@ -604,14 +626,6 @@ def scrape(save: bool = False) -> List[HopEntry]:
             entry = future.result()
             if entry:
                 hop_entries.append(entry)
-
-    print(f"\nLoaded {len(hop_entries)} hop pages. Now downloading PDFs...")
-
-    # Phase 3: download and parse PDFs concurrently
-    entries_with_pdf = [e for e in hop_entries if e.additional_properties.get("_pdf_url")]
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = [executor.submit(enrich_with_pdf, e) for e in entries_with_pdf]
-        concurrent.futures.wait(futures)
 
     # Filter out non-hop pages that Strategy 5 may have picked up (e.g. "About Us",
     # "Sustainability Strategies").  A real hop page will have at least one numeric
