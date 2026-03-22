@@ -575,7 +575,19 @@ def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optio
     notes = parse_aroma_notes(soup)
 
     # PDF discovery: listing-page URL first, then page link, then WP REST API
-    pdf_url = known_pdf_url or find_pdf_url(soup, hop_url) or _find_pdf_via_wp_api(hop_slug)
+    pdf_source = "listing" if known_pdf_url else None
+    pdf_url = known_pdf_url
+    if not pdf_url:
+        pdf_url = find_pdf_url(soup, hop_url)
+        if pdf_url:
+            pdf_source = "page-link"
+    if not pdf_url:
+        pdf_url = _find_pdf_via_wp_api(hop_slug)
+        if pdf_url:
+            pdf_source = "wp-api"
+
+    print(f"  [DBG] {hop_slug}: pdf_source={pdf_source!r} pdf_url={pdf_url!r}")
+    print(f"  [DBG] {hop_slug}: html_bv={bv!r}")
 
     # PDF data — brewing values from PDF override HTML; sensory always from PDF
     pdf_bytes: Optional[bytes] = None
@@ -586,6 +598,7 @@ def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optio
             print(f"  PDF downloaded: {pdf_url}")
 
             pdf_bv = parse_pdf_brewing_values(pdf_bytes)
+            print(f"  [DBG] {hop_slug}: pdf_bv={pdf_bv!r}")
             if pdf_bv.get("alpha"):
                 alpha_from, alpha_to = parse_range(pdf_bv["alpha"])
             if pdf_bv.get("beta"):
@@ -619,6 +632,10 @@ def process_hop_page(hop_url: str, known_pdf_url: Optional[str] = None) -> Optio
         sensory_data = parse_pdf_sensory(pdf_bytes)
         hop_entry.set_standardized_aromas("australianhops", sensory_data)
 
+    print(
+        f"  [DBG] {hop_slug}: final alpha={alpha_from}-{alpha_to} "
+        f"beta={beta_from}-{beta_to} coh={coh_from}-{coh_to} oil={oil_from}-{oil_to}"
+    )
     print(f"  Page loaded: {name} — pdf: {pdf_url or 'none'}")
     return hop_entry
 
@@ -659,13 +676,18 @@ def scrape(save: bool = False) -> List[HopEntry]:
             if entry:
                 hop_entries.append(entry)
 
-    # Filter out non-hop pages that Strategy 5 may have picked up (e.g. "About Us",
-    # "Sustainability Strategies").  A real hop page will have at least one numeric
-    # brewing value; pages without any data are silently dropped.
-    hop_entries = [
-        e for e in hop_entries
-        if any([e.alpha_from, e.alpha_to, e.beta_from, e.beta_to, e.oil_from, e.co_h_from])
-    ]
+    # Filter out non-hop pages: a real hop entry has at least one numeric brewing value.
+    kept, dropped = [], []
+    for e in hop_entries:
+        if any([e.alpha_from, e.alpha_to, e.beta_from, e.beta_to, e.oil_from, e.co_h_from]):
+            kept.append(e)
+        else:
+            dropped.append(e)
+    if dropped:
+        print(f"  [DBG] Dropped {len(dropped)} entries with no brewing data:")
+        for e in dropped:
+            print(f"    - {e.name!r} ({e.href})")
+    hop_entries = kept
 
     print(f"\nHop Products Australia: scraped {len(hop_entries)} of {len(listing)} hops.")
 
