@@ -103,6 +103,57 @@ export const normalizeOil = (value) => Math.min((parseValue(value) / NORMALIZATI
 export const normalizeCohumulone = (value) => Math.min((parseValue(value) / NORMALIZATION_SCALES.COHUMULONE_MAX) * 10, 10);
 export const normalizeBetaAlpha = (value) => Math.min((parseValue(value) / NORMALIZATION_SCALES.BETA_ALPHA_RATIO_MAX) * 10, 10);
 
+// Natural language helpers
+function joinNatural(items) {
+  if (items.length === 0) return '';
+  if (items.length === 1) return items[0];
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+}
+
+/**
+ * Generate a natural-language sensory description from a hop's aromas and notes.
+ * Returns empty string if no data is available.
+ */
+export function generateSensoryDescription(hop) {
+  const aromaEntries = Object.entries(hop.aromas || {})
+    .filter(([, v]) => v > 0)
+    .sort((a, b) => b[1] - a[1]);
+
+  const dominant = aromaEntries.filter(([, v]) => v >= 2.5);
+  const moderate = aromaEntries.filter(([, v]) => v >= 1.0 && v < 2.5);
+  const notes = hop.notes || [];
+
+  // Fallback: no aroma data at all
+  if (aromaEntries.length === 0) {
+    return notes.length > 0 ? `Flavor notes: ${notes.join(', ')}.` : '';
+  }
+
+  const parts = [];
+
+  if (dominant.length > 0) {
+    const names = dominant.map(([k]) => k.toLowerCase());
+    parts.push(`Bold ${joinNatural(names)} character`);
+    if (moderate.length > 0) {
+      const modNames = moderate.slice(0, 3).map(([k]) => k.toLowerCase());
+      parts.push(`with ${joinNatural(modNames)} undertones`);
+    }
+  } else if (moderate.length > 0) {
+    const names = moderate.slice(0, 3).map(([k]) => k.toLowerCase());
+    parts.push(`Moderate ${joinNatural(names)} character`);
+  }
+
+  const aromaDesc = parts.join(' ');
+  if (notes.length > 0) {
+    const noteStr = notes.slice(0, 5).join(', ');
+    return aromaDesc
+      ? `${aromaDesc}. Key notes: ${noteStr}.`
+      : `Flavor notes: ${noteStr}.`;
+  }
+
+  return aromaDesc ? `${aromaDesc}.` : '';
+}
+
 // Process hop data with all analysis
 export const processHopData = (hopData) => {
   return hopData.map((hop, index) => {
