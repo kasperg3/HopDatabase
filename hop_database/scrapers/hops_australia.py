@@ -9,6 +9,7 @@ and PDF technical data sheets (for sensory analysis).
 
 import io
 import re
+import time
 import concurrent.futures
 from typing import Dict, List, Optional, Tuple
 
@@ -20,6 +21,9 @@ from ..models.hop_model import HopEntry, save_hop_entries
 BASE_URL = "https://www.hops.com.au"
 HOPS_LISTING_URL = "https://www.hops.com.au/hops/"
 
+PAGE_TIMEOUT = 90   # seconds — site is slow
+PDF_TIMEOUT = 120   # seconds — PDFs can be large
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -29,12 +33,30 @@ HEADERS = {
 }
 
 
+def _get_with_retry(url: str, timeout: int = PAGE_TIMEOUT, retries: int = 3) -> requests.Response:
+    """GET request with simple retry + backoff for slow/flaky servers."""
+    for attempt in range(retries):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=timeout)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.Timeout:
+            if attempt < retries - 1:
+                wait = 2 ** attempt  # 1s, 2s, 4s
+                print(f"  Timeout fetching {url}, retrying in {wait}s ({attempt+1}/{retries})...")
+                time.sleep(wait)
+            else:
+                raise
+        except requests.exceptions.RequestException:
+            raise
+    raise RuntimeError(f"Failed to fetch {url} after {retries} attempts")
+
+
 def get_hop_links(listing_url: str = HOPS_LISTING_URL) -> List[str]:
     """Fetch the main hop listing page and return all individual hop page URLs."""
     print(f"Fetching hop listing from {listing_url} ...")
     try:
-        response = requests.get(listing_url, headers=HEADERS, timeout=30)
-        response.raise_for_status()
+        response = _get_with_retry(listing_url, timeout=PAGE_TIMEOUT)
     except requests.exceptions.RequestException as exc:
         print(f"Error fetching listing page: {exc}")
         return []
@@ -409,8 +431,7 @@ def parse_aroma_notes(soup: BeautifulSoup) -> List[str]:
 def process_hop_page(hop_url: str) -> Optional[HopEntry]:
     """Fetch a single hop page and return a HopEntry."""
     try:
-        response = requests.get(hop_url, headers=HEADERS, timeout=30)
-        response.raise_for_status()
+        response = _get_with_retry(hop_url, timeout=PAGE_TIMEOUT)
     except requests.exceptions.RequestException as exc:
         print(f"  Error fetching {hop_url}: {exc}")
         return None
@@ -436,8 +457,7 @@ def process_hop_page(hop_url: str) -> Optional[HopEntry]:
     pdf_url = find_pdf_url(soup, hop_url)
     if pdf_url:
         try:
-            pdf_response = requests.get(pdf_url, headers=HEADERS, timeout=60)
-            pdf_response.raise_for_status()
+            pdf_response = _get_with_retry(pdf_url, timeout=PDF_TIMEOUT)
             pdf_bytes = pdf_response.content
             sensory_data = parse_pdf_sensory(pdf_bytes)
 
@@ -493,7 +513,7 @@ def scrape(save: bool = False) -> List[HopEntry]:
         return []
 
     hop_entries: List[HopEntry] = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         future_to_url = {
             executor.submit(process_hop_page, url): url for url in hop_links
         }
