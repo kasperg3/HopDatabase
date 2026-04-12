@@ -15,5 +15,6 @@ export {
   IconCheck,
   IconCopy,
   IconX,
-  IconHelp
+  IconHelp,
+  IconChartBubble
 } from '@tabler/icons-react';

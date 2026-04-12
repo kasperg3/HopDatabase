@@ -25,9 +25,11 @@ import {
   IconCopy,
   IconBrandGithub,
   IconLeaf,
+  IconChartBubble,
 } from '@tabler/icons-react';
 import HopSelector from './hop-selector/HopSelector';
 import LazySpiderChart, { preloadSpiderChart } from './LazySpiderChart';
+import LazyCarbonationCalculator, { preloadCarbonationCalculator } from './LazyCarbonationCalculator';
 import SelectedHops from './SelectedHops';
 import { useSEO } from '../hooks/useSEO';
 import { updateURL, loadFromURL } from '../utils';
@@ -38,6 +40,7 @@ function AppContent() {
   const [hopData, setHopData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentView, setCurrentView] = useState('main'); // 'main' | 'calculator'
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -206,7 +209,28 @@ function AppContent() {
           </Group>
 
           <Group gap="xs">
-            {selectedHops.length > 0 && (
+            <Tooltip
+              label={currentView === 'main' ? 'Carbonation Calculator' : 'Back to HopBase'}
+              position="bottom"
+            >
+              <ActionIcon
+                variant="subtle"
+                size="lg"
+                radius="md"
+                onMouseEnter={currentView === 'main' ? preloadCarbonationCalculator : undefined}
+                onClick={() =>
+                  setCurrentView((prev) => (prev === 'main' ? 'calculator' : 'main'))
+                }
+                style={{ color: 'rgba(255,255,255,0.85)' }}
+              >
+                {currentView === 'main' ? (
+                  <IconChartBubble size={18} />
+                ) : (
+                  <IconLeaf size={18} />
+                )}
+              </ActionIcon>
+            </Tooltip>
+            {selectedHops.length > 0 && currentView === 'main' && (
               <Tooltip label="Share comparison" position="bottom">
                 <ActionIcon
                   variant="subtle"
@@ -235,6 +259,9 @@ function AppContent() {
       </AppShell.Header>
 
       <AppShell.Main style={{ background: isDark ? 'var(--mantine-color-dark-8)' : '#f7f9f7' }}>
+        {currentView === 'calculator' ? (
+          <LazyCarbonationCalculator />
+        ) : (
         <Container size="lg" py="md">
           {error && (
             <Alert color="red" mb="md" radius="lg">
@@ -295,6 +322,7 @@ function AppContent() {
             </Stack>
           </Box>
         </Container>
+        )}
       </AppShell.Main>
     </AppShell>
   );
