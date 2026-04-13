@@ -11,10 +11,10 @@ import {
   NumberInput,
   Slider,
   Alert,
-  Badge,
   SimpleGrid,
   ThemeIcon,
   Divider,
+  Badge,
   useMantineColorScheme,
   UnstyledButton,
 } from '@mantine/core';
@@ -44,17 +44,115 @@ import {
   shakingTime,
 } from './carbonationUtils';
 
+// Unit conversion constants
+const BAR_TO_PSI = 14.5038;
+const M_TO_FT = 3.28084;
+const L_TO_GAL = 0.264172;
+const CM_TO_IN = 0.393701;
+
+const cToF = (c) => c * 9 / 5 + 32;
+const fToC = (f) => (f - 32) * 5 / 9;
+
+// Internal state is always metric; slider bounds are stored in metric.
 const MIN_TIME = 0.5;      // hours
 const MAX_TIME = 168;      // 1 week
 const TIME_STEP = 0.5;
 
-const MIN_PRESSURE = 0;    // bar gauge
-const MAX_PRESSURE = 4;
-const PRESSURE_STEP = 0.05;
+const MIN_PRESSURE_BAR = 0;
+const MAX_PRESSURE_BAR = 4;
+const PRESSURE_STEP_BAR = 0.05;
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const round2 = (v) => Math.round(v * 100) / 100;
 const round1 = (v) => Math.round(v * 10) / 10;
+const round0 = (v) => Math.round(v);
+
+// Per-unit configuration for inputs, sliders and labels. Everything upstream
+// still works in metric — this only affects how values are displayed and how
+// user input is translated back to metric.
+function makeUnitConfig(units) {
+  if (units === 'imperial') {
+    return {
+      tempLabel: '°F',
+      tempMin: 28,
+      tempMax: 86,
+      tempStep: 1,
+      tempDecimals: 0,
+      toDisplayTemp: (c) => round0(cToF(c)),
+      fromDisplayTemp: (f) => fToC(f),
+
+      pressureLabel: 'psi',
+      pressureUnitShort: 'psi',
+      pressureMin: 0,
+      pressureMax: 60,
+      pressureStep: 0.5,
+      pressureDecimals: 1,
+      toDisplayPressure: (bar) => round1(bar * BAR_TO_PSI),
+      fromDisplayPressure: (psi) => psi / BAR_TO_PSI,
+      pressureMarks: [
+        { value: 15, label: '15' },
+        { value: 30, label: '30' },
+        { value: 45, label: '45' },
+        { value: 60, label: '60' },
+      ],
+
+      altLabel: 'ft',
+      altMin: 0,
+      altMax: 16000,
+      altStep: 100,
+      altDecimals: 0,
+      toDisplayAlt: (m) => round0(m * M_TO_FT),
+      fromDisplayAlt: (ft) => ft / M_TO_FT,
+
+      volumeLabel: 'gal',
+      toDisplayVolume: (L) => round1(L * L_TO_GAL),
+      diameterLabel: 'in',
+      toDisplayDiameter: (cm) => round1(cm * CM_TO_IN),
+      surfaceAreaLabel: 'in²',
+      toDisplaySurfaceArea: (cm2) => round1(cm2 * CM_TO_IN * CM_TO_IN),
+    };
+  }
+  // metric
+  return {
+    tempLabel: '°C',
+    tempMin: -2,
+    tempMax: 30,
+    tempStep: 0.5,
+    tempDecimals: 1,
+    toDisplayTemp: (c) => c,
+    fromDisplayTemp: (c) => c,
+
+    pressureLabel: 'bar',
+    pressureUnitShort: 'bar',
+    pressureMin: MIN_PRESSURE_BAR,
+    pressureMax: MAX_PRESSURE_BAR,
+    pressureStep: PRESSURE_STEP_BAR,
+    pressureDecimals: 2,
+    toDisplayPressure: (bar) => round2(bar),
+    fromDisplayPressure: (bar) => bar,
+    pressureMarks: [
+      { value: 1, label: '1' },
+      { value: 2, label: '2' },
+      { value: 3, label: '3' },
+      { value: 4, label: '4' },
+    ],
+
+    altLabel: 'm',
+    altMin: 0,
+    altMax: 5000,
+    altStep: 50,
+    altDecimals: 0,
+    toDisplayAlt: (m) => m,
+    fromDisplayAlt: (m) => m,
+
+    volumeLabel: 'L',
+    toDisplayVolume: (L) => L,
+    diameterLabel: 'cm',
+    toDisplayDiameter: (cm) => cm,
+    surfaceAreaLabel: 'cm²',
+    toDisplaySurfaceArea: (cm2) => round0(cm2),
+  };
+}
 
 function formatTime(hours) {
   if (!Number.isFinite(hours)) return '—';
@@ -68,19 +166,21 @@ function CarbonationCalculator() {
   const { colorScheme } = useMantineColorScheme();
   const isDark = colorScheme === 'dark';
 
-  // Core inputs
+  // Units
+  const [units, setUnits] = useState('metric');
+  const u = useMemo(() => makeUnitConfig(units), [units]);
+
+  // Core inputs (ALL stored in metric)
   const [vesselId, setVesselId] = useState(VESSEL_PRESETS[0].id);
   const [targetVolumes, setTargetVolumes] = useState(2.5);
-  const [temperature, setTemperature] = useState(4);
-  const [altitude, setAltitude] = useState(0);
+  const [temperature, setTemperature] = useState(4);   // °C
+  const [altitude, setAltitude] = useState(0);         // meters
 
-  // Linked slider state
-  const [time, setTime] = useState(48);          // hours
-  const [pressure, setPressure] = useState(1.0); // bar gauge
+  // Linked slider state (metric)
+  const [time, setTime] = useState(48);                // hours
+  const [pressure, setPressure] = useState(1.0);       // bar gauge
 
-  // Which slider the user last drove manually
   const lastChangedRef = useRef('time');
-  // Prevents ping-pong when we programmatically update the "other" slider
   const internalUpdateRef = useRef(false);
 
   const vessel = useMemo(
@@ -92,55 +192,44 @@ function CarbonationCalculator() {
   const SA = useMemo(() => surfaceArea(vessel.diameter), [vessel]);
   const R = useMemo(() => absorptionRatio(SA, vessel.volume), [SA, vessel.volume]);
 
-  // Equilibrium pressure at target volumes and temperature
   const P_equilibrium = useMemo(
     () => equilibriumPressure(targetVolumes, temperature, P_atm),
     [targetVolumes, temperature, P_atm]
   );
 
-  // Current V_eq at the applied pressure
   const V_eq_current = useMemo(
     () => equilibriumVolumes(pressure + P_atm, temperature),
     [pressure, P_atm, temperature]
   );
 
-  // Shaking method result
   const shakeMinutes = useMemo(
     () => shakingTime(targetVolumes, V_eq_current, V_INITIAL, K_SHAKE),
     [targetVolumes, V_eq_current]
   );
 
-  // Warnings
   const isUnreachable = !Number.isFinite(
     timeForTarget(targetVolumes, V_eq_current, V_INITIAL, K_STATIC, R)
   ) && pressure <= P_equilibrium;
   const pressureTooLow = pressure < P_equilibrium;
 
-  // Handlers for linked sliders
   const handleTimeChange = useCallback(
     (newTime) => {
       lastChangedRef.current = 'time';
       setTime(newTime);
       const newPressure = pressureForTarget(
-        targetVolumes,
-        V_INITIAL,
-        K_STATIC,
-        R,
-        newTime,
-        temperature,
-        P_atm
+        targetVolumes, V_INITIAL, K_STATIC, R, newTime, temperature, P_atm
       );
       internalUpdateRef.current = true;
-      setPressure(clamp(round2(newPressure), MIN_PRESSURE, MAX_PRESSURE));
+      setPressure(clamp(round2(newPressure), MIN_PRESSURE_BAR, MAX_PRESSURE_BAR));
     },
     [targetVolumes, R, temperature, P_atm]
   );
 
   const handlePressureChange = useCallback(
-    (newPressure) => {
+    (newPressureBar) => {
       lastChangedRef.current = 'pressure';
-      setPressure(newPressure);
-      const V_eq = equilibriumVolumes(newPressure + P_atm, temperature);
+      setPressure(round2(newPressureBar));
+      const V_eq = equilibriumVolumes(newPressureBar + P_atm, temperature);
       const newTime = timeForTarget(targetVolumes, V_eq, V_INITIAL, K_STATIC, R);
       internalUpdateRef.current = true;
       if (Number.isFinite(newTime)) {
@@ -152,7 +241,6 @@ function CarbonationCalculator() {
     [targetVolumes, temperature, P_atm, R]
   );
 
-  // Recalculate the non-driving slider when inputs change
   useEffect(() => {
     if (internalUpdateRef.current) {
       internalUpdateRef.current = false;
@@ -160,15 +248,9 @@ function CarbonationCalculator() {
     }
     if (lastChangedRef.current === 'time') {
       const newPressure = pressureForTarget(
-        targetVolumes,
-        V_INITIAL,
-        K_STATIC,
-        R,
-        time,
-        temperature,
-        P_atm
+        targetVolumes, V_INITIAL, K_STATIC, R, time, temperature, P_atm
       );
-      setPressure(clamp(round2(newPressure), MIN_PRESSURE, MAX_PRESSURE));
+      setPressure(clamp(round2(newPressure), MIN_PRESSURE_BAR, MAX_PRESSURE_BAR));
     } else {
       const V_eq = equilibriumVolumes(pressure + P_atm, temperature);
       const newTime = timeForTarget(targetVolumes, V_eq, V_INITIAL, K_STATIC, R);
@@ -176,9 +258,18 @@ function CarbonationCalculator() {
         setTime(clamp(round1(newTime), MIN_TIME, MAX_TIME));
       }
     }
-    // Only react to input changes — not slider changes (those are handled above)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetVolumes, temperature, altitude, vesselId]);
+
+  // Display values (computed from metric state)
+  const tempDisplay = u.toDisplayTemp(temperature);
+  const altDisplay = u.toDisplayAlt(altitude);
+  const pressureDisplay = u.toDisplayPressure(pressure);
+  const pEqDisplay = u.toDisplayPressure(P_equilibrium);
+  const pAtmDisplay = u.toDisplayPressure(P_atm);
+  const vesselVolumeDisplay = u.toDisplayVolume(vessel.volume);
+  const vesselDiameterDisplay = u.toDisplayDiameter(vessel.diameter);
+  const vesselSADisplay = u.toDisplaySurfaceArea(SA);
 
   const cardBg = isDark ? 'var(--mantine-color-dark-6)' : 'white';
 
@@ -187,18 +278,30 @@ function CarbonationCalculator() {
       <Stack gap="lg">
         {/* Header */}
         <Paper shadow="sm" radius="lg" p="lg" style={{ background: cardBg }}>
-          <Group gap="md" align="center">
-            <ThemeIcon size={44} radius="md" variant="light" color="cyan">
-              <IconChartBubble size={26} />
-            </ThemeIcon>
-            <Box>
-              <Title order={2} style={{ fontFamily: 'Space Grotesk, Inter, sans-serif' }}>
-                Carbonation Calculator
-              </Title>
-              <Text size="sm" c="dimmed">
-                Force-carbonation planner using the Vail/Glass equation (metric units)
-              </Text>
-            </Box>
+          <Group gap="md" align="center" justify="space-between" wrap="wrap">
+            <Group gap="md" align="center">
+              <ThemeIcon size={44} radius="md" variant="light" color="cyan">
+                <IconChartBubble size={26} />
+              </ThemeIcon>
+              <Box>
+                <Title order={2} style={{ fontFamily: 'Space Grotesk, Inter, sans-serif' }}>
+                  Carbonation Calculator
+                </Title>
+                <Text size="sm" c="dimmed">
+                  Force-carbonation planner using the ASBC carbonation equation
+                </Text>
+              </Box>
+            </Group>
+            <SegmentedControl
+              size="xs"
+              color="cyan"
+              value={units}
+              onChange={setUnits}
+              data={[
+                { value: 'metric',   label: 'Metric' },
+                { value: 'imperial', label: 'Imperial' },
+              ]}
+            />
           </Group>
         </Paper>
 
@@ -217,13 +320,13 @@ function CarbonationCalculator() {
           />
           <Group gap="lg" mt="sm">
             <Text size="xs" c="dimmed">
-              Volume: <b>{vessel.volume} L</b>
+              Volume: <b>{vesselVolumeDisplay} {u.volumeLabel}</b>
             </Text>
             <Text size="xs" c="dimmed">
-              Internal diameter: <b>{vessel.diameter} cm</b>
+              Internal diameter: <b>{vesselDiameterDisplay} {u.diameterLabel}</b>
             </Text>
             <Text size="xs" c="dimmed">
-              Surface area: <b>{Math.round(SA)} cm²</b>
+              Surface area: <b>{vesselSADisplay} {u.surfaceAreaLabel}</b>
             </Text>
           </Group>
         </Paper>
@@ -243,22 +346,23 @@ function CarbonationCalculator() {
               leftSection={<IconChartBubble size={16} />}
             />
             <NumberInput
-              label="Temperature (°C)"
-              value={temperature}
-              onChange={(v) => setTemperature(Number(v) || 0)}
-              min={-2}
-              max={30}
-              step={0.5}
-              decimalScale={1}
+              label={`Temperature (${u.tempLabel})`}
+              value={tempDisplay}
+              onChange={(v) => setTemperature(u.fromDisplayTemp(Number(v) || 0))}
+              min={u.tempMin}
+              max={u.tempMax}
+              step={u.tempStep}
+              decimalScale={u.tempDecimals}
               leftSection={<IconTemperature size={16} />}
             />
             <NumberInput
-              label="Altitude (m)"
-              value={altitude}
-              onChange={(v) => setAltitude(Number(v) || 0)}
-              min={0}
-              max={5000}
-              step={50}
+              label={`Altitude (${u.altLabel})`}
+              value={altDisplay}
+              onChange={(v) => setAltitude(u.fromDisplayAlt(Number(v) || 0))}
+              min={u.altMin}
+              max={u.altMax}
+              step={u.altStep}
+              decimalScale={u.altDecimals}
               leftSection={<IconMountain size={16} />}
             />
           </SimpleGrid>
@@ -303,7 +407,7 @@ function CarbonationCalculator() {
           <Group justify="space-between" mb="xs">
             <Text size="sm" fw={600}>Static Force Carbonation</Text>
             <Badge variant="light" color="cyan" size="sm">
-              Equilibrium: {round2(P_equilibrium)} bar
+              Equilibrium: {pEqDisplay} {u.pressureUnitShort}
             </Badge>
           </Group>
           <Text size="xs" c="dimmed" mb="lg">
@@ -335,34 +439,31 @@ function CarbonationCalculator() {
             />
           </Box>
 
-          {/* Pressure slider */}
+          {/* Pressure slider (displayed in chosen units, internally bar) */}
           <Box mb="md">
             <Group gap="xs" mb={6} align="center">
               <IconGauge size={14} style={{ color: 'var(--mantine-color-orange-6)' }} />
-              <Text size="xs" fw={600}>Pressure: {round2(pressure)} bar gauge</Text>
+              <Text size="xs" fw={600}>
+                Pressure: {pressureDisplay} {u.pressureLabel} gauge
+              </Text>
             </Group>
             <Slider
               color="orange"
-              min={MIN_PRESSURE}
-              max={MAX_PRESSURE}
-              step={PRESSURE_STEP}
-              value={pressure}
-              onChange={handlePressureChange}
-              label={(v) => `${round2(v)} bar`}
-              marks={[
-                { value: 1, label: '1' },
-                { value: 2, label: '2' },
-                { value: 3, label: '3' },
-                { value: 4, label: '4' },
-              ]}
+              min={u.pressureMin}
+              max={u.pressureMax}
+              step={u.pressureStep}
+              value={pressureDisplay}
+              onChange={(v) => handlePressureChange(u.fromDisplayPressure(v))}
+              label={(v) => `${v} ${u.pressureUnitShort}`}
+              marks={u.pressureMarks}
               mb="lg"
             />
           </Box>
 
           {isUnreachable && (
             <Alert color="orange" icon={<IconAlertTriangle size={16} />} mt="md" radius="md">
-              Target CO₂ of {targetVolumes} vol is unreachable at {round2(pressure)} bar and{' '}
-              {temperature} °C. Increase pressure above {round2(P_equilibrium)} bar.
+              Target CO₂ of {targetVolumes} vol is unreachable at {pressureDisplay} {u.pressureUnitShort}
+              {' '}and {tempDisplay} {u.tempLabel}. Increase pressure above {pEqDisplay} {u.pressureUnitShort}.
             </Alert>
           )}
           {!isUnreachable && pressureTooLow && (
@@ -387,7 +488,7 @@ function CarbonationCalculator() {
               {Number.isFinite(shakeMinutes) ? `~${Math.max(1, Math.ceil(shakeMinutes))} min` : '—'}
             </Title>
             <Text size="xs" c="dimmed">
-              at {round2(pressure)} bar, {temperature} °C
+              at {pressureDisplay} {u.pressureUnitShort}, {tempDisplay} {u.tempLabel}
             </Text>
           </Group>
         </Paper>
@@ -397,15 +498,21 @@ function CarbonationCalculator() {
           <Text size="sm" fw={600} mb="md">Summary</Text>
           <SimpleGrid cols={{ base: 2, sm: 4 }} spacing="md">
             <SummaryStat label="Target" value={`${targetVolumes} vol CO₂`} />
-            <SummaryStat label="Static" value={`${round2(pressure)} bar / ${formatTime(time)}`} />
-            <SummaryStat label="Shaking" value={Number.isFinite(shakeMinutes) ? `~${Math.max(1, Math.ceil(shakeMinutes))} min` : '—'} />
-            <SummaryStat label="Atm. pressure" value={`${round2(P_atm)} bar`} />
+            <SummaryStat
+              label="Static"
+              value={`${pressureDisplay} ${u.pressureUnitShort} / ${formatTime(time)}`}
+            />
+            <SummaryStat
+              label="Shaking"
+              value={Number.isFinite(shakeMinutes) ? `~${Math.max(1, Math.ceil(shakeMinutes))} min` : '—'}
+            />
+            <SummaryStat label="Atm. pressure" value={`${pAtmDisplay} ${u.pressureUnitShort}`} />
           </SimpleGrid>
           <Divider my="md" />
           <Text size="xs" c="dimmed">
-            Based on the Vail/Glass equation. Absorption constants are empirical defaults
-            (k = {K_STATIC}, k_shake = {K_SHAKE}). Actual times depend on keg geometry,
-            temperature stability, and CO₂ purity.
+            Based on the ASBC / Zahm &amp; Nagel carbonation equation. Absorption constants are
+            empirical defaults (k = {K_STATIC}, k_shake = {K_SHAKE}). Actual times depend on keg
+            geometry, temperature stability, and CO₂ purity.
           </Text>
         </Paper>
       </Stack>
