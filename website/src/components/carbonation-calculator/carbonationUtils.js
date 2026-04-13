@@ -21,6 +21,24 @@ export const V_INITIAL = 0.85;   // CO2 volumes remaining after fermentation
 export const K_STATIC = 0.004;   // Absorption constant for static carbonation (cm^-2 * L * hr^-1)
 export const K_SHAKE = 0.2;      // Absorption constant for shaking method (min^-1)
 
+// Metric polynomial coefficients for CO2 equilibrium pressure.
+//
+// Derived from the well-known ASBC / Zahm & Nagel polynomial for beer
+// carbonation (originally in °F and psi):
+//
+//   P_psi = -16.6999 - 0.0101059*Tf + 0.00116512*Tf^2
+//         + 0.173354*Tf*V + 4.24267*V - 0.0684226*V^2
+//
+// Substituting Tf = 1.8*T + 32 and converting psi -> bar (x 0.0689476)
+// gives the metric polynomial below. Accurate to ~0.02 bar vs. standard
+// brewing carbonation charts in the 0-20 C, 1-5 vol range.
+const C0 =  -1.09140;    // constant
+const C1 =   0.007998;   // T
+const C2 =   0.0002603;  // T^2
+const C3 =   0.021513;   // T * V
+const C4 =   0.67497;    // V
+const C5 =  -0.004717;   // V^2
+
 /**
  * Atmospheric pressure at a given altitude.
  * @param {number} H - Altitude in meters
@@ -50,30 +68,60 @@ export function absorptionRatio(SA, L) {
 }
 
 /**
- * Equilibrium CO2 volumes at a given absolute pressure and temperature.
- * Vail/Glass equation: V = P_abs * exp(-(2617.25 / T_K) + 10.7527)
- * @param {number} P_abs - Absolute pressure in bar
+ * Gauge pressure required to reach target CO2 volumes at a given temperature
+ * (assuming sea-level atmospheric pressure of 1.013 bar).
+ * @param {number} V - Target CO2 volumes
  * @param {number} T - Temperature in Celsius
- * @returns {number} CO2 volumes
+ * @returns {number} Gauge pressure in bar (at sea level)
  */
-export function equilibriumVolumes(P_abs, T) {
-  const T_K = T + 273.15;
-  return P_abs * Math.exp(-(2617.25 / T_K) + 10.7527);
+export function equilibriumPressureSeaLevel(V, T) {
+  return C0 + C1 * T + C2 * T * T + C3 * T * V + C4 * V + C5 * V * V;
 }
 
 /**
- * Gauge pressure required to achieve target CO2 volumes at a given temperature.
- * Inverse of the Vail/Glass equation.
+ * Gauge pressure required to reach target CO2 volumes at a given temperature,
+ * corrected for local atmospheric pressure (altitude).
+ *
+ * The underlying solubility only depends on absolute pressure, so:
+ *   P_gauge_local = P_abs - P_atm_local
+ *                 = (P_gauge_sealevel + 1.013) - P_atm_local
  * @param {number} V - Target CO2 volumes
  * @param {number} T - Temperature in Celsius
- * @param {number} P_atm - Atmospheric pressure in bar (default 1.013)
+ * @param {number} P_atm - Local atmospheric pressure in bar (default 1.013)
  * @returns {number} Gauge pressure in bar
  */
 export function equilibriumPressure(V, T, P_atm = 1.013) {
-  const T_K = T + 273.15;
-  const exponent = -(2617.25 / T_K) + 10.7527;
-  const P_abs = V / Math.exp(exponent);
-  return P_abs - P_atm;
+  return equilibriumPressureSeaLevel(V, T) + (1.013 - P_atm);
+}
+
+/**
+ * CO2 volumes dissolved in beer at equilibrium for a given absolute pressure
+ * and temperature. Inverts the metric polynomial by solving a quadratic in V.
+ *
+ * Operates on absolute pressure, so altitude is handled by the caller
+ * (P_abs = P_gauge_local + P_atm_local).
+ * @param {number} P_abs - Absolute pressure in bar
+ * @param {number} T - Temperature in Celsius
+ * @returns {number} CO2 volumes at equilibrium (clamped to >= 0)
+ */
+export function equilibriumVolumes(P_abs, T) {
+  // Convert absolute pressure to sea-level gauge pressure, since the
+  // polynomial is fitted in terms of sea-level gauge pressure.
+  const P_gauge_sea = P_abs - 1.013;
+
+  // Quadratic in V: C5*V^2 + (C3*T + C4)*V + (C0 + C1*T + C2*T^2 - P_gauge_sea) = 0
+  const a = C5;
+  const b = C3 * T + C4;
+  const c = C0 + C1 * T + C2 * T * T - P_gauge_sea;
+
+  const disc = b * b - 4 * a * c;
+  if (disc < 0) return 0;
+
+  // a < 0: parabola opens downward. The physically meaningful root is the
+  // smaller positive one, obtained with the "+sqrt" branch (since dividing
+  // by 2a with a < 0 flips the sign).
+  const V = (-b + Math.sqrt(disc)) / (2 * a);
+  return Math.max(0, V);
 }
 
 /**
@@ -109,14 +157,15 @@ export function timeForTarget(V_target, V_eq, V_initial, k, R) {
 
 /**
  * Required gauge pressure to reach target CO2 volumes in a given time.
- * Inverts the exponential absorption model to find V_eq, then converts to pressure.
+ * Inverts the exponential absorption model to find V_eq, then converts to
+ * pressure via equilibriumPressure.
  * @param {number} V_target - Target CO2 volumes
  * @param {number} V_initial - Initial CO2 volumes
  * @param {number} k - Absorption constant
  * @param {number} R - Absorption ratio
  * @param {number} t - Time in hours
  * @param {number} T - Temperature in Celsius
- * @param {number} P_atm - Atmospheric pressure in bar
+ * @param {number} P_atm - Local atmospheric pressure in bar
  * @returns {number} Required gauge pressure in bar
  */
 export function pressureForTarget(V_target, V_initial, k, R, t, T, P_atm = 1.013) {
